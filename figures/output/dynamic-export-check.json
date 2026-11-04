@@ -1,0 +1,50 @@
+{
+  "p1_switching_ripple": {
+    "width_mm": 183.00000559488933,
+    "height_mm": 119.99999660915799,
+    "fonts": [
+      [
+        15,
+        "ttf",
+        "Type0",
+        "EBWHKJ+ArialMT",
+        "F1",
+        "Identity-H"
+      ],
+      [
+        22,
+        "ttf",
+        "Type0",
+        "EBWHKJ+Arial-BoldMT",
+        "F2",
+        "Identity-H"
+      ]
+    ],
+    "svg_present": true,
+    "png_present": true
+  },
+  "p4_direction_reversal": {
+    "width_mm": 183.00000559488933,
+    "height_mm": 79.99999953375921,
+    "fonts": [
+      [
+        15,
+        "ttf",
+        "Type0",
+        "EBWHKJ+ArialMT",
+        "F1",
+        "Identity-H"
+      ],
+      [
+        22,
+        "ttf",
+        "Type0",
+        "EBWHKJ+Arial-BoldMT",
+        "F2",
+        "Identity-H"
+      ]
+    ],
+    "svg_present": true,
+    "png_present": true
+  }
+}
