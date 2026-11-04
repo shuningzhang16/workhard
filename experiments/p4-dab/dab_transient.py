@@ -46,7 +46,8 @@ def rl_step(i0: float, voltage: float, dt: float, inductance: float, resistance:
 
 
 def simulate_transient(settings: Settings, requests: list[float], *, initial_current_a=0.0,
-                       clear_cycles=(), sense_v2: Callable[[float], float] | None = None) -> Run:
+                       clear_cycles=(), sense_v2: Callable[[float], float] | None = None,
+                       phase_request: Callable[[int, dict | None, float, bool], float] | None = None) -> Run:
     """Carry the actual current across all intervals and command boundaries.
 
     Inputs update at the start of each switching period. Protection samples
@@ -55,6 +56,8 @@ def simulate_transient(settings: Settings, requests: list[float], *, initial_cur
     no active sampled fault, and |i| <= clear_current_a. No automatic restart.
     sense_v2 receives elapsed time in switching periods; it is a detector input
     only, never an output capacitor state or a change to the physical V2 source.
+    Optional phase_request sees only the just-completed period, prior actuator
+    phase and latch state. It never receives the current/future period result.
     """
     p = settings.circuit
     p.validate()
@@ -106,6 +109,10 @@ def simulate_transient(settings: Settings, requests: list[float], *, initial_cur
                         "clear_requested": int(clear), "request_deg": request})
 
     for k, request in enumerate(requests):
+        if phase_request is not None:
+            request = phase_request(k, periods[-1] if periods else None, phase, latched)
+            if not math.isfinite(request):
+                raise ValueError("Phase controller returned a non-finite request")
         start_current = current
         sample(k, request, k in clear_cycles)
         target = max(-settings.phase_limit_deg, min(settings.phase_limit_deg, request))

@@ -8,6 +8,8 @@
 
 第四步已完成已有 SPS/EPS 波形的逐开关沿电流极性分析：40 个周期波形、320 个桥臂事件、25 项测试通过。这是软开关的必要极性筛查，未确认实际 ZVS。电流方向、边界及来源见 [COMMUTATION.md](COMMUTATION.md)。
 
+第五步已完成固定母线下的离散传输功率 PI 环，仅使用上一已完成周期的实算功率；3 个工况、30 项测试通过，包含正向阶跃、反向指令、不可达指令的抗积分饱和及保护恢复。详见 [POWER_LOOP.md](POWER_LOOP.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。
@@ -64,6 +66,8 @@ EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在�
 
 第四步执行 `E:\python.exe -B -X utf8 run_commutation_analysis.py`，结果在 `results_polarity/`。m=0.75、±2.7 W 时，SPS 有 4 个沿方向相反，所选 EPS 的 8 个沿均满足必要极性；m=1.25 的轻载点仍有 4 个沿方向相反。8 个沿全部满足也不能确认 ZVS，缺失 Coss/Qoss、死区及寄生模型。
 
-本步先单独提交和上传。当前仍未包含输出电压动态、完整功率闭环、器件损耗/效率或完整 ZVS 模型；各步的假设与证据分别保留在对应说明中。
+第五步执行 `E:\python.exe -B -X utf8 run_power_loop.py`，输出在 `results_power_loop/`。20 W→−15 W 在 4.150 ms 内进入并保持本次误差带；100 W 请求受限到约 31.172552 W，降回 10 W 后 3.750 ms 恢复，尾段误差 0.008278 W。该 PI 环的增益和误差带均为明确教学设定，原保护和物理检查不变。
+
+本步先单独提交和上传。当前仍未包含输出电压/电池动态、硬件控制实现、器件损耗/效率或完整 ZVS 模型；各步的假设与证据分别保留在对应说明中。
 
 第一阶段以离线仿真为目标，不需要物理开发板。本目录不包含上板、写卡或高压硬件运行步骤。

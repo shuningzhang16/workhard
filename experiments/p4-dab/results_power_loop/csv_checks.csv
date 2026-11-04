@@ -1,0 +1,4 @@
+file,rows,continuity_error_a,time_gap_s,rl_endpoint_error_a,energy_residual_j
+step_and_reverse_waveform.csv,6600,0.0,0.0,1.865174681370263e-14,3.818424526222386e-17
+saturation_return_waveform.csv,7036,0.0,0.0,1.765254609153999e-14,1.1312294417170632e-16
+protected_recovery_waveform.csv,3646,0.0,0.0,1.694777423360118e-14,1.303160189350741e-18
