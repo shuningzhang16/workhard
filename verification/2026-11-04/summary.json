@@ -1,0 +1,36 @@
+{
+  "kind": "offline Python, RTL simulation and host C checks",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "project": "p1",
+      "check": "buck",
+      "exit_code": 0,
+      "seconds": 6.664,
+      "log": ".runs/20261104-155345-005531/p1_buck.log"
+    },
+    {
+      "project": "p2",
+      "check": "rtl",
+      "exit_code": 0,
+      "seconds": 4.907,
+      "log": ".runs/20261104-155345-005531/p2_rtl.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261104-155345-005531/rtl"
+    },
+    {
+      "project": "p2",
+      "check": "frame_validator",
+      "exit_code": 0,
+      "seconds": 5.059,
+      "log": ".runs/20261104-155345-005531/p2_frame_validator.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261104-155345-005531/frame_validator"
+    },
+    {
+      "project": "p4",
+      "check": "dab",
+      "exit_code": 0,
+      "seconds": 1.462,
+      "log": ".runs/20261104-155345-005531/p4_dab.log"
+    }
+  ]
+}

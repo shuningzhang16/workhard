@@ -1,5 +1,6 @@
 /求职资料/
 /.tools/
+.runs/
 /figures/output/*.collision.pdf
 __pycache__/
 *.py[cod]

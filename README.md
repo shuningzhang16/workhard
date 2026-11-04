@@ -4,11 +4,21 @@
 
 | 项目 | 目录 | 当前阶段 |
 | --- | --- | --- |
-| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | PI/软启动、三类故障锁存与显式恢复验证通过 |
-| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | 数据源 + 同步 FIFO 共六组 RTL 仿真通过，尚未集成 DMA/DDR |
-| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS 与 EPS 的同功率比较通过，保留未改善与无解工况 |
+| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | PI/保护/PWM 模型通过，ngspice 已实际运行并完成独立对照 |
+| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | 顶层 RTL→C 联测通过；提供待完整 Vivado 验证的 Tcl 工程入口 |
+| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS/EPS 比较、连续电流换向、采样保护和换流极性分析通过 |
 
 系统框图与边界见 [系统说明](docs/SYSTEMS.md)，已有数据的可编辑波形图见 [图表与复现](figures/README.md)。
+
+主要数值、测试证据和实际失败定位见 [结果索引](docs/RESULTS.md)。
+
+## 一次复跑离线检查
+
+仓库根目录运行 `python -X utf8 scripts/check_offline.py`，或用 `--only p1`、`--only p2`、`--only p4` 单独检查。本机正常解释器为 `E:\python.exe`。脚本调用各实验已有的 Python 测试、Icarus RTL 仿真及 GCC 主机 C 测试；不会运行硬件或重写已提交的结果。
+
+P1/P4 只需要 Python 标准库。P2 需要 Icarus Verilog 和 GCC；Windows 下使用 WSL Ubuntu-22.04 的 GCC。本机 Icarus 位于实验 `.tools/`，新机器需要自行具备这些依赖，脚本不自动安装。绘图另需 matplotlib。每次检查的日志和结果保存在带时间的 `.runs/` 目录，未加入 Git；出错时保留输出并继续其他独立检查，最终退出码反映是否有失败。已提交的阶段证据仍在各实验的 `results*`、`simulation/` 和 `evidence/` 目录。
+
+本轮统一运行已通过：Buck 8 项、RTL 六组、主机 C 16 项、DAB 25 项。日志副本见 [2026-11-04 验证记录](verification/2026-11-04/)。SPICE 对照与 Vivado 入口的验证范围在各实验说明中单独记录。
 
 ## 版本与来源
 
