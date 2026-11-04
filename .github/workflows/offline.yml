@@ -1,0 +1,51 @@
+name: Offline experiments
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/**'
+      - 'scripts/check_offline.py'
+      - '.github/workflows/offline.yml'
+  pull_request:
+    paths:
+      - 'experiments/**'
+      - 'scripts/check_offline.py'
+      - '.github/workflows/offline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: ${{ matrix.experiment }} offline checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        experiment: [p1, p2, p4]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Install RTL and C tools
+        if: matrix.experiment == 'p2'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y iverilog gcc
+      - name: Run existing offline checks
+        run: python -X utf8 scripts/check_offline.py --only ${{ matrix.experiment }}
+      - name: Retain logs and simulation data
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: offline-${{ matrix.experiment }}-${{ github.run_attempt }}
+          path: |
+            .runs/
+            experiments/p2-zcu104-daq/.runs/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
