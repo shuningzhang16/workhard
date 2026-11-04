@@ -1,6 +1,53 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：原厂代码已先行保存；第一小步新增了独立 AXI-Stream 数据发生器与 testbench，并通过 Icarus Verilog 13.0 的真实 RTL 仿真。尚未完成 ZCU104 工程适配、FIFO/DMA/DDR 集成或板端验证。
+当前阶段：已实现内部 AXI-Stream 数据源及最小同步 FIFO，两步均通过 Icarus Verilog 13.0 的真实 RTL 仿真。原厂代码保留不变。尚未完成 ZCU104 工程适配、DMA/DDR 集成或板端验证。
+
+## 第二小步：单时钟 FIFO
+
+本步实际仿真链路：`原有数据源 → testbench 合法空拍/字节掩码刺激 → 同步 FIFO → 独立队列检查器`。没有引入 DMA、AXI-Lite 或跨时钟逻辑。
+
+| 文件 | 用途 |
+| --- | --- |
+| [rtl/axis_sync_fifo.v](rtl/axis_sync_fifo.v) | 32 位、单时钟、可配置深度的 AXI-Stream FIFO |
+| [tb/tb_axis_sync_fifo.sv](tb/tb_axis_sync_fifo.sv) | 数据源接入 FIFO，动态队列逐字核对、定向满/空及复位测试 |
+| [scripts/run_sim.py](scripts/run_sim.py) | 新增 `--suite source/fifo/all`，默认仍执行原有 source 测试 |
+| [results/fifo_step/summary.json](results/fifo_step/summary.json) | 三组 FIFO 测试及三组 source 回归的实际结果 |
+| `results/fifo_step/depth{1,3,16}/` | 编译日志、仿真日志、占用与握手的有限原始 CSV |
+
+### 实现与检查方法
+
+FIFO 把 `{TLAST, TKEEP, TDATA}` 作为一个 37 位字存储，读写指针遇到 `DEPTH-1` 显式回零，因此允许非 2 的幂的深度。占用数只在单独读或单独写时变化，同时读写保持占用数。满时如果下游同拍读走一个字，允许上游同拍写入；深度 1 同样适用。空时不组合直通，新字在写入后的周期有效。低有效同步复位使占用和指针清零，不清内存；`TVALID=0` 时数据总线不具有有效数据含义。
+
+这是用于小深度的异步读存储结构，不是针对块 RAM 的实现。满时存在输出 ready 到输入 ready 的组合路径；本次没有进行综合、资源利用率或时序收敛测量。
+
+检查器使用独立的 SystemVerilog 动态队列，不读取 FIFO 内部计数或指针。每次输入握手追加完整的 37 位字，每次输出握手弹出并比较队头；背压时也逐周期核对输出稳定性。每个周期都核对：`输入握手数 = 输出握手数 + 复位丢弃数 + 队列剩余数`，最终排空后剩余数必须为 0。
+
+现有数据源的 `TKEEP` 固定为 `f`，因此 testbench 在 FIFO 输入处让掩码按数据索引循环为 `f/7/3/1`，检验侧带字段是否与数据一起传递；这只是验证刺激，不改变数据源 RTL 或其原有测试。testbench 插入输入空拍时，会保持已经提出且尚未握手的字，避免用违反 valid/ready 规则的输入测试 FIFO。
+
+测试包含：空队列、填满后的持续背压、满状态同时读写、排空、连续传输、TLAST 停留、固定种子的随机输入空拍/输出背压、满队列复位、复位后重启及最后排空。三种深度的读写次数均超过各自深度的多倍，覆盖指针反复回绕。
+
+### 2026-11-04 实际结果
+
+| 深度 | 占用峰值 | 输入握手 | 输出握手 | 复位丢弃字 | 最终剩余 | 输入背压周期 | 输出背压周期 | 满状态同时读写 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 1 | 684 | 683 | 1 | 0 | 184 | 234 | 555 |
+| 3 | 3 | 775 | 772 | 3 | 0 | 94 | 268 | 209 |
+| 16 | 16 | 983 | 967 | 16 | 0 | 27 | 313 | 95 |
+
+六组编译与仿真全部通过，退出码均为 0；原有帧长 1、7、16 的 source 回归结果保持一致。FIFO 在定向连续读写窗口分别完成 12/12、20/20、72/72 个周期的输出握手，即每周期一个字。仿真时钟为 10 ns，仅描述该 RTL 仿真条件；不能据此声称板卡达到某个吞吐量或频率。
+
+表中输入与输出数量的差值全由明确施加的复位解释，不是无故丢字。复位会丢弃缓冲中的部分帧和可能存在的 TLAST，下游需要同时处理复位边界。此步未增加现实 ADC 采样溢出统计。
+
+原始 `cycles.csv` 保存前 512 个周期，并额外保存缓存非空复位及最后排空阶段；其余随机阶段仍逐拍检查，仅不全部落盘。`occupancy_before/after` 来自独立队列，代表该采样沿前/后的逻辑占用；非复位行的接口信号为上升沿更新前的值。复位行是复位更新后的观察，不用于握手计数。无效周期可能保留旧数据或显示 `x`，只在 valid 为 1 时解释数据与侧带字段。
+
+### 复现全部回归
+
+```powershell
+Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq'
+& 'E:\python.exe' .\scripts\run_sim.py --suite all --output results/fifo_step
+```
+
+只跑 FIFO 可用 `--suite fifo`；只跑原数据源可用 `--suite source`。更换输出目录，例如 `--output results/fifo_recheck_01`，可保留本次证据。每组日志都记录真实命令、结果和退出码。
 
 ## 第一小步：内部数据源与仿真
 
@@ -74,7 +121,7 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq'
 - 已实际下载 15 个上游文件，共 205,014 字节；每个文件长度与同版本 GitHub Contents API 返回值一致。结果记录于 `sources.csv`。这只是文件获取检查，不是功能验证。
 - 官方示例要求 AXI DMA 的两个 AXI-Stream 方向之间存在硬件回环，并采用 Simple DMA 模式。其代码不是内部数据发生器，也不是单独可运行的电脑程序。
 - 这里保存的是驱动源码和一个示例的子集，不包含完整 embeddedsw、Standalone BSP、生成的 `xparameters.h`、板级配置、链接脚本或 Vivado 硬件设计。`src/xaxidma_g.c` 不能当作已生成的 ZCU104 配置使用。
-- 尚未创建 FIFO/DMA/DDR 块设计及 PS 侧改进工具。没有板端吞吐量、延迟或丢帧率测量结果。
+- 已完成独立同步 FIFO RTL 仿真；尚未创建 Vivado FIFO/DMA/DDR 块设计及 PS 侧改进工具。没有板端吞吐量、延迟或丢帧率测量结果。
 - `E:\AMDDesignTools\2025.2` 中发现 Vivado Lab，未找到 xvlog/xelab/xsim 可执行文件；没有将 Lab Edition 称作可用的完整仿真工具链。本次实际用的是本目录 Icarus Verilog 13.0。
 - PATH 中的 `E:\Scripts\python.exe` 报告缺少 `pyvenv.cfg`，实际使用正常的 `E:\python.exe`（3.14.4），未改动系统设置。首次 Python 下载请求发生 TLS EOF，改用 PowerShell 从 MSYS2 官方镜像成功取回；没有关闭 TLS 校验，记录见 [tool_setup.log](results/first_step/tool_setup.log)。
 
@@ -90,4 +137,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。后续可先接入一个 FIFO 做独立仿真，再结合完整 Vivado 工具与 ZCU104 硬件设计逐步验证 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。同步 FIFO 这一步已完成，交由协调聊天单独提交；后续再结合完整 Vivado 工具与 ZCU104 硬件设计逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。

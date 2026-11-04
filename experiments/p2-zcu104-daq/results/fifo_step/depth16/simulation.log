@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/depth16.vvp", "+OUTDIR=results/fifo_step/depth16"]
+PASS depth=16 in=983 out=967 reset_discard=16 pending=0 peak=16 full_exchange=95 steady=72/72
+tb/tb_axis_sync_fifo.sv:187: $finish called at 13370000 (1ps)
+
+EXIT_CODE 0

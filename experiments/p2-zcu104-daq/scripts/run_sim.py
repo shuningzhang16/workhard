@@ -29,7 +29,8 @@ def run_logged(command, log_path, env):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--iverilog", help="Path to an installed iverilog executable")
-    parser.add_argument("--output", type=Path, default=Path("results/first_step"))
+    parser.add_argument("--suite", choices=("source", "fifo", "all"), default="source")
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     local_tool = ROOT / ".tools/ucrt64/bin/iverilog.exe"
     compiler = args.iverilog or shutil.which("iverilog")
@@ -42,7 +43,8 @@ def main():
     simulator = tool_dir / ("vvp.exe" if os.name == "nt" else "vvp")
     env = os.environ.copy()
     env["PATH"] = str(tool_dir) + os.pathsep + env.get("PATH", "")
-    output = (ROOT / args.output).resolve()
+    default_output = "results/first_step" if args.suite == "source" else "results/fifo_step"
+    output = (ROOT / (args.output or Path(default_output))).resolve()
     # Keep all generated artifacts within this experiment.
     output.relative_to(ROOT)
     output.mkdir(parents=True, exist_ok=True)
@@ -51,16 +53,24 @@ def main():
     run_logged([compiler, "-V"], output / "iverilog-version.log", env)
     run_logged([str(simulator), "-V"], output / "vvp-version.log", env)
     summaries = []
-    for frame_words in (1, 7, 16):
-        case_dir = output / f"frames{frame_words}"
+    cases = []
+    if args.suite in ("source", "all"):
+        cases.extend((f"frames{value}", "tb_axis_pattern_source", "FRAME_WORDS", value,
+                      ["rtl/axis_pattern_source.v", "tb/tb_axis_pattern_source.sv"])
+                     for value in (1, 7, 16))
+    if args.suite in ("fifo", "all"):
+        cases.extend((f"depth{value}", "tb_axis_sync_fifo", "DEPTH", value,
+                      ["rtl/axis_pattern_source.v", "rtl/axis_sync_fifo.v", "tb/tb_axis_sync_fifo.sv"])
+                     for value in (1, 3, 16))
+    for name, top, parameter, value, sources in cases:
+        case_dir = output / name
         case_dir.mkdir(exist_ok=True)
-        executable = f"build/frames{frame_words}.vvp"
+        executable = f"build/{name}.vvp"
         compile_command = [
-            compiler, "-g2012", "-Wall", "-s", "tb_axis_pattern_source",
-            f"-Ptb_axis_pattern_source.FRAME_WORDS={frame_words}",
+            compiler, "-g2012", "-Wall", "-s", top,
+            f"-P{top}.{parameter}={value}",
             "-o", executable,
-            "rtl/axis_pattern_source.v", "tb/tb_axis_pattern_source.sv",
-        ]
+        ] + sources
         run_command = [
             str(simulator), executable,
             "+OUTDIR=" + case_dir.relative_to(ROOT).as_posix(),
@@ -71,7 +81,7 @@ def main():
         if summary["result"] != "PASS":
             raise RuntimeError(f"Test did not pass: {case_dir}")
         summaries.append(summary)
-        print(f"PASS FRAME_WORDS={frame_words}: {summary['accepted_words']} accepted words")
+        print(f"PASS {name}: {summary}")
     (output / "summary.json").write_text(
         json.dumps({"kind": "RTL simulation", "simulator": "Icarus Verilog", "cases": summaries},
                    indent=2) + "\n", encoding="utf-8",
