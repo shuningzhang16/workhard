@@ -56,6 +56,10 @@ def main():
             result["artifacts"] = (cwd / arguments[-1]).relative_to(ROOT).as_posix()
         results.append(result)
         print(f"{'PASS' if code == 0 else 'FAIL'} {project}/{name}", flush=True)
+        if code != 0:
+            print("Last 30 log lines (full output retained):", flush=True)
+            print("\n".join(log_path.read_text(encoding="utf-8", errors="replace").splitlines()[-30:]),
+                  flush=True)
     report = {"kind": "offline Python, RTL simulation and host C checks",
               "python": sys.version, "checks": results}
     (output / "summary.json").write_text(

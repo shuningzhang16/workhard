@@ -12,6 +12,8 @@
 
 主要数值、测试证据和实际失败定位见 [结果索引](docs/RESULTS.md)。
 
+上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。首次三个实验任务均已通过，触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
+
 ## 一次复跑离线检查
 
 仓库根目录运行 `python -X utf8 scripts/check_offline.py`，或用 `--only p1`、`--only p2`、`--only p4` 单独检查。本机正常解释器为 `E:\python.exe`。脚本调用各实验已有的 Python 测试、Icarus RTL 仿真及 GCC 主机 C 测试；不会运行硬件或重写已提交的结果。
