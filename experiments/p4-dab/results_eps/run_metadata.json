@@ -1,0 +1,53 @@
+{
+  "started_at_utc": "2026-11-04T07:28:01.937837+00:00",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    ".\\run_eps_comparison.py"
+  ],
+  "model": "independent ideal low-voltage EPS; primary bridge only",
+  "parameters_default": {
+    "v1_v": 24.0,
+    "v2_v": 12.0,
+    "turns_ratio": 2.0,
+    "frequency_hz": 20000.0,
+    "inductance_h": 0.0001
+  },
+  "voltage_ratios_nV2_over_V1": [
+    0.75,
+    1.0,
+    1.25
+  ],
+  "target_fractions_of_sps_ideal_pmax": [
+    0.1,
+    0.5
+  ],
+  "unreachable_targets_at_ratio_1_w": [
+    -39.6,
+    39.6
+  ],
+  "alpha_grid_deg": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90,
+    105,
+    120,
+    135,
+    150,
+    165,
+    180
+  ],
+  "external_phase_branch_deg": [
+    -90,
+    90
+  ],
+  "bisection_iterations": 40,
+  "power_match_tolerance_w": 1e-07,
+  "objective": "minimum RMS among feasible grid candidates; peak then alpha break ties",
+  "result_type": "offline_simulation_not_hardware_measurement"
+}

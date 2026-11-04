@@ -60,18 +60,30 @@ def simulate(parameters: Parameters, phase_deg: float) -> Cycle:
     period = 1 / parameters.frequency_hz
     delay = phase_deg / 360.0
     edges = sorted({0.0, 0.5, 1.0, delay % 1.0, (delay + 0.5) % 1.0})
-    provisional = []
-    current = 0.0
+    intervals = []
     for left, right in zip(edges, edges[1:]):
         midpoint = (left + right) / 2
         v1 = parameters.v1_v * (1 if midpoint < 0.5 else -1)
         v2 = parameters.turns_ratio * parameters.v2_v * (
             1 if (midpoint - delay) % 1 < 0.5 else -1
         )
-        dt = (right - left) * period
-        next_current = current + (v1 - v2) / parameters.inductance_h * dt
-        provisional.append(Segment(left * period, right * period,
-                                   v1, v2, current, next_current))
+        intervals.append((left * period, right * period, v1, v2))
+    cycle = integrate_intervals(parameters, phase_deg, intervals)
+    expected = analytical_power(parameters, phase_deg)
+    cycle.metrics.update(p_analytic_w=expected,
+                         power_error_w=cycle.metrics["p2_time_w"] - expected)
+    return cycle
+
+
+def integrate_intervals(parameters: Parameters, phase_deg: float,
+                        intervals: list[tuple[float, float, float, float]]) -> Cycle:
+    """Shared SPS/EPS solver for (t0, t1, v1, v2_referred) over one period."""
+    period = 1 / parameters.frequency_hz
+    provisional = []
+    current = 0.0
+    for t0, t1, v1, v2 in intervals:
+        next_current = current + (v1 - v2) / parameters.inductance_h * (t1 - t0)
+        provisional.append(Segment(t0, t1, v1, v2, current, next_current))
         current = next_current
 
     dc_offset = math.fsum(
@@ -95,12 +107,9 @@ def simulate(parameters: Parameters, phase_deg: float) -> Cycle:
         (s.i0_a**2 + s.i0_a * s.i1_a + s.i1_a**2) / 3
         * (s.t1_s - s.t0_s) for s in segments
     ) / period
-    expected = analytical_power(parameters, phase_deg)
     metrics = {
-        "p_analytic_w": expected,
         "p1_time_w": p1,
         "p2_time_w": p2,
-        "power_error_w": p2 - expected,
         "power_balance_w": p1 - p2,
         "i_peak_a": max(abs(i) for s in segments for i in (s.i0_a, s.i1_a)),
         "i_rms_a": math.sqrt(rms_squared),

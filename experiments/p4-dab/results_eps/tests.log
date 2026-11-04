@@ -1,0 +1,20 @@
+Command: E:\python.exe -B -m unittest -v test_dab_sps test_dab_eps
+test_direction_symmetry_and_non_grid_phase (test_dab_sps.TestSPS.test_direction_symmetry_and_non_grid_phase) ... ok
+test_known_matched_30_degree_solution (test_dab_sps.TestSPS.test_known_matched_30_degree_solution) ... ok
+test_scan_power_energy_and_periodicity (test_dab_sps.TestSPS.test_scan_power_energy_and_periodicity) ... ok
+test_turns_ratio_referral_and_inductance_scaling (test_dab_sps.TestSPS.test_turns_ratio_referral_and_inductance_scaling) ... ok
+test_waveform_export_preserves_ode_and_integrals (test_dab_sps.TestSPS.test_waveform_export_preserves_ode_and_integrals) ... ok
+test_zero_phase_with_and_without_voltage_mismatch (test_dab_sps.TestSPS.test_zero_phase_with_and_without_voltage_mismatch) ... ok
+test_alpha_zero_reproduces_sps_waveforms (test_dab_eps.TestEPS.test_alpha_zero_reproduces_sps_waveforms) ... ok
+test_direction_symmetry_at_nonzero_internal_shift (test_dab_eps.TestEPS.test_direction_symmetry_at_nonzero_internal_shift) ... ok
+test_matching_and_finite_search_objective (test_dab_eps.TestEPS.test_matching_and_finite_search_objective) ... ok
+test_physics_and_independent_superposition_power (test_dab_eps.TestEPS.test_physics_and_independent_superposition_power) ... ok
+test_unreachable_targets_are_not_reported_as_matches (test_dab_eps.TestEPS.test_unreachable_targets_are_not_reported_as_matches) ... ok
+test_zero_levels_are_built_from_legs (test_dab_eps.TestEPS.test_zero_levels_are_built_from_legs) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.495s
+
+OK
+
+Process exit code: 0

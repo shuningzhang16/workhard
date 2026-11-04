@@ -2,6 +2,8 @@
 
 已完成独立低压教学 SPS 模型：9 个稳态工况、39 个有限扫描点、6 项测试和 9 份原始 CSV 的回读积分验证。全部为理想模型离线仿真，未进行硬件测量。
 
+第二步已完成第一侧桥 EPS 的同功率比较：12 个轻载/中载正反向工况、2 个无解工况、182 个候选记录；原 SPS 与新增 EPS 共 12 项测试通过。定义与结果见 [EPS.md](EPS.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。
@@ -52,6 +54,8 @@ CSV 单位为 SI：`t0_s/t1_s` 是区间起止时间；`v1_v/v2_prime_v/vL_v` �
 
 ## 下一小步
 
-后续可逐项开展绘图或控制改造。当前未包含启动、方向切换瞬态、闭环保护、损耗、效率或 ZVS 模型；模型边界及推导见 [MODEL.md](MODEL.md)。
+EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在独立的 `results_eps/`。电压比 0.75、±2.7 W 时 RMS 电流降低 31.183%；电压比 1 和 1.25 的所查目标未找到改善，选回 SPS。最大目标匹配误差 2.134e−11 W，全部 24 份波形 CSV 回读通过。详见 [比较结果](results_eps/RESULTS.md)。
+
+本步先单独提交和上传。当前未包含启动、方向切换瞬态、闭环保护、损耗、效率或 ZVS 模型；模型边界及推导见 [MODEL.md](MODEL.md) 和 [EPS.md](EPS.md)。
 
 第一阶段以离线仿真为目标，不需要物理开发板。本目录不包含上板、写卡或高压硬件运行步骤。
