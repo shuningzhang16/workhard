@@ -1,0 +1,29 @@
+test_bus_input_detection_is_sampled_and_does_not_change_plant (test_dab_transient.TestTransient.test_bus_input_detection_is_sampled_and_does_not_change_plant) ... ok
+test_constant_condition_converges_to_rl_periodic_solution (test_dab_transient.TestTransient.test_constant_condition_converges_to_rl_periodic_solution) ... ok
+test_independent_energy_ledger (test_dab_transient.TestTransient.test_independent_energy_ledger) ... ok
+test_overcurrent_latches_requires_explicit_clear_and_dissipates (test_dab_transient.TestTransient.test_overcurrent_latches_requires_explicit_clear_and_dissipates) ... FAIL
+test_reversal_and_exact_state_continuity (test_dab_transient.TestTransient.test_reversal_and_exact_state_continuity) ... ok
+test_rl_exact_dc_decay_and_composition (test_dab_transient.TestTransient.test_rl_exact_dc_decay_and_composition) ... ok
+
+======================================================================
+FAIL: test_overcurrent_latches_requires_explicit_clear_and_dissipates (test_dab_transient.TestTransient.test_overcurrent_latches_requires_explicit_clear_and_dissipates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\experiments\p4-dab\diagnostics\transient_failure_01\work\test_dab_transient.py", line 64, in test_overcurrent_latches_requires_explicit_clear_and_dissipates
+    self.assertEqual([e["event"] for e in run.events], ["trip", "clear_denied", "clear_accepted"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['trip', 'clear_denied', 'clear_accepted', 'trip'] != ['trip', 'clear_denied', 'clear_accepted']
+
+First list contains 1 additional elements.
+First extra element 3:
+'trip'
+
+- ['trip', 'clear_denied', 'clear_accepted', 'trip']
+?                                          --------
+
++ ['trip', 'clear_denied', 'clear_accepted']
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.145s
+
+FAILED (failures=1)

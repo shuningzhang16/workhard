@@ -4,6 +4,8 @@
 
 第二步已完成第一侧桥 EPS 的同功率比较：12 个轻载/中载正反向工况、2 个无解工况、182 个候选记录；原 SPS 与新增 EPS 共 12 项测试通过。定义与结果见 [EPS.md](EPS.md)。
 
+第三步已完成保留电感状态的 SPS RL 瞬态、方向切换、采样过流/母线输入越限锁存及显式恢复。4 个工况、19 项测试和原始 CSV 回读通过；首次快速恢复再次锁存的失败证据和回归测试均已保留。详见 [TRANSIENT.md](TRANSIENT.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。
@@ -56,6 +58,8 @@ CSV 单位为 SI：`t0_s/t1_s` 是区间起止时间；`v1_v/v2_prime_v/vL_v` �
 
 EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在独立的 `results_eps/`。电压比 0.75、±2.7 W 时 RMS 电流降低 31.183%；电压比 1 和 1.25 的所查目标未找到改善，选回 SPS。最大目标匹配误差 2.134e−11 W，全部 24 份波形 CSV 回读通过。详见 [比较结果](results_eps/RESULTS.md)。
 
-本步先单独提交和上传。当前未包含启动、方向切换瞬态、闭环保护、损耗、效率或 ZVS 模型；模型边界及推导见 [MODEL.md](MODEL.md) 和 [EPS.md](EPS.md)。
+第三步执行 `E:\python.exe -B -X utf8 run_transient_demo.py`，数据在 `results_transient/`。模型使用教学假设 R=0.5 Ω，未每周期扣除电流均值；正反向尾段 P2 分别为 19.748482 W、−20.192294 W，4 个工况最大全程能量残差约 1.127e−16 J。保护检测有采样延迟，不是硬件安全保证。
+
+本步先单独提交和上传。当前仍未包含输出电压动态、完整功率闭环、器件损耗/效率或 ZVS 模型；稳态与瞬态各自边界见 [MODEL.md](MODEL.md)、[EPS.md](EPS.md) 和 [TRANSIENT.md](TRANSIENT.md)。
 
 第一阶段以离线仿真为目标，不需要物理开发板。本目录不包含上板、写卡或高压硬件运行步骤。

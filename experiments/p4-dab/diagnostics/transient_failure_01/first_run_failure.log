@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\experiments\p4-dab\run_transient_demo.py", line 124, in run
+    (output / "tests.log").write_text("Command: " + subprocess.list2cmdline(command) + "\n"
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        + tests.stdout + tests.stderr + f"\nProcess exit code: {tests.returncode}\n", encoding="utf-8")
+        ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "NoneType") to str

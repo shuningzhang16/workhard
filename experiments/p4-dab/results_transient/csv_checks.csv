@@ -1,0 +1,5 @@
+file,rows,continuity_error_a,time_gap_s,rl_endpoint_error_a,energy_residual_j
+constant_forward_waveform.csv,2638,0.0,0.0,1.687538997430238e-14,-1.1218781979793757e-16
+direction_reversal_waveform.csv,3512,0.0,0.0,1.687538997430238e-14,4.4072818311535755e-17
+overcurrent_recovery_waveform.csv,2106,0.0,0.0,1.8207657603852567e-14,2.100641709190665e-18
+bus_input_recovery_waveform.csv,1698,0.0,0.0,1.6764367671839864e-14,4.529254575558195e-17

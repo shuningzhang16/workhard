@@ -1,0 +1,4 @@
+t_s,event,reason,i_a,sensed_v2_v,request_deg
+0.000205,trip,overcurrent,1.6443686509859892,12.0,120.0
+0.0005,clear_denied,overcurrent,0.3761965667656446,12.0,120.0
+0.002,clear_accepted,overcurrent,0.0002080684411813541,12.0,0.0
