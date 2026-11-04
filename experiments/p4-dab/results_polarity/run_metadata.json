@@ -1,0 +1,21 @@
+{
+  "started_at_utc": "2026-11-04T07:51:38.403332+00:00",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    ".\\run_commutation_analysis.py"
+  ],
+  "source_file": "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\experiments\\p4-dab\\results_eps\\comparisons.csv",
+  "scope": "necessary edge-current polarity in existing ideal periodic SPS/EPS waveforms",
+  "numerical_zero_current_tol_a": 1e-09,
+  "zvs_status": "not_evaluated_missing_device_and_deadtime_model",
+  "missing_model_inputs": [
+    "Coss(V)/Qoss(V)/Eoss(V)",
+    "actual dead time and gate delays",
+    "magnetizing current and parasitic commutation network"
+  ],
+  "hardware_operations": false
+}

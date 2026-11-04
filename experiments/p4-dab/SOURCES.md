@@ -36,3 +36,7 @@ RD264 是 10 kW 双向 DAB 参考设计。参考指南第 4 页给出的两侧�
 ## 后续 EPS 命名参考
 
 2026-11-04 核对 TI [Dual Active Bridge Topology Overview，SLUP430A，2026 年 5 月，第 9 页 Modulation Methods](https://www.ti.com/lit/ml/slup430a/slup430a.pdf)：EPS 使用一侧内部相移和外部相移，另一侧维持完整方波。本目录仅引用链接以核对名称；未收录 TI 文档、模型或源代码，也不继承其效率或软开关结论。后续独立教学实现的具体时序、角度定义及结果见 [EPS.md](EPS.md)。
+
+## 后续逐沿极性分析参考
+
+2026-11-04 核对 TI [TIDUES0F，2026 年 4 月修订，2.3.3 与 2.3.4.2](https://www.ti.com/lit/ug/tidues0f/tidues0f.pdf?ts=1778357664552) 的换流电流与忽略输出电容时的相移边界；并核对 imperix [TN119，2025-05-22，Minimum inductance for ZVS](https://imperix.com/doc/implementation/inductor-selection-guide-for-dab-converters) 的电容储能及非线性、死区和寄生限制。仅链接与说明，未收录第三方资料或代码。独立实现只输出必要极性，不据此声明已实现 ZVS，详见 [COMMUTATION.md](COMMUTATION.md)。
