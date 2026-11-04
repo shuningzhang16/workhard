@@ -1,37 +1,27 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-// Complete short capture for the host C validator, without a mid-capture reset.
+// Complete short capture through the synthesizable top; source remains continuous.
 module tb_capture_stream;
     localparam integer FRAME_WORDS = 7, FRAMES = 12, WORDS = FRAME_WORDS * FRAMES;
-    reg clk = 0, resetn = 0, sink_ready = 0;
+    reg clk = 0, resetn = 0, sink_ready = 0, capture_done = 0;
     always #5 clk = !clk;
-    wire [31:0] source_data, sink_data;
-    wire [3:0] source_keep, sink_keep;
-    wire source_valid, source_ready, source_last, fifo_ready, sink_valid, sink_last;
-    integer input_words = 0, output_words = 0, cycle = 0;
+    wire [31:0] sink_data;
+    wire [3:0] sink_keep;
+    wire sink_valid, sink_last;
+    integer output_words = 0, cycle = 0, capture_end_cycle;
+    reg [36:0] held_beat;
     integer capture_file;
     string outdir;
-    wire allow_input = input_words < WORDS;
-    assign source_ready = fifo_ready && allow_input;
-    axis_pattern_source #(.FRAME_WORDS(FRAME_WORDS)) source (
-        .aclk(clk), .aresetn(resetn), .m_axis_tdata(source_data),
-        .m_axis_tkeep(source_keep), .m_axis_tvalid(source_valid),
-        .m_axis_tready(source_ready), .m_axis_tlast(source_last)
-    );
-    axis_sync_fifo #(.DEPTH(3)) fifo (
-        .aclk(clk), .aresetn(resetn), .s_axis_tdata(source_data),
-        .s_axis_tkeep(source_keep), .s_axis_tvalid(source_valid && allow_input),
-        .s_axis_tready(fifo_ready), .s_axis_tlast(source_last),
+    daq_stream_top #(.FRAME_WORDS(FRAME_WORDS), .FIFO_DEPTH(3)) dut (
+        .aclk(clk), .aresetn(resetn),
         .m_axis_tdata(sink_data), .m_axis_tkeep(sink_keep), .m_axis_tvalid(sink_valid),
         .m_axis_tready(sink_ready), .m_axis_tlast(sink_last)
     );
-    always @(negedge clk) sink_ready = (cycle % 11 < 7);
+    always @(negedge clk) sink_ready = !capture_done && (cycle % 11 < 7);
     always @(posedge clk) begin
         cycle = cycle + 1;
-        if (!resetn) input_words <= 0;
-        else begin
-            if (source_valid && source_ready) input_words <= input_words + 1;
+        if (resetn && !capture_done) begin
             if (sink_valid && sink_ready) begin
                 if (sink_data !== (((output_words / FRAME_WORDS) << 16) | (output_words % FRAME_WORDS)) ||
                     sink_keep !== 4'hf || sink_last !== (output_words % FRAME_WORDS == FRAME_WORDS - 1))
@@ -40,12 +30,23 @@ module tb_capture_stream;
                           sink_data, sink_keep, sink_last);
                 output_words = output_words + 1;
                 if (output_words == WORDS) begin
-                    #1;
-                    if (input_words != WORDS || sink_valid !== 1'b0)
-                        $fatal(1, "Capture did not fully drain");
+                    capture_done = 1;
+                    capture_end_cycle = cycle;
                     $fclose(capture_file);
-                    $display("PASS complete RTL capture: %0d frames, %0d words, %0d bytes, %0d cycles",
-                             FRAMES, WORDS, WORDS * 4, cycle);
+                    // The top keeps producing; stop accepting and check the next beat holds.
+                    @(negedge clk);
+                    sink_ready = 0;
+                    #1;
+                    if (sink_valid !== 1'b1) $fatal(1, "Expected next buffered beat");
+                    held_beat = {sink_last, sink_keep, sink_data};
+                    repeat (5) begin
+                        @(posedge clk);
+                        #1;
+                        if (sink_valid !== 1'b1 || {sink_last, sink_keep, sink_data} !== held_beat)
+                            $fatal(1, "Top output changed after capture backpressure");
+                    end
+                    $display("PASS top-level RTL capture: %0d frames, %0d words, %0d bytes, capture_end_cycle=%0d; post-capture held beat checked for 5 clocks",
+                             FRAMES, WORDS, WORDS * 4, capture_end_cycle);
                     $finish;
                 end
             end

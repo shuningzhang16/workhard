@@ -1,0 +1,17 @@
+Read-only tool inventory; no Vivado or hardware commands executed.
+Recorded: 2026-11-04T16:05:09.9705411+08:00
+Checked installation: E:\AMDDesignTools\2025.2
+Top-level directories:
+E:\AMDDesignTools\2025.2\data
+E:\AMDDesignTools\2025.2\tps
+E:\AMDDesignTools\2025.2\Vivado_Lab
+Matching executable files under this installation:
+E:\AMDDesignTools\2025.2\Vivado_Lab\bin\vivado_lab.bat
+E:\AMDDesignTools\2025.2\Vivado_Lab\bin\unwrapped\win64.o\vivado_lab.exe
+PATH command lookup:
+vivado: not found on PATH
+vivado_lab: not found on PATH
+xvlog: not found on PATH
+xelab: not found on PATH
+xsim: not found on PATH
+Scope: this installation and current PATH only; no claim about other disks/installations.

@@ -35,7 +35,7 @@ def main():
     run_logged([compiler, "-V"], output / "iverilog-version.log", env)
     run_logged([compiler, "-g2012", "-Wall", "-s", "tb_capture_stream",
                 "-o", "build/capture_stream.vvp", "rtl/axis_pattern_source.v",
-                "rtl/axis_sync_fifo.v", "tb/tb_capture_stream.sv"], output / "rtl_compile.log", env)
+                "rtl/axis_sync_fifo.v", "rtl/daq_stream_top.v", "tb/tb_capture_stream.sv"], output / "rtl_compile.log", env)
     run_logged([str(simulator), "build/capture_stream.vvp", "+OUTDIR=" + relative_output],
                output / "rtl_simulation.log", env)
     with (output / "rtl_capture.csv").open(newline="", encoding="utf-8") as capture:
@@ -75,7 +75,7 @@ def main():
         cases = list(csv.DictReader(matrix))
     if len(cases) != 16 or any(case["result"] != "PASS" for case in cases):
         raise RuntimeError("C fault matrix is incomplete or contains a failure")
-    summary = {"capture_origin": "RTL simulation: source -> depth-3 FIFO -> sink",
+    summary = {"capture_origin": "RTL simulation: daq_stream_top(source -> depth-3 FIFO) -> sink",
                "capture_words": len(rows), "capture_frames": 12, "frame_words": 7,
                "capture_bytes": len(rows) * 4, "serialization": "little-endian uint32",
                "c_host": f"WSL {args.wsl_distro}" if os.name == "nt" else "native host",

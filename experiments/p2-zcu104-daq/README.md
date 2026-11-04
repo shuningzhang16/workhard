@@ -1,6 +1,23 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO，以及独立 C 帧流校验器。RTL 仿真及主机 C 故障测试通过，原厂代码保留不变。尚未完成 ZCU104 工程适配、DMA/DDR 集成或板端验证。
+当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、可综合写法的顶层封装，以及独立 C 帧流校验器。顶层 RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado 工程/块设计 Tcl 入口。Tcl 尚未在完整 Vivado 中执行；DMA/DDR 集成、综合与板端验证尚未完成，原厂代码保留不变。
+
+## 第四小步：顶层封装与 ZCU104 工程入口
+
+[daq_stream_top.v](rtl/daq_stream_top.v) 直接连接现有 source 和 FIFO，默认每帧 7 字、FIFO 深度 3。采集 testbench 现在实际实例化该顶层，在背压下接收 **12 帧、84 字、336 字节**，第 137 个仿真周期完成采集；随后停止接收，并检查下一个有效字保持 5 个时钟。连续源仍可能在 FIFO 中留下数据，此处不声称排空；原有 FIFO 单元测试保留排空及数量守恒检查。
+
+这些实际 RTL 输出再次送入主机 C 校验器，严格警告、ASan 和 UBSan 下 **16/16 项测试通过**。入口与证据：
+
+- [联测脚本](scripts/run_frame_validator.py)、[结果汇总](results/top_integration/summary.json)、[RTL 运行日志](results/top_integration/rtl_simulation.log)、[C 故障矩阵](results/top_integration/fault_matrix.csv)。
+- [Vivado 工程入口](vivado/create_project.tcl)、[块设计 Tcl](vivado/create_bd.tcl)、[官方依据、构建命令及待验证项](vivado/README.md)。目标链路为 `source → FIFO → AXI DMA S2MM → PS DDR`。
+- [Tcl 文本完整性检查](results/top_integration/tcl_text_check.log)、[本机工具记录](results/top_integration/vivado_availability.log)。仅检查文本括号/引号完整性，没有执行 Vivado 命令或验证 IP 参数、块设计、综合、DDR 联通。
+
+依据 PG021，未来最小 Simple S2MM 接入按 **一次接收对应一帧、28 字节** 处理完成状态及实际长度，再将各批有效 payload 按序送入同一个 C 校验状态。现有 336 字节离线文件包含 12 个 RTL 流包，不能当作一次硬件 DMA 接收。详见 [包/长度/完成语义](vivado/README.md#simple-s2mm一帧怎样对应一次接收)。
+
+```powershell
+& 'E:\python.exe' .\scripts\run_frame_validator.py --output results/top_integration_recheck
+& 'E:\python.exe' .\scripts\check_tcl_text.py
+```
 
 ## 第三小步：C 帧流校验与 RTL 数据联测
 
@@ -135,7 +152,7 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq'
 - 已实际下载 15 个上游文件，共 205,014 字节；每个文件长度与同版本 GitHub Contents API 返回值一致。结果记录于 `sources.csv`。这只是文件获取检查，不是功能验证。
 - 官方示例要求 AXI DMA 的两个 AXI-Stream 方向之间存在硬件回环，并采用 Simple DMA 模式。其代码不是内部数据发生器，也不是单独可运行的电脑程序。
 - 这里保存的是驱动源码和一个示例的子集，不包含完整 embeddedsw、Standalone BSP、生成的 `xparameters.h`、板级配置、链接脚本或 Vivado 硬件设计。`src/xaxidma_g.c` 不能当作已生成的 ZCU104 配置使用。
-- 已完成独立同步 FIFO RTL 仿真及可供 PS/主机复用的 C 校验模块；尚未创建 Vivado FIFO/DMA/DDR 块设计或板端应用。没有板端吞吐量、延迟或丢帧率测量结果。
+- 已完成 source/FIFO 顶层 RTL 与可供 PS/主机复用的 C 校验模块联测，并提供 Vivado FIFO/DMA/DDR 块设计 Tcl 入口；尚未在完整 Vivado 中生成或验证块设计，也未实现板端应用。没有板端吞吐量、延迟或丢帧率测量结果。
 - `E:\AMDDesignTools\2025.2` 中发现 Vivado Lab，未找到 xvlog/xelab/xsim 可执行文件；没有将 Lab Edition 称作可用的完整仿真工具链。本次实际用的是本目录 Icarus Verilog 13.0。
 - PATH 中的 `E:\Scripts\python.exe` 报告缺少 `pyvenv.cfg`，实际使用正常的 `E:\python.exe`（3.14.4），未改动系统设置。首次 Python 下载请求发生 TLS EOF，改用 PowerShell 从 MSYS2 官方镜像成功取回；没有关闭 TLS 校验，记录见 [tool_setup.log](results/first_step/tool_setup.log)。
 
@@ -151,4 +168,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。C 校验器及离线联测这一步已完成，交由协调聊天单独提交；后续再结合完整 Vivado 工具与 ZCU104 硬件设计逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。顶层封装、实际 RTL+C 联测及最小 Tcl 入口这一步已完成，交由协调聊天单独提交；后续使用完整 Vivado 验证块设计，再逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。

@@ -30,6 +30,8 @@
 
 ## 本次离线证据
 
+第四小步已改为实际实例化 `daq_stream_top`，完成同样的 12 帧采集和 16 项 C 测试，并检查采集结束后的背压保持；最新证据见 [top_integration](../results/top_integration/summary.json)。下文保留第三小步的原始结果与失败修复记录。
+
 `tb_capture_stream.sv` 实际运行现有数据源和深度 3 FIFO，在输出背压下接收完整的 12 帧 × 7 字，共 84 字、336 字节，经历 137 个仿真时钟周期。CSV 中保留每个输出握手的周期、TDATA、TKEEP 和 TLAST。Python 仅将实际 CSV 中的 TDATA 序列化为小端字节，不用模型替代原始数据。
 
 测试结果位于 [frame_validator_repair](../results/frame_validator_repair/summary.json)：GCC 的严格警告检查通过，AddressSanitizer 和 UndefinedBehaviorSanitizer 启用，16/16 项测试通过且未报告内存/未定义行为错误。详情见 [故障矩阵](../results/frame_validator_repair/fault_matrix.csv) 和 [C 运行日志](../results/frame_validator_repair/c_test.log)。
@@ -49,6 +51,8 @@ Windows 需要已有 Icarus 及 WSL Ubuntu-22.04/gcc；可用 `--wsl-distro` 指
 ## 后续 DMA 缓冲区接入边界
 
 校验器只读取 CPU 已拥有的普通内存，不负责配置 DMA、轮询硬件或执行 cache 操作。传入的是驱动确认完成的实际有效字节数，不是分配容量或请求长度。本次序列要求每个 AXI-Stream 字的 `TKEEP=f`，内存中每字 4 字节且为小端；普通 DMA payload 不携带 TLAST/TKEEP 的独立元数据，因此 C 校验通过不能单独证明实际 TLAST 时刻正确，仍须结合 RTL 检查、DMA 完成状态和包长。
+
+当前 `FRAME_WORDS=7`，每帧 TLAST 对应 28 字节的包。未来最小 Simple S2MM 路径按一次接收一个包、分别确认完成后连续 feed；336 字节离线文件不是一次硬件 DMA 接收。PG021 依据和具体接入顺序见 [Vivado 入口说明](../vivado/README.md#simple-s2mm一帧怎样对应一次接收)。
 
 Linux 接入时，由可靠驱动负责 DMA 映射、完成状态、所有权交接和必要的同步。对于重复使用的 streaming DMA 映射，CPU 读取前按 DMA API 使用 `dma_sync_*_for_cpu`；交还设备前按映射类型和方向完成 `dma_sync_*_for_device` 等要求。CPU 虚拟地址不是可以直接写入设备的 DMA 地址。用户态校验器不能替代这些操作。依据：[Linux DMA mapping guide](https://docs.kernel.org/core-api/dma-api-howto.html)。
 
