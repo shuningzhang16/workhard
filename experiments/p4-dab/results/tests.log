@@ -1,0 +1,14 @@
+Command: E:\python.exe -m unittest -v test_dab_sps
+test_direction_symmetry_and_non_grid_phase (test_dab_sps.TestSPS.test_direction_symmetry_and_non_grid_phase) ... ok
+test_known_matched_30_degree_solution (test_dab_sps.TestSPS.test_known_matched_30_degree_solution) ... ok
+test_scan_power_energy_and_periodicity (test_dab_sps.TestSPS.test_scan_power_energy_and_periodicity) ... ok
+test_turns_ratio_referral_and_inductance_scaling (test_dab_sps.TestSPS.test_turns_ratio_referral_and_inductance_scaling) ... ok
+test_waveform_export_preserves_ode_and_integrals (test_dab_sps.TestSPS.test_waveform_export_preserves_ode_and_integrals) ... ok
+test_zero_phase_with_and_without_voltage_mismatch (test_dab_sps.TestSPS.test_zero_phase_with_and_without_voltage_mismatch) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.006s
+
+OK
+
+Process exit code: 0

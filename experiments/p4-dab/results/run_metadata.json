@@ -1,0 +1,44 @@
+{
+  "started_at_utc": "2026-11-04T07:04:14.076746+00:00",
+  "result_type": "ideal_offline_simulation_not_hardware_measurement",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "E:\\python.exe",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "command_argv": [
+    "E:\\python.exe",
+    ".\\run_experiment.py"
+  ],
+  "solver": "event-aligned piecewise-linear integration of di/dt=(v1-n*v2)/L",
+  "initial_condition": "zero time-mean periodic current; not startup settling",
+  "parameter_source": "independent low-voltage teaching assumptions; not RD264",
+  "parameters_default": {
+    "v1_v": 24.0,
+    "v2_v": 12.0,
+    "turns_ratio": 2.0,
+    "frequency_hz": 20000.0,
+    "inductance_h": 0.0001
+  },
+  "waveform_periods": 2,
+  "waveform_nominal_subdivisions_per_period": 200,
+  "scan_voltage_ratios": [
+    0.75,
+    1.0,
+    1.25
+  ],
+  "scan_phase_degrees": [
+    -90,
+    -75,
+    -60,
+    -45,
+    -30,
+    -15,
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    90
+  ],
+  "hardware_operations": false
+}

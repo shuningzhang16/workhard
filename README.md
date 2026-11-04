@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | Buck 平均模型、PI 与软启动三个工况验证通过 |
 | P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Stream 数据源及三组 RTL 仿真通过，尚未集成 DMA/DDR |
-| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | 已记录官方来源，尚未取得公开原厂模型或源码 |
+| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS 双向模型、9 个工况与 39 点扫描验证通过 |
 
 ## 版本与来源
 

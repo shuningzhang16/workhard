@@ -1,0 +1,10 @@
+case,rows,power_roundtrip_error_w,rms_roundtrip_error_a
+matched_forward,404,-3.552713678800501e-15,0.0
+matched_reverse,404,0.0,0.0
+matched_zero,400,0.0,0.0
+ratio075_forward,404,0.0,0.0
+ratio075_reverse,404,0.0,1.1102230246251565e-16
+ratio075_zero,400,9.957931086158368e-16,0.0
+ratio125_forward,404,-7.105427357601002e-15,0.0
+ratio125_reverse,404,0.0,-2.220446049250313e-16
+ratio125_zero,400,-1.7432996845677569e-15,0.0
