@@ -9,14 +9,18 @@
 | Buck 故障恢复 | 平均模型的过流、过压、欠压锁存和显式恢复；故障期间保留电感/电容状态 | [保护说明](../experiments/p1-c2000-buck/simulation/PROTECTION.md) |
 | Buck PWM 开关 | 50 kHz、固定占空比稳态约 2 V；细步长纹波 0.752145 mV、0.141422 A；控制负载阶跃恢复 5.10 ms | [开关说明与数据](../experiments/p1-c2000-buck/simulation/SWITCHING.md) |
 | Buck 独立 SPICE 对照 | ngspice 36 实际运行；8 项对照检查通过。整个稳态窗口的输出/电感纹波与 Python 分别相差约 −0.0412%/−0.00534% | [SPICE 报告](../experiments/p1-c2000-buck/simulation/SPICE_COMPARISON.md) |
+| Buck PWM 保护 | 过流/过压/欠压分别在 50.32/50.30/50.00 ms 锁存；80 ms 显式清除后 30.50 ms 恢复；储能与反向振荡完整保留 | [保护报告](../experiments/p1-c2000-buck/simulation/PROTECTED_SWITCHING.md) |
 | AXI-Stream 数据源 | 帧长 1/7/16、背压稳定、复位及 16 位序号回绕 | [RTL 结果](../experiments/p2-zcu104-daq/results/first_step/summary.json) |
 | 同步 FIFO | 深度 1/3/16、非 2 的幂指针回绕、满时同时读写、复位丢弃量均逐拍核对 | [FIFO 结果](../experiments/p2-zcu104-daq/results/fifo_step/summary.json) |
 | 主机 C 帧校验 | 实际 RTL 的 12 帧、84 字、336 字节；16 项故障测试通过 ASan/UBSan | [结果汇总](../experiments/p2-zcu104-daq/results/frame_validator_repair/summary.json)、[故障矩阵](../experiments/p2-zcu104-daq/results/frame_validator_repair/fault_matrix.csv) |
 | 顶层与 Vivado 入口 | source/FIFO 顶层实际经过 RTL→C 联测；ZCU104 Tcl 已提供，仅做文本完整性检查，未生成或验证真实块设计 | [工程入口及限制](../experiments/p2-zcu104-daq/vivado/README.md)、[顶层联测](../experiments/p2-zcu104-daq/results/top_integration/summary.json) |
+| Simple S2MM 主机流程 | 13 项接收/错误/显式恢复用例通过 ASan/UBSan；真实 RTL 数据配合受控状态回调 | [接收与恢复](../experiments/p2-zcu104-daq/ps/simple_s2mm.md) |
+| 通用综合后重放 | Yosys 实际综合，Icarus 原 RTL/网表的 84 个接收记录全部字段一致 | [综合记录](../verification/yosys-stream/README.md) |
 | DAB SPS | 3 个电压比、39 个相移点；匹配电压 ±30° 时传输 ±20 W | [扫描与波形](../experiments/p4-dab/results/RESULTS.md) |
 | DAB EPS 比较 | 同功率比较保留未改善和无解工况；电压比 0.75、±2.7 W 时 RMS 电流降低 31.183% | [EPS 结果](../experiments/p4-dab/results_eps/RESULTS.md) |
 | DAB 瞬态与保护 | 四工况保留跨周期电流；换向、采样锁存、显式清除及能量收支通过 | [瞬态结果](../experiments/p4-dab/results_transient/RESULTS.md) |
 | DAB 换流极性 | 40 个周期波形、320 个桥臂事件；电压比 0.75、±2.7 W 的所选 EPS 满足全部必要极性，仍不能确认 ZVS | [逐沿分析](../experiments/p4-dab/COMMUTATION.md) |
+| DAB 功率 PI | 20→−15 W 在 4.150 ms 进入误差带；100 W 请求实际约 31.17 W，降回 10 W 后 3.750 ms 恢复 | [闭环结果](../experiments/p4-dab/POWER_LOOP.md) |
 
 ## 可以复述的实际问题
 

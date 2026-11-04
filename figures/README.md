@@ -32,3 +32,13 @@
 ![DAB 换向响应](output/p4_direction_reversal.png)
 
 图表检查记录见 [QA.md](QA.md)。
+
+## 闭环与保护过程
+
+`plot_control.py` 沿用现有 Python 绘图配置，读取新增实验的完整控制记录。`p1_pwm_protection` 用过压工况的全部 7,001 个采样点，依次显示输出/参考、电感电流、占空比，回答“锁存后储能如何演变并恢复”。负电压和反向电流保留可见；采样曲线不能替代子周期峰值。`p4_power_loop` 用正常换向的全部 300 周期与饱和返回的全部 320 周期，分别显示双向跟踪、不可达目标及返回、积分与实际相移，回答“PI 能否跟踪可达目标并退出饱和”。两图为 183×135 mm 的纵向三面板、至少 8 pt 字体，导出 SVG/PDF/PNG；不新增统计聚合、误差条、裁剪或平滑。
+
+在仓库根目录运行 `python figures/plot_control.py`。
+
+![PWM 保护与恢复](output/p1_pwm_protection.png)
+
+![DAB 功率闭环与饱和返回](output/p4_power_loop.png)
