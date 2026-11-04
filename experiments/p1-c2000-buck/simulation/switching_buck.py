@@ -9,6 +9,51 @@ from buck_model import Parameters, VoltagePI, plant_step
 PWM_FREQUENCY_HZ = 50_000.0
 
 
+def switching_cycle(k, current_a, output_v, duty, input_v, load_ohm, p, max_step_s, keep):
+    """积分一个 PWM 周期；边沿分段、状态连续，按需保留本周期节点。"""
+    period_s = p.control_period_s
+    start_s = k * period_s
+    on_s = duty * period_s
+    mean_v_integral = mean_i_integral = 0.0
+    min_v = max_v = output_v
+    min_i = max_i = current_a
+    waveform = []
+    # 每一段内实际开关节点为 Vin 或 0，不使用 duty*Vin 作为开关电压。
+    for gate, offset_s, segment_s in ((1, 0.0, on_s), (0, on_s, period_s - on_s)):
+        if segment_s == 0:
+            continue
+        steps = math.ceil(segment_s / max_step_s)
+        dt = segment_s / steps
+        if keep:
+            waveform.append({"time_s": start_s + offset_s, "cycle": k,
+                             "point": "segment_start", "high_side_on": gate,
+                             "switch_voltage_v": gate * input_v,
+                             "output_v": output_v, "inductor_current_a": current_a,
+                             "load_ohm": load_ohm, "duty_command": duty})
+        for j in range(1, steps + 1):
+            # gate=0/1 对应实际两种线性拓扑；切换和保护均不重置 L/C 状态。
+            next_i, next_v = plant_step(current_a, output_v, gate, input_v, load_ohm, p, dt)
+            mean_v_integral += (output_v + next_v) * dt / 2
+            mean_i_integral += (current_a + next_i) * dt / 2
+            current_a, output_v = next_i, next_v
+            min_v, max_v = min(min_v, output_v), max(max_v, output_v)
+            min_i, max_i = min(min_i, current_a), max(max_i, current_a)
+            if keep:
+                waveform.append({"time_s": start_s + offset_s + j * dt, "cycle": k,
+                                 "point": "segment_end" if j == steps else "integration",
+                                 "high_side_on": gate, "switch_voltage_v": gate * input_v,
+                                 "output_v": output_v, "inductor_current_a": current_a,
+                                 "load_ohm": load_ohm, "duty_command": duty})
+    cycle = {"cycle_start_s": start_s, "cycle_end_s": (k + 1) * period_s,
+             "duty": duty, "on_time_s": on_s, "load_ohm": load_ohm,
+             "output_mean_v": mean_v_integral / period_s,
+             "current_mean_a": mean_i_integral / period_s,
+             "output_pp_v": max_v - min_v, "current_pp_a": max_i - min_i,
+             "minimum_output_v": min_v, "maximum_output_v": max_v,
+             "minimum_current_a": min_i, "maximum_current_a": max_i}
+    return current_a, output_v, cycle, waveform
+
+
 def simulate_switching(case, max_step_s=0.5e-6):
     if case not in ("fixed_duty", "controlled_load_step"):
         raise ValueError(case)
@@ -36,41 +81,10 @@ def simulate_switching(case, max_step_s=0.5e-6):
         if k == count:
             break
         keep = any(a <= k < b for a, b in windows)
-        on_s = duty * period_s
-        mean_v_integral = mean_i_integral = 0.0
-        min_v = max_v = output_v
-        min_i = max_i = current_a
-        # 每一段内实际开关节点为 Vin 或 0，不使用 duty*Vin 作为开关电压。
-        for gate, offset_s, segment_s in ((1, 0.0, on_s), (0, on_s, period_s - on_s)):
-            if segment_s == 0:
-                continue
-            steps = math.ceil(segment_s / max_step_s)
-            dt = segment_s / steps
-            if keep:
-                waveform.append({"time_s": start_s + offset_s, "cycle": k,
-                                 "point": "segment_start", "high_side_on": gate,
-                                 "switch_voltage_v": gate * p.nominal_input_v,
-                                 "output_v": output_v, "inductor_current_a": current_a,
-                                 "load_ohm": load_ohm, "duty_command": duty})
-            for j in range(1, steps + 1):
-                # plant_step 在 gate=0/1 时即真实两种线性拓扑，状态不重置。
-                next_i, next_v = plant_step(current_a, output_v, gate, p.nominal_input_v, load_ohm, p, dt)
-                mean_v_integral += (output_v + next_v) * dt / 2
-                mean_i_integral += (current_a + next_i) * dt / 2
-                current_a, output_v = next_i, next_v
-                min_v, max_v = min(min_v, output_v), max(max_v, output_v)
-                min_i, max_i = min(min_i, current_a), max(max_i, current_a)
-                if keep:
-                    waveform.append({"time_s": start_s + offset_s + j * dt, "cycle": k,
-                                     "point": "segment_end" if j == steps else "integration",
-                                     "high_side_on": gate, "switch_voltage_v": gate * p.nominal_input_v,
-                                     "output_v": output_v, "inductor_current_a": current_a,
-                                     "load_ohm": load_ohm, "duty_command": duty})
-        cycles.append({"cycle_start_s": start_s, "cycle_end_s": (k + 1) * period_s,
-                       "duty": duty, "on_time_s": on_s, "load_ohm": load_ohm,
-                       "output_mean_v": mean_v_integral / period_s,
-                       "current_mean_a": mean_i_integral / period_s,
-                       "output_pp_v": max_v - min_v, "current_pp_a": max_i - min_i})
+        current_a, output_v, cycle, trace = switching_cycle(
+            k, current_a, output_v, duty, p.nominal_input_v, load_ohm, p, max_step_s, keep)
+        cycles.append(cycle)
+        waveform.extend(trace)
     return p, samples, cycles, waveform
 
 

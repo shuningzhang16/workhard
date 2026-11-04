@@ -1,0 +1,170 @@
+{
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "model": "ideal PWM synchronous Buck with unchanged sampled protection",
+  "pwm_frequency_hz": 50000.0,
+  "maximum_integration_step_s": 5e-07,
+  "timing": "apply disturbance, sample and update protection/PI at PWM leading edge; zero computation delay; no asynchronous trip",
+  "threshold_crossing": "bracket from saved integration nodes, not exact continuous event solving; input step time is exact",
+  "fault_start_s": 0.05,
+  "fault_removal_s": 0.065,
+  "explicit_clear_s": 0.08,
+  "extra_clear_requests": "first active sample; first inactive but residual-energy sample when available",
+  "off_model": "ideal low-side held on; signed L/C states preserved; not both gates disabled",
+  "limits": {
+    "overcurrent_a": 2.5,
+    "output_overvoltage_v": 2.4,
+    "input_undervoltage_v": 6.0,
+    "clear_max_abs_output_v": 0.1,
+    "clear_max_abs_current_a": 0.1
+  },
+  "parameters_by_case": {
+    "load_step": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.1
+    },
+    "overcurrent": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    },
+    "overvoltage": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    },
+    "undervoltage": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    }
+  },
+  "raw_waveform_windows_s": {
+    "load_step": [
+      [
+        0.049800000000000004,
+        0.050600000000000006
+      ],
+      [
+        0.09960000000000001,
+        0.1
+      ]
+    ],
+    "overcurrent": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.06480000000000001,
+        0.06520000000000001
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.09980000000000001,
+        0.10020000000000001
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ],
+    "overvoltage": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.06480000000000001,
+        0.06520000000000001
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.09980000000000001,
+        0.10020000000000001
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ],
+    "undervoltage": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.06480000000000001,
+        0.06520000000000001
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.09980000000000001,
+        0.10020000000000001
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ]
+  },
+  "extrema": "integration nodes plus PWM edges; cycle means and resistor loss use trapezoid quadrature",
+  "spice_status": "these protected cases are Python only; prior fixed-duty ngspice evidence remains separate"
+}

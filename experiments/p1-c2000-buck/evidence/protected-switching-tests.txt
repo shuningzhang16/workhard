@@ -1,0 +1,17 @@
+test_open_loop_duty_relation (test_buck.BuckTests.test_open_loop_duty_relation) ... ok
+test_three_closed_loop_cases (test_buck.BuckTests.test_three_closed_loop_cases) ... ok
+test_fault_trip_freewheel_clear_and_physical_restart (test_protected_switching.ProtectedSwitchingTests.test_fault_trip_freewheel_clear_and_physical_restart) ... ok
+test_normal_load_step_matches_unprotected_pwm (test_protected_switching.ProtectedSwitchingTests.test_normal_load_step_matches_unprotected_pwm) ... ok
+test_active_fault_rejects_clear_and_no_automatic_restart (test_protection.ProtectionTests.test_active_fault_rejects_clear_and_no_automatic_restart) ... ok
+test_freewheel_energy_balance (test_protection.ProtectionTests.test_freewheel_energy_balance) ... ok
+test_normal_cases_unchanged (test_protection.ProtectionTests.test_normal_cases_unchanged) ... ok
+test_physical_injections_latch_and_restart (test_protection.ProtectionTests.test_physical_injections_latch_and_restart) ... ok
+test_controlled_disturbance_and_step_refinement (test_switching.SwitchingTests.test_controlled_disturbance_and_step_refinement) ... ok
+test_fixed_duty_voltage_switching_and_ripple (test_switching.SwitchingTests.test_fixed_duty_voltage_switching_and_ripple) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 11.507s
+
+OK
+open_loop: Vout=2.250000236677 V, expected=2.25 V; I=0.562499855402 A, expected=0.5625 A
+freewheel: initial=0.0009675 J, final=2.4486981196e-08 J, load_loss=0.000967475515342 J, balance_residual=-2.32287572424e-12 J, min_i=-2.53583 A

@@ -1,0 +1,6 @@
+test_normal_load_step_matches_unprotected_pwm (test_protected_switching.ProtectedSwitchingTests.test_normal_load_step_matches_unprotected_pwm) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.970s
+
+OK
