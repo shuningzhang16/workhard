@@ -1,0 +1,78 @@
+{
+  "result_type": "finite_teaching_model_comparison_not_global_optimum",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "selection_rule": "among candidates passing all existing checks, minimize worst disturbance deviation, then recovery, then overshoot",
+  "default_unchanged": {
+    "inductance_h": 0.00022,
+    "capacitance_f": 0.00047,
+    "nominal_input_v": 9.0,
+    "target_v": 2.0,
+    "nominal_load_ohm": 4.0,
+    "stepped_load_ohm": 2.0,
+    "stepped_input_v": 7.5,
+    "kp_duty_per_v": 0.03,
+    "ki_duty_per_v_s": 30.0,
+    "maximum_duty": 0.95,
+    "control_period_s": 2e-05,
+    "integration_substeps": 4,
+    "soft_start_s": 0.02,
+    "event_time_s": 0.05,
+    "duration_s": 0.1
+  },
+  "selected_for_comparison_only": {
+    "inductance_h": 0.00022,
+    "capacitance_f": 0.00047,
+    "nominal_input_v": 9.0,
+    "target_v": 2.0,
+    "nominal_load_ohm": 4.0,
+    "stepped_load_ohm": 2.0,
+    "stepped_input_v": 7.5,
+    "kp_duty_per_v": 0.06,
+    "ki_duty_per_v_s": 45.0,
+    "maximum_duty": 0.95,
+    "control_period_s": 2e-05,
+    "integration_substeps": 4,
+    "soft_start_s": 0.02,
+    "event_time_s": 0.05,
+    "duration_s": 0.1
+  },
+  "kp_values": [
+    0.015,
+    0.03,
+    0.06
+  ],
+  "ki_values": [
+    15.0,
+    30.0,
+    45.0
+  ],
+  "default_metrics": {
+    "candidate": "kp_0p03_ki_30",
+    "kp_duty_per_v": 0.03,
+    "ki_duty_per_v_s": 30.0,
+    "passes_all_existing_checks": true,
+    "failed_checks": "",
+    "worst_disturbance_deviation_v": 0.4692236041627045,
+    "worst_disturbance_recovery_s": 0.013980000000000006,
+    "worst_overshoot_percent": 9.659105937100442,
+    "startup_recovery_s": 0.010480000000000003,
+    "nominal_continuous_ki_bound": 75.05910165484633
+  },
+  "selected_metrics": {
+    "candidate": "kp_0p06_ki_45",
+    "kp_duty_per_v": 0.06,
+    "ki_duty_per_v_s": 45.0,
+    "passes_all_existing_checks": true,
+    "failed_checks": "",
+    "worst_disturbance_deviation_v": 0.39895438791557414,
+    "worst_disturbance_recovery_s": 0.014440000000000008,
+    "worst_overshoot_percent": 9.64537841946036,
+    "startup_recovery_s": 0.00672,
+    "nominal_continuous_ki_bound": 91.01654846335697
+  },
+  "control_period_s_fixed": 2e-05,
+  "integration_steps_s": [
+    5e-06,
+    2.5e-06
+  ]
+}
