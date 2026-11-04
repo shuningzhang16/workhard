@@ -8,7 +8,7 @@
 
 详见 [主机 C 说明](host_c/README.md)。独立 C11 模块保持现有 PI、采样、保护阈值、锁存、残余状态拒绝与软启动语义。GCC 11.4 严格警告编译和 ASan/UBSan 实际运行均通过，四份 PWM CSV 的 26,004 个采样点与即时 Python 及已存结果逐拍一致：duty/reference 最大绝对差均为 0，离散状态、故障和清除结果无差异。
 
-验证入口支持 `--output` 指定 P1 内输出目录，以及 Windows→WSL GCC 和 Linux 原生 GCC；两条入口已在本机 Ubuntu 22.04 环境完成实测。Ubuntu 24.04 留待统一 CI 执行。结果和编译/执行命令在 `host_c/results/`，原生入口另有独立日志。此步仅验证主机 C 逻辑，未编译/烧录 C2000，也未验证 ISR 时序或 Trip 硬件。
+验证入口支持 `--output` 指定 P1 内输出目录，以及 Windows→WSL GCC 和 Linux 原生 GCC；两条入口已在本机 Ubuntu 22.04 环境完成实测。Ubuntu 24.04 的统一 CI 也已实际通过，见 [CI 记录](../../docs/CI.md)。结果和编译/执行命令在 `host_c/results/`，原生入口另有独立日志。此步仅验证主机 C 逻辑，未编译/烧录 C2000，也未验证 ISR 时序或 Trip 硬件。
 
 ```powershell
 & 'E:\python.exe' .\host_c\run_validation.py --output host_c/results

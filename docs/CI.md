@@ -4,6 +4,8 @@
 
 首次实际运行 [41804047532](https://github.com/shuningzhang16/workhard/actions/runs/41804047532) 的三个任务均成功，对应提交 `9ba952e`。GitHub API 返回的状态和 artifact 清单保存在 [验证记录](../verification/github-actions/41804047532.json)。后续结果以各次运行关联的提交为准，不能把前一次成功当成后来代码的证明。
 
+完整控制功能及主机 C 整合后的运行 [41808673908](https://github.com/shuningzhang16/workhard/actions/runs/41808673908) 三项均成功，对应提交 `2848576`。这次 Ubuntu 24.04 实际执行了 P1 的 C 对照、P2 的 AXI-Lite 与两项 Yosys 重放、P4 的 33 项测试；[API 状态与日志产物记录](../verification/github-actions/41808673908.json) 随仓库保存。
+
 实验目录、统一检查脚本或工作流发生改动时，推送到 main 和拉取请求会触发检查；也可以在 Actions 页面手动运行。纯根目录说明或图表更新不会触发这些任务。工作流没有添加分支合并要求。
 
 每个任务保留退出码、完整测试日志；P2 另保留真实 RTL 轨迹、编译日志和 C 故障矩阵。失败时也执行结果上传，统一脚本会在控制台打印最后 30 行错误日志。运行页面下的 `offline-p1-*`、`offline-p2-*`、`offline-p4-*` artifacts 保存 14 天；长期阶段证据仍随各实验代码提交到 Git。

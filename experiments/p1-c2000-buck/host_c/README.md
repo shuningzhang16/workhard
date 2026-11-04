@@ -4,7 +4,7 @@
 
 本轮在 Linux x86_64、GCC 11.4.0 上实际通过严格警告编译，并在 ASan/UBSan 下运行边界检查和四工况回放。共 **26,004 个采样点**；C 与即时 Python 计算、原 PWM CSV 的 duty/reference 最大绝对差均为 **0**，状态、活动故障、锁存原因、清除结果逐拍精确一致。
 
-验证入口支持 Windows Python 调用 WSL GCC，以及 Linux Python 直接调用原生 GCC。两条入口均已在本机执行：Windows Python 3.14.4→WSL Ubuntu 22.04，以及同一 Ubuntu 22.04 内的 Python 3.10→原生 GCC。Ubuntu 24.04 的实际结果由后续 GitHub CI 运行提供，本轮不将 Ubuntu 22.04 的结果称为 24.04 已验证。
+验证入口支持 Windows Python 调用 WSL GCC，以及 Linux Python 直接调用原生 GCC。两条入口均已在本机执行：Windows Python 3.14.4→WSL Ubuntu 22.04，以及同一 Ubuntu 22.04 内的 Python 3.10→原生 GCC。随后 Ubuntu 24.04 的 GitHub CI 也实际通过，运行和证据见 [统一 CI 记录](../../../docs/CI.md)；下文工具版本及零差值表描述本机执行结果。
 
 ## 固定参数与接口
 
