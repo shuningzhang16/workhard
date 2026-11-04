@@ -12,6 +12,8 @@
 
 P2 的主机 C 检查包括帧校验器的 16 个用例和 Simple S2MM 接收/显式恢复的 13 个用例。后者先运行前者并复用其实际 RTL 捕获，因此统一入口不重复执行同一组帧校验测试。
 
+P1 同时安装 GCC，通过 `host_c/run_validation.py` 编译独立 C 控制模块，执行 ASan/UBSan、边界检查及四份 PWM 采样数据的逐拍对照。P1 的 `.runs/` 中保留 C 编译命令、输出和全部比较结果，一并上传 artifact。DAB 的 Python 测试自动包含功率 PI 与五个有限参数点，当前共 33 项。
+
 P2 还安装 Yosys，执行 `scripts/check_synthesis.py`：通用综合后，用原有激励分别运行 RTL 和网表，逐项比较 84 个接收记录。相关脚本变更同样触发工作流；综合、网表仿真日志和版本信息包含在 `.runs/` artifact 中。本机的成功记录及首次依赖失败见 [综合验证记录](../verification/yosys-stream/README.md)。
 
 新增的 AXI4-Lite wrapper 由统一入口运行 `run_axi_lite.py`，并在 Yosys 步骤以 `--control` 再次运行原 RTL/网表重放。比较包含 457 个 stream 周期和 161 个总线握手记录；TVALID=0 的无效载荷不参与比较，原始日志仍保留。[控制接口综合记录](../verification/yosys-control/README.md)

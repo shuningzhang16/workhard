@@ -33,6 +33,11 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
+      - name: Install host C compiler
+        if: matrix.experiment == 'p1'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y gcc
       - name: Install RTL and C tools
         if: matrix.experiment == 'p2'
         run: |
@@ -52,6 +57,7 @@ jobs:
           name: offline-${{ matrix.experiment }}-${{ github.run_attempt }}
           path: |
             .runs/
+            experiments/p1-c2000-buck/.runs/
             experiments/p2-zcu104-daq/.runs/
           include-hidden-files: true
           if-no-files-found: warn

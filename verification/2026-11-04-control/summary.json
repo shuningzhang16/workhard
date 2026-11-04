@@ -1,0 +1,52 @@
+{
+  "kind": "offline Python, RTL simulation and host C checks",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "project": "p1",
+      "check": "buck",
+      "exit_code": 0,
+      "seconds": 12.057,
+      "log": ".runs/20261104-173318-758358/p1_buck.log"
+    },
+    {
+      "project": "p1",
+      "check": "host_c",
+      "exit_code": 0,
+      "seconds": 7.38,
+      "log": ".runs/20261104-173318-758358/p1_host_c.log",
+      "artifacts": "experiments/p1-c2000-buck/.runs/20261104-173318-758358/host_c"
+    },
+    {
+      "project": "p2",
+      "check": "rtl",
+      "exit_code": 0,
+      "seconds": 3.71,
+      "log": ".runs/20261104-173318-758358/p2_rtl.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261104-173318-758358/rtl"
+    },
+    {
+      "project": "p2",
+      "check": "simple_s2mm",
+      "exit_code": 0,
+      "seconds": 6.767,
+      "log": ".runs/20261104-173318-758358/p2_simple_s2mm.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261104-173318-758358/simple_s2mm"
+    },
+    {
+      "project": "p2",
+      "check": "axi_lite",
+      "exit_code": 0,
+      "seconds": 1.002,
+      "log": ".runs/20261104-173318-758358/p2_axi_lite.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261104-173318-758358/axi_lite"
+    },
+    {
+      "project": "p4",
+      "check": "dab",
+      "exit_code": 0,
+      "seconds": 3.464,
+      "log": ".runs/20261104-173318-758358/p4_dab.log"
+    }
+  ]
+}

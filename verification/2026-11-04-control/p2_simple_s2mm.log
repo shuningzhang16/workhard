@@ -1,0 +1,5 @@
+CWD E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq
+COMMAND ["E:\\python.exe", "-X", "utf8", "scripts/run_simple_s2mm.py", "--output", ".runs/20261104-173318-758358/simple_s2mm"]
+PASS: 13 receiver cases; actual RTL payload; evidence: E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq\.runs\20261104-173318-758358\simple_s2mm
+
+EXIT_CODE 0

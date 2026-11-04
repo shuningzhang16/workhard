@@ -192,4 +192,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。独立 AXI4-Lite 控制 wrapper 及实际 RTL 验证这一步已完成，交由协调聊天单独提交；后续结合完整 Vivado/BSP 验证控制地址映射与实际平台适配。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。独立 AXI4-Lite 控制 wrapper 及实际 RTL 验证已完成，根目录还保存了 [综合网表重放证据](../../verification/yosys-control/README.md)。后续结合完整 Vivado/BSP 验证控制地址映射与实际平台适配。当前未执行上板、写卡或硬件重跑操作。

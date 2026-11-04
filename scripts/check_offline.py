@@ -24,6 +24,8 @@ def main():
     p4 = ROOT / "experiments/p4-dab"
     jobs = [
         ("p1", "buck", p1 / "simulation", ["-m", "unittest", "discover", "-v"]),
+        ("p1", "host_c", p1, ["host_c/run_validation.py", "--output",
+                              f".runs/{run_id}/host_c"]),
         ("p2", "rtl", p2, ["scripts/run_sim.py", "--suite", "all", "--output",
                             f".runs/{run_id}/rtl"]),
         ("p2", "simple_s2mm", p2, ["scripts/run_simple_s2mm.py", "--output",
@@ -54,7 +56,7 @@ def main():
         result = {"project": project, "check": name, "exit_code": code,
                   "seconds": round(time.monotonic() - started, 3),
                   "log": log_path.relative_to(ROOT).as_posix()}
-        if project == "p2":
+        if "--output" in arguments:
             result["artifacts"] = (cwd / arguments[-1]).relative_to(ROOT).as_posix()
         results.append(result)
         print(f"{'PASS' if code == 0 else 'FAIL'} {project}/{name}", flush=True)
