@@ -1,0 +1,3 @@
+case,max_abs_control_sample_output_difference_v,max_abs_control_sample_current_difference_a,steady_output_mean_delta_v,steady_output_pp_delta_v,steady_current_pp_delta_a,steady_output_pp_relative_delta,recovery_delta_s
+fixed_duty,3.446132268436486e-13,5.10480546722647e-13,-9.479799167877445e-09,1.8780028963716984e-06,6.106226635438361e-15,0.0024968626695028775,
+controlled_load_step,3.9968028886505635e-14,5.1236792586450974e-14,-9.562515668193328e-09,1.840170468081514e-06,6.189493362285248e-15,0.002446277769579363,0.0

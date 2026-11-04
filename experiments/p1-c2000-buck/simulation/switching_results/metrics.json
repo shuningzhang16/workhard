@@ -1,0 +1,94 @@
+[
+  {
+    "case": "fixed_duty",
+    "steady_0p5us": {
+      "window_start_s": 0.05960000000000001,
+      "window_end_s": 0.060000000000000005,
+      "cycle_count": 20,
+      "output_mean_v": 2.0000002398985393,
+      "current_mean_a": 0.5000000757166194,
+      "mean_cycle_output_pp_v": 0.0007502670466932426,
+      "mean_cycle_current_pp_a": 0.1414220377933964,
+      "max_cycle_output_pp_v": 0.0007502715532907711,
+      "max_cycle_current_pp_a": 0.14142203890921717,
+      "cycle_mean_output_span_v": 4.9467573148831434e-08
+    },
+    "steady_0p25us": {
+      "window_start_s": 0.05960000000000001,
+      "window_end_s": 0.060000000000000005,
+      "cycle_count": 20,
+      "output_mean_v": 2.00000023041874,
+      "current_mean_a": 0.5000000757167576,
+      "mean_cycle_output_pp_v": 0.0007521450495896143,
+      "mean_cycle_current_pp_a": 0.1414220377934025,
+      "max_cycle_output_pp_v": 0.0007521493933755341,
+      "max_cycle_current_pp_a": 0.14142203890922317,
+      "cycle_mean_output_span_v": 4.946758291879405e-08
+    },
+    "control_sample_metrics_0p5us": null,
+    "control_sample_metrics_0p25us": null,
+    "fixed_duty_checks": {
+      "duty": 0.2222222222222222,
+      "analytic_dc_output_v": 2.0,
+      "analytic_dc_current_a": 0.5,
+      "analytic_small_ripple_current_pp_a": 0.1414141414141414,
+      "analytic_small_ripple_output_pp_v": 0.0007522028798624543,
+      "averaged_model_final_output_v": 2.00000021037912,
+      "averaged_model_final_current_a": 0.4999998714681754,
+      "fine_output_pp_relative_error_to_formula": -7.688121700699657e-05,
+      "fine_current_pp_relative_error_to_formula": 5.583868191783026e-05
+    }
+  },
+  {
+    "case": "controlled_load_step",
+    "steady_0p5us": {
+      "window_start_s": 0.09960000000000001,
+      "window_end_s": 0.1,
+      "cycle_count": 20,
+      "output_mean_v": 2.0002799504983337,
+      "current_mean_a": 1.0001399298657159,
+      "mean_cycle_output_pp_v": 0.0007503926670963668,
+      "mean_cycle_current_pp_a": 0.1414361607751012,
+      "max_cycle_output_pp_v": 0.0007503927001644151,
+      "max_cycle_current_pp_a": 0.1414361616174421,
+      "cycle_mean_output_span_v": 3.281204818961214e-08
+    },
+    "steady_0p25us": {
+      "window_start_s": 0.09960000000000001,
+      "window_end_s": 0.1,
+      "cycle_count": 20,
+      "output_mean_v": 2.000279940935818,
+      "current_mean_a": 1.0001399298659834,
+      "mean_cycle_output_pp_v": 0.0007522328375644483,
+      "mean_cycle_current_pp_a": 0.1414361607751074,
+      "max_cycle_output_pp_v": 0.0007522328692526337,
+      "max_cycle_current_pp_a": 0.14143616161744743,
+      "cycle_mean_output_span_v": 3.281203131422217e-08
+    },
+    "control_sample_metrics_0p5us": {
+      "case": "load_step",
+      "steady_state_error_v": 1.3707671024931756e-06,
+      "overshoot_percent": 9.574291519120347,
+      "post_event_max_abs_deviation_v": 0.2428044424682132,
+      "recovery_to_2_percent_s": 0.0051,
+      "event_reference_time_s": 0.05
+    },
+    "control_sample_metrics_0p25us": {
+      "case": "load_step",
+      "steady_state_error_v": 1.3707671020490864e-06,
+      "overshoot_percent": 9.574291519119571,
+      "post_event_max_abs_deviation_v": 0.2428044424682172,
+      "recovery_to_2_percent_s": 0.0051,
+      "event_reference_time_s": 0.05
+    },
+    "averaged_model_control_sample_metrics": {
+      "case": "load_step",
+      "steady_state_error_v": 1.36108054205053e-06,
+      "overshoot_percent": 9.659105937100442,
+      "post_event_max_abs_deviation_v": 0.24351228698780125,
+      "recovery_to_2_percent_s": 0.0051199999999999996,
+      "event_reference_time_s": 0.05
+    },
+    "max_abs_switched_vs_averaged_sampled_output_v": 0.0020161462659102902
+  }
+]
