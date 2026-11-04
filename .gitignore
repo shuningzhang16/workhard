@@ -1,0 +1,7 @@
+/求职资料/
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.DS_Store
+Thumbs.db
