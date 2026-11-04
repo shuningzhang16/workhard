@@ -26,8 +26,8 @@ def main():
         ("p1", "buck", p1 / "simulation", ["-m", "unittest", "discover", "-v"]),
         ("p2", "rtl", p2, ["scripts/run_sim.py", "--suite", "all", "--output",
                             f".runs/{run_id}/rtl"]),
-        ("p2", "frame_validator", p2, ["scripts/run_frame_validator.py", "--output",
-                                        f".runs/{run_id}/frame_validator"]),
+        ("p2", "simple_s2mm", p2, ["scripts/run_simple_s2mm.py", "--output",
+                                    f".runs/{run_id}/simple_s2mm"]),
         ("p4", "dab", p4, ["-m", "unittest", "discover", "-v"]),
     ]
     results = []

@@ -1,0 +1,16 @@
+{
+  "kind": "generic synthesis without ABC or device mapping; no hardware timing result",
+  "frame_words": 7,
+  "fifo_depth": 3,
+  "captured_words": 84,
+  "all_capture_fields_equal": true,
+  "cell_count": 590,
+  "cell_types": {
+    "$_OR_": 27,
+    "$_AND_": 59,
+    "$_NOT_": 9,
+    "$_MUX_": 297,
+    "$_DFF_P_": 150,
+    "$_XOR_": 48
+  }
+}

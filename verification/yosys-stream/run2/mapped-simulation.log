@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "verification/yosys-stream/run2/mapped.vvp", "+OUTDIR=verification/yosys-stream/run2/mapped"]
+PASS top-level RTL capture: 12 frames, 84 words, 336 bytes, capture_end_cycle=137; post-capture held beat checked for 5 clocks
+verification/yosys-stream/run2/tb_mapped.sv:50: $finish called at 1416000 (1ps)
+
+EXIT_CODE 0

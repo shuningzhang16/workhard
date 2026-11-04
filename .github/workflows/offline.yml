@@ -6,11 +6,13 @@ on:
     paths:
       - 'experiments/**'
       - 'scripts/check_offline.py'
+      - 'scripts/check_synthesis.py'
       - '.github/workflows/offline.yml'
   pull_request:
     paths:
       - 'experiments/**'
       - 'scripts/check_offline.py'
+      - 'scripts/check_synthesis.py'
       - '.github/workflows/offline.yml'
   workflow_dispatch:
 
@@ -35,9 +37,12 @@ jobs:
         if: matrix.experiment == 'p2'
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y iverilog gcc
+          sudo apt-get install --no-install-recommends -y iverilog gcc yosys
       - name: Run existing offline checks
         run: python -X utf8 scripts/check_offline.py --only ${{ matrix.experiment }}
+      - name: Synthesize and replay stream capture
+        if: matrix.experiment == 'p2'
+        run: python -X utf8 scripts/check_synthesis.py
       - name: Retain logs and simulation data
         if: always()
         uses: actions/upload-artifact@v7

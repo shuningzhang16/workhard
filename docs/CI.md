@@ -10,4 +10,8 @@
 
 配置见 [.github/workflows/offline.yml](../.github/workflows/offline.yml)。工作流令牌使用只读仓库权限，官方 actions 使用版本标签，未新增提交校验摘要或自建发布门禁。路径触发与权限的语义依据 [GitHub 工作流语法](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)，日志产物的保存方式依据 [GitHub artifacts 文档](https://docs.github.com/en/actions/tutorials/store-and-share-data)。
 
-这组任务验证 Python 模型、Icarus RTL 和主机 C。SPICE 独立对照在 P1 阶段记录中单独保存；完整 Vivado、PS BSP、DDR/cache 行为和实物测量仍不在当前工作流的验证范围。
+P2 的主机 C 检查包括帧校验器的 16 个用例和 Simple S2MM 接收/显式恢复的 13 个用例。后者先运行前者并复用其实际 RTL 捕获，因此统一入口不重复执行同一组帧校验测试。
+
+P2 还安装 Yosys，执行 `scripts/check_synthesis.py`：通用综合后，用原有激励分别运行 RTL 和网表，逐项比较 84 个接收记录。相关脚本变更同样触发工作流；综合、网表仿真日志和版本信息包含在 `.runs/` artifact 中。本机的成功记录及首次依赖失败见 [综合验证记录](../verification/yosys-stream/README.md)。
+
+这组任务验证 Python 模型、Icarus RTL、通用网表和主机 C。SPICE 独立对照在 P1 阶段记录中单独保存；完整 Vivado、目标器件时序、PS BSP、DDR/cache 行为和实物测量仍不在当前工作流的验证范围。

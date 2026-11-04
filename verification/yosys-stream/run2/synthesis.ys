@@ -1,0 +1,7 @@
+read_verilog -sv experiments/p2-zcu104-daq/rtl/axis_pattern_source.v experiments/p2-zcu104-daq/rtl/axis_sync_fifo.v experiments/p2-zcu104-daq/rtl/daq_stream_top.v
+chparam -set FRAME_WORDS 7 -set FIFO_DEPTH 3 daq_stream_top
+synth -top daq_stream_top -flatten -noabc
+check -assert
+stat
+write_verilog -noattr verification/yosys-stream/run2/daq_stream_mapped.v
+write_json verification/yosys-stream/run2/netlist.json

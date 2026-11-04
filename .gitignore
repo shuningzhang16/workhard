@@ -4,6 +4,7 @@
 /figures/output/*.collision.pdf
 __pycache__/
 *.py[cod]
+*.vvp
 .venv/
 .pytest_cache/
 .DS_Store
