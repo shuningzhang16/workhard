@@ -1,0 +1,11 @@
+Tool discovery, 2026-11-04 Asia/Shanghai
+E:\AMDDesignTools\2025.2 contains Vivado_Lab, data, tps; no xvlog/xelab/xsim executables found.
+Python: E:\python.exe, 3.14.4.
+Download attempt: Python urllib GET https://repo.msys2.org/mingw/ucrt64/ucrt64.db
+Result: urllib.error.URLError: <urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1081)>
+No TLS validation settings were changed. Retrying official MSYS2 mirror with PowerShell.
+PowerShell GET https://mirror.msys2.org/mingw/ucrt64/ucrt64.db succeeded (592993 bytes).
+Downloaded ten package archives, 3860516 bytes total; exact URLs and versions are in tool_packages.csv.
+Extracted with Python tarfile.extractall(filter='data') into .tools/ only.
+No system installation or persistent PATH change. Child simulation processes receive the local tool bin directory in PATH.
+Icarus Verilog 13.0 and vvp were executed successfully; see version and per-case logs.

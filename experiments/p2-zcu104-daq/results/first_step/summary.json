@@ -1,0 +1,42 @@
+{
+  "kind": "RTL simulation",
+  "simulator": "Icarus Verilog",
+  "cases": [
+    {
+      "result": "PASS",
+      "frame_words": 1,
+      "cycles": 66599,
+      "accepted_words": 66314,
+      "complete_frames": 66314,
+      "stalled_cycles": 276,
+      "stalled_last_cycles": 276,
+      "reset_while_stalled": 1,
+      "longest_continuous_run": 65548,
+      "sequence_wraps": 1
+    },
+    {
+      "result": "PASS",
+      "frame_words": 7,
+      "cycles": 1134,
+      "accepted_words": 849,
+      "complete_frames": 121,
+      "stalled_cycles": 276,
+      "stalled_last_cycles": 35,
+      "reset_while_stalled": 1,
+      "longest_continuous_run": 44,
+      "sequence_wraps": 0
+    },
+    {
+      "result": "PASS",
+      "frame_words": 16,
+      "cycles": 1251,
+      "accepted_words": 966,
+      "complete_frames": 60,
+      "stalled_cycles": 276,
+      "stalled_last_cycles": 23,
+      "reset_while_stalled": 1,
+      "longest_continuous_run": 98,
+      "sequence_wraps": 0
+    }
+  ]
+}

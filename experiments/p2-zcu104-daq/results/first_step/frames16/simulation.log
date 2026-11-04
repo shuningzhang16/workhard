@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/frames16.vvp", "+OUTDIR=results/first_step/frames16"]
+PASS frame_words=16 accepted=966 frames=60 stalls=276 held_last=23 resets_held=1 wrap=0
+tb/tb_axis_pattern_source.sv:161: $finish called at 12510000 (1ps)
+
+EXIT_CODE 0

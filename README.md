@@ -5,7 +5,7 @@
 | 项目 | 目录 | 当前阶段 |
 | --- | --- | --- |
 | P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | 已保存原厂源码到本地；仓库提供获取脚本与来源记录 |
-| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | 已保存 AMD AXI DMA 原始驱动与示例，尚未适配 ZCU104 |
+| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Stream 数据源及三组 RTL 仿真通过，尚未集成 DMA/DDR |
 | P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | 已记录官方来源，尚未取得公开原厂模型或源码 |
 
 ## 版本与来源
