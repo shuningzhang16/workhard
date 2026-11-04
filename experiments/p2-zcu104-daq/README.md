@@ -1,6 +1,20 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部 AXI-Stream 数据源及最小同步 FIFO，两步均通过 Icarus Verilog 13.0 的真实 RTL 仿真。原厂代码保留不变。尚未完成 ZCU104 工程适配、DMA/DDR 集成或板端验证。
+当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO，以及独立 C 帧流校验器。RTL 仿真及主机 C 故障测试通过，原厂代码保留不变。尚未完成 ZCU104 工程适配、DMA/DDR 集成或板端验证。
+
+## 第三小步：C 帧流校验与 RTL 数据联测
+
+新增 [ps/frame_validator.c](ps/frame_validator.c) 和 [头文件](ps/frame_validator.h)，支持按批次输入、跨批次半帧、16 位帧序号回绕和显式采集周期重置。索引/序号错误锁存到 reset；结束时根据预期帧数检测截断或超额帧。没有实现 DMA 驱动。
+
+实际运行 [完整采集 testbench](tb/tb_capture_stream.sv)，获得现有数据源经过深度 3 FIFO 后的 **12 帧、84 字、336 字节**。原始 CSV 和其小端序列化文件送入 [C 故障测试](tests/test_frame_validator.c)。WSL Ubuntu-22.04 / GCC 11.4.0 启用 AddressSanitizer、UBSan 和严格警告检查后，**16/16 项测试通过**。
+
+结果与复现入口：
+
+- [结果汇总](results/frame_validator_repair/summary.json)、[故障矩阵 CSV](results/frame_validator_repair/fault_matrix.csv)、[完整 RTL 轨迹](results/frame_validator_repair/rtl_capture.csv)。
+- [C 接口、数据来源、DMA/cache/超时接入边界](ps/README.md)。
+- 运行：`E:\python.exe scripts/run_frame_validator.py --output results/frame_validator_recheck`。
+
+首轮 WSL 路径转换失败已保存证据，并在隔离副本修复验证后应用正式脚本；因此本次成功证据放在 `results/frame_validator_repair/`。这一步是 RTL 数据与 x86_64 主机 C 的离线联测，不是 PS 实测；回绕专项另用明确标记的 C 人工数据。原有 source/FIFO 测试保持不变。
 
 ## 第二小步：单时钟 FIFO
 
@@ -121,7 +135,7 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq'
 - 已实际下载 15 个上游文件，共 205,014 字节；每个文件长度与同版本 GitHub Contents API 返回值一致。结果记录于 `sources.csv`。这只是文件获取检查，不是功能验证。
 - 官方示例要求 AXI DMA 的两个 AXI-Stream 方向之间存在硬件回环，并采用 Simple DMA 模式。其代码不是内部数据发生器，也不是单独可运行的电脑程序。
 - 这里保存的是驱动源码和一个示例的子集，不包含完整 embeddedsw、Standalone BSP、生成的 `xparameters.h`、板级配置、链接脚本或 Vivado 硬件设计。`src/xaxidma_g.c` 不能当作已生成的 ZCU104 配置使用。
-- 已完成独立同步 FIFO RTL 仿真；尚未创建 Vivado FIFO/DMA/DDR 块设计及 PS 侧改进工具。没有板端吞吐量、延迟或丢帧率测量结果。
+- 已完成独立同步 FIFO RTL 仿真及可供 PS/主机复用的 C 校验模块；尚未创建 Vivado FIFO/DMA/DDR 块设计或板端应用。没有板端吞吐量、延迟或丢帧率测量结果。
 - `E:\AMDDesignTools\2025.2` 中发现 Vivado Lab，未找到 xvlog/xelab/xsim 可执行文件；没有将 Lab Edition 称作可用的完整仿真工具链。本次实际用的是本目录 Icarus Verilog 13.0。
 - PATH 中的 `E:\Scripts\python.exe` 报告缺少 `pyvenv.cfg`，实际使用正常的 `E:\python.exe`（3.14.4），未改动系统设置。首次 Python 下载请求发生 TLS EOF，改用 PowerShell 从 MSYS2 官方镜像成功取回；没有关闭 TLS 校验，记录见 [tool_setup.log](results/first_step/tool_setup.log)。
 
@@ -137,4 +151,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。同步 FIFO 这一步已完成，交由协调聊天单独提交；后续再结合完整 Vivado 工具与 ZCU104 硬件设计逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。C 校验器及离线联测这一步已完成，交由协调聊天单独提交；后续再结合完整 Vivado 工具与 ZCU104 硬件设计逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。

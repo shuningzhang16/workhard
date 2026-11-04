@@ -1,0 +1,10 @@
+Initial run: scripts/run_frame_validator.py
+RTL compile/simulation completed; C compilation not reached.
+Observed stderr:
+wslpath: E:UserDataDocumentsChatGPT硬件experimentsp2-zcu104-daq
+subprocess.CalledProcessError: wsl -d Ubuntu-22.04 -- wslpath -a <Windows ROOT> returned non-zero exit status 1.
+Diagnosis: wsl -- used a shell command path; unquoted backslashes were removed.
+Repair: use --exec for direct argument execution; validate in build/validator_debug before applying.
+Isolated repair command: E:\python.exe build/validator_debug/run_frame_validator.py --output results/frame_validator_repair (with scripts/ on Python import path).
+Repair validation: actual RTL capture 84 words; GCC with ASan/UBSan; 16/16 C tests PASS.
+The two --exec argument changes were promoted to scripts/run_frame_validator.py; contents match the tested isolated copy.

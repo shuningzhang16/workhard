@@ -1,0 +1,15 @@
+{
+  "capture_origin": "RTL simulation: source -> depth-3 FIFO -> sink",
+  "capture_words": 84,
+  "capture_frames": 12,
+  "frame_words": 7,
+  "capture_bytes": 336,
+  "serialization": "little-endian uint32",
+  "c_host": "WSL Ubuntu-22.04 x86_64",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "cases": 16,
+  "passed": 16
+}
