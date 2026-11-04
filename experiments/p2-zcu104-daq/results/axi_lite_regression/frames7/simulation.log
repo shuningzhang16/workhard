@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/frames7.vvp", "+OUTDIR=results/axi_lite_regression/frames7"]
+PASS frame_words=7 accepted=849 frames=121 stalls=276 held_last=35 resets_held=1 wrap=0
+tb/tb_axis_pattern_source.sv:161: $finish called at 11340000 (1ps)
+
+EXIT_CODE 0

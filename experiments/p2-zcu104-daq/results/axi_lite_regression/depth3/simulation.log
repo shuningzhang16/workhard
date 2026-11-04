@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/depth3.vvp", "+OUTDIR=results/axi_lite_regression/depth3"]
+PASS depth=3 in=775 out=772 reset_discard=3 pending=0 peak=3 full_exchange=209 steady=20/20
+tb/tb_axis_sync_fifo.sv:187: $finish called at 11530000 (1ps)
+
+EXIT_CODE 0

@@ -1,6 +1,20 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、可综合写法的顶层封装、独立 C 帧流校验器及逐包 Simple S2MM 接收控制核心。RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado Tcl 入口及 Standalone 接入草稿。Tcl 未在完整 Vivado 中执行，Standalone 草稿未编译；DMA/DDR 集成、综合与板端验证尚未完成，原厂代码保留不变。
+当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、顶层封装、独立 AXI4-Lite 控制 wrapper、C 帧流校验器及逐包 Simple S2MM 接收控制核心。RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado Tcl 入口及 Standalone 接入草稿。新控制 wrapper 尚未接入 Vivado 地址映射；Tcl 未在完整 Vivado 中执行，Standalone 草稿未编译；DMA/DDR 与板端验证尚未完成，原厂代码保留不变。
+
+## 第六小步：AXI4-Lite 启停和统计
+
+新增独立 [daq_axi_lite.v](rtl/daq_axi_lite.v)，在现有连续流顶层之外提供启停、停止后的清计数/重启，以及输出已接收字、帧和停顿计数。STOP 等待 TLAST 握手，不撤回被反压的有效拍；继续保留序号，显式重启才回到帧 0。现有 source/FIFO/top 与其测试均未修改。
+
+[独立 TB](tb/tb_daq_axi_lite.sv) 实际通过 **23 次写、46 次读、70 字/10 帧输出**；AW 先到/W 先到/同拍分别 5/3/15 次，B/R 反压分别 33/161 周期。覆盖 WSTRB、响应稳定性、连续并行读写、独立计数核对、帧边界停止和重启。
+
+原 source/FIFO 六组回归也已实际复跑并全部通过，见 [回归汇总](results/axi_lite_regression/summary.json)。
+
+- [寄存器表、PS 使用次序及验证范围](rtl/daq_axi_lite.md)。
+- [结果汇总](results/axi_lite/summary.json)、[总线 CSV](results/axi_lite/axi_transactions.csv)、[流周期 CSV](results/axi_lite/stream_cycles.csv)。
+- 复现：`python scripts/run_axi_lite.py --output results/axi_lite_recheck`。
+
+这是实际可仿真的寄存器接口；未进行该 wrapper 的 Vivado 集成、PS BSP 或 DDR 联通验证，没有板端吞吐或时序结论。
 
 ## 第五小步：逐包接收控制与主机故障验证
 
@@ -178,4 +192,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。逐包接收控制、实际 RTL 数据驱动的主机故障验证及 Standalone 接入草稿这一步已完成，交由协调聊天单独提交；后续结合完整 Vivado/BSP 验证硬件设计与实际平台适配。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。独立 AXI4-Lite 控制 wrapper 及实际 RTL 验证这一步已完成，交由协调聊天单独提交；后续结合完整 Vivado/BSP 验证控制地址映射与实际平台适配。本轮未执行上板、写卡或硬件重跑操作。
