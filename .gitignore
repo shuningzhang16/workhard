@@ -1,4 +1,6 @@
 /求职资料/
+/.tools/
+/figures/output/*.collision.pdf
 __pycache__/
 *.py[cod]
 .venv/

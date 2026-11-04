@@ -4,9 +4,11 @@
 
 | 项目 | 目录 | 当前阶段 |
 | --- | --- | --- |
-| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | Buck 平均模型、PI 与软启动三个工况验证通过 |
-| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Stream 数据源及三组 RTL 仿真通过，尚未集成 DMA/DDR |
-| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS 双向模型、9 个工况与 39 点扫描验证通过 |
+| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | PI/软启动、三类故障锁存与显式恢复验证通过 |
+| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | 数据源 + 同步 FIFO 共六组 RTL 仿真通过，尚未集成 DMA/DDR |
+| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS 与 EPS 的同功率比较通过，保留未改善与无解工况 |
+
+系统框图与边界见 [系统说明](docs/SYSTEMS.md)，已有数据的可编辑波形图见 [图表与复现](figures/README.md)。
 
 ## 版本与来源
 
