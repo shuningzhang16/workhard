@@ -1,0 +1,111 @@
+{
+  "started_at_utc": "2026-11-04T09:26:23.755777+00:00",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    ".\\run_power_points.py"
+  ],
+  "scope": "exactly five independent fixed-bus RL parameter points; no tuning or stability-domain claim",
+  "gains": {
+    "kp_deg_per_w": 0.4,
+    "ki_deg_per_w_s": 2000.0
+  },
+  "targets_w": [
+    5.0,
+    15.0,
+    -10.0,
+    0.0
+  ],
+  "periods_per_target": 200,
+  "initial_current_a": 0.0,
+  "clear_cycles": [],
+  "sense_v2": "unchanged default: physical fixed V2",
+  "feedback": "previous completed switching period P2 only; initial feedback zero",
+  "settling_definition": "max(0.25 W, 2% absolute target), retained through segment end for at least 10 periods",
+  "hardware_operations": false,
+  "points": {
+    "v2_9_r_0p5": {
+      "circuit": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "series_resistance_ohm": 0.5,
+      "phase_limit_deg": 60.0,
+      "phase_slew_deg_per_period": 6.0,
+      "samples_per_period": 20,
+      "overcurrent_a": 8.0,
+      "clear_current_a": 0.2,
+      "sensed_v2_limit_v": 15.0
+    },
+    "v2_12_r_0p5": {
+      "circuit": {
+        "v1_v": 24.0,
+        "v2_v": 12.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "series_resistance_ohm": 0.5,
+      "phase_limit_deg": 60.0,
+      "phase_slew_deg_per_period": 6.0,
+      "samples_per_period": 20,
+      "overcurrent_a": 8.0,
+      "clear_current_a": 0.2,
+      "sensed_v2_limit_v": 15.0
+    },
+    "v2_15_r_0p5": {
+      "circuit": {
+        "v1_v": 24.0,
+        "v2_v": 15.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "series_resistance_ohm": 0.5,
+      "phase_limit_deg": 60.0,
+      "phase_slew_deg_per_period": 6.0,
+      "samples_per_period": 20,
+      "overcurrent_a": 8.0,
+      "clear_current_a": 0.2,
+      "sensed_v2_limit_v": 15.0
+    },
+    "v2_12_r_0p25": {
+      "circuit": {
+        "v1_v": 24.0,
+        "v2_v": 12.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "series_resistance_ohm": 0.25,
+      "phase_limit_deg": 60.0,
+      "phase_slew_deg_per_period": 6.0,
+      "samples_per_period": 20,
+      "overcurrent_a": 8.0,
+      "clear_current_a": 0.2,
+      "sensed_v2_limit_v": 15.0
+    },
+    "v2_12_r_1": {
+      "circuit": {
+        "v1_v": 24.0,
+        "v2_v": 12.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "series_resistance_ohm": 1.0,
+      "phase_limit_deg": 60.0,
+      "phase_slew_deg_per_period": 6.0,
+      "samples_per_period": 20,
+      "overcurrent_a": 8.0,
+      "clear_current_a": 0.2,
+      "sensed_v2_limit_v": 15.0
+    }
+  }
+}

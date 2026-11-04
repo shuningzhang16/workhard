@@ -10,6 +10,8 @@
 
 第五步已完成固定母线下的离散传输功率 PI 环，仅使用上一已完成周期的实算功率；3 个工况、30 项测试通过，包含正向阶跃、反向指令、不可达指令的抗积分饱和及保护恢复。详见 [POWER_LOOP.md](POWER_LOOP.md)。
 
+第六步固定上述 PI 增益，在指定的 5 个 V2/R 参数点运行同一 5→15→−10→0 W 序列。20 段均在各自 10 ms 窗口内进入并保持误差带，无保护事件；33 项测试和 5 份完整波形回读通过。仅代表这五点，详见 [POWER_POINTS.md](POWER_POINTS.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。
@@ -67,6 +69,8 @@ EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在�
 第四步执行 `E:\python.exe -B -X utf8 run_commutation_analysis.py`，结果在 `results_polarity/`。m=0.75、±2.7 W 时，SPS 有 4 个沿方向相反，所选 EPS 的 8 个沿均满足必要极性；m=1.25 的轻载点仍有 4 个沿方向相反。8 个沿全部满足也不能确认 ZVS，缺失 Coss/Qoss、死区及寄生模型。
 
 第五步执行 `E:\python.exe -B -X utf8 run_power_loop.py`，输出在 `results_power_loop/`。20 W→−15 W 在 4.150 ms 内进入并保持本次误差带；100 W 请求受限到约 31.172552 W，降回 10 W 后 3.750 ms 恢复，尾段误差 0.008278 W。该 PI 环的增益和误差带均为明确教学设定，原保护和物理检查不变。
+
+第六步执行 `E:\python.exe -B -X utf8 run_power_points.py`，独立输出在 `results_power_points/`。V2=9/12/15 V、R=0.5 Ω，以及 V2=12 V、R=0.25/1 Ω 五点中，最慢入带 5.000 ms，最大尾段平均误差绝对值 0.006607 W；未改 PI 增益或保护阈值。完整参数和逐段结果均保存为 CSV。
 
 本步先单独提交和上传。当前仍未包含输出电压/电池动态、硬件控制实现、器件损耗/效率或完整 ZVS 模型；各步的假设与证据分别保留在对应说明中。
 

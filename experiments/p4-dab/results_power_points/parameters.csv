@@ -1,0 +1,6 @@
+scenario,v1_v,v2_v,turns_ratio,frequency_hz,inductance_h,kp_deg_per_w,ki_deg_per_w_s,series_resistance_ohm,phase_limit_deg,phase_slew_deg_per_period,samples_per_period,overcurrent_a,clear_current_a,sensed_v2_limit_v,voltage_ratio,periods_per_target,total_periods
+v2_9_r_0p5,24.0,9.0,2.0,20000.0,0.0001,0.4,2000.0,0.5,60.0,6.0,20,8.0,0.2,15.0,0.75,200,800
+v2_12_r_0p5,24.0,12.0,2.0,20000.0,0.0001,0.4,2000.0,0.5,60.0,6.0,20,8.0,0.2,15.0,1.0,200,800
+v2_15_r_0p5,24.0,15.0,2.0,20000.0,0.0001,0.4,2000.0,0.5,60.0,6.0,20,8.0,0.2,15.0,1.25,200,800
+v2_12_r_0p25,24.0,12.0,2.0,20000.0,0.0001,0.4,2000.0,0.25,60.0,6.0,20,8.0,0.2,15.0,1.0,200,800
+v2_12_r_1,24.0,12.0,2.0,20000.0,0.0001,0.4,2000.0,1.0,60.0,6.0,20,8.0,0.2,15.0,1.0,200,800
