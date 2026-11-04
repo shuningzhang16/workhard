@@ -1,0 +1,8 @@
+2026-11-04 来源获取记录（本地准备阶段）
+TI SDK 官方页面 https://www.ti.com/tool/C2000WARE-DIGITALPOWER-SDK 指向 https://github.com/TexasInstruments/c2000ware-digitalpower-sdk 。
+浏览器抓取和 GitHub REST API /repos/TexasInstruments/c2000ware-digitalpower-sdk 均返回 HTTP 404；tags 接口也返回 404。
+因此不把这个链接当成已取得源码，也不使用不明第三方副本替代。下一步核对 TI Resource Explorer 的公开例程。
+
+原始逐文件下载执行到 f28004x/cmd/f28004x_flash_lnk.cmd 时，公开静态内容 URL 返回 HTTP 403。此前 4 个文件已下载，download-results.json 保留了结果。未更改认证或关闭验证；改用同一公开 SDK ZIP 的 HTTP Range 读取 Buck 所在片段，以避免下载整套 737,637,609 字节 SDK。
+
+取得成功：通过官方 SDK ZIP 的 HTTP Range 提取 26 个 Buck 例程文件，另从 TI 官方静态服务器取得根许可、软件清单和包元数据，共 29 个文件（397137 字节）。记录见 download-results.json。原厂源码未修改。清单明确标注 TI_Commercial，vendor/ 排除出公开上传。两个项目 XML 及 Kit.json 解析通过；未编译或执行硬件。

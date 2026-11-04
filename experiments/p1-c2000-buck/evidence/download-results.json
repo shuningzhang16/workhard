@@ -1,0 +1,176 @@
+[
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/release_notes.html",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 686
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/tidm_dc_dc_buck_hardware.html",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 273
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck_nonpowerSUITE.projectspec",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 6012
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck.projectspec",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 7879
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/cmd/f28004x_flash_lnk.cmd",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 5956
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_user_settings.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 22872
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_main.c",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 9781
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/main.syscfg",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 620
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/solution.js",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 239
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/Kit.json",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 1763
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_settings.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 2647
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_clatasks.cla",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 998
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/device.c",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 7236
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/driverlib.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 1491
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/f28004x_codestartbranch.asm",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 4604
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/device.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 5066
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/include/buck_hal.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 7086
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/source/buck_hal.c",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 29785
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/docs/tidm_dc_dc_buck_users_guide.html",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 249
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/include/buck.h",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 18761
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab1.js",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 623
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/graph1.graphProp",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 996
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab4.js",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 666
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab3.js",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 622
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab2.js",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 666
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/source/buck.c",
+    "url": "https://downloads.ti.com/ccs/esd/tirex/zips/C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "status": 206,
+    "bytes": 21224
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/license.txt",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/license.txt",
+    "status": 200,
+    "bytes": 34197
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/docs/manifest.html",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/docs/manifest.html",
+    "status": 200,
+    "bytes": 203187
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/.metadata/.tirex/package.tirex.json",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/.metadata/.tirex/package.tirex.json",
+    "status": 200,
+    "bytes": 952
+  }
+]

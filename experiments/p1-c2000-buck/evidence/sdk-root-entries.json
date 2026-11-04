@@ -1,0 +1,23 @@
+[
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/README_FIRST.html",
+    "method": 8,
+    "compressed": 306,
+    "size": 530,
+    "offset": 539
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/license.txt",
+    "method": 8,
+    "compressed": 11123,
+    "size": 34197,
+    "offset": 931
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/docs/manifest.html",
+    "method": 8,
+    "compressed": 51471,
+    "size": 203187,
+    "offset": 61399101
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "check_date": "2026-11-04",
+  "downloaded_files": 29,
+  "downloaded_bytes": 397137,
+  "all_recorded_files_exist": true,
+  "all_recorded_sizes_match": true,
+  "project_specs": [
+    {
+      "file": "buck.projectspec",
+      "name": "buck_F28004x",
+      "device": "TMS320F280049C",
+      "compiler": "22.6.0.LTS",
+      "products": "sysconfig:1.21.0"
+    },
+    {
+      "file": "buck_nonpowerSUITE.projectspec",
+      "name": "buck_nonpowerSUITE_F28004x",
+      "device": "TMS320F280049C",
+      "compiler": "22.6.0.LTS",
+      "products": "sysconfig:1.21.0"
+    }
+  ],
+  "compiled": false,
+  "hardware_executed": false,
+  "Kit_json_parsed": true,
+  "sdk_package_version": "26.01.00.00",
+  "c2000ware_dependencies_present": false,
+  "sfra_dependencies_present": false
+}

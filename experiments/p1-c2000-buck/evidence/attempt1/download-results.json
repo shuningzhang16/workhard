@@ -1,0 +1,26 @@
+[
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/release_notes.html",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/release_notes.html",
+    "status": 200,
+    "bytes": 686
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/tidm_dc_dc_buck_hardware.html",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/tidm_dc_dc_buck_hardware.html",
+    "status": 200,
+    "bytes": 273
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck_nonpowerSUITE.projectspec",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck_nonpowerSUITE.projectspec",
+    "status": 200,
+    "bytes": 6012
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck.projectspec",
+    "url": "https://dev.ti.com/tirex/content/C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck.projectspec",
+    "status": 200,
+    "bytes": 7879
+  }
+]

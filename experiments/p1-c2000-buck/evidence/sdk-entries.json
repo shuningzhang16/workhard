@@ -1,0 +1,436 @@
+[
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 0
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 1839728
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 3620625
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/TIDM_DC_DC_BUCK.syscfg.js",
+    "method": 8,
+    "compressed": 4585,
+    "size": 25797,
+    "offset": 3620747
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 3625474
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 3625604
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/buck_settings.h.xdt",
+    "method": 8,
+    "compressed": 1702,
+    "size": 4430,
+    "offset": 3625734
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/Kit.json.xdt",
+    "method": 8,
+    "compressed": 1563,
+    "size": 4500,
+    "offset": 3627577
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/buck_user_settings.h",
+    "method": 8,
+    "compressed": 4442,
+    "size": 22576,
+    "offset": 3629274
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/main.syscfg",
+    "method": 8,
+    "compressed": 364,
+    "size": 620,
+    "offset": 3633866
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/solution.js",
+    "method": 8,
+    "compressed": 139,
+    "size": 239,
+    "offset": 3634371
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/KitPowerStage.png",
+    "method": 8,
+    "compressed": 55464,
+    "size": 55681,
+    "offset": 3634651
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28004x/Kit.json",
+    "method": 8,
+    "compressed": 481,
+    "size": 1763,
+    "offset": 3690262
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/buck_user_settings.h",
+    "method": 8,
+    "compressed": 5116,
+    "size": 25054,
+    "offset": 3690881
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/main.syscfg",
+    "method": 8,
+    "compressed": 428,
+    "size": 762,
+    "offset": 3696147
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/solution.js",
+    "method": 8,
+    "compressed": 140,
+    "size": 239,
+    "offset": 3696716
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/KitPowerStage.png",
+    "method": 8,
+    "compressed": 55464,
+    "size": 55681,
+    "offset": 3696997
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/powerSUITE/source/devkits/.meta/TIDM_DC_DC_BUCK/buck/F28003x/Kit.json",
+    "method": 8,
+    "compressed": 481,
+    "size": 1763,
+    "offset": 3752608
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 5515455
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/docs/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33493942
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33494042
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33494145
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33494249
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/release_notes.html",
+    "method": 8,
+    "compressed": 346,
+    "size": 686,
+    "offset": 33494351
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/tidm_dc_dc_buck_hardware.html",
+    "method": 8,
+    "compressed": 173,
+    "size": 273,
+    "offset": 33494810
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/hardware/TIDM-DC-DC-BUCK_Calculations.xlsx",
+    "method": 8,
+    "compressed": 240414,
+    "size": 244946,
+    "offset": 33495116
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33735667
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33735775
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/cmd/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33735882
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33735989
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck_nonpowerSUITE.projectspec",
+    "method": 8,
+    "compressed": 1378,
+    "size": 6012,
+    "offset": 33736100
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/ccs/buck.projectspec",
+    "method": 8,
+    "compressed": 1616,
+    "size": 7879,
+    "offset": 33737615
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/cmd/f28004x_flash_lnk.cmd",
+    "method": 8,
+    "compressed": 1169,
+    "size": 5956,
+    "offset": 33739354
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33740651
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_user_settings.h",
+    "method": 8,
+    "compressed": 4586,
+    "size": 22872,
+    "offset": 33740766
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_main.c",
+    "method": 8,
+    "compressed": 2755,
+    "size": 9781,
+    "offset": 33745480
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/main.syscfg",
+    "method": 8,
+    "compressed": 364,
+    "size": 620,
+    "offset": 33748354
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/solution.js",
+    "method": 8,
+    "compressed": 139,
+    "size": 239,
+    "offset": 33748837
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/Kit.json",
+    "method": 8,
+    "compressed": 481,
+    "size": 1763,
+    "offset": 33749095
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_settings.h",
+    "method": 8,
+    "compressed": 873,
+    "size": 2647,
+    "offset": 33749692
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/buck_clatasks.cla",
+    "method": 8,
+    "compressed": 417,
+    "size": 998,
+    "offset": 33750688
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/device.c",
+    "method": 8,
+    "compressed": 1755,
+    "size": 7236,
+    "offset": 33751230
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/driverlib.h",
+    "method": 8,
+    "compressed": 491,
+    "size": 1491,
+    "offset": 33753108
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/f28004x_codestartbranch.asm",
+    "method": 8,
+    "compressed": 1855,
+    "size": 4604,
+    "offset": 33753725
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/buck/device/device.h",
+    "method": 8,
+    "compressed": 1419,
+    "size": 5066,
+    "offset": 33755722
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/include/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33757264
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/source/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33757383
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/include/buck_hal.h",
+    "method": 8,
+    "compressed": 1635,
+    "size": 7086,
+    "offset": 33757501
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/f28004x/drivers/source/buck_hal.c",
+    "method": 8,
+    "compressed": 6079,
+    "size": 29785,
+    "offset": 33759265
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/docs/tidm_dc_dc_buck_users_guide.html",
+    "method": 8,
+    "compressed": 154,
+    "size": 249,
+    "offset": 33765472
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33765758
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33765865
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/include/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33765978
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/source/",
+    "method": 0,
+    "compressed": 0,
+    "size": 0,
+    "offset": 33766093
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/include/buck.h",
+    "method": 8,
+    "compressed": 4362,
+    "size": 18761,
+    "offset": 33766207
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab1.js",
+    "method": 8,
+    "compressed": 207,
+    "size": 623,
+    "offset": 33770690
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/graph1.graphProp",
+    "method": 8,
+    "compressed": 601,
+    "size": 996,
+    "offset": 33771031
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab4.js",
+    "method": 8,
+    "compressed": 219,
+    "size": 666,
+    "offset": 33771761
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab3.js",
+    "method": 8,
+    "compressed": 206,
+    "size": 622,
+    "offset": 33772114
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/debug/setupdebugenv_lab2.js",
+    "method": 8,
+    "compressed": 219,
+    "size": 666,
+    "offset": 33772454
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/solutions/tidm_dc_dc_buck/source/buck/source/buck.c",
+    "method": 8,
+    "compressed": 4501,
+    "size": 21224,
+    "offset": 33772807
+  },
+  {
+    "path": "C2000Ware_DigitalPower_SDK_26_01_00_00/docs/html_guide/tidm_DC_DC_buck_powerStage.png",
+    "method": 8,
+    "compressed": 19939,
+    "size": 24180,
+    "offset": 106338980
+  }
+]

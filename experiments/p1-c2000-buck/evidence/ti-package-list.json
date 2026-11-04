@@ -1,0 +1,31 @@
+{
+  "name": "C2000Ware_DigitalPower_SDK",
+  "packageVersion": "26.01.00.00",
+  "packagePublicId": "digital_power_c2000ware_sdk_software_package",
+  "packagePublicUid": "digital_power_c2000ware_sdk_software_package__26.01.00.00",
+  "packageGroupPublicUids": [
+    "grp_digital_power_c2000ware_sdk_software_package__26.01.00.00"
+  ],
+  "packageType": "MainPackage",
+  "licenses": [
+    "content/C2000Ware_DigitalPower_SDK_26_01_00_00/.metadata/.tirex/license/license.txt"
+  ],
+  "hideNodeDirPanel": false,
+  "hideByDefault": false,
+  "isInstallable": true,
+  "downloadUrl": {
+    "win": "https://software-dl.ti.com/ccs/esd/tirex/zips//C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "linux": "https://software-dl.ti.com/ccs/esd/tirex/zips//C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip",
+    "macos": "https://software-dl.ti.com/ccs/esd/tirex/zips//C2000Ware_DigitalPower_SDK_26_01_00_00/all/C2000Ware_DigitalPower_SDK_26_01_00_00__all.zip"
+  },
+  "installCommand": null,
+  "installSize": {
+    "win": 737637609,
+    "linux": 737637609,
+    "macos": 737637609
+  },
+  "dependencies": [],
+  "modules": [],
+  "aliases": [],
+  "moduleGroups": []
+}
