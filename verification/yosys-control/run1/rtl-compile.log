@@ -1,0 +1,3 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\iverilog.exe", "-g2012", "-Wall", "-s", "tb_daq_axi_lite", "-o", "verification/yosys-control/run1/rtl.vvp", "experiments/p2-zcu104-daq/rtl/axis_pattern_source.v", "experiments/p2-zcu104-daq/rtl/axis_sync_fifo.v", "experiments/p2-zcu104-daq/rtl/daq_stream_top.v", "experiments/p2-zcu104-daq/rtl/daq_axi_lite.v", "experiments/p2-zcu104-daq/tb/tb_daq_axi_lite.sv"]
+
+EXIT_CODE 0

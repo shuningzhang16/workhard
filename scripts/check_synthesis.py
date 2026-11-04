@@ -18,6 +18,7 @@ def main():
     parser.add_argument("--output", type=Path)
     parser.add_argument("--yosys", default=".tools/yosys/usr/bin/yosys" if os.name == "nt" else "yosys")
     parser.add_argument("--iverilog")
+    parser.add_argument("--control", action="store_true", help="Replay the controlled AXI-Lite wrapper instead")
     args = parser.parse_args()
     output = (ROOT / (args.output or Path(".runs") / datetime.now().strftime("yosys-%Y%m%d-%H%M%S-%f"))).resolve()
     output.relative_to(ROOT)
@@ -45,44 +46,63 @@ def main():
     relative = output.relative_to(ROOT).as_posix()
     rtl = [f"experiments/p2-zcu104-daq/rtl/{name}.v"
            for name in ("axis_pattern_source", "axis_sync_fifo", "daq_stream_top")]
+    module = "daq_axi_lite" if args.control else "daq_stream_top"
+    testbench = "tb_daq_axi_lite" if args.control else "tb_capture_stream"
+    if args.control:
+        rtl.append("experiments/p2-zcu104-daq/rtl/daq_axi_lite.v")
     run(yosys + ["-V"], "yosys-version.log")
     script = "\n".join([
         "read_verilog -sv " + " ".join(rtl),
-        "chparam -set FRAME_WORDS 7 -set FIFO_DEPTH 3 daq_stream_top",
-        "synth -top daq_stream_top -flatten -noabc", "check -assert", "stat",
+        f"chparam -set FRAME_WORDS 7 -set FIFO_DEPTH 3 {module}",
+        f"synth -top {module} -flatten -noabc", "check -assert", "stat",
         f"write_verilog -noattr {relative}/daq_stream_mapped.v",
         f"write_json {relative}/netlist.json", "",
     ])
     (output / "synthesis.ys").write_text(script, encoding="utf-8")
     run(yosys + ["-s", relative + "/synthesis.ys"], "synthesis.log")
-    original_tb = (P2 / "tb/tb_capture_stream.sv").read_text(encoding="utf-8")
-    instance = "daq_stream_top #(.FRAME_WORDS(FRAME_WORDS), .FIFO_DEPTH(3)) dut"
+    original_tb = (P2 / "tb" / (testbench + ".sv")).read_text(encoding="utf-8")
+    instance = module + " #(.FRAME_WORDS(FRAME_WORDS), .FIFO_DEPTH(3)) dut"
     if original_tb.count(instance) != 1:
         raise ValueError("Capture test instantiation changed; adapt the fixed-parameter netlist test explicitly")
     # The netlist has already elaborated parameters; all test stimuli/checks stay intact.
-    (output / "tb_mapped.sv").write_text(original_tb.replace(instance, "daq_stream_top dut"), encoding="utf-8")
-    for kind, sources in (("rtl", rtl + ["experiments/p2-zcu104-daq/tb/tb_capture_stream.sv"]),
+    (output / "tb_mapped.sv").write_text(original_tb.replace(instance, module + " dut"), encoding="utf-8")
+    for kind, sources in (("rtl", rtl + [f"experiments/p2-zcu104-daq/tb/{testbench}.sv"]),
                           ("mapped", [relative + "/daq_stream_mapped.v", relative + "/tb_mapped.sv"])):
         (output / kind).mkdir(exist_ok=True)
         executable = relative + "/" + kind + ".vvp"
-        run([str(compiler), "-g2012", "-Wall", "-s", "tb_capture_stream", "-o", executable, *sources], kind + "-compile.log")
+        run([str(compiler), "-g2012", "-Wall", "-s", testbench, "-o", executable, *sources], kind + "-compile.log")
         run([str(vvp), executable, "+OUTDIR=" + relative + "/" + kind], kind + "-simulation.log")
-    captures = []
-    for kind in ("rtl", "mapped"):
-        with (output / kind / "rtl_capture.csv").open(newline="", encoding="utf-8") as stream:
-            captures.append(list(csv.DictReader(stream)))
-    if len(captures[0]) != 84 or captures[0] != captures[1]:
-        raise AssertionError("RTL/netlist capture differs; both original traces retained")
+    trace_files = ("stream_cycles.csv", "axi_transactions.csv") if args.control else ("rtl_capture.csv",)
+    compared = {}
+    for filename in trace_files:
+        captures = []
+        for kind in ("rtl", "mapped"):
+            with (output / kind / filename).open(newline="", encoding="utf-8") as stream:
+                rows = list(csv.DictReader(stream))
+            # AXI payload has no meaning while TVALID is low. Preserve original
+            # traces, but compare payload only when the interface asserts valid.
+            if filename == "stream_cycles.csv":
+                for row in rows:
+                    if row["valid"] == "0":
+                        for field in ("data_hex", "keep_hex", "last"):
+                            row.pop(field)
+            captures.append(rows)
+        if not captures[0] or captures[0] != captures[1]:
+            raise AssertionError(f"RTL/netlist {filename} differs; both original traces retained")
+        compared[filename] = len(captures[0])
+    if not args.control and compared["rtl_capture.csv"] != 84:
+        raise AssertionError("Expected 84 accepted stream beats")
     design = json.loads((output / "netlist.json").read_text(encoding="utf-8"))
-    cells = design["modules"]["daq_stream_top"]["cells"]
+    cells = design["modules"][module]["cells"]
     counts = {}
     for cell in cells.values():
         counts[cell["type"]] = counts.get(cell["type"], 0) + 1
     summary = {"kind": "generic synthesis without ABC or device mapping; no hardware timing result",
-               "frame_words": 7, "fifo_depth": 3, "captured_words": len(captures[0]),
-               "all_capture_fields_equal": True, "cell_count": len(cells), "cell_types": counts}
+               "module": module, "frame_words": 7, "fifo_depth": 3,
+               "compared_trace_rows": compared, "valid_interface_fields_equal": True,
+               "cell_count": len(cells), "cell_types": counts}
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    print(f"PASS: generic netlist and RTL both captured 84 identical beats; logs: {output}")
+    print(f"PASS: {module} generic netlist and RTL traces match; logs: {output}")
 
 
 if __name__ == "__main__":

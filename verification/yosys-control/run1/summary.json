@@ -1,0 +1,20 @@
+{
+  "kind": "generic synthesis without ABC or device mapping; no hardware timing result",
+  "module": "daq_axi_lite",
+  "frame_words": 7,
+  "fifo_depth": 3,
+  "compared_trace_rows": {
+    "stream_cycles.csv": 457,
+    "axi_transactions.csv": 161
+  },
+  "valid_interface_fields_equal": true,
+  "cell_count": 1716,
+  "cell_types": {
+    "$_OR_": 137,
+    "$_AND_": 356,
+    "$_NOT_": 28,
+    "$_MUX_": 749,
+    "$_DFF_P_": 298,
+    "$_XOR_": 148
+  }
+}

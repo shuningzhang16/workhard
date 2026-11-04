@@ -42,7 +42,9 @@ jobs:
         run: python -X utf8 scripts/check_offline.py --only ${{ matrix.experiment }}
       - name: Synthesize and replay stream capture
         if: matrix.experiment == 'p2'
-        run: python -X utf8 scripts/check_synthesis.py
+        run: |
+          python -X utf8 scripts/check_synthesis.py
+          python -X utf8 scripts/check_synthesis.py --control
       - name: Retain logs and simulation data
         if: always()
         uses: actions/upload-artifact@v7

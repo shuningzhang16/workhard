@@ -14,6 +14,8 @@ P2 的主机 C 检查包括帧校验器的 16 个用例和 Simple S2MM 接收/�
 
 P2 还安装 Yosys，执行 `scripts/check_synthesis.py`：通用综合后，用原有激励分别运行 RTL 和网表，逐项比较 84 个接收记录。相关脚本变更同样触发工作流；综合、网表仿真日志和版本信息包含在 `.runs/` artifact 中。本机的成功记录及首次依赖失败见 [综合验证记录](../verification/yosys-stream/README.md)。
 
+新增的 AXI4-Lite wrapper 由统一入口运行 `run_axi_lite.py`，并在 Yosys 步骤以 `--control` 再次运行原 RTL/网表重放。比较包含 457 个 stream 周期和 161 个总线握手记录；TVALID=0 的无效载荷不参与比较，原始日志仍保留。[控制接口综合记录](../verification/yosys-control/README.md)
+
 加入接收流程和综合步骤后的实际运行 [41806027084](https://github.com/shuningzhang16/workhard/actions/runs/41806027084) 全部成功；[API 记录](../verification/github-actions/41806027084.json) 包含各步骤状态及日志产物信息，对应提交 `39ee557`。
 
 这组任务验证 Python 模型、Icarus RTL、通用网表和主机 C。SPICE 独立对照在 P1 阶段记录中单独保存；完整 Vivado、目标器件时序、PS BSP、DDR/cache 行为和实物测量仍不在当前工作流的验证范围。

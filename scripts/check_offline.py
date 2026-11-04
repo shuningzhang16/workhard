@@ -28,6 +28,8 @@ def main():
                             f".runs/{run_id}/rtl"]),
         ("p2", "simple_s2mm", p2, ["scripts/run_simple_s2mm.py", "--output",
                                     f".runs/{run_id}/simple_s2mm"]),
+        ("p2", "axi_lite", p2, ["scripts/run_axi_lite.py", "--output",
+                                 f".runs/{run_id}/axi_lite"]),
         ("p4", "dab", p4, ["-m", "unittest", "discover", "-v"]),
     ]
     results = []

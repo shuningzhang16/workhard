@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "verification/yosys-control/run1/rtl.vvp", "+OUTDIR=verification/yosys-control/run1/rtl"]
+PASS AXI-Lite wrapper: 23 writes, 46 reads, 70 words, 10 frames; AW-first=5 W-first=3 simultaneous=15
+experiments/p2-zcu104-daq/tb/tb_daq_axi_lite.sv:283: $finish called at 4600000 (1ps)
+
+EXIT_CODE 0

@@ -1,0 +1,4 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--exec", "env", "LD_LIBRARY_PATH=.tools/yosys/usr/lib/x86_64-linux-gnu", ".tools/yosys/usr/bin/yosys", "-V"]
+Yosys 0.9 (git sha1 1979e0b)
+
+EXIT_CODE 0
