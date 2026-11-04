@@ -1,0 +1,4 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p2-zcu104-daq", "--exec", "./build/test_frame_validator", "results/simple_s2mm/capture/rtl_capture_le.bin"]
+16/16 cases passed; 0 failures
+
+EXIT_CODE 0

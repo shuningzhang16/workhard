@@ -1,6 +1,16 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、可综合写法的顶层封装，以及独立 C 帧流校验器。顶层 RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado 工程/块设计 Tcl 入口。Tcl 尚未在完整 Vivado 中执行；DMA/DDR 集成、综合与板端验证尚未完成，原厂代码保留不变。
+当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、可综合写法的顶层封装、独立 C 帧流校验器及逐包 Simple S2MM 接收控制核心。RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado Tcl 入口及 Standalone 接入草稿。Tcl 未在完整 Vivado 中执行，Standalone 草稿未编译；DMA/DDR 集成、综合与板端验证尚未完成，原厂代码保留不变。
+
+## 第五小步：逐包接收控制与主机故障验证
+
+[simple_s2mm.c](ps/simple_s2mm.c) 每次提交 28 字节，有限轮询，检查错误、完成与实际长度后才把缓冲区交回 CPU 并调用原校验器。错误锁存，重启须显式调用；重启失败保留原错误及设备所有权。平台仅提供五个操作，不包含描述符环或完整 DMA 模型。
+
+实际重新采集 **84 个 RTL 输出字**：原校验器 **16/16**、新增接收流程 **13/13** 测试通过，GCC 严格警告检查及 ASan/UBSan 通过。覆盖连续 12 包、最后一次轮询完成、零/短/超容量长度报告、DMA 错误、超时、校验失败、提交失败、提前结束、重启失败及显式重启后完整采集。主机注入状态只验证控制流程、边界与调用顺序，不证明 DMA、cache 或 DDR 联通。
+
+- [完整中文说明及官方依据](ps/simple_s2mm.md)、[可移植接口](ps/simple_s2mm.h)、[Standalone 草稿](ps/standalone_s2mm_draft.c)。
+- [结果汇总](results/simple_s2mm/summary.json)、[故障矩阵](results/simple_s2mm/fault_matrix.csv)、[主机测试](tests/test_simple_s2mm.c)。
+- 复现：`E:\python.exe scripts/run_simple_s2mm.py --output results/simple_s2mm_recheck`。
 
 ## 第四小步：顶层封装与 ZCU104 工程入口
 
@@ -168,4 +178,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。顶层封装、实际 RTL+C 联测及最小 Tcl 入口这一步已完成，交由协调聊天单独提交；后续使用完整 Vivado 验证块设计，再逐步推进 DMA、DDR 和 PS cache 一致性。本轮未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。逐包接收控制、实际 RTL 数据驱动的主机故障验证及 Standalone 接入草稿这一步已完成，交由协调聊天单独提交；后续结合完整 Vivado/BSP 验证硬件设计与实际平台适配。本轮未执行上板、写卡或硬件重跑操作。
