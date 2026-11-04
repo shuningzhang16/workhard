@@ -1,0 +1,42 @@
+[
+  {
+    "case": "load_step",
+    "sample_count": 5001,
+    "mismatch_rows": 0,
+    "max_abs_c_minus_python_duty": 0.0,
+    "max_abs_c_minus_python_reference_v": 0.0,
+    "max_abs_c_minus_saved_duty": 0.0,
+    "max_abs_c_minus_saved_reference_v": 0.0,
+    "first_mismatches": []
+  },
+  {
+    "case": "overcurrent",
+    "sample_count": 7001,
+    "mismatch_rows": 0,
+    "max_abs_c_minus_python_duty": 0.0,
+    "max_abs_c_minus_python_reference_v": 0.0,
+    "max_abs_c_minus_saved_duty": 0.0,
+    "max_abs_c_minus_saved_reference_v": 0.0,
+    "first_mismatches": []
+  },
+  {
+    "case": "overvoltage",
+    "sample_count": 7001,
+    "mismatch_rows": 0,
+    "max_abs_c_minus_python_duty": 0.0,
+    "max_abs_c_minus_python_reference_v": 0.0,
+    "max_abs_c_minus_saved_duty": 0.0,
+    "max_abs_c_minus_saved_reference_v": 0.0,
+    "first_mismatches": []
+  },
+  {
+    "case": "undervoltage",
+    "sample_count": 7001,
+    "mismatch_rows": 0,
+    "max_abs_c_minus_python_duty": 0.0,
+    "max_abs_c_minus_python_reference_v": 0.0,
+    "max_abs_c_minus_saved_duty": 0.0,
+    "max_abs_c_minus_saved_reference_v": 0.0,
+    "first_mismatches": []
+  }
+]

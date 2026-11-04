@@ -1,0 +1,45 @@
+{
+  "scope": "host C sampled control replay only; no plant execution, C2000 build, ISR or hardware trip validation",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "compiler_flags": [
+    "-std=c11",
+    "-O1",
+    "-g3",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-Wstrict-prototypes",
+    "-Wmissing-prototypes",
+    "-Werror",
+    "-fno-fast-math",
+    "-ffp-contract=off",
+    "-fno-omit-frame-pointer",
+    "-fsanitize=address,undefined"
+  ],
+  "execution_mode": "Windows Python -> WSL GCC",
+  "output_directory": "host_c/results",
+  "duty_absolute_tolerance": 1e-11,
+  "reference_absolute_tolerance_v": 1e-14,
+  "float_tolerance_basis": "binary64 epsilon=2^-52; 4*7001*epsilon=6.22e-12 at unit scale motivates 1e-11 duty tolerance; few operations on a 2 V ramp motivate 1e-14 V reference tolerance. Engineering roundoff allowances, not formal error bounds. Discrete results compare exactly.",
+  "parameters": {
+    "sample_period_s": 2e-05,
+    "kp": 0.03,
+    "ki": 30.0,
+    "maximum_duty": 0.95,
+    "target_v": 2.0,
+    "soft_start_s": 0.02,
+    "overcurrent_a": 2.5,
+    "overvoltage_v": 2.4,
+    "undervoltage_v": 6.0,
+    "clear_abs_output_v": 0.1,
+    "clear_abs_current_a": 0.1
+  },
+  "measurement_sources": [
+    "simulation/protected_switching_results/load_step_control_samples.csv",
+    "simulation/protected_switching_results/overcurrent_control_samples.csv",
+    "simulation/protected_switching_results/overvoltage_control_samples.csv",
+    "simulation/protected_switching_results/undervoltage_control_samples.csv"
+  ]
+}

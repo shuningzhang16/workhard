@@ -1,0 +1,11 @@
+Initial read-only tool probe:
+wsl -d Ubuntu-22.04 -- bash -lc 'command -v gcc; gcc --version; uname -m'
+
+/usr/bin/gcc
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+bash: line 1: /home/dministrator/bin/uname: cannot execute binary file: Exec format error
+
+The login shell PATH selected an unrelated user-directory uname executable.
+No compiler or controller execution had failed. The host C runner uses
+/usr/bin/env PATH=/usr/bin:/bin for its child processes, with /usr/bin/gcc
+and /usr/bin/uname explicitly selected. No system configuration is changed.
