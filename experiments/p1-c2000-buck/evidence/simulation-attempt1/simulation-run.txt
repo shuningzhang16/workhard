@@ -1,0 +1,3 @@
+{"case": "startup", "steady_state_error_v": -0.0002291049638041276, "overshoot_percent": 0.0, "post_event_max_abs_deviation_v": 0.6532506859931566, "recovery_to_2_percent_s": 0.026180000000000005, "event_reference_time_s": 0.02}
+{"case": "load_step", "steady_state_error_v": -0.00014670085012058465, "overshoot_percent": 7.430042404712522, "post_event_max_abs_deviation_v": 0.26638610301728316, "recovery_to_2_percent_s": 0.004320000000000004, "event_reference_time_s": 0.05}
+{"case": "input_step", "steady_state_error_v": -0.004860843904038958, "overshoot_percent": 0.0, "post_event_max_abs_deviation_v": 0.4960186237224604, "recovery_to_2_percent_s": 0.021600000000000008, "event_reference_time_s": 0.05}

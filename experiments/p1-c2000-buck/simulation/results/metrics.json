@@ -1,0 +1,26 @@
+[
+  {
+    "case": "startup",
+    "steady_state_error_v": -4.335769165919601e-08,
+    "overshoot_percent": 6.282842490712426e-06,
+    "post_event_max_abs_deviation_v": 0.36537260205390876,
+    "recovery_to_2_percent_s": 0.010480000000000003,
+    "event_reference_time_s": 0.02
+  },
+  {
+    "case": "load_step",
+    "steady_state_error_v": 1.36108054205053e-06,
+    "overshoot_percent": 9.659105937100442,
+    "post_event_max_abs_deviation_v": 0.24351228698780125,
+    "recovery_to_2_percent_s": 0.0051199999999999996,
+    "event_reference_time_s": 0.05
+  },
+  {
+    "case": "input_step",
+    "steady_state_error_v": -6.475938939742854e-05,
+    "overshoot_percent": 0.6218750953970176,
+    "post_event_max_abs_deviation_v": 0.4692236041627045,
+    "recovery_to_2_percent_s": 0.013980000000000006,
+    "event_reference_time_s": 0.05
+  }
+]

@@ -1,8 +1,22 @@
-# P1：TI C2000 Buck 原厂版本准备
+# P1：TI C2000 Buck 学习与独立平均模型
 
 更新日期：2026-11-04。
 
-当前完成的是**取得原厂文件并核对来源、版本、目标芯片及许可**。尚未修改原厂代码，尚未编写改进模型，也没有编译、仿真或硬件测量结果。
+当前完成两步：原厂版本来源与许可核对，以及**独立教学 Buck 平均模型的可执行仿真**。原厂源码未修改。所有新增仿真均不读取或复制 TI 源码，不是原厂复现，也不是硬件测量。
+
+## 已运行的第一小步
+
+详见 [独立平均模型说明](simulation/README.md)。Python 标准库实现理想功率级、离散电压 PI、最小软启动，已执行启动、负载阶跃、输入变化三个工况，每个工况保存 5,001 行完整控制采样数据。
+
+```powershell
+Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'
+& 'E:\python.exe' .\simulation\run_simulation.py
+& 'E:\python.exe' -m unittest discover -s .\simulation -p 'test_*.py' -v
+```
+
+开环 `Vout=D×Vin` 的独立正确性检验及三个闭环工况自检通过。进入并保持在目标电压 ±2% 的恢复时间分别为 10.48、5.12、13.98 ms，启动时间从 20 ms 参考斜坡结束算起。负载阶跃最大超调 9.66%；输入阶跃最大绝对偏差 0.469 V。完整参数、误差与指标定义见说明和 `simulation/results/`，原始执行日志见 `evidence/simulation-run.txt` 与 `evidence/simulation-tests.txt`。
+
+首轮积分增益偏小导致软启动跟踪检查失败，已保存原始代码、CSV 和失败日志，在隔离副本只调整积分增益后重新验证；未放宽测试条件。此步没有扩展保护、开关器件或效率模型，也未进行参数大扫描。
 
 ## 已取得的原始文件
 
@@ -27,7 +41,7 @@
 
 官方 `docs/manifest.html` 的 `TIDM-DC-DC-BUCK_FIRMWARE Manifest Table` 将该例程标为 **TI_Commercial**，交付形式为 Source。SDK 根目录 `license.txt` 第 2.a(i) 节规定源码内部使用，第 2.g(i) 和 2.g(v) 节限制源码向第三方披露或提供。因此，本次**不将 TI Buck 原厂源码公开上传到 GitHub**，也不将它称为个人原创或 BSD 开源代码。
 
-`vendor/` 已被本目录 `.gitignore` 排除，已用 `git check-ignore --no-index` 验证规则生效；不要以强制添加方式上传该目录。可提交的内容是此说明、官方来源与下载记录、获取脚本。原厂版权、许可和源码内容在本地均保持原样，没有增加作者、署名或致谢。
+`vendor/` 已被本目录 `.gitignore` 排除，已用 `git check-ignore --no-index` 验证规则生效；不要以强制添加方式上传该目录。可提交的内容是独立教学模型及其结果、本说明、官方来源与下载记录、获取脚本。原厂版权、许可和源码内容在本地均保持原样，没有增加作者、署名或致谢。
 
 ## 来源与取得方法
 
@@ -55,6 +69,6 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'
 - `evidence/verification.json`：29 个文件存在且长度与下载记录一致；两个工程 XML 和 `Kit.json` 均解析成功；版本与目标芯片已核对。
 - `evidence/sdk-entries.json`：官方 ZIP 中与 Buck 相关的目录条目，用于按原路径取得子集。这里也列出了未下载的 powerSUITE 模板及计算表，实际取得的文件以 `download-results.json` 为准。
 
-这是**源码子集，不是独立可编译 SDK**。未取得完整的 C2000Ware DriverLib、DCL、SFO、CLAmath、SFRA 库及 powerSUITE 工具；原厂工程仍引用这些依赖。未确认本机有 CCS/对应编译器；没有编译成功、仿真通过或板端实测的声明。官方低压硬件组合为 BOOSTXL-BUCKCONV 与 LAUNCHXL-F280049C，本轮未连接或操作硬件。
+这是**源码子集，不是独立可编译 SDK**。未取得完整的 C2000Ware DriverLib、DCL、SFO、CLAmath、SFRA 库及 powerSUITE 工具；原厂工程仍引用这些依赖。未确认本机有 CCS/对应编译器，未编译或运行原厂工程。新增 Python 仿真的结果仅适用于独立教学模型。官方低压硬件组合为 BOOSTXL-BUCKCONV 与 LAUNCHXL-F280049C，本轮未连接或操作硬件。
 
-下一步：先由协调聊天上传本轮允许公开的来源说明与获取工具，再另行增加独立的低压 Buck 教学仿真。仿真将标注模型假设及结果来源，不复制受限原厂源码，也不称为 TI 原厂复现。
+原始来源记录与独立模型分步保存在 Git 历史中。后续可围绕扰动响应、保护逻辑和开关级模型继续逐项验证。

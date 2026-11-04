@@ -1,0 +1,25 @@
+{
+  "result_type": "independent_ideal_averaged_model_simulation",
+  "parameter_source": "teaching assumptions; not extracted from TI firmware or hardware",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "parameters": {
+    "inductance_h": 0.00022,
+    "capacitance_f": 0.00047,
+    "nominal_input_v": 9.0,
+    "target_v": 2.0,
+    "nominal_load_ohm": 4.0,
+    "stepped_load_ohm": 2.0,
+    "stepped_input_v": 7.5,
+    "kp_duty_per_v": 0.03,
+    "ki_duty_per_v_s": 15.0,
+    "maximum_duty": 0.95,
+    "control_period_s": 2e-05,
+    "integration_substeps": 4,
+    "soft_start_s": 0.02,
+    "event_time_s": 0.05,
+    "duration_s": 0.1
+  },
+  "integration_method": "RK4, fixed step; duty held for each control sample",
+  "integration_step_s": 5e-06
+}

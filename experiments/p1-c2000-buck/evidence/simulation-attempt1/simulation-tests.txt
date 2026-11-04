@@ -1,0 +1,18 @@
+test_open_loop_duty_relation (test_buck.BuckTests.test_open_loop_duty_relation) ... ok
+test_three_closed_loop_cases (test_buck.BuckTests.test_three_closed_loop_cases) ... 
+  test_three_closed_loop_cases (test_buck.BuckTests.test_three_closed_loop_cases) (case='startup') ... FAIL
+
+======================================================================
+FAIL: test_three_closed_loop_cases (test_buck.BuckTests.test_three_closed_loop_cases) (case='startup')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\Ӳ��\experiments\p1-c2000-buck\simulation\test_buck.py", line 35, in test_three_closed_loop_cases
+    self.assertLess(result["post_event_max_abs_deviation_v"], 0.5)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.6532506859931566 not less than 0.5
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.400s
+
+FAILED (failures=1)
+open_loop: Vout=2.250000236677 V, expected=2.25 V; I=0.562499855402 A, expected=0.5625 A
