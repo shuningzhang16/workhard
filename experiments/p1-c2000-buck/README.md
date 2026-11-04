@@ -2,13 +2,24 @@
 
 更新日期：2026-11-04。
 
-当前完成原厂版本来源与许可核对、**独立教学 Buck 平均模型的可执行仿真**、采样式故障锁存与软启动恢复、九组 PI 的有限比较，以及真正 PWM 电压切换的理想开关模型。原厂源码未修改。所有新增仿真均不读取或复制 TI 源码，不是原厂复现，也不是硬件测量。
+当前完成原厂版本来源与许可核对、**独立教学 Buck 平均模型的可执行仿真**、采样式故障锁存与软启动恢复、九组 PI 的有限比较、真正 PWM 电压切换的理想开关模型，以及 ngspice 独立瞬态对照。原厂源码未修改。所有新增仿真均不读取或复制 TI 源码，不是原厂复现，也不是硬件测量。
 
-## 最新完成：PWM 开关模型证据
+## 最新完成：真实 ngspice 瞬态独立对照
+
+详见 [SPICE 对照说明](simulation/SPICE_COMPARISON.md)。WSL Ubuntu-22.04 中从 Ubuntu 官方源下载约 2.35 MB 的 ngspice 包，仅解压到本地忽略的 `.tools/`，未安装至系统。已实际运行原固定占空比网表及稳态/启动探针，使用 `IC=0` 和 `uic` 对齐 Python 的零初始电压、电流，没有用默认 DC 工作点代替启动。
+
+约 59.6–60 ms 窗口内，SPICE 与 Python 的输出均值均约为 2 V；输出峰峰纹波分别为 0.751888、0.752198 mV，相对差 -0.041231%；电感峰峰纹波相对差 -0.005337%。8 项对照检查通过，命令、版本、原始日志和有限波形位于 `simulation/spice_results/`。这些结果只覆盖理想固定占空比案例，LTspice 未运行。
+
+```powershell
+Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'
+& 'E:\python.exe' .\simulation\run_spice_comparison.py
+```
+
+## 已完成：PWM 开关模型证据
 
 详见 [开关模型说明](simulation/SWITCHING.md)。Python 标准库实现 50 kHz 真实 0/9 V 电压切换，精确按 PWM 边沿分段积分，保留有符号电感/电容状态。固定 D=2/9 的稳态周期均值约 2 V，输出峰峰纹波约 0.752145 mV，电感峰峰纹波约 0.141422 A，与基本解析关系接近。
 
-默认 PI 的负载阶跃采样点超调为 9.5743%，恢复至 ±2% 为 5.10 ms。积分最大子步从 0.5 µs 减至 0.25 µs 后，输出纹波估计变化约 0.25%，控制周期仍为 20 µs。新增有限窗口开关波形、完整周期统计及平均模型对照保存在 `simulation/switching_results/`；原平均模型结果没有覆盖，共 8 项测试通过。附带 SPICE 网表未运行，实际证据来自 Python。
+默认 PI 的负载阶跃采样点超调为 9.5743%，恢复至 ±2% 为 5.10 ms。积分最大子步从 0.5 µs 减至 0.25 µs 后，输出纹波估计变化约 0.25%，控制周期仍为 20 µs。新增有限窗口开关波形、完整周期统计及平均模型对照保存在 `simulation/switching_results/`；原平均模型结果没有覆盖，共 8 项测试通过。此处指标来自 Python；后续 ngspice 固定占空比结果单独记录在上一节。
 
 ```powershell
 Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'

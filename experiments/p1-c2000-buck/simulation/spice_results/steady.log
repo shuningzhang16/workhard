@@ -1,0 +1,15 @@
+
+No compatibility mode selected!
+
+
+Circuit: * ideal synchronous buck switching-node equivalent; verified with ngspice 36.
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using transient initial conditions
+
+No. of Data Rows : 2200
+ngspice-36 done
+Note: can't find init file.
+Warning: vsw: no DC value, transient time 0 value used
+ Reference value :  5.96000e-02

@@ -1,0 +1,36 @@
+Note: can't find init file.
+Warning: vsw: no DC value, transient time 0 value used
+
+No compatibility mode selected!
+
+
+Circuit: * ideal synchronous buck switching-node equivalent; not run in this experiment.
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using transient initial conditions
+ Reference value :  5.96000e-02
+No. of Data Rows : 2200
+
+  Measurements for Transient Analysis
+
+vout_mean           =  2.000000e+00 from=  5.960000e-02 to=  6.000000e-02
+il_mean             =  5.000001e-01 from=  5.960000e-02 to=  6.000000e-02
+vout_pp             =  7.518877e-04 from=  5.960000e-02 to=  6.000000e-02
+il_pp               =  1.414149e-01 from=  5.960000e-02 to=  6.000000e-02
+
+
+Total analysis time (seconds) = 1.506
+
+Total elapsed time (seconds) = 1.583 
+
+Total DRAM available = 9944.082 MB.
+DRAM currently available = 8951.789 MB.
+Maximum ngspice program size =   24.957 MB.
+Current ngspice program size =   11.164 MB.
+
+Shared ngspice pages =    9.445 MB.
+Text (code) pages =    5.316 MB.
+Stack = 0 bytes.
+Library pages =    7.324 MB.
+

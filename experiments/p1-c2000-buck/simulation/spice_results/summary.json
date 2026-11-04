@@ -1,0 +1,98 @@
+{
+  "model": "independent ideal fixed-duty SPICE transient; not hardware",
+  "version": "******\n** ngspice-36 : Circuit level simulation program\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2020, The ngspice team.\n** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Mon Mar 11 21:44:53 UTC 2024\n******\n",
+  "python_window": {
+    "window_start_s": 0.05960000000000001,
+    "window_end_s": 0.060000000000000005,
+    "saved_points": 1660,
+    "output_v_time_mean": 2.00000023041874,
+    "output_v_window_pp": 0.0007521978775553162,
+    "inductor_current_a_time_mean": 0.5000000757167664,
+    "inductor_current_a_window_pp": 0.14142243653774916
+  },
+  "ngspice_window": {
+    "window_start_s": 0.059600000099999995,
+    "window_end_s": 0.05999999999999999,
+    "saved_points": 2200,
+    "output_v_time_mean": 2.0000002304539453,
+    "output_v_window_pp": 0.0007518877377519217,
+    "inductor_current_a_time_mean": 0.5000000933796702,
+    "inductor_current_a_window_pp": 0.1414148884394441
+  },
+  "comparison": [
+    {
+      "metric": "output_v_time_mean",
+      "python": 2.00000023041874,
+      "ngspice": 2.0000002304539453,
+      "ngspice_minus_python": 3.5205172110863714e-11,
+      "relative_error_percent": 1.7602586055431857e-09
+    },
+    {
+      "metric": "inductor_current_a_time_mean",
+      "python": 0.5000000757167664,
+      "ngspice": 0.5000000933796702,
+      "ngspice_minus_python": 1.7662903806225927e-08,
+      "relative_error_percent": 3.5325802283381336e-06
+    },
+    {
+      "metric": "output_v_window_pp",
+      "python": 0.0007521978775553162,
+      "ngspice": 0.0007518877377519217,
+      "ngspice_minus_python": -3.1013980339444913e-07,
+      "relative_error_percent": -0.04123114577275766
+    },
+    {
+      "metric": "inductor_current_a_window_pp",
+      "python": 0.14142243653774916,
+      "ngspice": 0.1414148884394441,
+      "ngspice_minus_python": -7.548098305054651e-06,
+      "relative_error_percent": -0.005337270725813692
+    }
+  ],
+  "initial_first_saved_point": {
+    "time_s": 1e-11,
+    "switch_voltage_v": 0.09000000000000001,
+    "output_v": 8.704061849253051e-17,
+    "inductor_current_a": 4.090909090909088e-09
+  },
+  "initial_condition_definition": "L1 IC=0, C1 IC=0, .tran ... uic; no DC operating point initialization",
+  "startup_saved_points": 4272,
+  "checks": {
+    "ngspice_dc_voltage_within_1e_5_v": true,
+    "ngspice_dc_current_within_1e_5_a": true,
+    "ngspice_voltage_ripple_formula_within_2_percent": true,
+    "ngspice_current_ripple_formula_within_2_percent": true,
+    "initial_saved_point_within_1ns": true,
+    "initial_output_near_zero": true,
+    "initial_current_near_zero": true,
+    "finite_spice_data": true
+  },
+  "commands": [
+    [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      ".tools/ngspice/usr/bin/ngspice",
+      "-n",
+      "-b",
+      "simulation/spice_results/steady.cir"
+    ],
+    [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      ".tools/ngspice/usr/bin/ngspice",
+      "-n",
+      "-b",
+      "simulation/spice_results/startup.cir"
+    ]
+  ],
+  "package": {
+    "name": "ngspice",
+    "version": "36+ds-1ubuntu0.1",
+    "source": "Ubuntu jammy-updates/universe amd64",
+    "installed_to_system": false
+  }
+}

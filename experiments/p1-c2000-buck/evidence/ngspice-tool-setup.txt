@@ -1,0 +1,43 @@
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 ngspice amd64 36+ds-1ubuntu0.1 [2,352 kB]
+Fetched 2,352 kB in 5s (478 kB/s)
+	linux-vdso.so.1 (0x00007fff7c8be000)
+	libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x000076cf5e5b6000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x000076cf5e4cf000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x000076cf5e200000)
+	libedit.so.2 => /lib/x86_64-linux-gnu/libedit.so.2 (0x000076cf5e495000)
+	libXaw.so.7 => /lib/x86_64-linux-gnu/libXaw.so.7 (0x000076cf5e18a000)
+	libXt.so.6 => /lib/x86_64-linux-gnu/libXt.so.6 (0x000076cf5e11c000)
+	libX11.so.6 => /lib/x86_64-linux-gnu/libX11.so.6 (0x000076cf5dfdc000)
+	libXft.so.2 => /lib/x86_64-linux-gnu/libXft.so.2 (0x000076cf5e47a000)
+	libfontconfig.so.1 => /lib/x86_64-linux-gnu/libfontconfig.so.1 (0x000076cf5e430000)
+	libgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x000076cf5df92000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000076cf5df72000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x000076cf5dc00000)
+	/lib64/ld-linux-x86-64.so.2 (0x000076cf5ed42000)
+	libbsd.so.0 => /lib/x86_64-linux-gnu/libbsd.so.0 (0x000076cf5df5a000)
+	libXext.so.6 => /lib/x86_64-linux-gnu/libXext.so.6 (0x000076cf5df45000)
+	libXmu.so.6 => /lib/x86_64-linux-gnu/libXmu.so.6 (0x000076cf5df29000)
+	libXpm.so.4 => /lib/x86_64-linux-gnu/libXpm.so.4 (0x000076cf5df14000)
+	libSM.so.6 => /lib/x86_64-linux-gnu/libSM.so.6 (0x000076cf5df09000)
+	libICE.so.6 => /lib/x86_64-linux-gnu/libICE.so.6 (0x000076cf5deec000)
+	libxcb.so.1 => /lib/x86_64-linux-gnu/libxcb.so.1 (0x000076cf5dec2000)
+	libfreetype.so.6 => /lib/x86_64-linux-gnu/libfreetype.so.6 (0x000076cf5db38000)
+	libXrender.so.1 => /lib/x86_64-linux-gnu/libXrender.so.1 (0x000076cf5deb5000)
+	libexpat.so.1 => /lib/x86_64-linux-gnu/libexpat.so.1 (0x000076cf5de83000)
+	libuuid.so.1 => /lib/x86_64-linux-gnu/libuuid.so.1 (0x000076cf5de7a000)
+	libmd.so.0 => /lib/x86_64-linux-gnu/libmd.so.0 (0x000076cf5de6b000)
+	libXau.so.6 => /lib/x86_64-linux-gnu/libXau.so.6 (0x000076cf5de65000)
+	libXdmcp.so.6 => /lib/x86_64-linux-gnu/libXdmcp.so.6 (0x000076cf5de5d000)
+	libpng16.so.16 => /lib/x86_64-linux-gnu/libpng16.so.16 (0x000076cf5dafd000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x000076cf5de41000)
+	libbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x000076cf5de31000)
+	libbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000076cf5dada000)
+******
+** ngspice-36 : Circuit level simulation program
+** The U. C. Berkeley CAD Group
+** Copyright 1985-1994, Regents of the University of California.
+** Copyright 2001-2020, The ngspice team.
+** Please get your ngspice manual from http://ngspice.sourceforge.net/docs.html
+** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html
+** Creation Date: Mon Mar 11 21:44:53 UTC 2024
+******

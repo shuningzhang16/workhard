@@ -1,4 +1,5 @@
-* Ideal synchronous Buck switching-node equivalent; NOT RUN in this experiment.
+* Ideal synchronous Buck switching-node equivalent; verified with ngspice 36.
+* WSL execution and raw evidence: spice_results/ ; LTspice has not been run.
 * Same teaching L/C/R, Vin, duty and 50 kHz PWM as Python fixed_duty case.
 * VSW is an ideal complementary half-bridge voltage, not a MOSFET/device model.
 * Signed inductor current is allowed. No dead time, losses or efficiency model.

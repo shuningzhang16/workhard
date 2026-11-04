@@ -103,6 +103,6 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'
 
 本轮 **8 项测试通过**。新增两项验证实际节点电压只有 0/9 V、开关节点平均伏秒、边沿状态连续、固定占空比直流与纹波关系，以及控制扰动和步长细化。负载阶跃在两个积分精度下都满足原有响应检查条件；原有六项平均模型/保护测试均保持通过，没有放宽原标准。执行日志为 `evidence/switching-run.txt` 和 `evidence/switching-tests.txt`。本轮没有执行失败。
 
-附带 `ideal_buck_fixed.cir` 是可供 LTspice/ngspice 读取的固定占空比网表文本，**未运行、未验证语法或仿真器兼容性**：本轮在 PATH 未找到相关模拟器，没有安装工具链。网表用理想脉冲电压源等效互补半桥节点，包含 1 ns 边沿，并缩短平顶宽度以维持同样脉冲面积；它不是器件模型，也不能作为本轮验证证据。上述实际运行结果全部来自 Python 开关模型。
+本页所述第四步当时仅实际运行了 Python；其历史 `switching_results/parameters.json` 中的 SPICE 状态反映该次生成时的情况。随后已在 WSL 用本地解压的 **ngspice 36 实际运行** `ideal_buck_fixed.cir`，独立日志、原始波形和零初始条件对照见 [第五步说明](SPICE_COMPARISON.md)，不与本页 Python 结果混记。LTspice 仍未运行。网表用理想脉冲电压源等效互补半桥节点，包含 1 ns 边沿，并缩短平顶宽度以维持同样脉冲面积；它不是器件模型。
 
 本小步完成；没有效率估算、器件应力额定值判断、固件或硬件操作。

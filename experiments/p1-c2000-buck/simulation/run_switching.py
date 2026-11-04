@@ -89,7 +89,7 @@ def main():
                      "raw_waveform_windows_s": {"fixed_duty": [[0.0596, 0.060]],
                                                 "controlled_load_step": [[0.0498, 0.0506], [0.0996, 0.100]]},
                      "cycle_statistics": "all periods; means use trapezoid quadrature and extrema use integration nodes including switching edges",
-                     "spice_status": "not run; no simulator found in PATH"}
+                     "spice_status": "this script runs Python only; separate ngspice evidence is in spice_results"}
     (output / "parameters.json").write_text(json.dumps(configuration, indent=2) + "\n", encoding="utf-8")
 
 

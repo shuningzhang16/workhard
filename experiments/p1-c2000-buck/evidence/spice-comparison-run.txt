@@ -1,0 +1,48 @@
+{
+  "comparison": [
+    {
+      "metric": "output_v_time_mean",
+      "python": 2.00000023041874,
+      "ngspice": 2.0000002304539453,
+      "ngspice_minus_python": 3.5205172110863714e-11,
+      "relative_error_percent": 1.7602586055431857e-09
+    },
+    {
+      "metric": "inductor_current_a_time_mean",
+      "python": 0.5000000757167664,
+      "ngspice": 0.5000000933796702,
+      "ngspice_minus_python": 1.7662903806225927e-08,
+      "relative_error_percent": 3.5325802283381336e-06
+    },
+    {
+      "metric": "output_v_window_pp",
+      "python": 0.0007521978775553162,
+      "ngspice": 0.0007518877377519217,
+      "ngspice_minus_python": -3.1013980339444913e-07,
+      "relative_error_percent": -0.04123114577275766
+    },
+    {
+      "metric": "inductor_current_a_window_pp",
+      "python": 0.14142243653774916,
+      "ngspice": 0.1414148884394441,
+      "ngspice_minus_python": -7.548098305054651e-06,
+      "relative_error_percent": -0.005337270725813692
+    }
+  ],
+  "initial": {
+    "time_s": 1e-11,
+    "switch_voltage_v": 0.09000000000000001,
+    "output_v": 8.704061849253051e-17,
+    "inductor_current_a": 4.090909090909088e-09
+  },
+  "checks": {
+    "ngspice_dc_voltage_within_1e_5_v": true,
+    "ngspice_dc_current_within_1e_5_a": true,
+    "ngspice_voltage_ripple_formula_within_2_percent": true,
+    "ngspice_current_ripple_formula_within_2_percent": true,
+    "initial_saved_point_within_1ns": true,
+    "initial_output_near_zero": true,
+    "initial_current_near_zero": true,
+    "finite_spice_data": true
+  }
+}
