@@ -1,0 +1,114 @@
+[
+  {
+    "case": "startup",
+    "sample": 1371,
+    "current_a": 0.42402814028325075,
+    "output_v": 1.926913728492282,
+    "old_windows_energy_j": 0.0008923321665199544,
+    "new_linux_energy_j": 0.0008923321665199545
+  },
+  {
+    "case": "startup",
+    "sample": 1373,
+    "current_a": 0.4237269890113754,
+    "output_v": 1.9278321840685708,
+    "old_windows_energy_j": 0.0008931360802675211,
+    "new_linux_energy_j": 0.000893136080267521
+  },
+  {
+    "case": "startup",
+    "sample": 1665,
+    "current_a": 0.42796749552388713,
+    "output_v": 1.9809455648408105,
+    "old_windows_energy_j": 0.0009423213322474309,
+    "new_linux_energy_j": 0.000942321332247431
+  },
+  {
+    "case": "startup",
+    "sample": 3317,
+    "current_a": 0.435235132573238,
+    "output_v": 1.9983191746039983,
+    "old_windows_energy_j": 0.0009592579463125161,
+    "new_linux_energy_j": 0.000959257946312516
+  },
+  {
+    "case": "load_step",
+    "sample": 1371,
+    "current_a": 0.42402814028325075,
+    "output_v": 1.926913728492282,
+    "old_windows_energy_j": 0.0008923321665199544,
+    "new_linux_energy_j": 0.0008923321665199545
+  },
+  {
+    "case": "load_step",
+    "sample": 1373,
+    "current_a": 0.4237269890113754,
+    "output_v": 1.9278321840685708,
+    "old_windows_energy_j": 0.0008931360802675211,
+    "new_linux_energy_j": 0.000893136080267521
+  },
+  {
+    "case": "load_step",
+    "sample": 1665,
+    "current_a": 0.42796749552388713,
+    "output_v": 1.9809455648408105,
+    "old_windows_energy_j": 0.0009423213322474309,
+    "new_linux_energy_j": 0.000942321332247431
+  },
+  {
+    "case": "load_step",
+    "sample": 2914,
+    "current_a": 0.9515576965912869,
+    "output_v": 2.008127696121977,
+    "old_windows_energy_j": 0.0010472563838176902,
+    "new_linux_energy_j": 0.00104725638381769
+  },
+  {
+    "case": "load_step",
+    "sample": 3035,
+    "current_a": 0.926855545441173,
+    "output_v": 2.0064036198465915,
+    "old_windows_energy_j": 0.0010405257713800298,
+    "new_linux_energy_j": 0.00104052577138003
+  },
+  {
+    "case": "overvoltage",
+    "sample": 1371,
+    "current_a": 0.42402814028325075,
+    "output_v": 1.926913728492282,
+    "old_windows_energy_j": 0.0008923321665199544,
+    "new_linux_energy_j": 0.0008923321665199545
+  },
+  {
+    "case": "overvoltage",
+    "sample": 1373,
+    "current_a": 0.4237269890113754,
+    "output_v": 1.9278321840685708,
+    "old_windows_energy_j": 0.0008931360802675211,
+    "new_linux_energy_j": 0.000893136080267521
+  },
+  {
+    "case": "overvoltage",
+    "sample": 1665,
+    "current_a": 0.42796749552388713,
+    "output_v": 1.9809455648408105,
+    "old_windows_energy_j": 0.0009423213322474309,
+    "new_linux_energy_j": 0.000942321332247431
+  },
+  {
+    "case": "overvoltage",
+    "sample": 6582,
+    "current_a": 0.42948730663922524,
+    "output_v": 1.997877160851624,
+    "old_windows_energy_j": 0.0009582961183374119,
+    "new_linux_energy_j": 0.000958296118337412
+  },
+  {
+    "case": "overvoltage",
+    "sample": 6971,
+    "current_a": 0.42963893691167926,
+    "output_v": 1.9975438890724615,
+    "old_windows_energy_j": 0.0009579975311332883,
+    "new_linux_energy_j": 0.0009579975311332882
+  }
+]

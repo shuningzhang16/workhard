@@ -1,0 +1,17 @@
+command ["/usr/bin/gcc", "--version"]
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+Copyright (C) 2021 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+command ["/usr/bin/uname", "-sm"]
+Linux x86_64
+command ["/usr/bin/gcc", "-std=c11", "-O1", "-g3", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-Wshadow", "-Wstrict-prototypes", "-Wmissing-prototypes", "-Werror", "-fno-fast-math", "-ffp-contract=off", "-fno-omit-frame-pointer", "-fsanitize=undefined", "-fno-sanitize-recover=all", "-fPIC", "-shared", "host_c/buck_control.c", "-lm", "-o", ".tools/host-c-closed-loop/libbuck_control.so"]
+command ["/usr/bin/python3", "host_c/closed_loop_worker.py", "--library", ".tools/host-c-closed-loop/libbuck_control.so", "--output", "host_c/closed_loop_results"]
+{"case": "startup", "samples": 5001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"case": "load_step", "samples": 5001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"case": "input_step", "samples": 5001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"case": "overcurrent", "samples": 7001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"case": "overvoltage", "samples": 7001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"case": "undervoltage", "samples": 7001, "same_sample_count": true, "mismatch_rows": 0, "max_abs_differences": {"controller_duty": 0.0, "reference_v": 0.0, "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}, "same_events": true, "same_counterfactual": true}
+{"verification_failures": [], "comparison_failures": [], "native_main_step_calls": 36006, "elapsed_s": 28.916511711000012}

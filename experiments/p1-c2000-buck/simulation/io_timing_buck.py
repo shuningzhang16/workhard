@@ -8,6 +8,7 @@ from pathlib import Path
 
 from buck_model import Parameters
 from protection import ProtectedController, energy_j
+from protected_switching import waveform_windows as fault_waveform_windows
 from switching_buck import switching_cycle
 
 
@@ -21,6 +22,8 @@ def board_parameters():
 
 BOARD = board_parameters()
 CASES = ("startup", "load_step", "overvoltage")
+NORMAL_CASES = ("startup", "load_step", "input_step")
+FAULT_CASES = ("overcurrent", "overvoltage", "undervoltage")
 
 
 def quantized_measurements(input_v, output_v, current_a):
@@ -46,16 +49,18 @@ def quantized_pwm(duty):
 def waveform_windows(case, count):
     if case == "startup":
         return [(0, 15), (990, 1010), (count - 20, count)]
-    if case == "load_step":
+    if case in ("load_step", "input_step"):
         return [(2490, 2530), (count - 20, count)]
+    if case in ("overcurrent", "undervoltage"):
+        return fault_waveform_windows(case, count)
     return [(2490, 2600), (3990, 4030), (count - 20, count)]
 
 
-def simulate_io_timing(case, adapted, max_step_s=0.5e-6):
-    if case not in CASES:
+def simulate_io_timing(case, adapted, max_step_s=0.5e-6, controller=None):
+    if case not in NORMAL_CASES + FAULT_CASES:
         raise ValueError(case)
-    p = replace(Parameters(), duration_s=0.140) if case == "overvoltage" else Parameters()
-    control = ProtectedController(p)
+    p = replace(Parameters(), duration_s=0.140) if case in FAULT_CASES else Parameters()
+    control = controller if controller is not None else ProtectedController(p)
     count = round(p.duration_s / p.control_period_s)
     windows = waveform_windows(case, count)
     current_a = output_v = queued_duty = 0.0
@@ -63,9 +68,16 @@ def simulate_io_timing(case, adapted, max_step_s=0.5e-6):
     counterfactual = None
     samples, cycles, waveform = [], [], []
     for k in range(count + 1):
-        injection = case == "overvoltage" and 2500 <= k < 3250
-        input_v = 14.0 if injection else p.nominal_input_v
+        injection = case in FAULT_CASES and 2500 <= k < 3250
+        input_v = p.stepped_input_v if case == "input_step" and k >= 2500 else p.nominal_input_v
         load_ohm = p.stepped_load_ohm if case == "load_step" and k >= 2500 else p.nominal_load_ohm
+        if injection:
+            if case == "overcurrent":
+                load_ohm = 0.25
+            elif case == "overvoltage":
+                input_v = 14.0
+            else:
+                input_v = 4.5
         if adapted:
             adc = quantized_measurements(input_v, output_v, current_a)
         else:
@@ -79,7 +91,7 @@ def simulate_io_timing(case, adapted, max_step_s=0.5e-6):
         true_clearable = (not control.active_faults(input_v, output_v, current_a)
                           and abs(output_v) <= limit.clear_max_abs_output_v and abs(current_a) <= limit.clear_max_abs_current_a)
         request = False
-        if case == "overvoltage":
+        if case in FAULT_CASES:
             if not attempted_active_clear and active:
                 request = attempted_active_clear = True
             elif not attempted_residual_clear and control.state == "FAULT_LATCHED" and not active and not measured_clearable:

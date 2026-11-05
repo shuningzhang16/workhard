@@ -1,0 +1,136 @@
+{
+  "failed_check": "text equality of old Windows Python 3.14 and new WSL Python 3.10 CSV dictionaries",
+  "failure": "AssertionError: startup",
+  "simulation_status": "C/Python closed loops passed; this was a later read-only artifact audit",
+  "cases": [
+    {
+      "case": "startup",
+      "row_counts": [
+        5001,
+        5001
+      ],
+      "fields": {
+        "stored_energy_j": {
+          "different_rows": 4,
+          "max_abs_numeric_difference": 1.0842021724855044e-19
+        }
+      },
+      "first_differences": [
+        {
+          "sample": 1371,
+          "field": "stored_energy_j",
+          "old": "0.0008923321665199544",
+          "new": "0.0008923321665199545"
+        },
+        {
+          "sample": 1373,
+          "field": "stored_energy_j",
+          "old": "0.0008931360802675211",
+          "new": "0.000893136080267521"
+        },
+        {
+          "sample": 1665,
+          "field": "stored_energy_j",
+          "old": "0.0009423213322474309",
+          "new": "0.000942321332247431"
+        },
+        {
+          "sample": 3317,
+          "field": "stored_energy_j",
+          "old": "0.0009592579463125161",
+          "new": "0.000959257946312516"
+        }
+      ]
+    },
+    {
+      "case": "load_step",
+      "row_counts": [
+        5001,
+        5001
+      ],
+      "fields": {
+        "stored_energy_j": {
+          "different_rows": 5,
+          "max_abs_numeric_difference": 2.168404344971009e-19
+        }
+      },
+      "first_differences": [
+        {
+          "sample": 1371,
+          "field": "stored_energy_j",
+          "old": "0.0008923321665199544",
+          "new": "0.0008923321665199545"
+        },
+        {
+          "sample": 1373,
+          "field": "stored_energy_j",
+          "old": "0.0008931360802675211",
+          "new": "0.000893136080267521"
+        },
+        {
+          "sample": 1665,
+          "field": "stored_energy_j",
+          "old": "0.0009423213322474309",
+          "new": "0.000942321332247431"
+        },
+        {
+          "sample": 2914,
+          "field": "stored_energy_j",
+          "old": "0.0010472563838176902",
+          "new": "0.00104725638381769"
+        },
+        {
+          "sample": 3035,
+          "field": "stored_energy_j",
+          "old": "0.0010405257713800298",
+          "new": "0.00104052577138003"
+        }
+      ]
+    },
+    {
+      "case": "overvoltage",
+      "row_counts": [
+        7001,
+        7001
+      ],
+      "fields": {
+        "stored_energy_j": {
+          "different_rows": 5,
+          "max_abs_numeric_difference": 1.0842021724855044e-19
+        }
+      },
+      "first_differences": [
+        {
+          "sample": 1371,
+          "field": "stored_energy_j",
+          "old": "0.0008923321665199544",
+          "new": "0.0008923321665199545"
+        },
+        {
+          "sample": 1373,
+          "field": "stored_energy_j",
+          "old": "0.0008931360802675211",
+          "new": "0.000893136080267521"
+        },
+        {
+          "sample": 1665,
+          "field": "stored_energy_j",
+          "old": "0.0009423213322474309",
+          "new": "0.000942321332247431"
+        },
+        {
+          "sample": 6582,
+          "field": "stored_energy_j",
+          "old": "0.0009582961183374119",
+          "new": "0.000958296118337412"
+        },
+        {
+          "sample": 6971,
+          "field": "stored_energy_j",
+          "old": "0.0009579975311332883",
+          "new": "0.0009579975311332882"
+        }
+      ]
+    }
+  ]
+}

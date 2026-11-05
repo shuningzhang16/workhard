@@ -1,0 +1,29 @@
+{
+  "cases": [
+    {
+      "case": "startup",
+      "samples": 5001,
+      "all_other_fields_exact": true,
+      "energy_difference_samples": 4,
+      "max_abs_energy_difference_j": 1.0842021724855044e-19
+    },
+    {
+      "case": "load_step",
+      "samples": 5001,
+      "all_other_fields_exact": true,
+      "energy_difference_samples": 5,
+      "max_abs_energy_difference_j": 2.168404344971009e-19
+    },
+    {
+      "case": "overvoltage",
+      "samples": 7001,
+      "all_other_fields_exact": true,
+      "energy_difference_samples": 5,
+      "max_abs_energy_difference_j": 1.0842021724855044e-19
+    }
+  ],
+  "diagnosis": "Only derived energy differs: native Python pow(v,2) reproduced each saved value in its originating runtime; plant, ADC, commands and states are identical.",
+  "repair": "replace overbroad cross-runtime text-equality claim with exact trajectory comparison and explicit native recomputation of every differing derived energy value",
+  "changed_model_or_acceptance_thresholds": false,
+  "simulation_rerun": false
+}

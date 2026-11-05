@@ -74,6 +74,8 @@ flowchart TD
 
 三个 ADC 在同一 ADCA 中依次采样，并不是同时测量。ISR 在 EOC2 后才执行，CMPA 在下个周期零点才生效；这与原 Python 模型“周期起点瞬时采样且立即应用 duty”不同，至少引入下一周期更新的时序关系。如果 ISR 没赶上下个装载点，可能再延迟一拍。后续已做 [一周期命令延迟与 ADC/PWM 量化的隔离仿真](../simulation/IO_TIMING.md)，但其假定三个测量同时发生，不是 ADCA 序列或 ISR 的目标运行测量。检测到 ADC 中断溢出时记录永久状态并再次强制 OST；没有自动释放输出。
 
+原 C 控制核心后续已在主机共享库中实际参与 [C/Python 独立 PWM 闭环对照](../host_c/CLOSED_LOOP.md)。该结果沿用上述仿真时序假设，不能替代 C2000 ADC 序列或 ISR 执行时间测量；量化造成的清除盲区也仍然存在。
+
 ePWM B 未配置互补波形及死区，外部驱动使能也未接入。GPIO 输入并不保证实际栅极电平；板卡外部下拉、驱动器禁用和故障极性仍需独立核对。因此“工程禁止输出”不等于已完成可上电功率级的安全设计。
 
 此外，本版本 [官方 `SysCtl_setClock()` 实现](https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/sysctl.c) 在 PLL 校验不通过时可能停留在库内重试。因此 `clock_failed` 只能记录函数实际返回 false 的路径，不能保证覆盖全部时钟故障；尚未验证启动时限或 PLL 故障诊断。调用前 GPIO0/1 已保持输入，此处不修改厂商时钟实现。

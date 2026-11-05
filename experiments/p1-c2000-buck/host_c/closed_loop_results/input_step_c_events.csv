@@ -1,0 +1,2 @@
+time_s,from_state,to_state,reason,latched_fault
+0.02,SOFT_START,RUN,soft_start_complete,

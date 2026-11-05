@@ -1,0 +1,6 @@
+time_s,input_v,load_ohm,output_v,inductor_current_a,load_current_a,stored_energy_j,raw_vin,raw_vout,raw_current,measured_input_v,measured_output_v,measured_current_a,vout_below_adc_range,any_adc_input_out_of_range,injection_active,clear_request,duty,reference_v,state,active_faults,latched_fault,clear_result,controller_duty,cmpa_counts,next_pwm_duty,previous_pwm_duty,measured_clear_eligible,true_clear_eligible,unsafe_clear_candidate
+0.0,9.0,4.0,0.0,0.0,0.0,0.0,1117,0,2048,8.999267578125,0.0,0.0,0,0,0,0,0.0,0.0,SOFT_START,,,not_requested,0.0,0,0.0,0.0,1,1,0
+2e-05,9.0,4.0,0.0,0.0,0.0,0.0,1117,0,2048,8.999267578125,0.0,0.0,0,0,0,0,0.0,0.002,SOFT_START,,,not_requested,6.12e-05,0,0.0,0.0,1,1,0
+4e-05,9.0,4.0,0.0,0.0,0.0,0.0,1117,0,2048,8.999267578125,0.0,0.0,0,0,0,0,0.0,0.004,SOFT_START,,,not_requested,0.0001236,0,0.0,0.0,1,1,0
+6.000000000000001e-05,9.0,4.0,0.0,0.0,0.0,0.0,1117,0,2048,8.999267578125,0.0,0.0,0,0,0,0,0.0,0.006000000000000001,SOFT_START,,,not_requested,0.00018720000000000002,0,0.0,0.0,1,1,0
+8e-05,9.0,4.0,0.0,0.0,0.0,0.0,1117,0,2048,8.999267578125,0.0,0.0,0,0,0,0,0.0,0.008,SOFT_START,,,not_requested,0.000252,1,0.0005,0.0,1,1,0
