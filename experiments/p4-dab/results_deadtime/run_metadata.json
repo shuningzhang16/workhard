@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-05T14:04:44.645723+00:00",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    ".\\run_deadtime.py"
+  ],
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "device": {
+    "coss_f": 2.7666666666666666e-09,
+    "diode_drop_v": 0.8
+  },
+  "deadtime_s": [
+    2e-08,
+    1.5e-07,
+    5e-07
+  ],
+  "sample_step_s": 1e-09,
+  "source": "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\experiments\\p4-dab\\results_eps\\comparisons.csv",
+  "model": "local simultaneous-leg LC commutation, constant Qoss/30 V capacitance, fixed-drop diode clamps",
+  "device_source": "https://www.ti.com/lit/ds/symlink/csd18540q5b.pdf",
+  "source_location": "SLPS488B, April 2017, page 3; Qoss=83 nC at 30 V, diode VSD=0.8 V at 28 A",
+  "assumptions": [
+    "constant capacitance outside the 30 V charge anchor",
+    "fixed diode drop at all model currents",
+    "zero series resistance during local commutation",
+    "initial current from each original ideal periodic edge, not a corrected periodic solution"
+  ],
+  "hardware_operations": false
+}

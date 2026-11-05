@@ -1,0 +1,35 @@
+Independent local DAB commutation teaching circuit
+* Not a TI transistor macro-model. Eight constant output capacitors.
+* Diodes: 0.8 V threshold plus 1 milliohm numerical slope resistance.
+* B sources implement a power-conserving ideal transformer port relation.
+Vbus1 bus1 0 24
+Vbus2 bus2 0 9
+Bdrive link 0 V=v(n1a)-v(n1b)-2*(v(n2a)-v(n2b))
+Llink link 0 0.0001 IC=-0.2446428571425934
+Bport1a n1a 0 I=1*i(Llink)
+Ctop1a bus1 n1a 2.766666666666667e-09 IC=24
+Cbot1a n1a 0 2.766666666666667e-09 IC=0
+Bdh1a n1a bus1 I=max((v(n1a)-v(bus1)-0.8)/0.001,0)
+Bdl1a 0 n1a I=max((-v(n1a)-0.8)/0.001,0)
+Bport1b n1b 0 I=-1*i(Llink)
+Ctop1b bus1 n1b 2.766666666666667e-09 IC=24
+Cbot1b n1b 0 2.766666666666667e-09 IC=0
+Vhold1b n1b 0 0
+Bport2a n2a 0 I=-2*i(Llink)
+Ctop2a bus2 n2a 2.766666666666667e-09 IC=0
+Cbot2a n2a 0 2.766666666666667e-09 IC=9
+Vhold2a n2a 0 9
+Bport2b n2b 0 I=2*i(Llink)
+Ctop2b bus2 n2b 2.766666666666667e-09 IC=9
+Cbot2b n2b 0 2.766666666666667e-09 IC=0
+Vhold2b n2b 0 0
+.options method=gear maxord=2 reltol=1e-7 abstol=1e-10 vntol=1e-9
+.control
+set wr_singlescale
+set wr_vecnames
+set numdgt=16
+tran 0.2n 1.5e-07 0 0.2n uic
+wrdata eps_weak_short.dat i(Llink) v(n1a) v(n1b) v(n2a) v(n2b)
+quit
+.endc
+.end

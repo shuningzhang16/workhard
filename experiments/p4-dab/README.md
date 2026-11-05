@@ -12,6 +12,8 @@
 
 第六步固定上述 PI 增益，在指定的 5 个 V2/R 参数点运行同一 5→15→−10→0 W 序列。20 段均在各自 10 ms 窗口内进入并保持误差带，无保护事件；33 项测试和 5 份完整波形回读通过。仅代表这五点，详见 [POWER_POINTS.md](POWER_POINTS.md)。
 
+第七步加入局部死区换流：共享电感、8 个线性电荷等效电容及二极管钳位，以开通前节点电压判定。24 组、192 个待开通器件、38 项测试及 6 个实际 ngspice 独立电路对照通过，保留无法完成的换流。器件假设、初学者解释和局限见 [DEADTIME.md](DEADTIME.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。
@@ -71,6 +73,8 @@ EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在�
 第五步执行 `E:\python.exe -B -X utf8 run_power_loop.py`，输出在 `results_power_loop/`。20 W→−15 W 在 4.150 ms 内进入并保持本次误差带；100 W 请求受限到约 31.172552 W，降回 10 W 后 3.750 ms 恢复，尾段误差 0.008278 W。该 PI 环的增益和误差带均为明确教学设定，原保护和物理检查不变。
 
 第六步执行 `E:\python.exe -B -X utf8 run_power_points.py`，独立输出在 `results_power_points/`。V2=9/12/15 V、R=0.5 Ω，以及 V2=12 V、R=0.25/1 Ω 五点中，最慢入带 5.000 ms，最大尾段平均误差绝对值 0.006607 W；未改 PI 增益或保护阈值。完整参数和逐段结果均保存为 CSV。
+
+第七步执行 `E:\python.exe -B -X utf8 run_deadtime.py` 和 `E:\python.exe -B -X utf8 verify_deadtime_spice.py`，输出分别在 `results_deadtime/` 与 `results_deadtime_spice/`。2.7 W 正向 EPS 的有利极性在 150 ns 时只完成 4/8 个沿，500 ns 时完成 8/8；反向 EPS 在 500 ns 时仍只有 6/8。ngspice 最大节点差约 1.19 mV；同功率仅指提供初态的理想周期解，不是含死区的完整稳态或效率结果。
 
 本步先单独提交和上传。当前仍未包含输出电压/电池动态、硬件控制实现、器件损耗/效率或完整 ZVS 模型；各步的假设与证据分别保留在对应说明中。
 

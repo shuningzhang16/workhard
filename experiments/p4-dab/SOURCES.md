@@ -40,3 +40,9 @@ RD264 是 10 kW 双向 DAB 参考设计。参考指南第 4 页给出的两侧�
 ## 后续逐沿极性分析参考
 
 2026-11-04 核对 TI [TIDUES0F，2026 年 4 月修订，2.3.3 与 2.3.4.2](https://www.ti.com/lit/ug/tidues0f/tidues0f.pdf?ts=1778357664552) 的换流电流与忽略输出电容时的相移边界；并核对 imperix [TN119，2025-05-22，Minimum inductance for ZVS](https://imperix.com/doc/implementation/inductor-selection-guide-for-dab-converters) 的电容储能及非线性、死区和寄生限制。仅链接与说明，未收录第三方资料或代码。独立实现只输出必要极性，不据此声明已实现 ZVS，详见 [COMMUTATION.md](COMMUTATION.md)。
+
+## 局部死区换流的低压器件依据
+
+2026-11-05 整理已核对的 TI [CSD18540Q5B，SLPS488B，2017 年 4 月修订，第 3 页](https://www.ti.com/lit/ds/symlink/csd18540q5b.pdf)：60 V 器件；Qoss 典型 83 nC（VDS=30 V、VGS=0），小信号 Coss 典型 622 pF（30 V、1 MHz），VSD 典型 0.8 V（28 A）。独立教学模型使用 C=83 nC/30 V 和固定 0.8 V 钳位，明确不代表完整电压/电流范围内的原厂器件特性。没有复制原厂 PDF 或宏模型。
+
+Infineon [官方 Coss FAQ](https://community.infineon.com/t5/Knowledge-Base-Articles/FAQ-MOSFET-Output-Capacitance-Coss/ta-p/374758)用于核对小信号电容与电荷/时间及能量等效电容的区别。[ngspice 官方文档](https://ngspice.sourceforge.io/docs.html)用于独立网表、瞬态初态和数据导出；本机实际执行版本为 ngspice-36。完整模型假设和验证范围见 [DEADTIME.md](DEADTIME.md)。
