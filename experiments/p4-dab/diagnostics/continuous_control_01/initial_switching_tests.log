@@ -1,0 +1,7 @@
+test_fixed_angles_match_existing_solver (test_dab_switching.TestSwitching.test_fixed_angles_match_existing_solver) ... ok
+test_interrupted_deadtime_retains_capacitor_state (test_dab_switching.TestSwitching.test_interrupted_deadtime_retains_capacitor_state) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.770s
+
+OK

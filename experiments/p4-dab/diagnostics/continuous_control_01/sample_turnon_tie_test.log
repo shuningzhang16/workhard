@@ -1,0 +1,6 @@
+test_fault_during_deadtime_cancels_pending_high_turnon (test_dab_continuous_control.TestContinuousControl.test_fault_during_deadtime_cancels_pending_high_turnon) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.010s
+
+OK

@@ -1,0 +1,13 @@
+test_fixed_angles_match_existing_solver (test_dab_switching.TestSwitching.test_fixed_angles_match_existing_solver) ... ok
+test_interrupted_deadtime_retains_capacitor_state (test_dab_switching.TestSwitching.test_interrupted_deadtime_retains_capacitor_state) ... ok
+test_bus_input_strict_threshold_and_denied_unsafe_clear (test_dab_continuous_control.TestContinuousControl.test_bus_input_strict_threshold_and_denied_unsafe_clear) ... ok
+test_fault_during_deadtime_cancels_pending_high_turnon (test_dab_continuous_control.TestContinuousControl.test_fault_during_deadtime_cancels_pending_high_turnon) ... ok
+test_feedback_causality_and_original_limits (test_dab_continuous_control.TestContinuousControl.test_feedback_causality_and_original_limits) ... ok
+test_fixed_carrier_has_same_steady_physics (test_dab_continuous_control.TestContinuousControl.test_fixed_carrier_has_same_steady_physics) ... ok
+test_overcurrent_explicit_recovery_without_relaxation (test_dab_continuous_control.TestContinuousControl.test_overcurrent_explicit_recovery_without_relaxation) ... ok
+test_overlapping_and_simultaneous_deadtime_across_reversal (test_dab_continuous_control.TestContinuousControl.test_overlapping_and_simultaneous_deadtime_across_reversal) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 6.069s
+
+OK

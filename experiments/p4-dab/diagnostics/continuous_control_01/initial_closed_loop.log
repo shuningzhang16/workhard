@@ -1,0 +1,15 @@
+step_and_reverse peak 1.0675073239504518 events []
+residual 2.6501953301165393e-14 rows 9505
+5.0 -0.04748562946177524 1 0.00235
+20.0 -0.12255806942170366 1 0.0035
+-15.0 0.053570775814764104 1 0.00415
+saturation_return peak 2.448621407470234 events []
+residual 1.2231755457678753e-13 rows 10428
+10.0 -0.10353403757559203 1 0.003
+100.0 -68.9210653390465 0 
+10.0 0.007332494461437733 1 0.0037
+protected_recovery peak 1.6547603035760923 events [{'t_s': 0.0003175, 'event': 'trip', 'reason': 'overcurrent', 'i_a': -1.64420543470547, 'sensed_v2_v': 12.0, 'request_deg': 39.92992130092141}, {'t_s': 0.001, 'event': 'clear_denied', 'reason': 'overcurrent', 'i_a': -0.05450267461924579, 'sensed_v2_v': 12.0, 'request_deg': 40.0}, {'t_s': 0.0025, 'event': 'clear_accepted', 'reason': 'overcurrent', 'i_a': -3.0144577463157815e-05, 'sensed_v2_v': 12.0, 'request_deg': 0.0}]
+residual 1.9150491671507223e-15 rows 4715
+100.0 -100.0 0 
+0.0 -0.008838975170106084 1 5e-05
+5.0 -0.014836359783896035 1 0.00235

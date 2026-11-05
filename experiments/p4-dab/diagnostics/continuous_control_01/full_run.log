@@ -1,0 +1,8 @@
+PASS: 16 fixed-angle, 100-period replays against existing solver
+step_and_reverse: peak=1.067507 A, trips=0, tail P2=-14.946429 W
+saturation_return: peak=2.448621 A, trips=0, tail P2=10.007332 W
+protected_recovery: peak=1.654760 A, trips=1, tail P2=4.985164 W
+bus_input_recovery: peak=0.229042 A, trips=1, tail P2=4.973479 W
+pending_turnon_trip: peak=0.035871 A, trips=1, tail P2=-0.106443 W
+phase_zero_crossing: peak=0.035932 A, trips=0, tail P2=-0.403659 W
+PASS: 55 tests, 16 fixed-angle comparisons, 6 complete waveform checks

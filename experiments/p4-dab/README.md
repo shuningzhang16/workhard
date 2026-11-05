@@ -18,6 +18,8 @@
 
 第九步按实际接收端匹配功率：正向 P2、反向 −P1；10 次尝试中 9 个匹配，1 个指定区间未匹配，47 项测试及 9 份完整波形回读通过。新增逐管沟道及栅驱的部分损耗后处理，保留 13.5 W 时 EPS 的 RMS 略低但损耗更高的反例；未将后处理反馈到物理波形，也不宣称完整效率。详见 [LOSS_BUDGET.md](LOSS_BUDGET.md)。
 
+第十步已将原功率 PI、采样保护和显式恢复接入持续保存四节点/Coss 状态的物理模型。采用固定主载波时钟，支持过零换向、重叠死区及同刻保护优先；16 个固定角回归、55 项测试和 6 份完整波形检查通过。20 W→−15 W 在 4.15 ms 入带，饱和返回 10 W 在 3.70 ms 入带；过流峰值约 1.655 A 如实保留。详见 [CONTINUOUS_CONTROL.md](CONTINUOUS_CONTROL.md)。
+
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 
 本次模型是新增的独立实现，参数不来自 RD264，未取得原厂源码，也不声称完整复现。原始来源及许可记录见 [SOURCES.md](SOURCES.md)。

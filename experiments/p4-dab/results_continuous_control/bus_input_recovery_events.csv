@@ -1,0 +1,4 @@
+t_s,event,reason,i_a,sensed_v2_v,request_deg
+0.0010175000000000002,trip,bus_overvoltage_input,-0.06852248031920125,17,3.283449421623878
+0.0011,clear_denied,bus_overvoltage_input,-0.043031636427199975,17,0.0
+0.002,clear_accepted,bus_overvoltage_input,-0.0004780383001046658,15,0.0

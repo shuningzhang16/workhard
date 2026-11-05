@@ -125,7 +125,10 @@ def simulate_window(window, deadtime_s, *, device=None, sample_step_s=1e-9, resi
         raise ValueError("Series resistance must be finite and nonnegative")
     factors = (1.0, -1.0, -p.turns_ratio, p.turns_ratio)
     buses = (p.v1_v, p.v1_v, p.v2_v, p.v2_v)
-    nodes = [q * bus for q, bus in zip(window["before"], buses)]
+    # Stateful callers may resume an interrupted dead time. The default keeps
+    # the original local-window interface and its rail initialization.
+    nodes = list(window["initial_nodes_v"]) if "initial_nodes_v" in window else [
+        q * bus for q, bus in zip(window["before"], buses)]
     current = window["initial_current_a"]
     low = -device.diode_drop_v
     highs = [bus + device.diode_drop_v for bus in buses]
