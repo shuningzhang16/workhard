@@ -1,0 +1,6 @@
+2026-11-04 documentation-only apply_patch failure:
+The expected CONTROL/COMMAND paragraph fragment did not match the complete source line.
+No RTL/C execution failed and no test criterion was changed.
+Current text re-read; the four documentation files copied to build/doc_update for the minimal edit and link check before promotion.
+Second isolated patch also rejected an outdated README footer; no partial patch applied.
+2026-11-05: exact current paragraphs updated in isolated copies; 80 local links resolved; four files promoted. Functional test evidence preserved.

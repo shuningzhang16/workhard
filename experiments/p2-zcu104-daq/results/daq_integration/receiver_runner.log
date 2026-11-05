@@ -1,0 +1,4 @@
+COMMAND ["E:\\python.exe", "scripts/run_simple_s2mm.py", "--output", "results/daq_integration/receiver", "--wsl-distro", "Ubuntu-22.04"]
+PASS: 13 receiver cases; actual RTL payload; evidence: E:\UserData\Documents\ChatGPT\Ó²¼þ\experiments\p2-zcu104-daq\results\daq_integration\receiver
+
+EXIT_CODE 0

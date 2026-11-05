@@ -1,8 +1,8 @@
 # AXI4-Lite 控制与状态寄存器
 
-[daq_axi_lite.v](daq_axi_lite.v) 是独立 wrapper，内部实例化原有 `daq_stream_top`。原 source、FIFO、连续流顶层、既有 testbench 和运行入口均未修改。本步只实现并实际仿真寄存器/流接口，没有把 wrapper 接入 Vivado 块设计，也没有 PS BSP、基址或 DDR 验证。
+[daq_axi_lite.v](daq_axi_lite.v) 是独立 wrapper，内部实例化原有 `daq_stream_top`。原 source、FIFO、连续流顶层未修改。后续离线集成阶段已将 wrapper 接入 Vivado Tcl，并增加独立 `stream_resetn` 及对应 TB 检查；详见 [当前集成与软件流程](../ps/daq_session.md)。Tcl 尚未由完整 Vivado 执行，没有实际 PS BSP、基址或 DDR 验证。
 
-同一 `aclk` 驱动 AXI4-Lite 和 AXI-Stream；低有效 `aresetn` 在上升沿采样。复位后输出停止、计数清零、总线响应撤销。默认每帧 7 字、FIFO 深度 3；本步实际测试该配置。
+同一 `aclk` 驱动 AXI4-Lite 和 AXI-Stream；低有效 `aresetn` 在上升沿采样，系统复位后输出停止、计数清零、总线响应撤销。独立 `stream_resetn` 只复位采集状态，保留 AXI-Lite 响应；DMA 正在复位时软件仍能读寄存器。默认每帧 7 字、FIFO 深度 3；实际测试该配置。
 
 ## 寄存器表
 
@@ -11,7 +11,7 @@ AXI4-Lite 数据宽度 32 位，地址输入为 6 位本地字节偏移（64 字
 | 偏移 | 名称 | 读写 | 定义 |
 | --- | --- | --- | --- |
 | `0x00` | CONTROL | RW | bit 0：写 1 开始/继续，写 0 请求帧边界停止；读值是当前运行请求，即 running 且没有 stop_pending |
-| `0x04` | STATUS | RO | bit 0：running；bit 1：stop_pending；停止后两位均为 0 |
+| `0x04` | STATUS | RO | bit 0：running；bit 1：stop_pending；bit 2：stream_resetn 为低；停止且流侧复位释放后为 0 |
 | `0x08` | COMMAND | WO，读 0 | bit 0 写 1：重启 source/FIFO 并清计数，保持停止；bit 1 写 1：仅清计数；两位均为 0 时无动作 |
 | `0x0c` | WORDS | RO | 本 wrapper 输出端 `TVALID && TREADY` 的字数 |
 | `0x10` | FRAMES | RO | 输出端被接受的 TLAST 数 |
@@ -32,7 +32,7 @@ CONTROL/COMMAND 仅低字节有定义，只有 `WSTRB[0]=1` 才会执行其中�
 
 停止依赖下游继续接受当前帧。若下游长期不 ready，STATUS 可以持续为 3；不能把写 CONTROL=0 的 B 响应当作“已停”。软件应有限轮询 STATUS，并依据实际 DMA 状态处理不能完成的停止；本模块不会自动丢弃有效拍来强行停止。外部 `aresetn` 是另一个会终止传输、清流水线和总线状态的复位边界，不等同于正常 STOP。
 
-未来 PS 接入的正常次序是：确认停止并按需要 RESTART；准备接收缓冲区及 DMA；START；请求停止后继续处理当前包，直到 STATUS=0；读取统计。单纯 STOP/START 不应重置 C 帧序号校验状态；显式重启需要与 DMA 停止、缓冲区所有权及 `fv_reset` 协调。本步没有把这些寄存器接入 `standalone_s2mm_draft`，不能只复位软件状态就宣称采集周期已重启。
+PS 接入次序是：确认停止并按需要 RESTART；准备接收缓冲区并提交 DMA；确认 STATUS bit 2 清零后 START（复位中 START 返回 SLVERR）；请求停止后继续处理当前包，直到 STATUS=0；读取统计。单纯 STOP/START 不应重置 C 帧序号校验状态；显式重启需要与 DMA 停止、缓冲区所有权及 `fv_reset` 协调。对应主机流程和未编译的 Standalone 回调见 [daq_session](../ps/daq_session.md)。
 
 ## AXI4-Lite 实现范围
 
@@ -80,4 +80,4 @@ Icarus Verilog 13.0 编译及执行退出码均为 0，无编译警告；460 个
 
 已有 Python/Icarus 的 Linux 环境可运行 `python scripts/run_axi_lite.py --output results/axi_lite_ci`；支持 `--iverilog` 指定现有工具。入口只编译并仿真，不安装工具或访问硬件。
 
-该 wrapper 尚未加入既有 Vivado Tcl。完整 Vivado 中的接口推断/封装、地址分配、PS BSP、DMA/DDR、综合资源及板级时序均未由本步验证。计数器 32 位回绕、其他帧长/深度及运行中外部复位的总线事务中断未在这个新 TB 中专项测试；既有 source/FIFO 的其他配置测试仍保留，不用它们冒充新接口覆盖。
+该 wrapper 已加入 Vivado Tcl，但完整 Vivado 中的接口推断/封装、地址分配、PS BSP、DMA/DDR、综合资源及板级时序均未由本阶段验证。后续新增的流侧复位专项及完整新结果见 [集成验证](../ps/daq_session.md)；本页上表保留初版 23 写/46 读的历史证据。计数器 32 位回绕、其他帧长/深度及运行中系统复位的总线事务中断仍未在这个 TB 中专项测试。

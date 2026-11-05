@@ -1,0 +1,6 @@
+Tcl version: 8.6.15
+Method: Tcl info complete on file text (no evaluation).
+This checks balanced Tcl command text only, not Vivado commands, IP parameters, synthesis or connectivity.
+vivado/create_project.tcl: complete=True
+vivado/create_bd.tcl: complete=True
+vivado/export_addresses.tcl: complete=True

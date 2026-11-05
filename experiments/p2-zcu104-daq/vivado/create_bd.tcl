@@ -17,7 +17,7 @@ set_property -dict [list \
     CONFIG.PSU__FPGA_PL0_ENABLE {1} \
     CONFIG.PSU__CRL_APB__PL0_REF_CTRL__FREQMHZ {100}] $ps
 
-set stream [create_bd_cell -type module -reference daq_stream_top stream]
+set stream [create_bd_cell -type module -reference daq_axi_lite stream]
 set_property -dict [list CONFIG.FRAME_WORDS {7} CONFIG.FIFO_DEPTH {3}] $stream
 
 set dma [create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 dma]
@@ -39,9 +39,11 @@ foreach name {control memory} {
     set sc [create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 $name]
     set_property -dict [list CONFIG.NUM_SI {1} CONFIG.NUM_MI {1} CONFIG.NUM_CLKS {1}] $sc
 }
+set_property CONFIG.NUM_MI {2} [get_bd_cells control]
 connect_bd_intf_net [get_bd_intf_pins stream/M_AXIS] [get_bd_intf_pins dma/S_AXIS_S2MM]
 connect_bd_intf_net [get_bd_intf_pins ps/M_AXI_HPM0_LPD] [get_bd_intf_pins control/S00_AXI]
 connect_bd_intf_net [get_bd_intf_pins control/M00_AXI] [get_bd_intf_pins dma/S_AXI_LITE]
+connect_bd_intf_net [get_bd_intf_pins control/M01_AXI] [get_bd_intf_pins stream/S_AXI]
 connect_bd_intf_net [get_bd_intf_pins dma/M_AXI_S2MM] [get_bd_intf_pins memory/S00_AXI]
 connect_bd_intf_net [get_bd_intf_pins memory/M00_AXI] [get_bd_intf_pins ps/S_AXI_HP0_FPD]
 
@@ -61,10 +63,11 @@ connect_bd_net [get_bd_pins ps/pl_clk0] \
     [get_bd_pins dma/m_axi_s2mm_aclk] [get_bd_pins control/aclk] \
     [get_bd_pins memory/aclk] [get_bd_pins reset/slowest_sync_clk] \
     [get_bd_pins ps/maxihpm0_lpd_aclk] [get_bd_pins ps/saxihp0_fpd_aclk]
-connect_bd_net [get_bd_pins reset/peripheral_aresetn] [get_bd_pins dma/axi_resetn]
-# Keep the source/FIFO acquisition epoch aligned with the DMA stream-side reset.
-# This port is documented by PG021; its generated-IP timing still needs validation.
-connect_bd_net [get_bd_pins dma/s2mm_prmry_reset_out_n] [get_bd_pins stream/aresetn]
+connect_bd_net [get_bd_pins reset/peripheral_aresetn] \
+    [get_bd_pins dma/axi_resetn] [get_bd_pins stream/aresetn]
+# Keep AXI-Lite alive during DMA reset. Only acquisition state/source/FIFO reset.
+# Software observes STATUS.stream_reset, then STARTs only after it is released.
+connect_bd_net [get_bd_pins dma/s2mm_prmry_reset_out_n] [get_bd_pins stream/stream_resetn]
 connect_bd_net [get_bd_pins reset/interconnect_aresetn] \
     [get_bd_pins control/aresetn] [get_bd_pins memory/aresetn]
 

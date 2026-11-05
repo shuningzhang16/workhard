@@ -1,0 +1,10 @@
+case,session,receiver,frames,drained,starts,stops,submits,cpu_syncs,owner,result
+start_arm_order_stop_drain,DONE,DONE,12,1,1,1,12,13,CPU,PASS
+explicit_restart_new_epoch,DONE,DONE,12,1,2,2,24,26,CPU,PASS
+bounded_stop_drain,STOP_LIMIT,OK,1,0,1,1,1,2,CPU,PASS
+start_write_failure_after_arm,REGISTER_ERROR,SUBMIT_ERROR,0,0,0,0,1,1,DEVICE,PASS
+dma_error_failed_restart_latched,RECEIVE_ERROR,DMA_ERROR,0,0,1,0,1,1,DEVICE,PASS
+hardware_frame_count_mismatch,COUNT_ERROR,OK,2,1,1,1,2,3,CPU,PASS
+original_target_not_adjusted,RECEIVE_ERROR,BAD_FRAME,2,1,1,1,2,3,CPU,PASS
+wrapper_not_stopped_after_reset,RECEIVE_ERROR,RESTART_ERROR,0,0,0,0,0,1,DEVICE,PASS
+stream_reset_not_released_after_arm,REGISTER_ERROR,SUBMIT_ERROR,0,0,0,0,1,1,DEVICE,PASS

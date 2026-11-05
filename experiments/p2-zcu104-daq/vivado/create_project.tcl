@@ -12,7 +12,8 @@ set_property target_language Verilog [current_project]
 add_files [list \
     [file join $project_root rtl axis_pattern_source.v] \
     [file join $project_root rtl axis_sync_fifo.v] \
-    [file join $project_root rtl daq_stream_top.v]]
+    [file join $project_root rtl daq_stream_top.v] \
+    [file join $project_root rtl daq_axi_lite.v]]
 update_compile_order -fileset sources_1
 source [file join $script_dir create_bd.tcl]
 
@@ -23,4 +24,5 @@ add_files -norecurse $wrapper_files
 set_property top daq_bd_wrapper [current_fileset]
 update_compile_order -fileset sources_1
 write_bd_tcl [file join $build_dir daq_bd_export.tcl]
+source [file join $script_dir export_addresses.tcl]
 puts "Project and BD created. Synthesis, timing, BSP and hardware validation remain separate steps."

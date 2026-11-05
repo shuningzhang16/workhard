@@ -1,0 +1,17 @@
+case,origin,expected_status,actual_status,expected_accepted_words,accepted_words,complete_frames,expected_word_hex,observed_word_hex,result
+rtl_single_batch,RTL,OK,OK,84,84,12,000c0000,000b0006,PASS
+rtl_mid_frame_batches,RTL,OK,OK,84,84,12,000c0000,000b0006,PASS
+missing_word,RTL_mutation,WORD_INDEX,WORD_INDEX,10,10,1,00010003,00010004,PASS
+duplicate_word,RTL_mutation,WORD_INDEX,WORD_INDEX,11,11,1,00010004,00010003,PASS
+bad_word_index,RTL_mutation,WORD_INDEX,WORD_INDEX,9,9,1,00010002,00010005,PASS
+missing_frame,RTL_mutation,FRAME_SEQUENCE,FRAME_SEQUENCE,14,14,2,00020000,00030000,PASS
+duplicate_frame,RTL_mutation,FRAME_SEQUENCE,FRAME_SEQUENCE,14,14,2,00020000,00010000,PASS
+frame_jump,RTL_mutation,FRAME_SEQUENCE,FRAME_SEQUENCE,14,14,2,00020000,00090000,PASS
+tail_word_truncated,RTL_mutation,TRUNCATED,TRUNCATED,83,83,11,000b0006,000b0005,PASS
+tail_frame_truncated,RTL_mutation,TRUNCATED,TRUNCATED,77,77,11,000b0000,000a0006,PASS
+partial_word_bytes,RTL_mutation,BAD_LENGTH,BAD_LENGTH,0,0,0,00000000,00000000,PASS
+wrong_byte_order,RTL_mutation,WORD_INDEX,WORD_INDEX,1,1,0,00000001,01000000,PASS
+sequence_wrap_65535_to_0,synthetic_C_fixture,OK,OK,28,28,4,00020000,00010006,PASS
+extra_complete_frame,RTL,FRAME_COUNT,FRAME_COUNT,84,84,12,000c0000,000b0006,PASS
+empty_capture,RTL_mutation,TRUNCATED,TRUNCATED,0,0,0,00000000,00000000,PASS
+explicit_reset_after_latched_error,RTL_API_test,OK,OK,84,84,12,000c0000,000b0006,PASS

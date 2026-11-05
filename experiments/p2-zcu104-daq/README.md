@@ -1,12 +1,22 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部 AXI-Stream 数据源、最小同步 FIFO、顶层封装、独立 AXI4-Lite 控制 wrapper、C 帧流校验器及逐包 Simple S2MM 接收控制核心。RTL 与主机 C 联测通过，并提供 ZCU104 最小 Vivado Tcl 入口及 Standalone 接入草稿。新控制 wrapper 尚未接入 Vivado 地址映射；Tcl 未在完整 Vivado 中执行，Standalone 草稿未编译；DMA/DDR 与板端验证尚未完成，原厂代码保留不变。
+当前阶段：已实现内部数据源/FIFO、AXI4-Lite 控制、逐包接收与 C 校验。控制 wrapper 已接入 Vivado Tcl，并提供地址导出及 PS 正常启停/重启流程。RTL 与主机严格 C 测试通过；完整 Vivado 尚未执行，Standalone 草稿未编译，没有实际地址导出、BSP 或 DDR 联通结果，原厂代码保留不变。
+
+## 第七小步第一阶段：工程连接与 PS 启停流程
+
+控制 SmartConnect 扩为 1×2，分别连接 DMA 与 wrapper；增加 [实际地址导出脚本](vivado/export_addresses.tcl)。系统复位保留 AXI-Lite 通道，DMA 流侧复位只清采集状态，避免 DMA reset 期间无法读取控制寄存器。
+
+[daq_session](ps/daq_session.md) 复用既有接收核心：先提交 DMA、确认流侧复位释放、再 START；STOP 后有界排空并同时核对硬件帧数和原定采集目标；错误保持锁存，显式重启失败不回收设备缓冲区。附控制寄存器→DMA→校验的数据流说明及具体 BSP/工具依赖。
+
+实际结果：**9/9** 新增主机流程测试、原接收 **13/13**、原校验 **16/16** 通过严格编译及 ASan/UBSan；扩展 RTL TB 完成 **26 写、55 读、77 字/11 帧**，包括采集复位期间 R 响应保持和状态读取。[最终结果](results/daq_integration/summary.json) 与日志已保存。
+
+统一入口：`python scripts/run_daq_session.py --output results/daq_session_recheck`。三个 Tcl 仅做文本完整性检查，不把它称为 Vivado 执行。第一阶段到此形成可提交点；后续第二阶段再增加有界多缓冲接收/消费和明确标记的主机性能统计。
 
 ## 第六小步：AXI4-Lite 启停和统计
 
 新增独立 [daq_axi_lite.v](rtl/daq_axi_lite.v)，在现有连续流顶层之外提供启停、停止后的清计数/重启，以及输出已接收字、帧和停顿计数。STOP 等待 TLAST 握手，不撤回被反压的有效拍；继续保留序号，显式重启才回到帧 0。现有 source/FIFO/top 与其测试均未修改。
 
-[独立 TB](tb/tb_daq_axi_lite.sv) 实际通过 **23 次写、46 次读、70 字/10 帧输出**；AW 先到/W 先到/同拍分别 5/3/15 次，B/R 反压分别 33/161 周期。覆盖 WSTRB、响应稳定性、连续并行读写、独立计数核对、帧边界停止和重启。
+本阶段的历史 [TB 记录](results/axi_lite/summary.json) 为 **23 次写、46 次读、70 字/10 帧输出**；AW 先到/W 先到/同拍分别 5/3/15 次，B/R 反压分别 33/161 周期。覆盖 WSTRB、响应稳定性、连续并行读写、独立计数核对、帧边界停止和重启。当前扩展 TB 的新结果见上方第七小步。
 
 原 source/FIFO 六组回归也已实际复跑并全部通过，见 [回归汇总](results/axi_lite_regression/summary.json)。
 
@@ -192,4 +202,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。独立 AXI4-Lite 控制 wrapper 及实际 RTL 验证已完成，根目录还保存了 [综合网表重放证据](../../verification/yosys-control/README.md)。后续结合完整 Vivado/BSP 验证控制地址映射与实际平台适配。当前未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。第七小步第一阶段（Tcl 集成及 PS 启停流程）已完成，交由协调聊天单独提交；第二阶段将继续有界多缓冲与消费统计。根目录先前保存的 [综合网表重放证据](../../verification/yosys-control/README.md) 对应其当时源码，本次新复位接口仍需根窗口重新综合核对。当前未执行上板、写卡或硬件重跑操作。

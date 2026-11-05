@@ -1,0 +1,4 @@
+COMMAND ["E:\\python.exe", "scripts/run_frame_validator.py", "--output", "results/daq_session/receiver/capture", "--wsl-distro", "Ubuntu-22.04"]
+PASS: 84 actual RTL words; 16 C tests; evidence: E:\UserData\Documents\ChatGPT\Ó²¼þ\experiments\p2-zcu104-daq\results\daq_session\receiver\capture
+
+EXIT_CODE 0

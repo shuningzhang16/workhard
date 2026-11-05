@@ -1,5 +1,7 @@
 # ZCU104 工程入口与当前验证范围
 
+当前入口已接入 AXI4-Lite 控制 wrapper，增加真实 Vivado 地址导出脚本，并提供 PS 正常启停/重启的主机验证流程；见 [当前集成说明、依赖和数据流教学](../ps/daq_session.md)。完整 Vivado/BSP 仍不可用，工程连接是待工具执行的 Tcl。
+
 ## 已执行与未执行
 
 [daq_stream_top.v](../rtl/daq_stream_top.v) 用可综合 RTL 写法直接封装现有 source 和同步 FIFO；默认每帧 7 字、FIFO 深度 3，输出 32 位 AXI-Stream。增加 Vivado 接口属性，便于以 RTL module reference 加入块设计。没有添加寄存器组、ADC、DMA 行为模型或跨时钟逻辑。
@@ -8,23 +10,23 @@
 
 顶层是连续数据源。采集达到 12 个完整帧后，testbench 停止接受新字，而不是关闭源或声称 FIFO 排空；原有 FIFO 单元测试继续保留最终排空和数量守恒检查。这个改变使联测实际经过可综合顶层，而不在 source 与 FIFO 之间插入采集计数门控。
 
-本机检查到的 AMD 工具是 Vivado Lab 2025.2，没有在已检查的安装目录/PATH 找到完整 Vivado/xsim。两个 Tcl 文件仅通过 Tcl 8.6.15 的 `info complete` 文本完整性检查；该命令不执行脚本，不能验证 Vivado 命令、IP 参数、块设计、综合或 DDR 联通。详见 [文本检查日志](../results/top_integration/tcl_text_check.log) 和 [工具记录](../results/top_integration/vivado_availability.log)。
+本机检查到的 AMD 工具是 Vivado Lab 2025.2，没有在已检查的安装目录/PATH 找到完整 Vivado/xsim。三个 Tcl 文件仅通过 Tcl 8.6.15 的 `info complete` 文本完整性检查；该命令不执行脚本，不能验证 Vivado 命令、IP 参数、块设计、综合或 DDR 联通。详见 [文本检查日志](../results/daq_integration/tcl_text_check.log) 和 [工具记录](../results/top_integration/vivado_availability.log)。
 
 ## 最小工程结构
 
 ```text
-daq_stream_top(source → FIFO) → AXI DMA S_AXIS_S2MM
+daq_axi_lite(source → FIFO) → AXI DMA S_AXIS_S2MM
                                      │ M_AXI_S2MM
                                      ▼
                                 SmartConnect → PS S_AXI_HP0_FPD → PS DDR
 
-PS M_AXI_HPM0_LPD → SmartConnect → DMA S_AXI_LITE
+PS M_AXI_HPM0_LPD → SmartConnect 1×2 → DMA S_AXI_LITE / wrapper S_AXI
 PS pl_clk0 → 整个 PL 通路（请求 100 MHz；尚未进行时序分析）
-PS pl_resetn0 → proc_sys_reset → DMA / SmartConnect
-DMA s2mm_prmry_reset_out_n → source + FIFO
+PS pl_resetn0 → proc_sys_reset → DMA / SmartConnect / wrapper AXI-Lite
+DMA s2mm_prmry_reset_out_n → wrapper stream_resetn（仅采集状态、source + FIFO）
 ```
 
-控制和数据分别使用一个 1×1 SmartConnect，让工具处理 AXI 接口宽度/协议适配。HP0 是非一致性通路，CPU cache 的处理仍由软件/驱动负责。使用 PS 自带 DDR 控制器与官方板卡 preset，不新增 PL DDR MIG。
+控制使用 1×2、数据使用 1×1 SmartConnect，让工具处理 AXI 接口宽度/协议适配。HP0 是非一致性通路，CPU cache 的处理仍由软件/驱动负责。使用 PS 自带 DDR 控制器与官方板卡 preset，不新增 PL DDR MIG。
 
 `create_project.tcl` 创建工程、调用 `create_bd.tcl`、请求 BD 校验、生成 IP 输出和 HDL wrapper，并导出 BD Tcl。它不包含综合、实现、bitstream、硬件连接或编程命令。脚本由本项目编写，不是 AMD 已验证的参考工程。
 
@@ -39,7 +41,7 @@ DMA s2mm_prmry_reset_out_n → source + FIFO
 | PS 接口 | HPM0_LPD 用于控制，HP0_FPD 用于写入内存；[PG201 Slave Interface 表](https://docs.amd.com/r/en-US/pg201-zynq-ultrascale-plus-processing-system/Slave-Interface) 明确 HP0～HP3 到 DDR 的非一致性路径；HPM0_LPD 的 Tcl 参数及连法参照 AMD [2025.2 EDT Tcl](https://github.com/Xilinx/Embedded-Design-Tutorials/blob/2025.2/docs/Getting_Started/ZynqMPSoC-EDT/ref_files/design1/edt_zcu102.tcl)，仅取接口用法，不取 ZCU102 的板卡参数 |
 | AXI DMA 7.1 | `c_include_sg=0`、`c_micro_dma=0`、`c_include_mm2s=0`、`c_include_s2mm=1`；本项目选择普通 Simple S2MM 单通道、无控制/状态流；[PG021 User Parameters](https://docs.amd.com/r/en-US/pg021_axi_dma/User-Parameters) 给出参数对应关系 |
 | DMA 位宽/时钟 | stream 与 memory data 均选 32 位，地址宽度选 64 位，DRE 关闭，最大 burst 16，异步时钟选项关闭；这些是本项目取值，不是板端性能结果。依据同一 PG021 参数表及 [Clocking](https://docs.amd.com/r/en-US/pg021_axi_dma/Clocking) |
-| SmartConnect 1.0 | `NUM_SI=1`、`NUM_MI=1`、`NUM_CLKS=1`；[PG247 参数表](https://docs.amd.com/r/en-US/pg247-smartconnect/Design-Parameters) 和 [1×1 模式](https://docs.amd.com/r/en-US/pg247-smartconnect/SmartConnect-1x1-Mode) |
+| SmartConnect 1.0 | `NUM_SI=1`、`NUM_CLKS=1`；控制 `NUM_MI=2`，数据 `NUM_MI=1`；[PG247 参数表](https://docs.amd.com/r/en-US/pg247-smartconnect/Design-Parameters) 和 [1×1 模式](https://docs.amd.com/r/en-US/pg247-smartconnect/SmartConnect-1x1-Mode) |
 | 复位 | `proc_sys_reset:5.0`，PS 输入低有效，辅助输入高有效并接 0；PL0 已由 PS 提供，lock 接 1。依据 [PG164](https://docs.amd.com/v/u/en-US/pg164-proc-sys-reset)；DMA `axi_resetn` 的最小 16 个最慢时钟与同步要求见 [PG021 Resets](https://docs.amd.com/r/en-US/pg021_axi_dma/Resets)；流侧 reset 输出见 [PG021 Ports](https://docs.amd.com/r/en-US/pg021_axi_dma/Port-Descriptions) |
 | RTL 接口属性 | 时钟关联 `M_AXIS/aresetn`、低有效 reset 及各 AXIS 信号；依据 [UG994 RTL 控制信号推断](https://docs.amd.com/r/en-US/ug994-vivado-ip-subsystems/Inferring-Control-Signals-in-a-RTL-Module) |
 
@@ -62,7 +64,7 @@ New-Item -ItemType Directory -Force .\results\vivado_build | Out-Null
 vivado -mode batch -source .\vivado\create_project.tcl -log .\results\vivado_build\vivado.log -journal .\results\vivado_build\vivado.jou
 ```
 
-计划产物在 `build/vivado_zcu104/`，包括 `.xpr`、`daq_bd.bd`、生成的 wrapper 和 `daq_bd_export.tcl`。本次没有这些实际产物。脚本不自动替换已有同名工程；重新构建时可调整 `build_dir` 另建目录。
+计划产物在 `build/vivado_zcu104/`，包括 `.xpr`、`daq_bd.bd`、生成的 wrapper、`daq_bd_export.tcl`，以及从实际地址段导出的 `address_map.csv` 和 `daq_addresses.h`。本次没有这些实际产物。脚本不自动替换已有同名工程；重新构建时可调整 `build_dir` 另建目录。
 
 现有环境可实际运行的命令：
 
@@ -73,7 +75,7 @@ vivado -mode batch -source .\vivado\create_project.tcl -log .\results\vivado_bui
 
 ## 具体待验证项
 
-- 在完整 Vivado 中执行两个 Tcl，确认板卡 preset、PS 的 HP0/HPM0 配置、module reference 的 AXIS 推断和 IP 参数被接受。
+- 在完整 Vivado 中执行三个 Tcl，确认板卡 preset、PS 的 HP0/HPM0 配置、module reference 的 AXIS/AXI-Lite 推断和 IP 参数被接受。
 - 执行真实 `validate_bd_design` 与输出生成；审阅地址分配、接口宽度、时钟和 DMA 复位传播。脚本用 `assign_bd_address`，没有虚构控制基址或 DDR 缓冲区地址。
 - 在工具支持下再做实际综合、实现和时序检查；目前没有资源利用率、Fmax 或 DDR 吞吐量数据。
 - BSP/FSBL/驱动、缓冲区分配和 cache 交接、Simple S2MM 每包完成与超时恢复仍未实现或运行；板端 DDR 读写和所有硬件操作未执行。

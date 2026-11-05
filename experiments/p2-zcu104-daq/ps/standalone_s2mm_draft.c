@@ -4,6 +4,7 @@
 #include "standalone_s2mm_draft.h"
 #include "xil_cache.h"
 #include "xstatus.h"
+#include "xil_io.h"
 
 static int reset_epoch(void *context, unsigned poll_limit)
 {
@@ -73,3 +74,22 @@ static s2mm_event poll_once(void *context)
 }
 
 const s2mm_ops standalone_s2mm_ops = {reset_epoch, for_device, for_cpu, submit, poll_once};
+
+/* BSP MMIO API: bus faults may raise a platform exception rather than return an
+ * error. These draft calls do not pretend to catch SLVERR or a hung bus. */
+static int read_control(void *context, unsigned offset, uint32_t *value)
+{
+    standalone_s2mm_context *c = context;
+    *value = Xil_In32(c->control_base + offset);
+    return 0;
+}
+static int write_control(void *context, unsigned offset, uint32_t value)
+{
+    standalone_s2mm_context *c = context;
+    Xil_Out32(c->control_base + offset, value);
+    /* Readback makes the programmed control transaction complete before the
+     * session can later issue DMA reset. Device-memory attributes still required. */
+    (void)Xil_In32(c->control_base + DAQ_STATUS);
+    return 0;
+}
+const daq_register_ops standalone_daq_registers = {read_control, write_control};

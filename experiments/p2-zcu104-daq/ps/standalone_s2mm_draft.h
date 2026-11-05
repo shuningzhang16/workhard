@@ -3,6 +3,7 @@
 
 /* UNCOMPILED integration draft: requires a generated, matching Standalone BSP. */
 #include "simple_s2mm.h"
+#include "daq_session.h"
 #include "xaxidma.h"
 
 typedef struct {
@@ -12,6 +13,7 @@ typedef struct {
     u32 allocation_bytes;       /* Whole exclusively owned, cache-line aligned span. */
     u32 last_status;
     u32 last_submit_result;
+    UINTPTR control_base;        /* From the actual generated address map, not a constant here. */
 } standalone_s2mm_context;
 
 /* Before using these operations, validate the reset topology in vivado/README:
@@ -20,5 +22,6 @@ typedef struct {
  * establish BSP, mappings, cache alignment, reset propagation or clock readiness.
  */
 extern const s2mm_ops standalone_s2mm_ops;
+extern const daq_register_ops standalone_daq_registers;
 
 #endif

@@ -1,0 +1,1 @@
+{"result":"PASS","cycles":549,"words":77,"frames":11,"stream_stalls":95,"writes":26,"reads":55,"aw_first":5,"w_first":3,"same_cycle":18,"b_stalls":34,"r_stalls":197,"aw_wait":7,"w_wait":7,"ar_wait":7}

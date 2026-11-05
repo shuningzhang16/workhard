@@ -3,7 +3,7 @@
 
 module tb_daq_axi_lite;
     localparam integer FRAME_WORDS = 7;
-    reg clk = 0, resetn = 0;
+    reg clk = 0, resetn = 0, stream_resetn = 1;
     always #5 clk = !clk;
     reg [5:0] awaddr = 0, araddr = 0;
     reg awvalid = 0, wvalid = 0, bready = 0, arvalid = 0, rready = 0;
@@ -30,7 +30,7 @@ module tb_daq_axi_lite;
     string outdir;
 
     daq_axi_lite #(.FRAME_WORDS(FRAME_WORDS), .FIFO_DEPTH(3)) dut (
-        .aclk(clk), .aresetn(resetn),
+        .aclk(clk), .aresetn(resetn), .stream_resetn(stream_resetn),
         .s_axi_awaddr(awaddr), .s_axi_awprot(3'b000), .s_axi_awvalid(awvalid), .s_axi_awready(awready),
         .s_axi_wdata(wdata), .s_axi_wstrb(wstrb), .s_axi_wvalid(wvalid), .s_axi_wready(wready),
         .s_axi_bresp(bresp), .s_axi_bvalid(bvalid), .s_axi_bready(bready),
@@ -44,7 +44,7 @@ module tb_daq_axi_lite;
     always @(posedge clk) begin
         cycle = cycle + 1;
         if (resetn) begin
-            if (held_stream && (!valid || {last, keep, data} !== held_beat))
+            if (held_stream && stream_resetn && (!valid || {last, keep, data} !== held_beat))
                 $fatal(1, "Stream changed while stalled, cycle %0d", cycle);
             if (held_b && (!bvalid || bresp !== held_bresp)) $fatal(1, "B response not held");
             if (held_r && (!rvalid || {rresp, rdata} !== {held_rresp, held_rdata}))
@@ -105,7 +105,7 @@ module tb_daq_axi_lite;
             $fdisplay(csv_file, "%0d,%0d,%0d,%08x,%x,%0d,%0d,%0d,%0d,%0d", cycle,
                       valid, ready, data, keep, last, epoch_word, metric_words, metric_frames, metric_stalls);
         end
-        held_stream = resetn && valid && !ready;
+        held_stream = resetn && stream_resetn && valid && !ready;
         held_b = resetn && bvalid && !bready;
         held_r = resetn && rvalid && !rready;
         held_beat = {last, keep, data};
@@ -268,6 +268,26 @@ module tb_daq_axi_lite;
         write_reg(0, 0, 1, 0, 0, 0, 0);
         drain_stop();
         if (epoch_word != 7) $fatal(1, "Restart epoch did not complete one frame");
+        check_counts();
+        // A DMA stream reset must not cancel an outstanding AXI-Lite response.
+        send_ar(6'h04);
+        fork
+            collect_r(6, 0, 1, 0);
+            begin
+                @(negedge clk); stream_resetn = 0;
+                repeat (3) @(negedge clk);
+                epoch_word = 0; reset_metrics();
+            end
+        join
+        read_reg(6'h04, 1, 0, 1, 4);
+        write_reg(0, 1, 1, 0, 0, 1, 2); // START rejected until DMA reset releases.
+        check_counts();
+        @(negedge clk); stream_resetn = 1; ready = 0;
+        write_reg(0, 1, 1, 0, 0, 0, 0);
+        if (!valid || data !== 0) $fatal(1, "DMA stream reset did not reset sequence");
+        write_reg(0, 0, 1, 0, 0, 0, 0);
+        drain_stop();
+        if (epoch_word != 7) $fatal(1, "Post-DMA-reset frame incomplete");
         check_counts();
         if (aw_count != w_count || w_count != b_count || ar_count != r_count ||
             !aw_first || !w_first || !same_cycle || !b_stalls || !r_stalls ||

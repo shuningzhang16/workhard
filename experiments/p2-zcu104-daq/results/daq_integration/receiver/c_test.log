@@ -1,0 +1,4 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p2-zcu104-daq", "--exec", "./build/test_simple_s2mm", "results/daq_integration/receiver/capture/rtl_capture_le.bin"]
+cases=13 failures=0; host control flow only, not DMA/cache simulation
+
+EXIT_CODE 0

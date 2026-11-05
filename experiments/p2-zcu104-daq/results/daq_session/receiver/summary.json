@@ -1,0 +1,16 @@
+{
+  "scope": "host control flow, boundaries and callback order only",
+  "payload": "capture/rtl_capture_le.bin from actual RTL simulation",
+  "hardware_dma_executed": false,
+  "standalone_adapter_compiled": false,
+  "packet_bytes": 28,
+  "success_packets": 12,
+  "poll_limit_per_packet": 3,
+  "c_host": "WSL Ubuntu-22.04",
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "cases": 13,
+  "passed": 13
+}

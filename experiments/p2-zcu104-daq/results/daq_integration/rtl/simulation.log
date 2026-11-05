@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/daq_axi_lite.vvp", "+OUTDIR=results/daq_integration/rtl"]
+PASS AXI-Lite wrapper: 26 writes, 55 reads, 77 words, 11 frames; AW-first=5 W-first=3 simultaneous=18
+tb/tb_daq_axi_lite.sv:303: $finish called at 5490000 (1ps)
+
+EXIT_CODE 0
