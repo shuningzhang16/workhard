@@ -1,0 +1,12 @@
+2026-11-04: Scoped local inventory before target setup.
+Get-Command cl2000.exe,ccs.exe: no result.
+Common paths C:\ti, E:\ti, C:\Program Files\Texas Instruments,
+C:\Program Files\Code Composer Studio, E:\Program Files\Texas Instruments:
+no installed compiler/CCS discovered. This is not a whole-disk inventory.
+WSL Ubuntu-22.04 and GCC 11.4 already available from the host-control stage.
+
+Official TI C2000-CGT page reports 25.11.1.LTS and links the Linux installer:
+https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-xqxJ05PLfM/25.11.1.LTS/ti_cgt_c2000_25.11.1.LTS_linux-x64_installer.bin
+Web tool: could not follow the redirect to dr-download-cdn.ti.com.
+Python urllib request to that same link: HTTP Error 403: Forbidden.
+No installer bytes were written. No authentication, TLS or system setting was changed.

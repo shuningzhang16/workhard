@@ -1,0 +1,548 @@
+[
+  {
+    "path": "LICENSE.md",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/LICENSE.md",
+    "bytes": 60,
+    "status": "downloaded"
+  },
+  {
+    "path": "README.md",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/README.md",
+    "bytes": 2815,
+    "status": "downloaded"
+  },
+  {
+    "path": "device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd",
+    "bytes": 5510,
+    "status": "downloaded"
+  },
+  {
+    "path": "device_support/f28004x/common/include/device.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/device_support/f28004x/common/include/device.h",
+    "bytes": 17928,
+    "status": "downloaded"
+  },
+  {
+    "path": "device_support/f28004x/common/include/driverlib.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/device_support/f28004x/common/include/driverlib.h",
+    "bytes": 2812,
+    "status": "downloaded"
+  },
+  {
+    "path": "device_support/f28004x/common/source/device.c",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/device_support/f28004x/common/source/device.c",
+    "bytes": 11639,
+    "status": "downloaded"
+  },
+  {
+    "path": "device_support/f28004x/common/source/f28004x_codestartbranch.asm",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/device_support/f28004x/common/source/f28004x_codestartbranch.asm",
+    "bytes": 4527,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/adc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/adc.h",
+    "bytes": 76269,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/asysctl.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/asysctl.h",
+    "bytes": 26068,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/can.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/can.h",
+    "bytes": 65043,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/ccs/Release/driverlib_eabi.lib",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/ccs/Release/driverlib_eabi.lib",
+    "bytes": 514734,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/cla.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/cla.h",
+    "bytes": 39682,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/clapromcrc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/clapromcrc.h",
+    "bytes": 18552,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/clb.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/clb.h",
+    "bytes": 63932,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/cmpss.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/cmpss.h",
+    "bytes": 46956,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/cpu.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/cpu.h",
+    "bytes": 4393,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/cputimer.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/cputimer.h",
+    "bytes": 16290,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/dac.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/dac.h",
+    "bytes": 18721,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/dcc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/dcc.h",
+    "bytes": 28092,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/dcsm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/dcsm.h",
+    "bytes": 26943,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/debug.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/debug.h",
+    "bytes": 4104,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/dma.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/dma.h",
+    "bytes": 37888,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/driver_inclusive_terminology_mapping.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/driver_inclusive_terminology_mapping.h",
+    "bytes": 7049,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/ecap.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/ecap.h",
+    "bytes": 47494,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/epwm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/epwm.h",
+    "bytes": 250742,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/eqep.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/eqep.h",
+    "bytes": 60235,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/erad.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/erad.h",
+    "bytes": 36538,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/flash.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/flash.h",
+    "bytes": 48705,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/fsi.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/fsi.h",
+    "bytes": 83053,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/gpio.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/gpio.h",
+    "bytes": 37384,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/hrcap.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/hrcap.h",
+    "bytes": 19421,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/hrpwm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/hrpwm.h",
+    "bytes": 60917,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/hw_reg_inclusive_terminology.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/hw_reg_inclusive_terminology.h",
+    "bytes": 4547,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/i2c.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/i2c.h",
+    "bytes": 49935,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_adc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_adc.h",
+    "bytes": 52045,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_asysctl.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_asysctl.h",
+    "bytes": 11039,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_can.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_can.h",
+    "bytes": 26747,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_cla.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_cla.h",
+    "bytes": 17772,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_clapromcrc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_clapromcrc.h",
+    "bytes": 6140,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_clb.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_clb.h",
+    "bytes": 53244,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_clbxbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_clbxbar.h",
+    "bytes": 89391,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_cmpss.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_cmpss.h",
+    "bytes": 12758,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_cputimer.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_cputimer.h",
+    "bytes": 5207,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_dac.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_dac.h",
+    "bytes": 5590,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_dcc.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_dcc.h",
+    "bytes": 7651,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_dcsm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_dcsm.h",
+    "bytes": 47694,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_dma.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_dma.h",
+    "bytes": 8621,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_ecap.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_ecap.h",
+    "bytes": 9277,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_epwm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_epwm.h",
+    "bytes": 61485,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_epwmxbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_epwmxbar.h",
+    "bytes": 82663,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_eqep.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_eqep.h",
+    "bytes": 14327,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_erad.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_erad.h",
+    "bytes": 12662,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_flash.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_flash.h",
+    "bytes": 15206,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_fsi.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_fsi.h",
+    "bytes": 33757,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_gpio.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_gpio.h",
+    "bytes": 114499,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_hrcap.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_hrcap.h",
+    "bytes": 12855,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_hrpwm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_hrpwm.h",
+    "bytes": 62535,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_i2c.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_i2c.h",
+    "bytes": 10356,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_inputxbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_inputxbar.h",
+    "bytes": 5516,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_ints.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_ints.h",
+    "bytes": 10997,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_lin.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_lin.h",
+    "bytes": 29866,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_memcfg.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_memcfg.h",
+    "bytes": 36374,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_memmap.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_memmap.h",
+    "bytes": 9116,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_nmi.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_nmi.h",
+    "bytes": 5868,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_otp.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_otp.h",
+    "bytes": 2812,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_outputxbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_outputxbar.h",
+    "bytes": 95979,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_pga.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_pga.h",
+    "bytes": 6566,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_pie.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_pie.h",
+    "bytes": 36769,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_pmbus.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_pmbus.h",
+    "bytes": 15662,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_sci.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_sci.h",
+    "bytes": 10145,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_sdfm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_sdfm.h",
+    "bytes": 38591,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_spi.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_spi.h",
+    "bytes": 7678,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_sysctl.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_sysctl.h",
+    "bytes": 94222,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_types.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_types.h",
+    "bytes": 5184,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_xbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_xbar.h",
+    "bytes": 25277,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/inc/hw_xint.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/inc/hw_xint.h",
+    "bytes": 4835,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/interrupt.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/interrupt.h",
+    "bytes": 17750,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/lin.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/lin.h",
+    "bytes": 115876,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/memcfg.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/memcfg.h",
+    "bytes": 42326,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/pga.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/pga.h",
+    "bytes": 10886,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/pin_map.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/pin_map.h",
+    "bytes": 19218,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/pin_map_legacy.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/pin_map_legacy.h",
+    "bytes": 14605,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/pmbus.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/pmbus.h",
+    "bytes": 46756,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/pmbus_common.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/pmbus_common.h",
+    "bytes": 22940,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/sci.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/sci.h",
+    "bytes": 52934,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/sdfm.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/sdfm.h",
+    "bytes": 66326,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/spi.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/spi.h",
+    "bytes": 61117,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/sysctl.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/sysctl.h",
+    "bytes": 106757,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/version.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/version.h",
+    "bytes": 3805,
+    "status": "downloaded"
+  },
+  {
+    "path": "driverlib/f28004x/driverlib/xbar.h",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/driverlib/f28004x/driverlib/xbar.h",
+    "bytes": 51691,
+    "status": "downloaded"
+  },
+  {
+    "path": "docs/manifest.html",
+    "url": "https://raw.githubusercontent.com/TexasInstruments/c2000ware-core-sdk/REL_C2000Ware_v26.02.00.00.LTS/docs/manifest.html",
+    "bytes": 74698,
+    "status": "downloaded"
+  }
+]

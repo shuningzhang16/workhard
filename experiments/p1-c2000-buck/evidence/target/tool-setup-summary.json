@@ -1,0 +1,13 @@
+{
+  "compiler_version": "25.11.1.LTS",
+  "installer_bytes": 31998404,
+  "installer_exit_code": 0,
+  "install_directory": ".tools/ti-cgt/ti-cgt-c2000_25.11.1.LTS",
+  "installation_mode": "unattended, local --prefix; no CCS or system toolchain installation",
+  "raw_installer_debug_trace": ".tools/install-logs/compiler-install.txt",
+  "raw_trace_note": "Preserved locally; installer diagnostic dump is not included in the public evidence.",
+  "driverlib_version_tag": "REL_C2000Ware_v26.02.00.00.LTS",
+  "official_dependency_files": 91,
+  "official_dependency_bytes": 3661641,
+  "compiler_execution_evidence": "firmware/results/commands.json"
+}

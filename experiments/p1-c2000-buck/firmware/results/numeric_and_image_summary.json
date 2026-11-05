@@ -1,0 +1,400 @@
+{
+  "probe_kind": "TI C28x object constants and ELF metadata; target code was NOT run",
+  "machine": "EM_TI_C2000",
+  "elf_type": "ET_EXEC",
+  "entry_address": "0x0",
+  "target_format": {
+    "char_bits": 16,
+    "float_bits": 32,
+    "double_bits": 64,
+    "float_radix": 2,
+    "float_mantissa_bits": 24,
+    "double_mantissa_bits": 53
+  },
+  "host_format": {
+    "char_bits": 8,
+    "double_bits": 64,
+    "double_mantissa_bits": 53
+  },
+  "comparison": [
+    {
+      "quantity": "control_period_s",
+      "target_compiled_constant": 2e-05,
+      "python_binary64": 2e-05,
+      "difference": 0.0
+    },
+    {
+      "quantity": "kp",
+      "target_compiled_constant": 0.03,
+      "python_binary64": 0.03,
+      "difference": 0.0
+    },
+    {
+      "quantity": "ki_times_ts",
+      "target_compiled_constant": 0.0006000000000000001,
+      "python_binary64": 0.0006000000000000001,
+      "difference": 0.0
+    },
+    {
+      "quantity": "maximum_duty",
+      "target_compiled_constant": 0.95,
+      "python_binary64": 0.95,
+      "difference": 0.0
+    },
+    {
+      "quantity": "overcurrent_a",
+      "target_compiled_constant": 2.5,
+      "python_binary64": 2.5,
+      "difference": 0.0
+    },
+    {
+      "quantity": "overvoltage_v",
+      "target_compiled_constant": 2.4,
+      "python_binary64": 2.4,
+      "difference": 0.0
+    },
+    {
+      "quantity": "undervoltage_v",
+      "target_compiled_constant": 6.0,
+      "python_binary64": 6.0,
+      "difference": 0.0
+    },
+    {
+      "quantity": "clear_abs_v",
+      "target_compiled_constant": 0.1,
+      "python_binary64": 0.1,
+      "difference": 0.0
+    },
+    {
+      "quantity": "clear_abs_a",
+      "target_compiled_constant": 0.1,
+      "python_binary64": 0.1,
+      "difference": 0.0
+    },
+    {
+      "quantity": "ramp_at_999_samples_v",
+      "target_compiled_constant": 1.998,
+      "python_binary64": 1.998,
+      "difference": 0.0
+    },
+    {
+      "quantity": "vin_raw2048_v",
+      "target_compiled_constant": 16.5,
+      "python_binary64": 16.5,
+      "difference": 0.0
+    },
+    {
+      "quantity": "vout_raw1241_v",
+      "target_compiled_constant": 1.9996582031249999,
+      "python_binary64": 1.9996582031249999,
+      "difference": 0.0
+    },
+    {
+      "quantity": "current_raw2048_a",
+      "target_compiled_constant": 0.0,
+      "python_binary64": 0.0,
+      "difference": 0.0
+    },
+    {
+      "quantity": "current_raw2560_a",
+      "target_compiled_constant": 4.125000000000001,
+      "python_binary64": 4.125000000000001,
+      "difference": 0.0
+    }
+  ],
+  "max_abs_constant_difference": 0.0,
+  "constant_absolute_tolerance": 1e-14,
+  "constant_tolerance_basis": "binary64 finite compile-time values, scale <= 16.5; allowance of a few binary64 rounding units; not a runtime controller tolerance",
+  "memory_regions": [
+    {
+      "name": "BEGIN",
+      "origin_words": 0,
+      "capacity_words": 2,
+      "used_words": 2
+    },
+    {
+      "name": "RAMM0",
+      "origin_words": 246,
+      "capacity_words": 778,
+      "used_words": 32
+    },
+    {
+      "name": "RAMLS0",
+      "origin_words": 32768,
+      "capacity_words": 2048,
+      "used_words": 2044
+    },
+    {
+      "name": "RAMLS1",
+      "origin_words": 34816,
+      "capacity_words": 2048,
+      "used_words": 1353
+    },
+    {
+      "name": "RAMLS2",
+      "origin_words": 36864,
+      "capacity_words": 2048,
+      "used_words": 0
+    },
+    {
+      "name": "RAMLS3",
+      "origin_words": 38912,
+      "capacity_words": 2048,
+      "used_words": 0
+    },
+    {
+      "name": "RAMLS4",
+      "origin_words": 40960,
+      "capacity_words": 2048,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC0",
+      "origin_words": 524288,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC1",
+      "origin_words": 528384,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC2",
+      "origin_words": 532480,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC3",
+      "origin_words": 536576,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC4",
+      "origin_words": 540672,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC5",
+      "origin_words": 544768,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC6",
+      "origin_words": 548864,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC7",
+      "origin_words": 552960,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC8",
+      "origin_words": 557056,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC9",
+      "origin_words": 561152,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC10",
+      "origin_words": 565248,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC11",
+      "origin_words": 569344,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC12",
+      "origin_words": 573440,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC13",
+      "origin_words": 577536,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC14",
+      "origin_words": 581632,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK0_SEC15",
+      "origin_words": 585728,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC0",
+      "origin_words": 589824,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC1",
+      "origin_words": 593920,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC2",
+      "origin_words": 598016,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC3",
+      "origin_words": 602112,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC4",
+      "origin_words": 606208,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC5",
+      "origin_words": 610304,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC6",
+      "origin_words": 614400,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC7",
+      "origin_words": 618496,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC8",
+      "origin_words": 622592,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC9",
+      "origin_words": 626688,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC10",
+      "origin_words": 630784,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC11",
+      "origin_words": 634880,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC12",
+      "origin_words": 638976,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC13",
+      "origin_words": 643072,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC14",
+      "origin_words": 647168,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "FLASH_BANK1_SEC15",
+      "origin_words": 651264,
+      "capacity_words": 4096,
+      "used_words": 0
+    },
+    {
+      "name": "RAMM1",
+      "origin_words": 1024,
+      "capacity_words": 1016,
+      "used_words": 768
+    },
+    {
+      "name": "RAMLS5",
+      "origin_words": 43008,
+      "capacity_words": 2048,
+      "used_words": 159
+    },
+    {
+      "name": "RAMLS6",
+      "origin_words": 45056,
+      "capacity_words": 2048,
+      "used_words": 0
+    },
+    {
+      "name": "RAMLS7",
+      "origin_words": 47104,
+      "capacity_words": 2048,
+      "used_words": 0
+    },
+    {
+      "name": "RAMGS0",
+      "origin_words": 49152,
+      "capacity_words": 8192,
+      "used_words": 0
+    },
+    {
+      "name": "RAMGS1",
+      "origin_words": 57344,
+      "capacity_words": 8192,
+      "used_words": 0
+    },
+    {
+      "name": "RAMGS2",
+      "origin_words": 65536,
+      "capacity_words": 8192,
+      "used_words": 0
+    },
+    {
+      "name": "RAMGS3",
+      "origin_words": 73728,
+      "capacity_words": 8184,
+      "used_words": 0
+    }
+  ],
+  "total_allocated_ram_words_including_stack": 4358,
+  "allocated_flash_words": 0,
+  "linked_double_helpers": [
+    "__c28xabi_addd",
+    "__c28xabi_mpyd",
+    "__c28xabi_divd"
+  ],
+  "timing_validation": "none; FPU32 target links software double helpers; no 20 us ISR claim"
+}
