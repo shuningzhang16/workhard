@@ -4,9 +4,9 @@
 
 | 项目 | 目录 | 当前阶段 |
 | --- | --- | --- |
-| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | PWM 保护及恢复通过；独立 C 控制模块与 Python 完成 26,004 点对照；保留 ngspice 独立验证 |
-| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Lite 启停/计数、Simple S2MM 主机流程通过；RTL 与通用综合网表重放一致 |
-| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | 功率 PI、正反向跟踪、饱和返回及五个固定参数点通过；保留 SPS/EPS/换流分析 |
+| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | 实际 C2000 目标编译链接；输出保持禁用；延迟/量化模型保留负压测量盲区；主机 C 26,004 点对照通过 |
+| P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Lite、Simple S2MM 启停和有界队列通过主机验证；完成 RTL/通用网表重放及消费等待测量 |
+| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS/EPS、功率 PI 和有限参数验证通过；局部死区换流与六个独立 ngspice 窗口完成对照 |
 
 系统框图与边界见 [系统说明](docs/SYSTEMS.md)，已有数据的可编辑波形图见 [图表与复现](figures/README.md)。
 
@@ -22,9 +22,11 @@
 
 P1/P4 的模型只需要 Python 标准库；P1 的 C 对照另需 GCC。P2 需要 Icarus Verilog 和 GCC；Windows 下使用 WSL Ubuntu-22.04 的 GCC。本机 Icarus 位于实验 `.tools/`，新机器需要自行具备这些依赖，脚本不自动安装。绘图另需 matplotlib。每次检查的日志和结果保存在带时间的 `.runs/` 目录，未加入 Git；出错时保留输出并继续其他独立检查，最终退出码反映是否有失败。已提交的阶段证据仍在各实验的 `results*`、`simulation/`、`host_c/results/` 和 `evidence/` 目录。
 
-最新统一运行的六项任务全部通过：Buck 10 项与 C 控制逻辑 26,004 点对照；RTL source/FIFO 六组及 AXI-Lite 接口；帧校验 16 项与 Simple S2MM 13 项；DAB 33 项。[完整日志与退出码](verification/2026-11-04-control/)。前一轮日志仍保留在 [早期验证记录](verification/2026-11-04/)。
+当前统一入口包含五项任务：P1 的 Python 测试与主机 C 对照，P2 的 RTL 与包含上游检查的队列入口，以及 P4 的自动发现测试。P1 当前 13 项测试及 26,004 点 C 对照通过；P2 队列 13 项、会话 9 项、接收 13 项和帧校验 16 项通过。各阶段完整日志见 [结果索引](docs/RESULTS.md)；[11 月 4 日的整合记录](verification/2026-11-04-control/) 只对应当时的代码和数量。
 
 通用综合需 Yosys，单独运行 `python scripts/check_synthesis.py` 和 `python scripts/check_synthesis.py --control`。GitHub P2 任务自动执行这两条命令。SPICE 对照、目标器件 Vivado 工程和主机 C 的验证边界在各实验说明中单独记录，当前仍没有完成板端测量。
+
+可运行环境仍有缺口：完整 Vivado/Vitis/BSP 尚未取得构建结果；[Simulink 构建脚本](docs/SIMULINK.md) 未在 MATLAB 中运行；LTspice 本机启动超时，准备的网表未取得结果。这些与上板验证分别记录，不能合称为“只差上板”。详见 [工具状态](verification/tooling/README.md)。
 
 ## 版本与来源
 
