@@ -1,0 +1,10 @@
+P1 commit 7249502 first push output:
+remote: fatal error in commit_refs
+! [remote rejected] main -> main (failure)
+error: failed to push some refs
+
+Subsequent ordinary push succeeded:
+eac008e..19e6f41 main -> main
+
+Verified git merge-base --is-ancestor 7249502 origin/main returned 0.
+The successful push includes the P1 and P4 commits; no force push or history rewrite. Root cause of the first server failure not established.

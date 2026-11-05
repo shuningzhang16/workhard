@@ -8,7 +8,9 @@
 
 2026-11-05 加入 P1 延迟/量化及 P2 队列后，运行 [42049358300](https://github.com/shuningzhang16/workhard/actions/runs/42049358300) 的三个任务均成功，对应 `81660b3`；此时 P4 是已提交的局部死区版本。[API、任务及产物记录](../verification/github-actions/42049358300.json) 与 [本机 P1/P2 定向整合日志](../verification/2026-11-05-integration/) 一并保存。
 
-本轮最终代码提交 `b45f667` 的运行 [42053855322](https://github.com/shuningzhang16/workhard/actions/runs/42053855322) 三项均成功；包含 P1 的 13 项 Python 测试及主机 C 对照、P2 队列和上游测试及两项综合重放、P4 的 47 项测试。[最终代码的 API、任务及产物记录](../verification/github-actions/42053855322.json)。本轮随后仅同步总览和学习说明，不把文档提交称作另一次模型运行。
+前一阶段代码提交 `b45f667` 的运行 [42053855322](https://github.com/shuningzhang16/workhard/actions/runs/42053855322) 三项均成功；包含 P1 的 13 项 Python 测试及主机 C 对照、P2 队列和上游测试及两项综合重放、P4 的 47 项测试。[最终代码的 API、任务及产物记录](../verification/github-actions/42053855322.json)。该阶段随后仅同步总览和学习说明，不把文档提交称作另一次模型运行。
+
+2026-11-06 统一入口扩为七项：新增 `host_c/run_closed_loop.py` 和 `run_fifo_latency.py`。前者在原生 Linux 使用当前 Python 解释器调用 GCC 共享库，在 Windows 使用 WSL Python；保留原 ASan 回放，不把 UBSan ctypes 扩大解释成 ASan。后者独立保存三时刻、峰值与各 epoch 守恒。当前 P4 共 55 项测试，本机七项完整通过。[实际整合日志](../verification/2026-11-06-integration/)
 
 实验目录、统一检查脚本或工作流发生改动时，推送到 main 和拉取请求会触发检查；也可以在 Actions 页面手动运行。纯根目录说明或图表更新不会触发这些任务。工作流没有添加分支合并要求。
 

@@ -26,8 +26,12 @@ def main():
         ("p1", "buck", p1 / "simulation", ["-m", "unittest", "discover", "-v"]),
         ("p1", "host_c", p1, ["host_c/run_validation.py", "--output",
                               f".runs/{run_id}/host_c"]),
+        ("p1", "closed_loop", p1, ["host_c/run_closed_loop.py", "--output",
+                                   f".runs/{run_id}/closed_loop"]),
         ("p2", "rtl", p2, ["scripts/run_sim.py", "--suite", "all", "--output",
                             f".runs/{run_id}/rtl"]),
+        ("p2", "fifo_latency", p2, ["scripts/run_fifo_latency.py", "--output",
+                                   f".runs/{run_id}/fifo_latency"]),
         # Queue runner includes session, AXI-Lite, frame and receiver checks.
         ("p2", "daq_queue", p2, ["scripts/run_daq_queue.py", "--output",
                                  f".runs/{run_id}/daq_queue"]),

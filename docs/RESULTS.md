@@ -31,6 +31,9 @@
 | DAB 局部死区换流 | 线性 Coss、二极管钳位，24 个工况共 192 次开通；6 个独立 ngspice 窗口最大节点差 1.190 mV、电流差 6.572 µA | [局部求解及 SPICE 对照](../experiments/p4-dab/DEADTIME.md) |
 | DAB 连续整周期 | 跨死区、接轨与周期边界保留状态；16 工况各 100 周期均收敛，44 项测试通过；原理想相移不再保证相同实际功率 | [连续模型及功率误差](../experiments/p4-dab/CONTINUOUS.md) |
 | DAB 实际接收功率与部分损耗 | 10 次尝试中 9 个匹配、1 个指定区间未匹配，误差≤8.15 µW；47 项测试及 9 份完整轨迹检查通过。13.5 W 时 EPS 的 RMS 略低，但典型部分损耗比 SPS 高约 0.0370 W | [匹配、分项预算和未建模项](../experiments/p4-dab/results_loss_budget/RESULTS.md) |
+| Buck 实际 C 闭环 | 原 C 核心每拍驱动 PWM 功率级，六场景共 36,006 拍与独立 Python 闭环一致；禁用 Python 控制更新的四周期试验证明真实 C 接管 | [闭环与量化清除边界](../experiments/p1-c2000-buck/host_c/CLOSED_LOOP.md) |
+| P2 进程 CPU 与 RTL 延迟 | 9 组主机 CPU/墙钟测量；6 组 FIFO 端口独立观测、986 周期及 570 字事件；固定背压下首次呈现至输出最大 6/13/41 时钟 | [主机测量](../experiments/p2-zcu104-daq/ps/daq_queue.md)、[RTL 测量](../experiments/p2-zcu104-daq/rtl/fifo_latency.md) |
+| DAB 连续物理闭环 | 固定载波、持久节点、重叠死区、同刻保护优先；55 项测试、16 固定角回归、6 份完整波形；换向 4.15 ms、饱和返回 3.70 ms，过流峰值约 1.655 A | [物理闭环及范围](../experiments/p4-dab/CONTINUOUS_CONTROL.md) |
 
 ## 可以复述的实际问题
 

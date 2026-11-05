@@ -1,4 +1,4 @@
-# 工具运行状态：2026-11-05
+# 工具运行状态：2026-11-06（含前阶段记录）
 
 | 工具 | 实际事实 | 当前边界 |
 | --- | --- | --- |
@@ -9,7 +9,9 @@
 | LTspice 24 | 官方 24.1.10 MSI 签名 Valid，独立解包 exit 0；EXE 24.1.10.4 | 独立 INI 版本查询与 Buck 均 45 秒超时；[命令和结果](ltspice24-startup.json) |
 | MATLAB/Simulink/PLECS/PSIM | 常见安装目录、卸载记录和 PATH 未发现可用运行时 | 不能报告这些工具已执行模型 |
 
-LTspice 两个版本均无 stdout/stderr，也未暴露可操作窗口；24 版理想 Buck 显式设置 Rser=0。尚不能确认根因是电路、配置权限或特定软件缺陷。没有修改遥测/隐私选项来绕过首次运行流程。
+LTspice 两个版本均无 stdout/stderr，也未暴露可操作窗口；24 版理想 Buck 显式设置 Rser=0。尚不能确认根因是配置、启动环境或特定软件缺陷。没有修改遥测/隐私选项来绕过首次运行流程。
+
+后续按 [ADI 当前官方命令说明](https://www.analog.com/en/technical-articles/ltspice-keyboard-shortcuts.html) 使用 `-b -run`，在全新隔离目录执行仅包含 1 V 电源、1 kΩ 电阻及 `.op` 的最小网表，30 秒仍超时，无 `.log/.raw`。这次测试排除了 Buck 瞬态计算规模这个解释，但没有确定启动根因。[实际参数与结果](ltspice26-command-check.json)。先前使用的 `-version` 不在该官方标志表中，其超时不能单独证明工具故障；上述已记录批处理电路结果才是实际未完成的运行。随后通过 Computer Use 调用已安装程序的 `launch_app` 也返回 `computer-use request timed out: launch_app`；没有获得可操作 LTspice 窗口，之后进程查询及近 10 分钟应用错误/挂起事件查询均未返回 LTspice 条目。这不证明系统没有故障，仅说明这些入口没有提供根因证据。
 
 下载来源：[ADI 当前版本](https://ltspice.analog.com/software/LTspice64.msi)、[ADI 24.1.10 官方归档](https://ltspice.analog.com/download/24.1.10/LTspice64.msi)。完整安装/诊断日志留在本地忽略目录；公开记录不含 INI、标识符、安装包或厂商程序。
 

@@ -1,0 +1,11 @@
+CWD E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq
+COMMAND ["E:\\python.exe", "-X", "utf8", "scripts/run_fifo_latency.py", "--output", ".runs/20261106-000206-664868/fifo_latency"]
+PASS depth1_b0: 126 accepted, 125 output, 1 reset-discarded, latency 1..1 clocks
+PASS depth1_b1: 47 accepted, 46 output, 1 reset-discarded, latency 1..6 clocks
+PASS depth3_b0: 128 accepted, 125 output, 3 reset-discarded, latency 1..1 clocks
+PASS depth3_b1: 51 accepted, 48 output, 3 reset-discarded, latency 1..8 clocks
+PASS depth16_b0: 141 accepted, 125 output, 16 reset-discarded, latency 1..1 clocks
+PASS depth16_b1: 77 accepted, 61 output, 16 reset-discarded, latency 1..41 clocks
+PASS 6 finite RTL measurements; full traces: E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq\.runs\20261106-000206-664868\fifo_latency
+
+EXIT_CODE 0

@@ -1,0 +1,5 @@
+CWD E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq
+COMMAND ["E:\\python.exe", "-X", "utf8", "scripts/run_daq_queue.py", "--output", ".runs/20261106-000206-664868/daq_queue"]
+PASS 13 queue cases; 9 host measurements; evidence: E:\UserData\Documents\ChatGPT\硬件\experiments\p2-zcu104-daq\.runs\20261106-000206-664868\daq_queue
+
+EXIT_CODE 0

@@ -1,0 +1,25 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\.runs\\ltspice-command-check\\resistor.net",
+    "-b",
+    "-run",
+    "-ini",
+    "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\.runs\\ltspice-command-check\\isolated.ini"
+  ],
+  "source": "https://www.analog.com/en/technical-articles/ltspice-keyboard-shortcuts.html",
+  "timeout_s": 30,
+  "elapsed_s": 30.561,
+  "exit_code": null,
+  "timed_out": true,
+  "outputs": {
+    ".log": {
+      "exists": false,
+      "bytes": 0
+    },
+    ".raw": {
+      "exists": false,
+      "bytes": 0
+    }
+  }
+}

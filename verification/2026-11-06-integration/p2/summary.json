@@ -1,0 +1,30 @@
+{
+  "kind": "offline Python, RTL simulation and host C checks",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "project": "p2",
+      "check": "rtl",
+      "exit_code": 0,
+      "seconds": 7.841,
+      "log": ".runs/20261106-000206-664868/p2_rtl.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261106-000206-664868/rtl"
+    },
+    {
+      "project": "p2",
+      "check": "fifo_latency",
+      "exit_code": 0,
+      "seconds": 3.808,
+      "log": ".runs/20261106-000206-664868/p2_fifo_latency.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261106-000206-664868/fifo_latency"
+    },
+    {
+      "project": "p2",
+      "check": "daq_queue",
+      "exit_code": 0,
+      "seconds": 35.974,
+      "log": ".runs/20261106-000206-664868/p2_daq_queue.log",
+      "artifacts": "experiments/p2-zcu104-daq/.runs/20261106-000206-664868/daq_queue"
+    }
+  ]
+}
