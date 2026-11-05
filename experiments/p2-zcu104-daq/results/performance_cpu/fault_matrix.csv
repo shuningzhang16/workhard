@@ -1,0 +1,14 @@
+case,queue,receiver,capacity,produced,consumed,pending,high_water,full_returns,submits,cpu_syncs,dma_buffer_owner,result
+capacity_1_wrap,DONE,DONE,1,12,12,0,1,12,12,13,CPU,PASS
+capacity_3_wrap,DONE,DONE,3,12,12,0,3,10,12,13,CPU,PASS
+capacity_8_wrap,DONE,DONE,8,12,12,0,8,5,12,13,CPU,PASS
+borrowed_slot_never_overwritten,DONE,DONE,3,5,5,0,3,3,5,6,CPU,PASS
+full_queue_stop_drains_without_loss,DONE,DONE,3,4,4,0,3,1,4,5,CPU,PASS
+dma_error_keeps_valid_prefix,RECEIVE_ERROR,DMA_ERROR,3,2,0,2,2,0,3,3,DEVICE,PASS
+timeout_keeps_valid_prefix,RECEIVE_ERROR,TIMEOUT,3,2,0,2,2,0,3,3,DEVICE,PASS
+short_packet_not_published,RECEIVE_ERROR,BAD_LENGTH,3,2,0,2,2,0,3,3,DEVICE,PASS
+over_length_report_not_published,RECEIVE_ERROR,BAD_LENGTH,3,2,0,2,2,0,3,3,DEVICE,PASS
+corrupt_packet_not_published,RECEIVE_ERROR,BAD_FRAME,3,2,0,2,2,0,3,4,CPU,PASS
+submit_error_not_published,RECEIVE_ERROR,SUBMIT_ERROR,3,2,0,2,2,0,3,3,DEVICE,PASS
+failed_restart_then_explicit_recovery,DONE,DONE,3,12,12,0,3,10,15,16,CPU,PASS
+stop_drain_limit_preserves_packet,STOP_LIMIT,OK,3,1,1,0,1,0,1,2,CPU,PASS

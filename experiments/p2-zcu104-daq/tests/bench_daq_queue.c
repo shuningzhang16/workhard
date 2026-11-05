@@ -7,13 +7,14 @@
 #include <string.h>
 #include <time.h>
 
-enum { ROUNDS = 20 };
-static uint64_t now_ns(void)
+enum { WAIT_ROUNDS = 20, ZERO_WAIT_ROUNDS = 100000 };
+static uint64_t clock_ns(clockid_t clock)
 {
     struct timespec value;
-    assert(clock_gettime(CLOCK_MONOTONIC, &value) == 0);
+    assert(clock_gettime(clock, &value) == 0);
     return (uint64_t)value.tv_sec * UINT64_C(1000000000) + (uint64_t)value.tv_nsec;
 }
+static uint64_t now_ns(void) { return clock_ns(CLOCK_MONOTONIC); }
 static void wait_until(uint64_t deadline)
 {
     uint64_t now = now_ns();
@@ -31,15 +32,18 @@ int main(int argc, char **argv)
     FILE *trace = fopen(argv[2], "w");
     if (!trace) return 2;
     fputs("capacity,consumer_hold_us,first_epoch_frame,enqueue_ns_from_case_start,release_latency_ns,occupancy_on_publish\n", trace);
-    puts("scope,capacity,consumer_hold_us,rtl_replay_epochs,frames,valid_bytes,elapsed_ns,host_frames_per_s,host_valid_bytes_per_s,mean_queue_latency_us,max_queue_latency_us,high_water,full_returns,result");
+    puts("scope,capacity,consumer_hold_us,rtl_replay_epochs,frames,valid_bytes,elapsed_ns,process_cpu_ns,process_cpu_pct,host_frames_per_s,host_valid_bytes_per_s,mean_queue_latency_us,max_queue_latency_us,high_water,full_returns,result");
     const unsigned capacities[] = {1, 3, 8};
     const unsigned delays[] = {0, 200, 1000};
     for (unsigned ci = 0; ci < 3; ++ci) for (unsigned di = 0; di < 3; ++di) {
         uint64_t latency_sum = 0, latency_max = 0, full_returns = 0;
         uint64_t trace_time[12] = {0}, trace_latency[12] = {0};
         unsigned trace_occupancy[12] = {0}, high_water = 0;
+        const unsigned rounds = delays[di] == 0 ? ZERO_WAIT_ROUNDS : WAIT_ROUNDS;
+        // CPU interval is nested inside the wall interval; both exclude CSV I/O.
         uint64_t begin = now_ns();
-        for (unsigned round = 0; round < ROUNDS; ++round) {
+        uint64_t cpu_begin = clock_ns(CLOCK_PROCESS_CPUTIME_ID);
+        for (unsigned round = 0; round < rounds; ++round) {
             queue_host host;
             daq_session session;
             daq_queue queue;
@@ -86,13 +90,15 @@ int main(int argc, char **argv)
             full_returns += queue.full_returns;
             if (queue.high_water > high_water) high_water = queue.high_water;
         }
+        uint64_t cpu_elapsed = clock_ns(CLOCK_PROCESS_CPUTIME_ID) - cpu_begin;
         uint64_t elapsed = now_ns() - begin;
-        const uint64_t frames = ROUNDS * QH_FRAMES;
+        const uint64_t frames = (uint64_t)rounds * QH_FRAMES;
         const uint64_t bytes = frames * S2MM_PACKET_BYTES;
         assert(elapsed != 0 && high_water <= capacities[ci]);
         printf("host_callbacks,%u,%u,%u,%" PRIu64 ",%" PRIu64 ",%" PRIu64
-               ",%.3f,%.3f,%.3f,%.3f,%u,%" PRIu64 ",PASS\n",
-               capacities[ci], delays[di], ROUNDS, frames, bytes, elapsed,
+               ",%" PRIu64 ",%.3f,%.3f,%.3f,%.3f,%.3f,%u,%" PRIu64 ",PASS\n",
+               capacities[ci], delays[di], rounds, frames, bytes, elapsed, cpu_elapsed,
+               (double)cpu_elapsed * 100.0 / (double)elapsed,
                (double)frames * 1e9 / (double)elapsed, (double)bytes * 1e9 / (double)elapsed,
                (double)latency_sum / (double)frames / 1000.0, (double)latency_max / 1000.0,
                high_water, full_returns);
@@ -103,6 +109,6 @@ int main(int argc, char **argv)
                     trace_time[i], trace_latency[i], trace_occupancy[i]);
     }
     fclose(trace);
-    fputs("PASS 9 host callback measurements, 20 RTL replay epochs each; not board throughput or CPU utilization\n", stderr);
+    fputs("PASS 9 host callback measurements; 100000 epochs at zero wait, 20 otherwise; process CPU time measured, not board throughput or system CPU load\n", stderr);
     return 0;
 }

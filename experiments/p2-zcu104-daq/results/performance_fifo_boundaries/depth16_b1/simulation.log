@@ -1,0 +1,5 @@
+COMMAND ["E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\.tools\\ucrt64\\bin\\vvp.exe", "build/fifo_latency_depth16_b1.vvp", "+OUTDIR=results/performance_fifo_boundaries/depth16_b1"]
+PASS depth=16 backpressure=1 in=77 out=61 reset_discard=16 pending=0 peak=16 latency=1..41 clocks
+tb/tb_fifo_latency.sv:188: $finish called at 1830000 (1ps)
+
+EXIT_CODE 0

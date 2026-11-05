@@ -1,0 +1,3 @@
+epoch,end_reason,end_cycle,accepted,output,reset_discarded,pending,peak,source_stall_cycles,unaccepted_offer_reset_aborts
+0,reset,78,23,22,1,0,1,49,1
+1,drained,153,24,24,0,0,1,40,0

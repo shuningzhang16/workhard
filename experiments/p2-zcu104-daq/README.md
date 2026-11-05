@@ -6,13 +6,15 @@
 
 新增 [daq_queue](ps/daq_queue.md)：固定 DMA 工作缓冲区，每包同步和校验成功后复制进容量 1～8 包的 CPU 环形队列。满队列不再提交 DMA，消费者未释放的槽不被覆盖；STOP 排空包同样逐包入队。故障保留有效前缀，队列清空后才允许显式重启，原接收错误和所有权判据保留。
 
-实际完成 **13/13** 新队列故障/顺序测试，严格编译及 ASan/UBSan 通过；上游 session **9/9**、接收 **13/13**、校验 **16/16** 与 RTL 回归也通过。完成容量 1/3/8 × 消费等待 0/200/1000 µs 的 **9/9** 组主机测量，记录有效字节、交付帧率、队列延迟及高水位；不是板端吞吐或 CPU 使用率。
+实际完成 **13/13** 新队列故障/顺序测试，严格编译及 ASan/UBSan 通过；上游 session **9/9**、接收 **13/13**、校验 **16/16** 与 RTL 回归也通过。当前容量 1/3/8 × 消费等待 0/200/1000 µs 的 **9/9** 组主机测量补齐进程 CPU 时间和单核等效 CPU/墙钟占比；零等待组实际重放 10 万个周期，窗口约 0.43～0.45 秒。本轮复用旧 RTL payload，重跑 13 项队列测试通过，未重复上游测试；结果不是板端吞吐或全机 CPU 使用率。零等待 CPU 原始比值略高于 100%，保留了独立时钟核查及解释限制。
 
-- [功能结果汇总](results/daq_queue/summary.json)、[故障矩阵](results/daq_queue/fault_matrix.csv)、[修复后主机测量 CSV](results/queue_timing_fixed/host_measurements.csv)、[9 组复测汇总](results/queue_timing_fixed/summary.json)。
+- [当前结果汇总](results/performance_cpu/summary.json)、[13 项故障矩阵](results/performance_cpu/fault_matrix.csv)、[含 CPU 的主机测量 CSV](results/performance_cpu/host_measurements.csv)。
 - [所有权、满队列策略、测量定义和教学数据流](ps/daq_queue.md)。
 - 统一入口：`python scripts/run_daq_queue.py --output results/daq_queue_recheck`；默认包含原 session 入口，无需再重复调用。
 
-首次检查发现延迟终点取在内容核对和释放之前，已修正为成功 `dq_release` 后采时；隔离副本严格编译及 **9/9** 组定向复测通过，当前测量表见 [队列说明](ps/daq_queue.md)。此次复用已有 RTL 捕获，未重采、未重跑 13 项功能测试；[修复前源码](results/queue_timing_before/bench_daq_queue.c)、[修复前测量](results/queue_timing_before/host_measurements.csv) 与原 `results/daq_queue` 证据均保留。
+首次检查发现延迟终点取在内容核对和释放之前，已修正为成功 `dq_release` 后采时；当时隔离副本严格编译及 **9/9** 组定向复测通过。[修复前源码](results/queue_timing_before/bench_daq_queue.c)、[修复前测量](results/queue_timing_before/host_measurements.csv)、[仅修正计时后的测量](results/queue_timing_fixed/host_measurements.csv) 与原 `results/daq_queue` 的 13 项功能测试证据均保留。
+
+新增 **6/6** 组 [固定背压 RTL 测量](rtl/fifo_latency.md)：深度 1/3/16，连续接收及固定 3/8 接收；公开端口记录首次呈现、入口握手、出口握手，独立队列统计峰值，每 epoch 单列接受/输出/复位丢弃/待输出。固定背压的首次呈现至输出最大延迟为 **6/13/41 时钟**，6 组最终待输出均为 0。[结果 CSV](results/performance_fifo_boundaries/measurements.csv) 及所有周期、每字去向已保存。源被背压暂停不等于不可停顿 ADC 丢样；未改可综合 RTL。复现：`python scripts/run_fifo_latency.py --output results/fifo_latency_recheck`。
 
 ## 第七小步第一阶段：工程连接与 PS 启停流程
 

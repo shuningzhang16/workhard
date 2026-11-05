@@ -1,0 +1,7 @@
+result,depth,backpressure,clock_period_ns,cycles,accepted,output,reset_discarded,pending,peak,source_stall_cycles,latency_samples,latency_sum_cycles,latency_min_cycles,latency_max_cycles,mean_latency_cycles,trace_rows,beat_event_rows
+PASS,1,0,10,153,126,125,1,0,1,9,125,125,1,1,1.0,153,126
+PASS,1,1,10,153,47,46,1,0,1,89,46,121,1,6,2.630434782608696,153,47
+PASS,3,0,10,157,128,125,3,0,3,9,125,125,1,1,1.0,157,128
+PASS,3,1,10,157,51,48,3,0,3,87,48,353,1,8,7.354166666666667,157,51
+PASS,16,0,10,183,141,125,16,0,16,9,125,125,1,1,1.0,183,141
+PASS,16,1,10,183,77,61,16,0,16,74,61,1406,1,41,23.049180327868854,183,77

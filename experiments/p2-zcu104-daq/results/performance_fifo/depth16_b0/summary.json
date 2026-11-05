@@ -1,0 +1,1 @@
+{"result":"PASS","depth":16,"backpressure":0,"clock_period_ns":10,"cycles":183,"accepted":141,"output":125,"reset_discarded":16,"pending":0,"peak":16,"source_stall_cycles":9,"latency_samples":125,"latency_sum_cycles":125,"latency_min_cycles":1,"latency_max_cycles":1}

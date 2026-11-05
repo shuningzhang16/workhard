@@ -1,0 +1,10 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p2-zcu104-daq", "--exec", "./.runs/performance_clock_review/clock_probe"]
+monotonic_reported_resolution_ns=1
+process_reported_resolution_ns=1
+mode,wall_ns,process_ns,thread_ns,rusage_us,process_pct
+busy,100012848,99829515,99825898,99819,99.817
+busy,100009661,100007994,100004908,99999,99.998
+busy,100008669,100007283,100004507,99999,99.999
+sleep,100172380,49905,46919,40,0.050
+
+EXIT_CODE 0

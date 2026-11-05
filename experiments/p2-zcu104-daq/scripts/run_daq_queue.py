@@ -72,16 +72,24 @@ def main():
                output / "benchmark_compile.log", env)
     measurements = csv_run(prefix + ["./build/bench_daq_queue", capture_arg, relative + "/first_epoch_latency.csv"],
                            output / "host_measurements.csv", output / "benchmark.log", env)
-    if len(measurements) != 9 or any(row["result"] != "PASS" or int(row["valid_bytes"]) != 6720
-                                    or int(row["frames"]) != 240 for row in measurements):
+    if len(measurements) != 9 or any(
+            row["result"] != "PASS"
+            or int(row["rtl_replay_epochs"]) != (100000 if int(row["consumer_hold_us"]) == 0 else 20)
+            or int(row["frames"]) != int(row["rtl_replay_epochs"]) * 12
+            or int(row["valid_bytes"]) != int(row["frames"]) * 28
+            or int(row["process_cpu_ns"]) <= 0 for row in measurements):
         raise RuntimeError("Host measurement matrix failed or incomplete")
     summary = {"scope": "bounded CPU queue with one DMA work buffer; host callbacks only",
                "capture": capture_arg, "provenance": provenance,
                "cases": len(cases), "passed": len(cases), "sanitizers": ["address", "undefined"],
                "host_measurement_cases": len(measurements), "capacities": [1, 3, 8],
-               "consumer_hold_us_requested": [0, 200, 1000], "rtl_replay_epochs_per_measurement": 20,
+               "consumer_hold_us_requested": [0, 200, 1000],
+               "rtl_replay_epochs": {"zero_wait": 100000, "with_wait": 20},
                "measurement_clock": "CLOCK_MONOTONIC", "measurement_build": "gcc -O2, without sanitizers",
-               "hardware_dma_executed": False, "cpu_utilization_measured": False}
+               "process_cpu_clock": "CLOCK_PROCESS_CPUTIME_ID",
+               "process_cpu_pct_definition": "100 * process_cpu_ns / elapsed_ns; not system CPU load",
+               "hardware_dma_executed": False, "process_cpu_time_measured": True,
+               "system_cpu_load_measured": False}
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(f"PASS {len(cases)} queue cases; {len(measurements)} host measurements; evidence: {output}")
 
