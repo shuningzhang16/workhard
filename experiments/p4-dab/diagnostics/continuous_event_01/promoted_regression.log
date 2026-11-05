@@ -1,0 +1,7 @@
+test_clamp_before_current_reversal_on_both_rails (test_dab_continuous.TestContinuous.test_clamp_before_current_reversal_on_both_rails) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.140s
+
+OK
+Exit code: 0

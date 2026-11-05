@@ -1,0 +1,27 @@
+test_clamp_before_current_reversal_on_both_rails (__main__.TestContinuous.test_clamp_before_current_reversal_on_both_rails) ... 
+  test_clamp_before_current_reversal_on_both_rails (__main__.TestContinuous.test_clamp_before_current_reversal_on_both_rails) (incoming_high=1) ... FAIL
+  test_clamp_before_current_reversal_on_both_rails (__main__.TestContinuous.test_clamp_before_current_reversal_on_both_rails) (incoming_high=0) ... FAIL
+
+======================================================================
+FAIL: test_clamp_before_current_reversal_on_both_rails (__main__.TestContinuous.test_clamp_before_current_reversal_on_both_rails) (incoming_high=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\experiments\p4-dab\diagnostics\continuous_event_01\original\regression_test_after_review.py", line 95, in test_clamp_before_current_reversal_on_both_rails
+    self.assertGreaterEqual(min(voltages), -0.8-1e-8)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -1.213017235664346 not greater than or equal to -0.8000000100000001
+
+======================================================================
+FAIL: test_clamp_before_current_reversal_on_both_rails (__main__.TestContinuous.test_clamp_before_current_reversal_on_both_rails) (incoming_high=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\experiments\p4-dab\diagnostics\continuous_event_01\original\regression_test_after_review.py", line 96, in test_clamp_before_current_reversal_on_both_rails
+    self.assertLessEqual(max(voltages), 24.8+1e-8)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 25.213017235664346 not less than or equal to 24.80000001
+
+----------------------------------------------------------------------
+Ran 1 test in 0.090s
+
+FAILED (failures=2)
+Exit code: 1

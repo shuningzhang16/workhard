@@ -1,0 +1,13 @@
+{
+  "kind": "offline Python, RTL simulation and host C checks",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "project": "p4",
+      "check": "dab",
+      "exit_code": 0,
+      "seconds": 7.224,
+      "log": ".runs/20261105-225949-091778/p4_dab.log"
+    }
+  ]
+}

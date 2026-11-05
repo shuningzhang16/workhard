@@ -1,0 +1,9 @@
+case,deadtime_s,source_target_w,sps_actual_p2_w,eps_actual_p2_w,eps_minus_sps_power_w,interpretation
+m0.75_load0.1_forward,1.5e-07,2.699999999996491,3.291585701631283,2.456760493109613,-0.8348252085216696,not rematched; do not treat loss comparison as equal actual power
+m0.75_load0.1_forward,5e-07,2.699999999996491,4.854947421584093,2.1462597716950853,-2.708687649889008,not rematched; do not treat loss comparison as equal actual power
+m0.75_load0.1_reverse,1.5e-07,-2.699999999996491,-2.1061523101645174,-2.9271147598617837,-0.8209624496972663,not rematched; do not treat loss comparison as equal actual power
+m0.75_load0.1_reverse,5e-07,-2.699999999996491,-0.5295544211092578,-3.2700190756878618,-2.740464654578604,not rematched; do not treat loss comparison as equal actual power
+m0.75_load0.5_forward,1.5e-07,13.500000000012802,13.711363443205983,13.307198694246932,-0.40416474895905097,not rematched; do not treat loss comparison as equal actual power
+m0.75_load0.5_forward,5e-07,13.500000000012802,13.636525131620791,12.654623578932686,-0.9819015526881056,not rematched; do not treat loss comparison as equal actual power
+m1_load0.1_forward,1.5e-07,3.5999999999953203,3.4166699875790556,3.4166699875790556,0.0,not rematched; do not treat loss comparison as equal actual power
+m1_load0.1_forward,5e-07,3.5999999999953203,2.723315967193596,2.723315967193596,0.0,not rematched; do not treat loss comparison as equal actual power

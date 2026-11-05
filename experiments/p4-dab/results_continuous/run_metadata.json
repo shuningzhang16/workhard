@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-05T14:51:54.537671+00:00",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    ".\\diagnostics\\continuous_event_01\\work\\run_continuous.py",
+    "--source",
+    ".\\results_eps\\comparisons.csv",
+    "--output",
+    ".\\diagnostics\\continuous_event_01\\after\\results_continuous"
+  ],
+  "period_count": 100,
+  "initial_current_a": 0,
+  "resistance_ohm": 0.5,
+  "device": {
+    "coss_f": 2.7666666666666666e-09,
+    "diode_drop_v": 0.8
+  },
+  "deadtime_s": [
+    1.5e-07,
+    5e-07
+  ],
+  "time_origin": "first scheduled turn-off edge of each fixed modulation pattern",
+  "advancement": "exact RL active intervals; damped LC modes with diode events, <=pi/4 resonant angle per step",
+  "turnon": "continuous iL; instantaneous rail connection with source charge and full pair-capacitor redistribution loss",
+  "target_matching": "source ideal phases retained; actual target and SPS/EPS mismatch reported, not rematched",
+  "scope": "open-loop physical simulation; existing sampled-protection and PI simulations remain separate",
+  "hardware_operations": false
+}

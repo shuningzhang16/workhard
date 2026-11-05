@@ -6,3 +6,8 @@ deadtime_label_01/original/
 deadtime_label_01/work/
 deadtime_label_01/validated/
 deadtime_label_01/before_output_validation/
+continuous_event_01/original/
+continuous_event_01/work/
+continuous_event_01/before/
+continuous_event_01/after/
+continuous_event_01/deferred/
