@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | 实际 C2000 目标编译链接；输出保持禁用；延迟/量化模型保留负压测量盲区；主机 C 26,004 点对照通过 |
 | P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Lite、Simple S2MM 启停和有界队列通过主机验证；完成 RTL/通用网表重放及消费等待测量 |
-| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | SPS/EPS、功率 PI 和有限参数验证通过；局部死区换流与六个独立 ngspice 窗口完成对照 |
+| P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | 连续整周期、实际接收端同功率比较及部分损耗预算完成；47 项测试通过，保留未匹配点和 EPS 损耗较高的反例 |
 
 系统框图与边界见 [系统说明](docs/SYSTEMS.md)，已有数据的可编辑波形图见 [图表与复现](figures/README.md)。
 
@@ -14,7 +14,7 @@
 
 学习顺序、关键代码路径、练习、面试问答和项目讲解稿见 [学习与讲解指南](docs/LEARNING.md)。
 
-上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。首次三个实验任务均已通过，触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
+上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。本轮最终代码提交 `b45f667` 的 [三个实验任务均成功](https://github.com/shuningzhang16/workhard/actions/runs/42053855322)；随后仅同步文档。触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
 
 ## 一次复跑离线检查
 

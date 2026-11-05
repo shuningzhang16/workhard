@@ -8,6 +8,8 @@
 
 2026-11-05 加入 P1 延迟/量化及 P2 队列后，运行 [42049358300](https://github.com/shuningzhang16/workhard/actions/runs/42049358300) 的三个任务均成功，对应 `81660b3`；此时 P4 是已提交的局部死区版本。[API、任务及产物记录](../verification/github-actions/42049358300.json) 与 [本机 P1/P2 定向整合日志](../verification/2026-11-05-integration/) 一并保存。
 
+本轮最终代码提交 `b45f667` 的运行 [42053855322](https://github.com/shuningzhang16/workhard/actions/runs/42053855322) 三项均成功；包含 P1 的 13 项 Python 测试及主机 C 对照、P2 队列和上游测试及两项综合重放、P4 的 47 项测试。[最终代码的 API、任务及产物记录](../verification/github-actions/42053855322.json)。本轮随后仅同步总览和学习说明，不把文档提交称作另一次模型运行。
+
 实验目录、统一检查脚本或工作流发生改动时，推送到 main 和拉取请求会触发检查；也可以在 Actions 页面手动运行。纯根目录说明或图表更新不会触发这些任务。工作流没有添加分支合并要求。
 
 每个任务保留退出码、完整测试日志；P2 另保留真实 RTL 轨迹、编译日志和 C 故障矩阵。失败时也执行结果上传，统一脚本会在控制台打印最后 30 行错误日志。运行页面下的 `offline-p1-*`、`offline-p2-*`、`offline-p4-*` artifacts 保存 14 天；长期阶段证据仍随各实验代码提交到 Git。
