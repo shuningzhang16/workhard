@@ -124,4 +124,4 @@ E1 − E2 = ER + Ediode + Eturnon + Δ(EL + EC)
 | `results_continuous/summary.csv`、`actual_power_mismatch.csv` | 尾段指标、目标误差与实际策略间功率差 |
 | `results_continuous/csv_checks.csv`、`tests.log`、`run_metadata.json` | 实际物理检查、测试日志与配置 |
 
-本阶段可独立提交；实际功率匹配与完整有限损耗预算留待下一阶段。
+本阶段为固定理想来源角度的连续物理实验。后续已完成 [实际接收功率匹配与部分器件损耗预算](LOSS_BUDGET.md)；其中新增沟道/栅驱仍是后处理，不是完整器件模型。

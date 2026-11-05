@@ -1,0 +1,6 @@
+case,deadtime_s,target_received_w,receiver,sps_status,eps_status,receiver_power_difference_eps_minus_sps_w,typical_partial_loss_difference_eps_minus_sps_w
+m0.75_load0.1_forward,1.5e-07,2.7,side_2,matched,matched,1.6716983894937698e-06,-0.04011121929036848
+m0.75_load0.1_forward,5e-07,2.7,side_2,no_match_in_selected_interval,matched,,
+m0.75_load0.1_reverse,1.5e-07,2.7,side_1,matched,matched,-2.350707372755778e-06,-0.04471762836305382
+m0.75_load0.5_forward,1.5e-07,13.5,side_2,matched,matched,-8.693530961778606e-06,0.03697312953535403
+m1_load0.1_forward,1.5e-07,3.6,side_2,matched,matched,0.0,0.0

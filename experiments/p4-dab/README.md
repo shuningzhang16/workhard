@@ -14,7 +14,9 @@
 
 第七步加入局部死区换流：共享电感、8 个线性电荷等效电容及二极管钳位，以开通前节点电压判定。24 组、192 个待开通器件、38 项测试及 6 个实际 ngspice 独立电路对照通过，保留无法完成的换流。器件假设、初学者解释和局限见 [DEADTIME.md](DEADTIME.md)。
 
-第八步已串联连续整周期 RLC 换流与解析非死区 RL，开通瞬间保持电感电流，并单独记录母线电荷和双电容重分配能量。一次真实的越轨回返事件漏检已留证、隔离修复并补上下轨回归；16 个固定角度工况各运行 100 周期，44 项测试与全程波形回读通过。实际功率误差完整保留，尚未重新匹配功率或加入完整器件损耗预算。详见 [CONTINUOUS.md](CONTINUOUS.md)。
+第八步已串联连续整周期 RLC 换流与解析非死区 RL，开通瞬间保持电感电流，并单独记录母线电荷和双电容重分配能量。一次真实的越轨回返事件漏检已留证、隔离修复并补上下轨回归；16 个固定角度工况各运行 100 周期，44 项测试与全程波形回读通过。实际功率误差完整保留，该阶段尚未重新匹配功率。详见 [CONTINUOUS.md](CONTINUOUS.md)。
+
+第九步按实际接收端匹配功率：正向 P2、反向 −P1；10 次尝试中 9 个匹配，1 个指定区间未匹配，47 项测试及 9 份完整波形回读通过。新增逐管沟道及栅驱的部分损耗后处理，保留 13.5 W 时 EPS 的 RMS 略低但损耗更高的反例；未将后处理反馈到物理波形，也不宣称完整效率。详见 [LOSS_BUDGET.md](LOSS_BUDGET.md)。
 
 Toshiba RD264 的正式名称为 **Full SiC MOSFET 10kW Isolated Bidirectional DC-DC Converter**，采用双有源桥（DAB）拓扑。[官方入口](https://toshiba.semicon-storage.com/us/semiconductor/design-development/referencedesign/detail.RD264.html)
 

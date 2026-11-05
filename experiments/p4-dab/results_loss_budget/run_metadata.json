@@ -1,0 +1,228 @@
+{
+  "started_at_utc": "2026-11-05T15:08:55.056517+00:00",
+  "python_version": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "command_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    ".\\run_loss_budget.py"
+  ],
+  "matching_tolerance_w": 1e-05,
+  "max_bisections": 24,
+  "periods_per_evaluation": 100,
+  "initial_current_a": 0,
+  "receiver_definition": "forward=P2, reverse=-P1; positive target at receiver in both directions",
+  "plant_unchanged": true,
+  "external_series_resistance_ohm": 0.5,
+  "resistance_role": "external series resistance excludes the separately postprocessed MOSFET channel resistance",
+  "postprocessing": "MOSFET channel/gate losses do not alter matched plant power or trajectory",
+  "device_source": "https://www.ti.com/lit/ds/symlink/csd18540q5b.pdf",
+  "device_source_location": "SLPS488B, April 2017, page 3",
+  "formula_source": "https://www.ti.com/lit/an/slpa009a/slpa009a.pdf",
+  "formula_location": "SLPA009A sections 2 and 3.2, equations 1/2 and 31",
+  "assumed_junction_temperature_c": 25,
+  "self_heating_modeled": false,
+  "gate_supply": "independent ideal 10 V driver supply; only Qg charging energy budgeted",
+  "excluded_losses": [
+    "turn-on/off channel overlap",
+    "reverse recovery",
+    "nonlinear output-capacitance losses",
+    "magnetic core and AC winding loss",
+    "driver quiescent and supply-conversion loss",
+    "parasitics and temperature feedback"
+  ],
+  "hardware_operations": false,
+  "cases": [
+    {
+      "case": "m0.75_load0.1_forward",
+      "method": "SPS",
+      "alpha_deg": 0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 2.7,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        1.18,
+        20.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.1_forward",
+      "method": "SPS",
+      "alpha_deg": 0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 2.7,
+      "deadtime_s": 5e-07,
+      "phase_bounds_deg": [
+        3.6999999999999997,
+        20.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.1_forward",
+      "method": "EPS",
+      "alpha_deg": 75.0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 2.7,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        1.0,
+        20.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.1_forward",
+      "method": "EPS",
+      "alpha_deg": 75.0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 2.7,
+      "deadtime_s": 5e-07,
+      "phase_bounds_deg": [
+        1.0,
+        20.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.1_reverse",
+      "method": "SPS",
+      "alpha_deg": 0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": -1,
+      "target_received_w": 2.7,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        -20.0,
+        -1.18
+      ]
+    },
+    {
+      "case": "m0.75_load0.1_reverse",
+      "method": "EPS",
+      "alpha_deg": 75.0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": -1,
+      "target_received_w": 2.7,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        -20.0,
+        -1.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.5_forward",
+      "method": "SPS",
+      "alpha_deg": 0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 13.5,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        10.0,
+        45.0
+      ]
+    },
+    {
+      "case": "m0.75_load0.5_forward",
+      "method": "EPS",
+      "alpha_deg": 45.0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 9.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 13.5,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        27.0,
+        40.0
+      ]
+    },
+    {
+      "case": "m1_load0.1_forward",
+      "method": "SPS",
+      "alpha_deg": 0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 12.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 3.6,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        1.18,
+        20.0
+      ]
+    },
+    {
+      "case": "m1_load0.1_forward",
+      "method": "EPS",
+      "alpha_deg": 0.0,
+      "parameters": {
+        "v1_v": 24.0,
+        "v2_v": 12.0,
+        "turns_ratio": 2.0,
+        "frequency_hz": 20000.0,
+        "inductance_h": 0.0001
+      },
+      "direction": 1,
+      "target_received_w": 3.6,
+      "deadtime_s": 1.5e-07,
+      "phase_bounds_deg": [
+        1.18,
+        20.0
+      ]
+    }
+  ]
+}
