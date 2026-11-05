@@ -42,3 +42,11 @@
 ![PWM 保护与恢复](output/p1_pwm_protection.png)
 
 ![DAB 功率闭环与饱和返回](output/p4_power_loop.png)
+
+## 有限死区的直观例子
+
+运行 `python figures/plot_deadtime.py` 生成 `p4_local_deadtime`（183×90 mm）。图回答：有利电流方向是否足以在指定死区内完成换流？读取 P4 局部 EPS 案例的全部 500 个解析区间，显示 501 个端点，纵轴为原边 1a 待开通上管的 VDS=24−节点电压，横轴由秒换算为 ns。150 ns 标记直接来自短窗口末态，500 ns 标记来自长窗口末态；不平滑、不拟合、不生成新实验数据。
+
+150 ns 时仍剩约 17.05 V；500 ns 时跨过零电压轨到约 −0.39 V，尚未到 −0.8 V 二极管钳位。这个例子采用理想周期边沿初态与线性电荷等效电容，只说明局部时间预算，不能代表完整系统 ZVS 区域或效率。完整 24 组结果和未完成换流点见 [局部换流说明](../experiments/p4-dab/DEADTIME.md)。
+
+![局部换流剩余电压](output/p4_local_deadtime.png)

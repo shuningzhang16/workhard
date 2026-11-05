@@ -1,0 +1,49 @@
+[
+  {
+    "label": "version",
+    "command": [
+      "E:\\UserData\\Documents\\ChatGPT\\硬件\\.tools\\ltspice24\\LTspice.exe",
+      "-ini",
+      "E:\\UserData\\Documents\\ChatGPT\\硬件\\.runs\\ltspice24\\isolated.ini",
+      "-version"
+    ],
+    "timeout_seconds": 45,
+    "returncode": null,
+    "timed_out": true,
+    "elapsed_seconds": 45.507,
+    "outputs": {
+      ".log": {
+        "exists": false,
+        "bytes": 0
+      },
+      ".raw": {
+        "exists": false,
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "label": "buck_fixed",
+    "command": [
+      "E:\\UserData\\Documents\\ChatGPT\\硬件\\.tools\\ltspice24\\LTspice.exe",
+      "-ini",
+      "E:\\UserData\\Documents\\ChatGPT\\硬件\\.runs\\ltspice24\\isolated.ini",
+      "-b",
+      "E:\\UserData\\Documents\\ChatGPT\\硬件\\.runs\\ltspice24\\buck_fixed.cir"
+    ],
+    "timeout_seconds": 45,
+    "returncode": null,
+    "timed_out": true,
+    "elapsed_seconds": 45.056,
+    "outputs": {
+      ".log": {
+        "exists": false,
+        "bytes": 0
+      },
+      ".raw": {
+        "exists": false,
+        "bytes": 0
+      }
+    }
+  }
+]
