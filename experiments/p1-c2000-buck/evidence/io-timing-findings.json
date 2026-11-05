@@ -1,0 +1,24 @@
+{
+  "kind": "observed limitations of the stated delay/quantization simulation; not hardware results",
+  "original_sample_based_response_checks": "all startup/load-step checks passed without changes",
+  "cycle_node_peak": {
+    "fine_peak_v": 2.200345972836978,
+    "fine_overshoot_percent": 10.017298641848903,
+    "meaning": "sampled overshoot is below 10%, while an integration node exceeds it; no new acceptance criterion substituted"
+  },
+  "negative_voltage_clear_blind_spot": {
+    "time_s": 0.051460000000000006,
+    "true_output_v": -1.9066087201523485,
+    "true_current_a": 0.005453257657086389,
+    "measured_output_v": 0.0,
+    "measured_current_a": 0.0,
+    "stored_energy_j": 0.0008542651219459276,
+    "clear_result_if_requested": "accepted",
+    "applied_to_main_trajectory": false
+  },
+  "unsafe_clear_candidate_samples": 42,
+  "main_trajectory": "keeps latch until the explicit 80 ms clear; counterfactual clear is never applied",
+  "physical_evidence": "simulation/io_timing_results/overvoltage_delayed_quantized_control_samples.csv",
+  "refinement_evidence": "evidence/io-timing-refinement/summary.json",
+  "changes_to_existing_controller_parameters_or_limits": false
+}

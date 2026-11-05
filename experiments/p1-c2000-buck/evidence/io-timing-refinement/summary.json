@@ -1,0 +1,20 @@
+{
+  "coarse_max_step_s": 5e-07,
+  "fine_max_step_s": 2.5e-07,
+  "control_period_s": 2e-05,
+  "max_abs_sample_output_difference_v": 5.573319583618286e-14,
+  "max_abs_sample_current_difference_a": 5.42343947529389e-14,
+  "changed_pwm_count_samples": 0,
+  "changed_state_samples": 0,
+  "fine_sample_metrics": {
+    "case": "load_step",
+    "steady_state_error_v": 0.0008096112728703808,
+    "overshoot_percent": 9.983823733664732,
+    "post_event_max_abs_deviation_v": 0.2460086286470673,
+    "recovery_to_2_percent_s": 0.005180000000000004,
+    "event_reference_time_s": 0.05
+  },
+  "fine_node_peak_v": 2.200345972836978,
+  "fine_node_overshoot_percent": 10.017298641848903,
+  "trip_count": 0
+}
