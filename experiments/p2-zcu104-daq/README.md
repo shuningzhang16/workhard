@@ -1,6 +1,18 @@
 # P2：ZCU104 FPGA 数据采集学习项目
 
-当前阶段：已实现内部数据源/FIFO、AXI4-Lite 控制、逐包接收与 C 校验。控制 wrapper 已接入 Vivado Tcl，并提供地址导出及 PS 正常启停/重启流程。RTL 与主机严格 C 测试通过；完整 Vivado 尚未执行，Standalone 草稿未编译，没有实际地址导出、BSP 或 DDR 联通结果，原厂代码保留不变。
+当前阶段：已实现内部数据源/FIFO、AXI4-Lite 控制、逐包接收、C 校验及有界消费队列。控制 wrapper 已接入 Vivado Tcl，并提供地址导出及 PS 启停/重启流程。RTL、主机严格 C 测试及明确标记的主机队列测量通过；完整 Vivado 尚未执行，Standalone 草稿未编译，没有实际地址导出、BSP 或 DDR 联通结果，原厂代码保留不变。
+
+## 第七小步第二阶段：有界多缓冲消费与主机统计
+
+新增 [daq_queue](ps/daq_queue.md)：固定 DMA 工作缓冲区，每包同步和校验成功后复制进容量 1～8 包的 CPU 环形队列。满队列不再提交 DMA，消费者未释放的槽不被覆盖；STOP 排空包同样逐包入队。故障保留有效前缀，队列清空后才允许显式重启，原接收错误和所有权判据保留。
+
+实际完成 **13/13** 新队列故障/顺序测试，严格编译及 ASan/UBSan 通过；上游 session **9/9**、接收 **13/13**、校验 **16/16** 与 RTL 回归也通过。完成容量 1/3/8 × 消费等待 0/200/1000 µs 的 **9/9** 组主机测量，记录有效字节、交付帧率、队列延迟及高水位；不是板端吞吐或 CPU 使用率。
+
+- [功能结果汇总](results/daq_queue/summary.json)、[故障矩阵](results/daq_queue/fault_matrix.csv)、[修复后主机测量 CSV](results/queue_timing_fixed/host_measurements.csv)、[9 组复测汇总](results/queue_timing_fixed/summary.json)。
+- [所有权、满队列策略、测量定义和教学数据流](ps/daq_queue.md)。
+- 统一入口：`python scripts/run_daq_queue.py --output results/daq_queue_recheck`；默认包含原 session 入口，无需再重复调用。
+
+首次检查发现延迟终点取在内容核对和释放之前，已修正为成功 `dq_release` 后采时；隔离副本严格编译及 **9/9** 组定向复测通过，当前测量表见 [队列说明](ps/daq_queue.md)。此次复用已有 RTL 捕获，未重采、未重跑 13 项功能测试；[修复前源码](results/queue_timing_before/bench_daq_queue.c)、[修复前测量](results/queue_timing_before/host_measurements.csv) 与原 `results/daq_queue` 证据均保留。
 
 ## 第七小步第一阶段：工程连接与 PS 启停流程
 
@@ -202,4 +214,4 @@ Import-Csv .\sources.csv | Format-Table upstream_path, bytes, result -AutoSize
 
 ## 下一小步
 
-原厂源码仍保留在 `vendor/` 且未改动。第七小步第一阶段（Tcl 集成及 PS 启停流程）已完成，交由协调聊天单独提交；第二阶段将继续有界多缓冲与消费统计。根目录先前保存的 [综合网表重放证据](../../verification/yosys-control/README.md) 对应其当时源码，本次新复位接口仍需根窗口重新综合核对。当前未执行上板、写卡或硬件重跑操作。
+原厂源码仍保留在 `vendor/` 且未改动。第七小步第二阶段（有界队列与主机统计）已完成，交由协调聊天单独提交。根目录保存的 [综合网表重放证据](../../verification/yosys-control/README.md) 对应其记录的源码版本；本阶段未改 RTL。完整 Vivado/BSP 和真实 DMA/DDR 验证仍受工具与目标依赖限制。当前未执行上板、写卡或硬件重跑操作。

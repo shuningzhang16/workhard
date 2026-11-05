@@ -106,26 +106,39 @@ daq_status daq_receive(daq_session *s)
     return s->status;
 }
 
-daq_status daq_stop(daq_session *s, uint64_t requested_frames, unsigned max_drain)
+daq_status daq_request_stop(daq_session *s)
 {
     if (s == NULL) return DAQ_CONFIG_ERROR;
     if (s->status != DAQ_OK) return s->status;
     if (write_register(s, DAQ_CONTROL, 0) != 0) return s->status = DAQ_REGISTER_ERROR;
     s->start_pending = false;      /* A drain submission must never cancel STOP. */
     s->drained = 0;
-    for (;;) {
-        if (read_register(s, DAQ_STATUS, &s->last_control_status) != 0 ||
-            read_register(s, DAQ_FRAMES, &s->last_frames) != 0)
-            return s->status = DAQ_REGISTER_ERROR;
-        uint64_t complete = s->receiver.validator.complete_frames;
-        if (s->last_control_status == 0) {
-            if (s->last_frames < complete) return s->status = DAQ_COUNT_ERROR;
-            if (s->last_frames == complete) {
-                s->status = s2mm_finish(&s->receiver, requested_frames) == S2MM_DONE
-                            ? DAQ_DONE : DAQ_RECEIVE_ERROR;
-                return s->status;
-            }
+    return s->status;
+}
+
+daq_status daq_check_stop(daq_session *s, uint64_t requested_frames)
+{
+    if (s == NULL) return DAQ_CONFIG_ERROR;
+    if (s->status != DAQ_OK) return s->status;
+    if (read_register(s, DAQ_STATUS, &s->last_control_status) != 0 ||
+        read_register(s, DAQ_FRAMES, &s->last_frames) != 0)
+        return s->status = DAQ_REGISTER_ERROR;
+    uint64_t complete = s->receiver.validator.complete_frames;
+    if (s->last_control_status == 0) {
+        if (s->last_frames < complete) return s->status = DAQ_COUNT_ERROR;
+        if (s->last_frames == complete) {
+            s->status = s2mm_finish(&s->receiver, requested_frames) == S2MM_DONE
+                        ? DAQ_DONE : DAQ_RECEIVE_ERROR;
         }
+    }
+    return s->status;
+}
+
+daq_status daq_stop(daq_session *s, uint64_t requested_frames, unsigned max_drain)
+{
+    if (daq_request_stop(s) != DAQ_OK) return s == NULL ? DAQ_CONFIG_ERROR : s->status;
+    for (;;) {
+        if (daq_check_stop(s, requested_frames) != DAQ_OK) return s->status;
         if (s->drained == max_drain) return s->status = DAQ_STOP_LIMIT;
         if (daq_receive(s) != DAQ_OK) return s->status;
         s->drained++;

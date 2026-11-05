@@ -1,0 +1,8 @@
+{
+  "cases": 9,
+  "passed": 9,
+  "change": "latency ends after content validation and successful dq_release",
+  "payload": "existing actual RTL capture; not regenerated",
+  "isolated_fix_verified": true,
+  "hardware": false
+}

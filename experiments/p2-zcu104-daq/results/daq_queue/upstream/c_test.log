@@ -1,0 +1,4 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p2-zcu104-daq", "--exec", "./build/test_daq_session", "results/daq_queue/upstream/receiver/capture/rtl_capture_le.bin"]
+PASS 9 session cases; injected status, real RTL payload; no hardware/cache proof
+
+EXIT_CODE 0

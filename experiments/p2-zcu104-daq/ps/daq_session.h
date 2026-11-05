@@ -34,6 +34,12 @@ daq_status daq_init(daq_session *session, const s2mm_ops *dma,
 daq_status daq_restart(daq_session *session);
 /* First receive arms DMA before writing START; later packets do not re-START. */
 daq_status daq_receive(daq_session *session);
+/* Nonblocking stop steps for a bounded consumer queue: check returns DAQ_OK
+ * when another packet must be drained, DAQ_DONE only after both count checks.
+ * The caller must bound its drain attempts; neither function receives data.
+ */
+daq_status daq_request_stop(daq_session *session);
+daq_status daq_check_stop(daq_session *session, uint64_t requested_frames);
 /* Request STOP, drain at most max_drain additional packets, then compare both
  * hardware frame count and the ORIGINAL requested count. No adjusted target.
  * STOP latency may produce an extra frame: that is reported, never hidden.

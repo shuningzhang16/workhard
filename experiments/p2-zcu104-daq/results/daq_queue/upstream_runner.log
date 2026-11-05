@@ -1,0 +1,4 @@
+COMMAND ["E:\\python.exe", "scripts/run_daq_session.py", "--output", "results/daq_queue/upstream", "--wsl-distro", "Ubuntu-22.04"]
+PASS 9 session cases; evidence: E:\UserData\Documents\ChatGPT\Ó²¼þ\experiments\p2-zcu104-daq\results\daq_queue\upstream
+
+EXIT_CODE 0

@@ -1,0 +1,12 @@
+{
+  "scope": "RTL wrapper regression and host sequence only; no DMA IP cosimulation",
+  "cases": 9,
+  "passed": 9,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "payload": "receiver/capture/rtl_capture_le.bin (actual RTL output)",
+  "full_vivado_executed": false,
+  "bsp_compiled": false
+}

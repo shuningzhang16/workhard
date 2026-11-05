@@ -19,6 +19,8 @@
 
 [daq_session.c/.h](daq_session.c) 复用原 `simple_s2mm` 和 `frame_validator`，只加两个寄存器操作回调，不重写 DMA 驱动。平台 DMA/cache 操作仍使用同一组既有回调。
 
+后续 [有界队列](daq_queue.md) 复用本流程。STOP 现拆出 `daq_request_stop` 与 `daq_check_stop` 两个不接收 payload 的小操作，允许队列在每次排空接收后发布该包；原 `daq_stop` 仍用它们执行相同的有界阻塞流程，原 9 项测试已回归通过。
+
 1. `daq_init` 设置内存状态；`daq_restart` 调用原 DMA 重启，最多查询 `poll_limit` 次 STATUS 的运行/待停止位，确认停止后写 COMMAND=1，随后原接收核心才把缓冲区交回 CPU 并重置校验周期。流侧复位可以仍保持有效，此时数据仍被复位。
 2. 首次 `daq_receive` 先做设备同步并提交 28 字节 DMA 接收，再最多查询 `poll_limit` 次 STATUS bit 2，确认流侧复位释放后才写 START。之后每次接收只重新提交一个包，不重复写 START。释放超时仍保留在途缓冲区的 DEVICE owner。
 3. 包完成后沿用原错误优先、实际长度检查、CPU 同步和帧校验。任何错误继续锁存，不能绕过 session 直接调用内部 receiver 清错或继续接收。

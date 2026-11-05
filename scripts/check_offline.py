@@ -28,9 +28,9 @@ def main():
                               f".runs/{run_id}/host_c"]),
         ("p2", "rtl", p2, ["scripts/run_sim.py", "--suite", "all", "--output",
                             f".runs/{run_id}/rtl"]),
-        # Session runner includes the AXI-Lite, frame validator and receiver checks.
-        ("p2", "daq_session", p2, ["scripts/run_daq_session.py", "--output",
-                                   f".runs/{run_id}/daq_session"]),
+        # Queue runner includes session, AXI-Lite, frame and receiver checks.
+        ("p2", "daq_queue", p2, ["scripts/run_daq_queue.py", "--output",
+                                 f".runs/{run_id}/daq_queue"]),
         ("p4", "dab", p4, ["-m", "unittest", "discover", "-v"]),
     ]
     results = []

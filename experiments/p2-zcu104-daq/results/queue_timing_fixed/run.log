@@ -1,0 +1,4 @@
+COMMAND ["wsl", "-d", "Ubuntu-22.04", "--cd", "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p2-zcu104-daq", "--exec", "env", "PATH=/usr/bin:/bin", "./.runs/queue_latency_fix/bench_daq_queue", "results/daq_queue/upstream/receiver/capture/rtl_capture_le.bin", "results/queue_timing_fixed/first_epoch_latency.csv"]
+PASS 9 host callback measurements, 20 RTL replay epochs each; not board throughput or CPU utilization
+
+EXIT 0

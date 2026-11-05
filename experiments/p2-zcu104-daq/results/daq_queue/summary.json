@@ -1,0 +1,27 @@
+{
+  "scope": "bounded CPU queue with one DMA work buffer; host callbacks only",
+  "capture": "results/daq_queue/upstream/receiver/capture/rtl_capture_le.bin",
+  "provenance": "fresh actual RTL capture via run_daq_session.py; upstream regressions included",
+  "cases": 13,
+  "passed": 13,
+  "sanitizers": [
+    "address",
+    "undefined"
+  ],
+  "host_measurement_cases": 9,
+  "capacities": [
+    1,
+    3,
+    8
+  ],
+  "consumer_hold_us_requested": [
+    0,
+    200,
+    1000
+  ],
+  "rtl_replay_epochs_per_measurement": 20,
+  "measurement_clock": "CLOCK_MONOTONIC",
+  "measurement_build": "gcc -O2, without sanitizers",
+  "hardware_dma_executed": false,
+  "cpu_utilization_measured": false
+}
