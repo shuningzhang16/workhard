@@ -12,6 +12,8 @@
 
 主要数值、测试证据和实际失败定位见 [结果索引](docs/RESULTS.md)。
 
+学习顺序、关键代码路径、练习、面试问答和项目讲解稿见 [学习与讲解指南](docs/LEARNING.md)。
+
 上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。首次三个实验任务均已通过，触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
 
 ## 一次复跑离线检查
