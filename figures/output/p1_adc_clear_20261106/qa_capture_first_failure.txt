@@ -1,0 +1,1 @@
+First log capture failed because the child used the Windows locale while the parent decoded UTF-8. No figure/model/data changed. Added -X utf8 to the child and retained this diagnostic.
