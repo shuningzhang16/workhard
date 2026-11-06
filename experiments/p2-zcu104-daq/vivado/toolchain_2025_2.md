@@ -36,7 +36,7 @@ AMD [2025.2 支持器件表](https://docs.amd.com/r/2025.2-English/ug973-vivado-
 
 [官方安装流程](https://docs.amd.com/r/2025.2-English/ug973-vivado-release-notes-install-license/Run-the-Installation-File)要求 AMD 账户登录。批处理也须先[获取认证 token](https://docs.amd.com/r/2025.2-English/ug973-vivado-release-notes-install-license/Acquire-Authentication-Token)，有效期 7 天。不要把账户/密码/token 提交到仓库，也不要从浏览器或其他配置文件提取凭据。
 
-最小组件选择为 Vivado ML Standard、Zynq UltraScale+ MPSoC（XCZU7EV）、Vitis Embedded 的 A53 Standalone 开发工具以及 ZCU104 官方板卡定义。精确下载/安装占用须由真实安装摘要给出，目前不估造数字。现有 Lab、非本板 XSA、2025.1 驱动源码都不替代这些组件。
+最小安装组件为 Vivado ML Standard、Zynq UltraScale+ MPSoC（XCZU7EV）及 Vitis Embedded 的 A53 Standalone 开发工具。ZCU104 官方 1.1 板卡目录已从 XilinxBoardStore 的 2025.2 分支保存到根目录 vendor/xilinx-boardstore-2025.2；工程入口固定按仓库相对路径加入 board.repoPaths，无需另行手工配置板卡 catalog。见[原始文件来源与许可证](../../../vendor/xilinx-boardstore-2025.2/SOURCE.md)及[本次 XML/文本检查](../results/board_vendor_20261106_175304_840/README.md)。该检查没有调用 Vivado，也不证明 preset 已被工具接受。精确下载/安装占用须由真实安装摘要给出，目前不估造数字。现有 Lab、非本板 XSA、2025.1 驱动源码都不替代这些组件。
 
 用户当前要求不删除任何文件；所有续接应使用新目录，不清理腾空间，不覆盖旧工程。官方提供的保留解包方式是：
 

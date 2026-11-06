@@ -1,0 +1,33 @@
+METHOD: XML parsing / file references / Tcl info complete only; no Tcl evaluation or Vivado.
+REPO: E:\UserData\Documents\ChatGPT\硬件
+PROJECT_SCRIPT: C:\Users\Administrator\.codex\visualizations\2026\11\04\01a1a54d-3bd8-7430-94b1-39d8d0d3a961\p2-zcu104-board-vendor_20261106_175304_840\experiments\p2-zcu104-daq\vivado\create_project.tcl
+Recorded source size matches: boards/Xilinx/zcu104/1.1/LICENSE 751
+Recorded source size matches: boards/Xilinx/zcu104/1.1/board.xml 37979
+Recorded source size matches: boards/Xilinx/zcu104/1.1/changelog.txt 211
+Recorded source size matches: boards/Xilinx/zcu104/1.1/part0_pins.xml 13989
+Recorded source size matches: boards/Xilinx/zcu104/1.1/preset.xml 25812
+Recorded source size matches: boards/Xilinx/zcu104/1.1/xitem.json 841
+Recorded source size matches: boards/Xilinx/zcu104/1.1/zcu104_board.jpeg 184442
+Recorded source size matches: LICENSE 719
+Recorded source size matches: LICENSE.md 719
+Original source files: 9 bytes: 265463
+Apache-2.0 notice: LICENSE
+Apache-2.0 notice: LICENSE.md
+Apache-2.0 notice: boards/Xilinx/zcu104/1.1/LICENSE
+Apache full license present: 11358 bytes
+Board: xilinx.com:zcu104:part0:1.1
+Part: xczu7ev-ffvc1156-2-e
+Local board reference exists: part0_pins.xml
+Local board reference exists: preset.xml
+Local board reference exists: zcu104_board.jpeg
+Referenced preset names resolved: DDR4_SDRAM_Preset, DIP_SWITCH_4Bits_Preset, LED_4Bits_Preset, PUSH_BUTTON_4Bits_Preset, UART2_PL_Preset, zynq_ultra_ps_e_preset
+PS preset IP: {'vendor': 'xilinx.com', 'library': 'ip', 'name': 'zynq_ultra_ps_e', 'version': '*'}
+Fixed repository path resolves: E:\UserData\Documents\ChatGPT\硬件\vendor\xilinx-boardstore-2025.2\boards\Xilinx
+Tcl version: 8.6.15
+create_project.tcl: complete=True
+create_bd.tcl: complete=True
+export_addresses.tcl: complete=True
+build_offline.tcl: complete=True
+PASS: static checks only. Vivado catalog, BD, synthesis, implementation and A53 BSP remain unexecuted.
+
+EXIT_CODE=0

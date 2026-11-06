@@ -1,0 +1,1 @@
+Initial functions.exec JavaScript template parsing failed with SyntaxError: Unexpected identifier 'create_project'. No shell code ran and no project files were changed. The preparation command was corrected by avoiding embedded Markdown backticks in the JavaScript template, then rerun in the isolated staging directory.

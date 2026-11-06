@@ -12,7 +12,9 @@ if {[file exists $build_dir]} {
     error "Output already exists: $build_dir. Choose a new directory; existing output is preserved."
 }
 
-# AMD XilinxBoardStore 2025.2: boards/Xilinx/zcu104/1.1/board.xml.
+# Use the vendored AMD XilinxBoardStore 2025.2 ZCU104 definition on all hosts.
+set_param board.repoPaths [concat [get_param board.repoPaths] \
+    [list [file normalize [file join $project_root .. .. vendor xilinx-boardstore-2025.2 boards Xilinx]]]]
 create_project daq_zcu104 $build_dir -part xczu7ev-ffvc1156-2-e
 set_property board_part xilinx.com:zcu104:part0:1.1 [current_project]
 set_property target_language Verilog [current_project]

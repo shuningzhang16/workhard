@@ -59,7 +59,7 @@ DMA s2mm_prmry_reset_out_n → wrapper stream_resetn（仅采集状态、source 
 
 ## 构建入口（需要完整 Vivado，尚未在本机执行）
 
-先在完整 Vivado 2025.2 配好 Zynq UltraScale+ 器件支持及上述官方 ZCU104 board files。`vivado` 必须指完整工具而非 `vivado_lab`。从实验根目录执行：
+先在完整 Vivado 2025.2 安装 Zynq UltraScale+ 器件支持。官方 2025.2 分支的 ZCU104 1.1 完整板卡目录和许可证已随仓保存，create_project.tcl 在创建工程前把仓库相对目录加入 board.repoPaths，因此全新 Linux/Windows 用户无需手工安装板卡 catalog；原有 repo paths 保留。见[板卡来源和许可证](../../../vendor/xilinx-boardstore-2025.2/SOURCE.md)及[静态检查证据](../results/board_vendor_20261106_175304_840/README.md)。这只补齐 board/preset 文件依赖，尚未在 Vivado 中加载或验证。`vivado` 必须指完整工具而非 `vivado_lab`。从实验根目录执行：
 
 ```powershell
 $p2Root = (Get-Location).Path
