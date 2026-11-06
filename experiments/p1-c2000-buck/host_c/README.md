@@ -1,5 +1,7 @@
 # 主机 C 采样控制：四工况逐拍对照
 
+最新 [测量区间清除修复](CLEAR_MEASUREMENTS.md) 为 ADC/目标路径增加 observed 入口，端点码不可观测时保持锁存；原标量入口只保留理想精确测量语义。本页及下述首次闭环记录是历史结果，不能用其 80 ms 恢复代表当前量化入口。
+
 后续已完成 [C 与 Python 各自驱动 PWM 的闭环对照](CLOSED_LOOP.md)：原 C 核心经共享库实际闭环调用 36,006 次，覆盖三个正常场景及三种故障/显式恢复，独立 C/Python 轨迹一致。量化清除盲区及周期内峰值超出 10% 的结果仍保留。下文继续记录之前的固定 CSV 回放阶段，不替代新的闭环证据。
 
 `buck_control.h/.c` 是独立 C11 模块，重写本实验 `VoltagePI` 与 `ProtectedController` 的采样语义。只包含数值控制与状态，不引用 TI 原厂代码，不访问 ADC、PWM、Trip 或其他外设。模块无动态内存分配、文件操作及平台调用；文件读取与验证工具在独立程序中。
@@ -79,7 +81,7 @@ Python 验证程序对同样的测量和清除请求重新调用现有 `Protecte
 Windows，从 P1 目录执行：
 
 ```powershell
-& 'E:\python.exe' .\host_c\run_validation.py --output host_c/results
+& 'E:\python.exe' -B .\host_c\run_validation.py
 ```
 
 Linux / GitHub Ubuntu runner，从 P1 目录执行：

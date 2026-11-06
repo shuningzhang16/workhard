@@ -4,14 +4,20 @@
 
 当前完成原厂版本来源与许可核对、**独立教学 Buck 平均模型的可执行仿真**、采样式故障锁存与软启动恢复、九组 PI 的有限比较、真正 PWM 电压切换的理想开关模型、ngspice 独立瞬态对照、PWM 功率级中的保护与显式恢复、独立主机 C 控制模块的逐拍验证、禁用输出的 F280049C RAM 工程实际构建，以及一周期更新延迟与 ADC/PWM 量化的隔离仿真。原厂源码未修改。所有新增仿真均不读取或复制 TI 源码，不是原厂复现，也不是硬件测量。
 
-## 最新完成：原 C 核心与 Python 各自驱动 PWM 的闭环对照
+## 最新完成：测量区间清除修复
+
+详见 [接口、反例与实际回归](host_c/CLEAR_MEASUREMENTS.md)。量化/目标路径现在只凭 ADC 原码和声明标度生成可观测标记及完整码箱界限；单极性零码不能排除负压，跨越原 0.1 V/0.1 A 的区间也不能清除。三类故障在 80 ms 仍是零码，均拒绝并保持锁存；有效内码经显式请求可以清除。没有用理想真值或固定等待替代测量证据。
+
+新六场景 C/Python 闭环 36,006 次 C 调用全部一致，16 项 Python 测试、原 C 边界、新 C ADC/区间测试和短接管试验通过；历史理想回放 26,004 点仍零差。TI 目标接口重新编译链接通过，目标镜像未执行、输出禁止不变。本轮实际在主机测试执行 C ADC 标度函数，目标 ADC/ISR 时序仍未验证。默认构建入口选择新结果和构建目录，所有旧证据保留。
+
+## 已完成：原 C 核心与 Python 各自驱动 PWM 的首次闭环对照
 
 详见 [闭环执行路径与结果](host_c/CLOSED_LOOP.md)。已实际用 GCC 将原 C 核心编译为共享库，经 ctypes 每拍调用，分别运行 C/Python 的启动、负载阶跃、输入阶跃和三种故障/显式恢复。C 主轨迹调用 36,006 次；两种实现的真实 vO/iL、duty/reference 差值均为零，状态和事件一致。UBSan 闭环运行与原 13 项回归测试通过；独立四周期试验禁止 Python 控制更新，仅改变 C 积分状态即经 PWM 队列改变真实 L/C 状态，七项接管检查通过。ADC 解码仍采用 Python 公式，未执行目标 ADC/ISR。
 
 保留周期内超调约 10.0173% 和过压后负压清除盲区；另发现过流场景两拍因电流量化跨过 0.1 A 清除边界。所有假想清除只用于独立控制器副本，未施加到主功率级。编译、轨迹、参数与差异审阅证据已保存；控制核心和目标固件未改，没有硬件连接或烧录。
 
 ```powershell
-& 'E:\python.exe' .\host_c\run_closed_loop.py --output host_c/closed_loop_results
+& 'E:\python.exe' -B .\host_c\run_closed_loop.py
 ```
 
 ## 已完成：一周期更新延迟与 ADC/PWM 量化对照
@@ -32,7 +38,7 @@
 GPIO0/1 保持普通输入，ePWM One-Shot Trip 启动即锁存且没有解除路径。ADC、ePWM 与外部 Trip 使用已核实 DriverLib 接口，模拟前端标度和 GPIO 分配明确标为待板卡确认。原控制器和教学阈值不变。首轮入口诊断失败及隔离修复、最终命令与 map 均已留证；没有连接或烧录硬件，没有宣称 20 µs ISR 或硬件保护已验证。
 
 ```powershell
-& 'E:\python.exe' .\firmware\build_target.py --output firmware/results
+& 'E:\python.exe' -B .\firmware\build_target.py
 ```
 
 ## 已完成：主机 C 控制模块与逐拍验证
@@ -42,7 +48,7 @@ GPIO0/1 保持普通输入，ePWM One-Shot Trip 启动即锁存且没有解除�
 验证入口支持 `--output` 指定 P1 内输出目录，以及 Windows→WSL GCC 和 Linux 原生 GCC；两条入口已在本机 Ubuntu 22.04 环境完成实测。Ubuntu 24.04 的统一 CI 也已实际通过，见 [CI 记录](../../docs/CI.md)。结果和编译/执行命令在 `host_c/results/`，原生入口另有独立日志。此步仅验证主机 C 逻辑，未编译/烧录 C2000，也未验证 ISR 时序或 Trip 硬件。
 
 ```powershell
-& 'E:\python.exe' .\host_c\run_validation.py --output host_c/results
+& 'E:\python.exe' -B .\host_c\run_validation.py
 ```
 
 ## 已完成：PWM 功率级中的保护与显式恢复

@@ -1,0 +1,180 @@
+{
+  "metrics": [
+    {
+      "case": "overcurrent",
+      "backend": "python",
+      "control_samples": 7001,
+      "cycles": 7000,
+      "waveform_nodes": 8846,
+      "peak_node_output_v": 2.0041821035469773,
+      "node_overshoot_percent": 0.20910517734886724,
+      "minimum_node_output_v": -3.2925688142179484e-09,
+      "minimum_node_current_a": -5.4668411462000515e-09,
+      "trip_count": 1,
+      "max_abs_pulse_mean_voltage_error_v": 1.4122036873231991e-12,
+      "adc_out_of_range_samples": 1875,
+      "unsafe_clear_candidate_samples": 2,
+      "first_hypothetical_unsafe_clear": {
+        "time_s": 0.05272,
+        "true_output_v": 0.0310657658165075,
+        "true_current_a": 0.1045410054130872,
+        "measured_output_v": 0.030615234374999998,
+        "measured_current_a": 0.09667968750000089,
+        "stored_energy_j": 1.4289646237607342e-06,
+        "clear_result_if_requested": "rejected_residual_energy",
+        "applied_to_main_trajectory": false
+      },
+      "verification_failures": [],
+      "first_fault": "OVERCURRENT",
+      "first_trip_time_s": 0.050320000000000004,
+      "injection_to_trip_s": 0.00032000000000000084,
+      "true_threshold_crossing_bracket_s": [
+        0.05030368,
+        0.050304140000000004
+      ],
+      "true_threshold_to_detection_bracket_s": [
+        1.5859999999999486e-05,
+        1.6320000000000223e-05
+      ],
+      "trip_previous_queued_duty": 0.2765,
+      "trip_applied_duty": 0.0,
+      "trip_energy_j": 0.0007714490737913498,
+      "max_latched_sample_energy_increase_j": -2.6038901152203814e-43,
+      "clear_requests": [
+        {
+          "time_s": 0.050320000000000004,
+          "clear_result": "rejected_active_fault",
+          "output_v": 0.5540816492907675,
+          "inductor_current_a": 2.5213678689847683,
+          "measured_output_v": 0.5526855468749999,
+          "measured_current_a": 2.513671875000001,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 0.554296875,
+          "clear_max_abs_current_a": 2.521728515624999
+        },
+        {
+          "time_s": 0.05034,
+          "clear_result": "rejected_residual_energy",
+          "output_v": 0.5649967206322265,
+          "inductor_current_a": 2.470470199292844,
+          "measured_output_v": 0.56396484375,
+          "measured_current_a": 2.4653320312500004,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 0.565576171875,
+          "clear_max_abs_current_a": 2.473388671875001
+        },
+        {
+          "time_s": 0.08,
+          "clear_result": "rejected_unobservable_measurement",
+          "output_v": 1.95470690036379e-11,
+          "inductor_current_a": -1.22150200260792e-10,
+          "measured_output_v": 0.0,
+          "measured_current_a": -0.008056640625000444,
+          "true_clear_eligible": 1,
+          "clear_observable": 0,
+          "clear_max_abs_output_v": 0.001611328125,
+          "clear_max_abs_current_a": 0.008056640625000444
+        }
+      ],
+      "recovery_from_clear_to_2_percent_s": null
+    },
+    {
+      "case": "overcurrent",
+      "backend": "c",
+      "control_samples": 7001,
+      "cycles": 7000,
+      "waveform_nodes": 8846,
+      "peak_node_output_v": 2.0041821035469773,
+      "node_overshoot_percent": 0.20910517734886724,
+      "minimum_node_output_v": -3.2925688142179484e-09,
+      "minimum_node_current_a": -5.4668411462000515e-09,
+      "trip_count": 1,
+      "max_abs_pulse_mean_voltage_error_v": 1.4122036873231991e-12,
+      "adc_out_of_range_samples": 1875,
+      "unsafe_clear_candidate_samples": 2,
+      "first_hypothetical_unsafe_clear": {
+        "time_s": 0.05272,
+        "true_output_v": 0.0310657658165075,
+        "true_current_a": 0.1045410054130872,
+        "measured_output_v": 0.030615234374999998,
+        "measured_current_a": 0.09667968750000089,
+        "stored_energy_j": 1.4289646237607342e-06,
+        "clear_result_if_requested": "rejected_residual_energy",
+        "applied_to_main_trajectory": false
+      },
+      "verification_failures": [],
+      "first_fault": "OVERCURRENT",
+      "first_trip_time_s": 0.050320000000000004,
+      "injection_to_trip_s": 0.00032000000000000084,
+      "true_threshold_crossing_bracket_s": [
+        0.05030368,
+        0.050304140000000004
+      ],
+      "true_threshold_to_detection_bracket_s": [
+        1.5859999999999486e-05,
+        1.6320000000000223e-05
+      ],
+      "trip_previous_queued_duty": 0.2765,
+      "trip_applied_duty": 0.0,
+      "trip_energy_j": 0.0007714490737913498,
+      "max_latched_sample_energy_increase_j": -2.6038901152203814e-43,
+      "clear_requests": [
+        {
+          "time_s": 0.050320000000000004,
+          "clear_result": "rejected_active_fault",
+          "output_v": 0.5540816492907675,
+          "inductor_current_a": 2.5213678689847683,
+          "measured_output_v": 0.5526855468749999,
+          "measured_current_a": 2.513671875000001,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 0.554296875,
+          "clear_max_abs_current_a": 2.521728515624999
+        },
+        {
+          "time_s": 0.05034,
+          "clear_result": "rejected_residual_energy",
+          "output_v": 0.5649967206322265,
+          "inductor_current_a": 2.470470199292844,
+          "measured_output_v": 0.56396484375,
+          "measured_current_a": 2.4653320312500004,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 0.565576171875,
+          "clear_max_abs_current_a": 2.473388671875001
+        },
+        {
+          "time_s": 0.08,
+          "clear_result": "rejected_unobservable_measurement",
+          "output_v": 1.95470690036379e-11,
+          "inductor_current_a": -1.22150200260792e-10,
+          "measured_output_v": 0.0,
+          "measured_current_a": -0.008056640625000444,
+          "true_clear_eligible": 1,
+          "clear_observable": 0,
+          "clear_max_abs_output_v": 0.001611328125,
+          "clear_max_abs_current_a": 0.008056640625000444
+        }
+      ],
+      "recovery_from_clear_to_2_percent_s": null,
+      "native_main_step_calls": 7001
+    }
+  ],
+  "comparison": {
+    "case": "overcurrent",
+    "samples": 7001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  }
+}

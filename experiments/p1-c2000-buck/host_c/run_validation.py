@@ -7,6 +7,7 @@ import math
 import subprocess
 import sys
 from pathlib import Path
+from datetime import datetime
 from time import perf_counter
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,7 +17,7 @@ from protection import ProtectedController  # noqa: E402
 CASES = ("load_step", "overcurrent", "overvoltage", "undervoltage")
 STATES = {0: "SOFT_START", 1: "RUN", 2: "FAULT_LATCHED"}
 CLEARS = {0: "not_requested", 1: "rejected_active_fault", 2: "rejected_residual_energy",
-          3: "accepted", 4: "ignored_not_latched"}
+          3: "accepted", 4: "ignored_not_latched", 5: "rejected_unobservable_measurement"}
 FAULTS = ((1, "OVERCURRENT"), (2, "OUTPUT_OVERVOLTAGE"), (4, "INPUT_UNDERVOLTAGE"))
 DUTY_ABS_TOL = 1e-11
 REFERENCE_ABS_TOL_V = 1e-14
@@ -86,15 +87,17 @@ def compare_case(case, source, actual, output):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", default="host_c/results",
+    parser.add_argument("--output", default="host_c/results_" + datetime.now().strftime("%Y%m%d-%H%M%S-%f"),
                         help="output directory inside P1; relative paths are resolved from the P1 root")
     args = parser.parse_args()
     started = perf_counter()
     output = (ROOT / args.output).resolve()
     if not output.is_relative_to(ROOT):
         parser.error("--output must stay inside the P1 experiment directory")
-    output.mkdir(parents=True, exist_ok=True)
-    (ROOT / ".tools" / "host-c").mkdir(parents=True, exist_ok=True)
+    output.mkdir(parents=True, exist_ok=False)
+    build = output / "build"
+    build.mkdir()
+    build_relative = build.relative_to(ROOT).as_posix()
     commands = []
     flags = ["-std=c11", "-O1", "-g3", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion",
              "-Wshadow", "-Wstrict-prototypes", "-Wmissing-prototypes", "-Werror",
@@ -108,25 +111,26 @@ def main():
         result = subprocess.run(command, cwd=ROOT, text=True, encoding="utf-8", errors="replace", capture_output=True)
         commands.append({"argv": command, "returncode": result.returncode,
                          "stdout": result.stdout, "stderr": result.stderr})
-        (output / "commands.json").write_text(json.dumps(commands, indent=2) + "\n", encoding="utf-8")
+        with (output / f"command_{len(commands):02d}.json").open("x", encoding="utf-8") as stream:
+            json.dump(commands[-1], stream, indent=2)
         print("command " + json.dumps(args), flush=True)
         print(result.stdout, end="", flush=True)
         if result.stderr:
             print(result.stderr, end="", flush=True)
         if result.returncode:
-            raise RuntimeError(f"Command failed with status {result.returncode}; evidence retained in {output / 'commands.json'}")
+            raise RuntimeError(f"Command failed with status {result.returncode}; evidence retained in {output}")
 
     run(["/usr/bin/gcc", "--version"])
     run(["/usr/bin/uname", "-sm"])
     for name, source in (("replay_csv", "replay_csv.c"), ("test_boundaries", "test_boundaries.c")):
         run(["/usr/bin/gcc", *flags, "host_c/buck_control.c", "host_c/" + source,
-             "-lm", "-o", ".tools/host-c/" + name])
-    run([".tools/host-c/test_boundaries"])
+             "-lm", "-o", build_relative + "/" + name])
+    run(["./" + build_relative + "/test_boundaries"])
     summaries = []
     for case in CASES:
         source = f"simulation/protected_switching_results/{case}_control_samples.csv"
         actual = (output.relative_to(ROOT) / f"{case}_c.csv").as_posix()
-        run([".tools/host-c/replay_csv", source, actual])
+        run(["./" + build_relative + "/replay_csv", source, actual])
         summary = compare_case(case, read_csv(ROOT / source), read_csv(ROOT / actual), output)
         summaries.append(summary)
         print(json.dumps(summary), flush=True)
@@ -143,6 +147,8 @@ def main():
                      "measurement_sources": [f"simulation/protected_switching_results/{case}_control_samples.csv" for case in CASES]}
     (output / "parameters.json").write_text(json.dumps(configuration, indent=2) + "\n", encoding="utf-8")
     (output / "metrics.json").write_text(json.dumps(summaries, indent=2) + "\n", encoding="utf-8")
+    with (output / "commands.json").open("x", encoding="utf-8") as stream:
+        json.dump(commands, stream, indent=2)
     if any(r["mismatch_rows"] for r in summaries):
         raise AssertionError("C/Python mismatch; full comparison evidence retained")
     print(f"PASS: {sum(r['sample_count'] for r in summaries)} samples; 4 replays and boundary executable completed with ASan+UBSan", flush=True)

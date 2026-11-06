@@ -1,5 +1,7 @@
 # F280049C：默认禁止输出的真实目标 RAM 工程
 
+2026-11-06 后续 [清除区间修复](../host_c/CLEAR_MEASUREMENTS.md) 已让目标 ISR 传入原码生成的可观测标记和完整码箱界限；新接口真实重新编译链接为 70,428 字节 ELF、4,728 个 16 位 RAM 字，Flash 0。GPIO/OST 输出禁止保持不变，镜像未执行。下文保留首轮构建的数值与证据。
+
 2026-11-05，独立新增固件已使用 **TI cl2000 25.11.1.LTS** 实际编译、链接为 **C28x EABI ELF**，链接官方 **C2000Ware 26.02.00.00.LTS F28004x DriverLib** 和 TI RTS。不是主机 mock，也没有读取或复制受限的 TI Buck 源码来生成新增固件。
 
 本阶段结果是一个可审阅的、默认禁止输出的 RAM 工程。没有执行目标固件、连接调试器、烧录 Flash 或运行板卡；没有证明 ISR 满足 20 µs，也没有验证实际 ADC/PWM/Trip 波形。
@@ -118,16 +120,16 @@ DriverLib 取自 [TI 官方仓库的 26.02.00.00.LTS 标签](https://github.com/
 已具备上述依赖时，在 P1 目录执行：
 
 ```powershell
-& 'E:\python.exe' .\firmware\build_target.py --output firmware/results
+& 'E:\python.exe' -B .\firmware\build_target.py
 ```
 
 原生 Linux 从 P1 目录使用同一入口：
 
 ```bash
-python3 firmware/build_target.py --output firmware/results
+python3 -B firmware/build_target.py
 ```
 
-`build_target.py` 在 Windows 使用 WSL Ubuntu-22.04，在 Linux 直接运行同一位置的 cl2000。所有构建输出均留在 P1 内；`--output` 控制可提交的报告位置，目标二进制和对象始终在 `.tools/target-build/`。工具不会启动 CCS、调试服务器或烧录器。两种调用形式共用代码；本轮实际目标构建采用 Windows→WSL 入口，未额外声称 Linux CI 已运行此目标构建。
+`build_target.py` 在 Windows 使用 WSL Ubuntu-22.04，在 Linux 直接运行同一位置的 cl2000。当前默认自动创建新报告目录；指定 `--output` 也要求目录不存在，目标二进制和对象写入该目录的 `build/`，旧 `.tools/target-build/` 保留。工具不会启动 CCS、调试服务器或烧录器。两种调用形式共用代码；实际目标构建采用 Windows→WSL 入口，未额外声称 Linux CI 已运行目标构建。
 
 新环境获取 DriverLib 可执行 `python3 firmware/fetch_driverlib.py`。编译器安装文件的准确官方 URL 在 `evidence/target/compiler-download.json`；下载后按其 `--help` 支持的参数执行 `--mode unattended --unattendedmodeui none --prefix <P1绝对路径>/.tools/ti-cgt`。安装命令及路径必须限定在本实验目录；安装后应产生 `.tools/ti-cgt/ti-cgt-c2000_25.11.1.LTS/bin/cl2000`。
 

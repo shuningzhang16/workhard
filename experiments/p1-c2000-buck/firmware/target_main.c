@@ -100,8 +100,9 @@ __interrupt void p1_adc_isr(void)
     const bool clear = p1_clear_request;
     BuckCommand command;
     p1_clear_request = false;
-    command = buck_controller_step(&controller, sample_index, measurements.input_v,
-                                   measurements.output_v, measurements.current_a, clear);
+    command = buck_controller_step_observed(&controller, sample_index, measurements.input_v,
+                                            measurements.output_v, measurements.current_a, clear,
+                                            &measurements.clear_evidence);
     ++sample_index;
     if (command.state == BUCK_FAULT_LATCHED || command.duty == 0.0) {
         EPWM_forceTripZoneEvent(EPWM1_BASE, EPWM_TZ_FORCE_EVENT_OST);

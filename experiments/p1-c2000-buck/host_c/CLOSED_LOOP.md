@@ -1,5 +1,7 @@
 # C 与 Python 各自驱动 PWM 功率级的闭环对照
 
+本页保留首次闭环的历史数据。后续 [测量区间清除修复](CLEAR_MEASUREMENTS.md) 已拒绝本页两个反例；当前量化路径在 80 ms 仍为零码时继续锁存，不能沿用本页的恢复结论。旧数据未覆盖。
+
 更新于 2026-11-06。已在 WSL Ubuntu 22.04 / Linux x86_64 / GCC 11.4.0 实际把原 `buck_control.c` 编译为共享库，并由 Python 3.10 的 ctypes 每拍调用。C 和 Python 两种控制器各自从零状态驱动同一理想 PWM 功率级，完成启动、负载阶跃、输入阶跃、过流、输出过压、输入欠压六个场景。
 
 **C 主轨迹实际调用 36,006 次；两种独立闭环的 duty、reference、vO、iL 最大差均为 0，ADC 原码、PWM 计数、状态、故障、清除与事件完全一致。** 这补上了之前固定 CSV 回放没有覆盖的反馈路径，但仍是主机软件联合仿真，不是 C2000 运行结果。
@@ -90,17 +92,17 @@ Python 控制更新调用次数为 **0**，七项接管检查全部通过。只�
 从 P1 目录运行：
 
 ```powershell
-& 'E:\python.exe' .\host_c\run_closed_loop.py --output host_c/closed_loop_results
+& 'E:\python.exe' -B .\host_c\run_closed_loop.py
 & 'E:\python.exe' -m unittest discover -s .\simulation -p 'test_*.py' -v
 ```
 
 Linux CI 的最小入口为：
 
 ```bash
-python3 host_c/run_closed_loop.py --output .runs/ci/closed_loop
+python3 -B host_c/run_closed_loop.py
 ```
 
-入口顺序编译共享库、运行六场景闭环，再运行四周期接管检查，不重复之前的 CSV 回放。原生 Linux 子进程使用入口自身的 `sys.executable`，因此继承 CI 选定的 Python；Windows 分支经 WSL 使用 `/usr/bin/python3`。参数支持 P1 内的独立输出目录。本次六场景运行实际为 Windows Python 启动 WSL GCC 与 Linux Python worker；四周期试验随后单独调用，已加入统一入口供后续 CI 执行。共享库构建目录固定，同目录内不并发运行此入口。
+当前入口先编译共享库和 C 边界/测量测试，再运行六场景闭环及四周期接管检查。原生 Linux 子进程使用入口自身的 `sys.executable`，继承 CI 选定的 Python；Windows 分支经 WSL 使用 `/usr/bin/python3`。本页首次实测为 Windows Python 启动 WSL GCC 与 Linux worker，四周期试验随后单独调用。最新入口已为每个新输出目录分配独立 `build/`，拒绝复用已有输出；本页固定构建目录的旧产物仍保留。
 
 - `c_controller.py`：ctypes 主机接口和原生控制器实例。
 - `closed_loop_worker.py`：独立闭环执行、实际脉冲/保护验证和结果对照。

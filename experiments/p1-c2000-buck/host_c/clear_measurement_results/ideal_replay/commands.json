@@ -1,0 +1,196 @@
+[
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "/usr/bin/gcc",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0\nCopyright (C) 2021 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "/usr/bin/uname",
+      "-sm"
+    ],
+    "returncode": 0,
+    "stdout": "Linux x86_64\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "/usr/bin/gcc",
+      "-std=c11",
+      "-O1",
+      "-g3",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-Werror",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined",
+      "host_c/buck_control.c",
+      "host_c/replay_csv.c",
+      "-lm",
+      "-o",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/build/replay_csv"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "/usr/bin/gcc",
+      "-std=c11",
+      "-O1",
+      "-g3",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-Wstrict-prototypes",
+      "-Wmissing-prototypes",
+      "-Werror",
+      "-fno-fast-math",
+      "-ffp-contract=off",
+      "-fno-omit-frame-pointer",
+      "-fsanitize=address,undefined",
+      "host_c/buck_control.c",
+      "host_c/test_boundaries.c",
+      "-lm",
+      "-o",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/build/test_boundaries"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "./.runs/clear-measurement-20261106-003154/ideal_replay/build/test_boundaries"
+    ],
+    "returncode": 0,
+    "stdout": "sizeof_double=8 FLT_RADIX=2 DBL_MANT_DIG=53 DBL_EPSILON=2.2204460492503131e-16\nPASS: 9 exact/adjacent threshold and combined-fault vectors\nPASS: first-cause latch, no auto-clear, active/residual rejects, inclusive clear and 999/1000-step ramp\nPASS: PI upper/lower saturation holds integral and opposite error resumes integration\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "./.runs/clear-measurement-20261106-003154/ideal_replay/build/replay_csv",
+      "simulation/protected_switching_results/load_step_control_samples.csv",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/load_step_c.csv"
+    ],
+    "returncode": 0,
+    "stdout": "replayed_samples=5001 status=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "./.runs/clear-measurement-20261106-003154/ideal_replay/build/replay_csv",
+      "simulation/protected_switching_results/overcurrent_control_samples.csv",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/overcurrent_c.csv"
+    ],
+    "returncode": 0,
+    "stdout": "replayed_samples=7001 status=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "./.runs/clear-measurement-20261106-003154/ideal_replay/build/replay_csv",
+      "simulation/protected_switching_results/overvoltage_control_samples.csv",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/overvoltage_c.csv"
+    ],
+    "returncode": 0,
+    "stdout": "replayed_samples=7001 status=0\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "wsl",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/usr/bin/env",
+      "PATH=/usr/bin:/bin",
+      "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+      "./.runs/clear-measurement-20261106-003154/ideal_replay/build/replay_csv",
+      "simulation/protected_switching_results/undervoltage_control_samples.csv",
+      ".runs/clear-measurement-20261106-003154/ideal_replay/undervoltage_c.csv"
+    ],
+    "returncode": 0,
+    "stdout": "replayed_samples=7001 status=0\n",
+    "stderr": ""
+  }
+]

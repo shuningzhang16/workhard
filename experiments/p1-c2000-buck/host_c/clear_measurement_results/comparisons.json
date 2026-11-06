@@ -1,0 +1,92 @@
+[
+  {
+    "case": "startup",
+    "samples": 5001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  },
+  {
+    "case": "load_step",
+    "samples": 5001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  },
+  {
+    "case": "input_step",
+    "samples": 5001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  },
+  {
+    "case": "overcurrent",
+    "samples": 7001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  },
+  {
+    "case": "overvoltage",
+    "samples": 7001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  },
+  {
+    "case": "undervoltage",
+    "samples": 7001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "metrics": [
+    {
+      "case": "input_step",
+      "backend": "python",
+      "control_samples": 5001,
+      "cycles": 5000,
+      "waveform_nodes": 2580,
+      "peak_node_output_v": 2.023335677715818,
+      "node_overshoot_percent": 1.1667838857909008,
+      "minimum_node_output_v": 0.0,
+      "minimum_node_current_a": -0.012663718640919091,
+      "trip_count": 0,
+      "max_abs_pulse_mean_voltage_error_v": 2.418953926053291e-12,
+      "adc_out_of_range_samples": 0,
+      "unsafe_clear_candidate_samples": 0,
+      "first_hypothetical_unsafe_clear": null,
+      "verification_failures": [],
+      "response": {
+        "case": "input_step",
+        "steady_state_error_v": 0.0006870583314042555,
+        "overshoot_percent": 1.1383615459583662,
+        "post_event_max_abs_deviation_v": 0.4711564138760411,
+        "recovery_to_2_percent_s": 0.015700000000000006,
+        "event_reference_time_s": 0.05
+      }
+    },
+    {
+      "case": "input_step",
+      "backend": "c",
+      "control_samples": 5001,
+      "cycles": 5000,
+      "waveform_nodes": 2580,
+      "peak_node_output_v": 2.023335677715818,
+      "node_overshoot_percent": 1.1667838857909008,
+      "minimum_node_output_v": 0.0,
+      "minimum_node_current_a": -0.012663718640919091,
+      "trip_count": 0,
+      "max_abs_pulse_mean_voltage_error_v": 2.418953926053291e-12,
+      "adc_out_of_range_samples": 0,
+      "unsafe_clear_candidate_samples": 0,
+      "first_hypothetical_unsafe_clear": null,
+      "verification_failures": [],
+      "response": {
+        "case": "input_step",
+        "steady_state_error_v": 0.0006870583314042555,
+        "overshoot_percent": 1.1383615459583662,
+        "post_event_max_abs_deviation_v": 0.4711564138760411,
+        "recovery_to_2_percent_s": 0.015700000000000006,
+        "event_reference_time_s": 0.05
+      },
+      "native_main_step_calls": 5001
+    }
+  ],
+  "comparison": {
+    "case": "input_step",
+    "samples": 5001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  }
+}

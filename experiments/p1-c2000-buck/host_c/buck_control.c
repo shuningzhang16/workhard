@@ -2,6 +2,7 @@
 #include "buck_control.h"
 
 #include <math.h>
+#include <stddef.h>
 
 void buck_controller_init(BuckController *control)
 {
@@ -25,6 +26,16 @@ BuckCommand buck_controller_step(BuckController *control, uint64_t sample,
                                  double input_v, double output_v, double current_a,
                                  bool clear_request)
 {
+    /* Retain the historical ideal model, explicitly without an ADC interface. */
+    const BuckClearEvidence exact = {fabs(output_v), fabs(current_a), true};
+    return buck_controller_step_observed(control, sample, input_v, output_v,
+                                         current_a, clear_request, &exact);
+}
+
+BuckCommand buck_controller_step_observed(BuckController *control, uint64_t sample,
+                                          double input_v, double output_v, double current_a,
+                                          bool clear_request, const BuckClearEvidence *evidence)
+{
     unsigned int active = BUCK_FAULT_NONE;
     BuckCommand result = {0};
     if (fabs(current_a) >= BUCK_OVERCURRENT_A) {
@@ -46,6 +57,14 @@ BuckCommand buck_controller_step(BuckController *control, uint64_t sample,
         if (active != BUCK_FAULT_NONE) {
             result.clear_result = BUCK_CLEAR_REJECTED_ACTIVE;
         } else if (fabs(output_v) > BUCK_CLEAR_MAX_ABS_V || fabs(current_a) > BUCK_CLEAR_MAX_ABS_A) {
+            result.clear_result = BUCK_CLEAR_REJECTED_RESIDUAL;
+        } else if (evidence == NULL || !evidence->observable
+                   || !isfinite(evidence->max_abs_output_v) || !isfinite(evidence->max_abs_current_a)
+                   || !(evidence->max_abs_output_v >= fabs(output_v))
+                   || !(evidence->max_abs_current_a >= fabs(current_a))) {
+            result.clear_result = BUCK_CLEAR_REJECTED_UNOBSERVABLE;
+        } else if (evidence->max_abs_output_v > BUCK_CLEAR_MAX_ABS_V
+                   || evidence->max_abs_current_a > BUCK_CLEAR_MAX_ABS_A) {
             result.clear_result = BUCK_CLEAR_REJECTED_RESIDUAL;
         } else {
             control->state = BUCK_SOFT_START;

@@ -1,6 +1,7 @@
 """平均模型的采样保护演示；所有阈值都是教学假设，不是硬件安全值。"""
 
 from dataclasses import dataclass, replace
+import math
 
 from buck_model import Parameters, VoltagePI, plant_step
 
@@ -39,7 +40,7 @@ class ProtectedController:
                             "from_state": old_state, "to_state": self.state,
                             "reason": reason, "latched_fault": self.latched_fault})
 
-    def update(self, sample, input_v, output_v, current_a, clear_request=False):
+    def update(self, sample, input_v, output_v, current_a, clear_request=False, clear_evidence=None):
         active = self.active_faults(input_v, output_v, current_a)
         if active and self.state != "FAULT_LATCHED":
             old_state = self.state
@@ -55,6 +56,17 @@ class ProtectedController:
             elif (abs(output_v) > self.limits.clear_max_abs_output_v
                   or abs(current_a) > self.limits.clear_max_abs_current_a):
                 # 从带能状态直接恢复到 0 V 参考会吸收电容能量并产生反向电流。
+                clear_result = "rejected_residual_energy"
+            elif clear_evidence is not None and (
+                    not clear_evidence["observable"]
+                    or not math.isfinite(clear_evidence["max_abs_output_v"])
+                    or not math.isfinite(clear_evidence["max_abs_current_a"])
+                    or not clear_evidence["max_abs_output_v"] >= abs(output_v)
+                    or not clear_evidence["max_abs_current_a"] >= abs(current_a)):
+                clear_result = "rejected_unobservable_measurement"
+            elif clear_evidence is not None and (
+                    clear_evidence["max_abs_output_v"] > self.limits.clear_max_abs_output_v
+                    or clear_evidence["max_abs_current_a"] > self.limits.clear_max_abs_current_a):
                 clear_result = "rejected_residual_energy"
             else:
                 self.state = "SOFT_START"

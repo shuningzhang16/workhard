@@ -1,0 +1,70 @@
+{
+  "metrics": [
+    {
+      "case": "load_step",
+      "backend": "python",
+      "control_samples": 5001,
+      "cycles": 5000,
+      "waveform_nodes": 2580,
+      "peak_node_output_v": 2.20034578345077,
+      "node_overshoot_percent": 10.0172891725385,
+      "minimum_node_output_v": 0.0,
+      "minimum_node_current_a": 0.0,
+      "trip_count": 0,
+      "max_abs_pulse_mean_voltage_error_v": 2.4984458946164523e-12,
+      "adc_out_of_range_samples": 0,
+      "unsafe_clear_candidate_samples": 0,
+      "first_hypothetical_unsafe_clear": null,
+      "verification_failures": [],
+      "response": {
+        "case": "load_step",
+        "steady_state_error_v": 0.0008096112728668281,
+        "overshoot_percent": 9.98382373366573,
+        "post_event_max_abs_deviation_v": 0.24600862864706463,
+        "recovery_to_2_percent_s": 0.005180000000000004,
+        "event_reference_time_s": 0.05
+      }
+    },
+    {
+      "case": "load_step",
+      "backend": "c",
+      "control_samples": 5001,
+      "cycles": 5000,
+      "waveform_nodes": 2580,
+      "peak_node_output_v": 2.20034578345077,
+      "node_overshoot_percent": 10.0172891725385,
+      "minimum_node_output_v": 0.0,
+      "minimum_node_current_a": 0.0,
+      "trip_count": 0,
+      "max_abs_pulse_mean_voltage_error_v": 2.4984458946164523e-12,
+      "adc_out_of_range_samples": 0,
+      "unsafe_clear_candidate_samples": 0,
+      "first_hypothetical_unsafe_clear": null,
+      "verification_failures": [],
+      "response": {
+        "case": "load_step",
+        "steady_state_error_v": 0.0008096112728668281,
+        "overshoot_percent": 9.98382373366573,
+        "post_event_max_abs_deviation_v": 0.24600862864706463,
+        "recovery_to_2_percent_s": 0.005180000000000004,
+        "event_reference_time_s": 0.05
+      },
+      "native_main_step_calls": 5001
+    }
+  ],
+  "comparison": {
+    "case": "load_step",
+    "samples": 5001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  }
+}

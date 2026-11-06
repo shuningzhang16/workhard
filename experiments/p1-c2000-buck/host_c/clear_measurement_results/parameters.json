@@ -1,0 +1,241 @@
+{
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "scope": "host shared C controller drives PWM plant at every sample; independent Python comparison",
+  "library": "results_clear_01/build/libbuck_control.so",
+  "native_main_step_calls": {
+    "startup": 5001,
+    "load_step": 5001,
+    "input_step": 5001,
+    "overcurrent": 7001,
+    "overvoltage": 7001,
+    "undervoltage": 7001
+  },
+  "ctypes_native_struct_bytes": {
+    "BuckController": 24,
+    "BuckCommand": 32
+  },
+  "parameters_by_case": {
+    "startup": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.1
+    },
+    "load_step": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.1
+    },
+    "input_step": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.1
+    },
+    "overcurrent": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    },
+    "overvoltage": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    },
+    "undervoltage": {
+      "inductance_h": 0.00022,
+      "capacitance_f": 0.00047,
+      "nominal_input_v": 9.0,
+      "target_v": 2.0,
+      "nominal_load_ohm": 4.0,
+      "stepped_load_ohm": 2.0,
+      "stepped_input_v": 7.5,
+      "kp_duty_per_v": 0.03,
+      "ki_duty_per_v_s": 30.0,
+      "maximum_duty": 0.95,
+      "control_period_s": 2e-05,
+      "integration_substeps": 4,
+      "soft_start_s": 0.02,
+      "event_time_s": 0.05,
+      "duration_s": 0.14
+    }
+  },
+  "limits": {
+    "overcurrent_a": 2.5,
+    "output_overvoltage_v": 2.4,
+    "input_undervoltage_v": 6.0,
+    "clear_max_abs_output_v": 0.1,
+    "clear_max_abs_current_a": 0.1
+  },
+  "board_parameters": {
+    "P1_PWM_COUNTS": 2000.0,
+    "P1_ADC_REFERENCE_V": 3.3,
+    "P1_ADC_COUNTS": 4096.0,
+    "P1_VIN_DIVIDER_GAIN": 10.0,
+    "P1_VOUT_DIVIDER_GAIN": 2.0,
+    "P1_CURRENT_ZERO_V": 1.65,
+    "P1_CURRENT_GAIN_V_PER_A": 0.1
+  },
+  "integration_max_step_s": 5e-07,
+  "control_period_s": 2e-05,
+  "timing": "simultaneous ideal period-start ADC; one-period quantized PWM delay; immediate sampled Trip override",
+  "adc": "existing ideal floor bins and 0..4095 clipping; nominal provisional scaling; no real SOC skew",
+  "clear_policy": "explicit requests only; ADC code-bin bounds must be observable and wholly within original 0.1 V/0.1 A; 80 ms zero-code requests remain latched; copied probes never drive main plant",
+  "faults": "50..65 ms: R=0.25 ohm / Vin=14 V / Vin=4.5 V; original nominal values restored at 65 ms",
+  "signed_plant": "unchanged ideal low-side freewheel; no physical negative-voltage clamp",
+  "comparison": "original duty/reference tolerances 1e-11/1e-14; identical quantized drive must give identical plant trajectories; discrete fields exact",
+  "sanitizer": "UBSan shared library; prior ASan replay evidence is separate",
+  "hardware": "no target execution, real ADC/ISR timing, flashing or output enabling",
+  "waveform_windows_s": {
+    "startup": [
+      [
+        0.0,
+        0.00030000000000000003
+      ],
+      [
+        0.0198,
+        0.020200000000000003
+      ],
+      [
+        0.09960000000000001,
+        0.1
+      ]
+    ],
+    "load_step": [
+      [
+        0.049800000000000004,
+        0.050600000000000006
+      ],
+      [
+        0.09960000000000001,
+        0.1
+      ]
+    ],
+    "input_step": [
+      [
+        0.049800000000000004,
+        0.050600000000000006
+      ],
+      [
+        0.09960000000000001,
+        0.1
+      ]
+    ],
+    "overcurrent": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.06480000000000001,
+        0.06520000000000001
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.09980000000000001,
+        0.10020000000000001
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ],
+    "overvoltage": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ],
+    "undervoltage": [
+      [
+        0.049800000000000004,
+        0.052000000000000005
+      ],
+      [
+        0.06480000000000001,
+        0.06520000000000001
+      ],
+      [
+        0.07980000000000001,
+        0.0806
+      ],
+      [
+        0.09980000000000001,
+        0.10020000000000001
+      ],
+      [
+        0.1396,
+        0.14
+      ]
+    ]
+  }
+}

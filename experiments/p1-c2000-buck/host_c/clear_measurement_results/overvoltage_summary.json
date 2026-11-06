@@ -1,0 +1,180 @@
+{
+  "metrics": [
+    {
+      "case": "overvoltage",
+      "backend": "python",
+      "control_samples": 7001,
+      "cycles": 7000,
+      "waveform_nodes": 7165,
+      "peak_node_output_v": 2.534564765092122,
+      "node_overshoot_percent": 26.728238254606108,
+      "minimum_node_output_v": -1.9354926560832952,
+      "minimum_node_current_a": -3.213609761955682,
+      "trip_count": 1,
+      "max_abs_pulse_mean_voltage_error_v": 2.3097079804301757e-12,
+      "adc_out_of_range_samples": 2230,
+      "unsafe_clear_candidate_samples": 42,
+      "first_hypothetical_unsafe_clear": {
+        "time_s": 0.051460000000000006,
+        "true_output_v": -1.9066087201523485,
+        "true_current_a": 0.005453257657086389,
+        "measured_output_v": 0.0,
+        "measured_current_a": 0.0,
+        "stored_energy_j": 0.0008542651219459276,
+        "clear_result_if_requested": "rejected_unobservable_measurement",
+        "applied_to_main_trajectory": false
+      },
+      "verification_failures": [],
+      "first_fault": "OUTPUT_OVERVOLTAGE",
+      "first_trip_time_s": 0.050300000000000004,
+      "injection_to_trip_s": 0.00030000000000000165,
+      "true_threshold_crossing_bracket_s": [
+        0.050285699375000006,
+        0.05028619250000001
+      ],
+      "true_threshold_to_detection_bracket_s": [
+        1.3807499999997364e-05,
+        1.4300624999998013e-05
+      ],
+      "trip_previous_queued_duty": 0.2095,
+      "trip_applied_duty": 0.0,
+      "trip_energy_j": 0.0016948568776954515,
+      "max_latched_sample_energy_increase_j": -6.7296351222103e-29,
+      "clear_requests": [
+        {
+          "time_s": 0.050300000000000004,
+          "clear_result": "rejected_active_fault",
+          "output_v": 2.4339439485620806,
+          "inductor_current_a": 1.658853214726936,
+          "measured_output_v": 2.43310546875,
+          "measured_current_a": 1.651611328125,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 2.434716796875,
+          "clear_max_abs_current_a": 1.6596679687500004
+        },
+        {
+          "time_s": 0.0505,
+          "clear_result": "rejected_residual_energy",
+          "output_v": 2.3909856617527403,
+          "inductor_current_a": -0.6074671751614679,
+          "measured_output_v": 2.389599609375,
+          "measured_current_a": -0.6123046875000004,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 2.3912109375,
+          "clear_max_abs_current_a": 0.6123046875000004
+        },
+        {
+          "time_s": 0.08,
+          "clear_result": "rejected_unobservable_measurement",
+          "output_v": -0.000822917832719418,
+          "inductor_current_a": 0.000636821439691346,
+          "measured_output_v": 0.0,
+          "measured_current_a": 0.0,
+          "true_clear_eligible": 1,
+          "clear_observable": 0,
+          "clear_max_abs_output_v": 0.001611328125,
+          "clear_max_abs_current_a": 0.008056640625000444
+        }
+      ],
+      "recovery_from_clear_to_2_percent_s": null
+    },
+    {
+      "case": "overvoltage",
+      "backend": "c",
+      "control_samples": 7001,
+      "cycles": 7000,
+      "waveform_nodes": 7165,
+      "peak_node_output_v": 2.534564765092122,
+      "node_overshoot_percent": 26.728238254606108,
+      "minimum_node_output_v": -1.9354926560832952,
+      "minimum_node_current_a": -3.213609761955682,
+      "trip_count": 1,
+      "max_abs_pulse_mean_voltage_error_v": 2.3097079804301757e-12,
+      "adc_out_of_range_samples": 2230,
+      "unsafe_clear_candidate_samples": 42,
+      "first_hypothetical_unsafe_clear": {
+        "time_s": 0.051460000000000006,
+        "true_output_v": -1.9066087201523485,
+        "true_current_a": 0.005453257657086389,
+        "measured_output_v": 0.0,
+        "measured_current_a": 0.0,
+        "stored_energy_j": 0.0008542651219459276,
+        "clear_result_if_requested": "rejected_unobservable_measurement",
+        "applied_to_main_trajectory": false
+      },
+      "verification_failures": [],
+      "first_fault": "OUTPUT_OVERVOLTAGE",
+      "first_trip_time_s": 0.050300000000000004,
+      "injection_to_trip_s": 0.00030000000000000165,
+      "true_threshold_crossing_bracket_s": [
+        0.050285699375000006,
+        0.05028619250000001
+      ],
+      "true_threshold_to_detection_bracket_s": [
+        1.3807499999997364e-05,
+        1.4300624999998013e-05
+      ],
+      "trip_previous_queued_duty": 0.2095,
+      "trip_applied_duty": 0.0,
+      "trip_energy_j": 0.0016948568776954515,
+      "max_latched_sample_energy_increase_j": -6.7296351222103e-29,
+      "clear_requests": [
+        {
+          "time_s": 0.050300000000000004,
+          "clear_result": "rejected_active_fault",
+          "output_v": 2.4339439485620806,
+          "inductor_current_a": 1.658853214726936,
+          "measured_output_v": 2.43310546875,
+          "measured_current_a": 1.651611328125,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 2.434716796875,
+          "clear_max_abs_current_a": 1.6596679687500004
+        },
+        {
+          "time_s": 0.0505,
+          "clear_result": "rejected_residual_energy",
+          "output_v": 2.3909856617527403,
+          "inductor_current_a": -0.6074671751614679,
+          "measured_output_v": 2.389599609375,
+          "measured_current_a": -0.6123046875000004,
+          "true_clear_eligible": 0,
+          "clear_observable": 1,
+          "clear_max_abs_output_v": 2.3912109375,
+          "clear_max_abs_current_a": 0.6123046875000004
+        },
+        {
+          "time_s": 0.08,
+          "clear_result": "rejected_unobservable_measurement",
+          "output_v": -0.000822917832719418,
+          "inductor_current_a": 0.000636821439691346,
+          "measured_output_v": 0.0,
+          "measured_current_a": 0.0,
+          "true_clear_eligible": 1,
+          "clear_observable": 0,
+          "clear_max_abs_output_v": 0.001611328125,
+          "clear_max_abs_current_a": 0.008056640625000444
+        }
+      ],
+      "recovery_from_clear_to_2_percent_s": null,
+      "native_main_step_calls": 7001
+    }
+  ],
+  "comparison": {
+    "case": "overvoltage",
+    "samples": 7001,
+    "same_sample_count": true,
+    "mismatch_rows": 0,
+    "max_abs_differences": {
+      "controller_duty": 0.0,
+      "reference_v": 0.0,
+      "output_v": 0.0,
+      "inductor_current_a": 0.0,
+      "duty": 0.0
+    },
+    "same_events": true,
+    "same_counterfactual": true
+  }
+}

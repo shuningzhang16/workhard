@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "wsl",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/usr/bin/env",
+    "PATH=/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "UBSAN_OPTIONS=halt_on_error=1:print_stacktrace=1",
+    "/usr/bin/uname",
+    "-sm"
+  ],
+  "returncode": 0,
+  "stdout": "Linux x86_64\n",
+  "stderr": ""
+}

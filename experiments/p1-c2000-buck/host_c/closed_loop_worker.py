@@ -5,7 +5,7 @@ import ctypes as ct
 import json
 import math
 import sys
-from dataclasses import asdict, replace
+from dataclasses import asdict
 from pathlib import Path
 from time import perf_counter
 
@@ -73,23 +73,24 @@ def describe_and_check(case, result):
              "undervoltage": "INPUT_UNDERVOLTAGE"}[case]
     check("initial_cause", trip["latched_fault"] == cause)
     check("active_clear_rejected", trip["clear_result"] == "rejected_active_fault")
-    latched = rows[first:4000]
+    latched = rows[first:]
     check("latch_retained", all(r["state"] == "FAULT_LATCHED" and r["latched_fault"] == cause
                                 and r["duty"] == 0 and r["reference_v"] == 0 for r in latched))
     energy_increase = max(b["stored_energy_j"] - a["stored_energy_j"] for a, b in zip(latched, latched[1:]))
     check("freewheel_energy_decay", energy_increase <= 1e-12)
     check("latched_pulses_zero", all(r["switch_voltage_v"] == 0 and r["high_side_on"] == 0
-                                     for r in wave if first <= r["cycle"] < 4000))
+                                     for r in wave if first <= r["cycle"]))
     for k in (first, 4000):
         before, after = periods[k - 1][-1], periods[k][0]
         check(f"continuous_LC_at_{k}", all(before[key] == after[key] == rows[k][key]
                                            for key in ("output_v", "inductor_current_a")))
     accepted = [r for r in rows if r["clear_result"] == "accepted"]
-    check("only_explicit_80ms_clear", [r["time_s"] for r in accepted] == [0.08])
+    check("no_clear_without_observable_bounds", not accepted)
     check("true_state_clear_eligible", bool(rows[4000]["true_clear_eligible"]))
-    check("soft_start_restarted", rows[4000]["reference_v"] == 0 and rows[4001]["reference_v"] == 0.002
-          and rows[5000]["reference_v"] == 2 and rows[5000]["state"] == "RUN")
-    check("actual_restarted_pulses", any(r["high_side_on"] == 1 for r in wave if 4000 <= r["cycle"] < 4030))
+    check("80ms_zero_code_rejected", rows[4000]["raw_vout"] == 0
+          and rows[4000]["clear_result"] == "rejected_unobservable_measurement")
+    check("no_hidden_truth_restart", rows[-1]["state"] == "FAULT_LATCHED"
+          and rows[-1]["reference_v"] == 0)
     if shadow:
         original = next(r for r in rows if r["time_s"] == shadow["time_s"])
         check("counterfactual_not_applied", not shadow["applied_to_main_trajectory"]
@@ -97,8 +98,7 @@ def describe_and_check(case, result):
     crossing_index = next(i for i, r in enumerate(wave) if crosses_primary_threshold(r, case, ProtectionLimits()))
     upper = wave[crossing_index]["time_s"]
     lower = upper if case == "undervoltage" else wave[crossing_index - 1]["time_s"]
-    recovery = metrics(rows, case, replace(p, event_time_s=0.08))["recovery_to_2_percent_s"]
-    check("recovered_before_end", recovery is not None and abs(rows[-1]["output_v"] - 2) < 0.02)
+    recovery = None  # Unobservable zero code is not evidence permitting recovery.
     summary.update({"first_fault": trip["latched_fault"], "first_trip_time_s": trip["time_s"],
                     "injection_to_trip_s": trip["time_s"] - 0.05,
                     "true_threshold_crossing_bracket_s": [lower, upper],
@@ -106,7 +106,8 @@ def describe_and_check(case, result):
                     "trip_previous_queued_duty": trip["previous_pwm_duty"], "trip_applied_duty": trip["duty"],
                     "trip_energy_j": trip["stored_energy_j"], "max_latched_sample_energy_increase_j": energy_increase,
                     "clear_requests": [{key: r[key] for key in ("time_s", "clear_result", "output_v", "inductor_current_a",
-                                                               "measured_output_v", "measured_current_a", "true_clear_eligible")}
+                                                               "measured_output_v", "measured_current_a", "true_clear_eligible",
+                                                               "clear_observable", "clear_max_abs_output_v", "clear_max_abs_current_a")}
                                        for r in rows if r["clear_request"]],
                     "recovery_from_clear_to_2_percent_s": recovery})
     return summary
@@ -120,7 +121,8 @@ def compare_runs(case, python_result, c_result, output):
     numeric = {"controller_duty": DUTY_ABS_TOL, "reference_v": REFERENCE_ABS_TOL_V,
                "output_v": 0.0, "inductor_current_a": 0.0, "duty": 0.0}
     exact = ("time_s", "raw_vin", "raw_vout", "raw_current", "cmpa_counts", "state", "active_faults",
-             "latched_fault", "clear_request", "clear_result", "unsafe_clear_candidate")
+             "latched_fault", "clear_request", "clear_result", "unsafe_clear_candidate",
+             "clear_observable", "clear_max_abs_output_v", "clear_max_abs_current_a")
     for k, (a, b) in enumerate(zip(py_rows, c_rows)):
         row = {"sample": k, "time_s": b["time_s"]}
         for key in numeric:
@@ -169,9 +171,12 @@ def main():
             summaries.append(summary)
         comparisons.append(compare_runs(case, python_result, c_result, output))
         # Persist after every completed case, including any failed checks.
-        (output / "metrics.json").write_text(json.dumps(summaries, indent=2) + "\n", encoding="utf-8")
-        (output / "comparisons.json").write_text(json.dumps(comparisons, indent=2) + "\n", encoding="utf-8")
+        with (output / f"{case}_summary.json").open("x", encoding="utf-8") as stream:
+            json.dump({"metrics": summaries[-2:], "comparison": comparisons[-1]}, stream, indent=2)
         print(json.dumps(comparisons[-1]), flush=True)
+    for name, values in (("metrics.json", summaries), ("comparisons.json", comparisons)):
+        with (output / name).open("x", encoding="utf-8") as stream:
+            json.dump(values, stream, indent=2)
     config = {"python": sys.version, "scope": "host shared C controller drives PWM plant at every sample; independent Python comparison",
               "library": args.library, "native_main_step_calls": calls,
               "ctypes_native_struct_bytes": {"BuckController": ct.sizeof(BuckController), "BuckCommand": ct.sizeof(BuckCommand)},
@@ -179,7 +184,7 @@ def main():
               "integration_max_step_s": 0.5e-6, "control_period_s": 20e-6,
               "timing": "simultaneous ideal period-start ADC; one-period quantized PWM delay; immediate sampled Trip override",
               "adc": "existing ideal floor bins and 0..4095 clipping; nominal provisional scaling; no real SOC skew",
-              "clear_policy": "first active request, first inactive residual request when available, explicit 80 ms clear; copied-controller probe never applied to main plant",
+              "clear_policy": "explicit requests only; ADC code-bin bounds must be observable and wholly within original 0.1 V/0.1 A; 80 ms zero-code requests remain latched; copied probes never drive main plant",
               "faults": "50..65 ms: R=0.25 ohm / Vin=14 V / Vin=4.5 V; original nominal values restored at 65 ms",
               "signed_plant": "unchanged ideal low-side freewheel; no physical negative-voltage clamp",
               "comparison": "original duty/reference tolerances 1e-11/1e-14; identical quantized drive must give identical plant trajectories; discrete fields exact",

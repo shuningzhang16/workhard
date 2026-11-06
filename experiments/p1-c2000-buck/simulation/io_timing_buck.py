@@ -46,6 +46,17 @@ def quantized_pwm(duty):
     return counts, counts / BOARD["P1_PWM_COUNTS"]
 
 
+def adc_clear_evidence(raw_vout, raw_current):
+    """Only raw codes and declared ideal bins; no plant state or elapsed time."""
+    step = BOARD["P1_ADC_REFERENCE_V"] / BOARD["P1_ADC_COUNTS"]
+    current_low = (raw_current * step - BOARD["P1_CURRENT_ZERO_V"]) / BOARD["P1_CURRENT_GAIN_V_PER_A"]
+    current_high = ((raw_current + 1) * step - BOARD["P1_CURRENT_ZERO_V"]) / BOARD["P1_CURRENT_GAIN_V_PER_A"]
+    return {"observable": 0 < raw_vout < BOARD["P1_ADC_COUNTS"] - 1
+                           and 0 < raw_current < BOARD["P1_ADC_COUNTS"] - 1,
+            "max_abs_output_v": (raw_vout + 1) * step * BOARD["P1_VOUT_DIVIDER_GAIN"],
+            "max_abs_current_a": max(abs(current_low), abs(current_high))}
+
+
 def waveform_windows(case, count):
     if case == "startup":
         return [(0, 15), (990, 1010), (count - 20, count)]
@@ -99,7 +110,11 @@ def simulate_io_timing(case, adapted, max_step_s=0.5e-6, controller=None):
             if k == 4000:
                 request = True
         before = queued_duty
-        command = control.update(k, mv, mo, mi, request)
+        evidence = adc_clear_evidence(adc["raw_vout"], adc["raw_current"]) if adapted else None
+        # Ideal legacy runs retain exact-measurement semantics; ADC runs always
+        # pass explicit measurement bounds. Truth labels above are diagnostics.
+        command = (control.update(k, mv, mo, mi, request, evidence) if adapted
+                   else control.update(k, mv, mo, mi, request))
         if adapted:
             cmpa, scheduled = quantized_pwm(command["duty"])
             # 仅 CMPA 更新延迟一拍。检测出的 Trip 在本假定采样时刻立即覆盖旧命令。
@@ -111,7 +126,8 @@ def simulate_io_timing(case, adapted, max_step_s=0.5e-6, controller=None):
         if unsafe_candidate and counterfactual is None:
             # 只复制控制器验证一次假想 clear；不应用到主功率级，主轨迹继续锁存。
             shadow = copy.deepcopy(control)
-            result = shadow.update(k, mv, mo, mi, True)
+            result = (shadow.update(k, mv, mo, mi, True, evidence) if adapted
+                      else shadow.update(k, mv, mo, mi, True))
             counterfactual = {"time_s": k * p.control_period_s, "true_output_v": output_v,
                               "true_current_a": current_a, "measured_output_v": mo, "measured_current_a": mi,
                               "stored_energy_j": energy_j(current_a, output_v, p),
@@ -124,6 +140,10 @@ def simulate_io_timing(case, adapted, max_step_s=0.5e-6, controller=None):
                         "previous_pwm_duty": before, "duty": applied,
                         "measured_clear_eligible": int(measured_clearable), "true_clear_eligible": int(true_clearable),
                         "unsafe_clear_candidate": int(unsafe_candidate)})
+        if adapted:
+            samples[-1].update({"clear_observable": int(evidence["observable"]),
+                               "clear_max_abs_output_v": evidence["max_abs_output_v"],
+                               "clear_max_abs_current_a": evidence["max_abs_current_a"]})
         if k == count:
             break
         current_a, output_v, cycle, trace = switching_cycle(

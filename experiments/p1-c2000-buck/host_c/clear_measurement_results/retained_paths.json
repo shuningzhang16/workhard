@@ -1,0 +1,13 @@
+{
+  "isolated_run_relative_to_repository": ".runs\\p1-clear-measurement-20261106-003154",
+  "full_trajectories": "results_clear_01",
+  "before_sources": "before",
+  "target_objects_and_image": "target_clear_01/build",
+  "compact_evidence_only": true,
+  "notes": [
+    "All original evidence and build artifacts retained.",
+    "No hardware operation or output enable.",
+    "Initial mkdir sandbox denial made no files; authorized new-directory retry succeeded.",
+    "One patch context lookup failed without applying; corrected context then applied."
+  ]
+}

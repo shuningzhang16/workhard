@@ -1,0 +1,39 @@
+{
+  "result": "real C28x compilation and RAM link succeeded; image NOT executed",
+  "compiler": "25.11.1.LTS",
+  "c2000ware": "26.02.00.00.LTS",
+  "flags": [
+    "--silicon_version=28",
+    "--large_memory_model",
+    "--unified_memory",
+    "--abi=eabi",
+    "--float_support=fpu32",
+    "--tmu_support=tmu0",
+    "--vcu_support=vcu0",
+    "--cla_support=cla2",
+    "--fp_mode=strict",
+    "--c11",
+    "--opt_level=2",
+    "--symdebug:dwarf",
+    "--display_error_number",
+    "--emit_warnings_as_errors",
+    "--include_path=../../experiments/p1-c2000-buck/.tools/ti-cgt/ti-cgt-c2000_25.11.1.LTS/include",
+    "--include_path=host_c",
+    "--include_path=firmware",
+    "--include_path=../../experiments/p1-c2000-buck/.tools/c2000ware-26.02/driverlib/f28004x/driverlib",
+    "--include_path=../../experiments/p1-c2000-buck/.tools/c2000ware-26.02/device_support/f28004x/common/include"
+  ],
+  "image_path": "target_clear_01/build/p1_f280049c_ram.out",
+  "image_file_bytes": 70428,
+  "pwm": "pins stay GPIO inputs, hardware OST forced and never cleared",
+  "hardware_connection": false,
+  "target_numeric_format": {
+    "char_bits": 16,
+    "float_bits": 32,
+    "double_bits": 64,
+    "float_radix": 2,
+    "float_mantissa_bits": 24,
+    "double_mantissa_bits": 53
+  },
+  "max_abs_compiled_constant_difference": 0.0
+}

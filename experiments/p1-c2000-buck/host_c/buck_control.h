@@ -36,8 +36,18 @@ typedef enum {
     BUCK_CLEAR_REJECTED_ACTIVE = 1,
     BUCK_CLEAR_REJECTED_RESIDUAL = 2,
     BUCK_CLEAR_ACCEPTED = 3,
-    BUCK_CLEAR_IGNORED_NOT_LATCHED = 4
+    BUCK_CLEAR_IGNORED_NOT_LATCHED = 4,
+    BUCK_CLEAR_REJECTED_UNOBSERVABLE = 5
 } BuckClearResult;
+
+/* Conservative absolute bounds supplied by the measurement interface, never
+ * by hidden plant state. observable=false includes clipped/endpoint ADC codes.
+ * Bounds include the complete code bin and any declared measurement error. */
+typedef struct {
+    double max_abs_output_v;
+    double max_abs_current_a;
+    bool observable;
+} BuckClearEvidence;
 
 typedef struct {
     double integral;
@@ -64,8 +74,13 @@ typedef struct {
  * PI state can also be initialized independently with BuckVoltagePI pi = {0}. */
 void buck_controller_init(BuckController *control);
 double buck_voltage_pi_step(BuckVoltagePI *pi, double reference_v, double measured_v);
+/* Historical ideal-exact-measurement entry point; NOT for ADC measurements. */
 BuckCommand buck_controller_step(BuckController *control, uint64_t sample,
                                  double input_v, double output_v, double current_a,
                                  bool clear_request);
+/* ADC/target path: absent, invalid or unobservable evidence cannot clear a latch. */
+BuckCommand buck_controller_step_observed(BuckController *control, uint64_t sample,
+                                          double input_v, double output_v, double current_a,
+                                          bool clear_request, const BuckClearEvidence *evidence);
 
 #endif
