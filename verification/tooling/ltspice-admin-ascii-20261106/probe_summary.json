@@ -1,0 +1,31 @@
+{
+  "identity": "win-ohfcgc0i6ia\\administrator",
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "E:\\codex_ltspice_runs\\admin_ascii_20261106_164830_750328\\resistor.net",
+    "-b",
+    "-run",
+    "-ascii",
+    "-ini",
+    "E:\\codex_ltspice_runs\\admin_ascii_20261106_164830_750328\\isolated.ini"
+  ],
+  "cwd": "E:\\codex_ltspice_runs\\admin_ascii_20261106_164830_750328",
+  "timeout_seconds": 30,
+  "started_local": "2026-11-06T16:48:30.757876",
+  "flags_source": "https://www.analog.com/en/technical-articles/ltspice-keyboard-shortcuts.html",
+  "prior_context": "Historical sandbox account and Chinese paths timed out. This retry uses administrator and a new ASCII directory. No privacy/security settings modified.",
+  "pid": 47036,
+  "returncode": 1,
+  "timed_out": true,
+  "elapsed_seconds": 34.617,
+  "outputs": {
+    ".log": {
+      "exists": false,
+      "bytes": 0
+    },
+    ".raw": {
+      "exists": false,
+      "bytes": 0
+    }
+  }
+}

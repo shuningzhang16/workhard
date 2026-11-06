@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Windows\\System32\\wevtutil.exe",
+    "qe",
+    "Application",
+    "/q:*[System[TimeCreated[@SystemTime >= \"2026-11-06T08:48:00.000Z\"] and (Level=1 or Level=2 or Level=3)]]",
+    "/f:text",
+    "/c:40",
+    "/rd:true"
+  ],
+  "executed_local": "2026-11-06T16:52:56.311510",
+  "identity": "win-ohfcgc0i6ia\\codexsandboxoffline",
+  "exit_code": 0,
+  "stdout_bytes": 0,
+  "stderr_bytes": 0,
+  "scope": "Read-only Application levels 1/2/3 from 2026-11-06 16:48 local through query time; max 40 newest records. Not all event channels."
+}

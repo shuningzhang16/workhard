@@ -1,0 +1,9 @@
+{
+  "action": "Edge Control+t before opening official AMD installer link",
+  "result": "Computer Use ended because it could not determine the current browser URL on Windows with enough confidence to enforce policy",
+  "amd_page_opened": false,
+  "login_state_observed": false,
+  "download_started": false,
+  "gui_operations_stopped": true,
+  "source": "Observed computer-use tool result relayed by P2 worker"
+}

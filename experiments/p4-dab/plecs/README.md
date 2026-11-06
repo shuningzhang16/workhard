@@ -1,6 +1,6 @@
 # P4 原生 PLECS 工程准备与真实平台状态
 
-**状态（2026-11-06）：已生成原生模型输入并启动官方 PLECS 5.0.7；尚未进入 Demo、解析/编译模型或运行仿真。** 首次窗口读取返回 `Computer Use app approval timed out`，因此没有点击 Demo、取得模型截图、产生 PLECS 波形或 PLECS 数值结果。下面的数值全部是独立解析期望值，不是 PLECS 输出。
+**状态（2026-11-06）：已进入官方 PLECS 5.0.7 Demo，并取得许可限制及原生输入拒绝的窗口证据；尚未运行任何 DAB 仿真。** Demo 实际提示只能新建模型或打开官方签名示例。启动时传入的自建 `dab_sps_forward` 被原生诊断拒绝：`Invalid signature`。这不是电路编译或数值检查结果。官方签名 DAB 路径已定位，界面停在文件选择器，尚未加载；本轮共享界面会话随后收到停止操作的指令，已停止所有 GUI 操作。下方数值全部是独立解析期望值，不是 PLECS 输出。
 
 ## 文件
 
@@ -9,7 +9,7 @@
 - `models/dab_sps_reverse.plecs`：−30° 反向 SPS 原生输入。
 - `reference_rl.py`：仅用 Python 标准库计算分段恒压 R-L 解析参考；不读 PLECS 进程或数据。
 
-这些 `.plecs` 文件是新编写的模型源文件，不是从 Demo 保存或导出的文件。实际格式兼容性、连接和运行仍需 PLECS 检查。端口编号已按官方 5.0.7 包内组件及示例源码核对，包括 SignalMux 的输出端口 1、输入端口 2/3；这不替代原生解析和仿真。
+这些 `.plecs` 文件是新编写的模型源文件，不是从 Demo 保存或导出的文件。**它们需要合法完整/试用许可才能从文件加载；5.0.7 Demo 不能直接打开这些未签名输入。** 实际格式兼容性、连接和运行仍需具备相应许可的 PLECS 检查。端口编号已按官方 5.0.7 包内组件及示例源码核对，包括 SignalMux 的输出端口 1、输入端口 2/3；这不替代原生解析和仿真。
 
 从仓库根目录生成另一份输入时，使用一个不存在的新目录：
 
@@ -55,23 +55,35 @@ E:\UserData\Documents\ChatGPT\硬件\.runs\plecs_5_0_7_demo_20261106_01
 
 该目录保留官方压缩包、官方示例、解压程序、第一版草稿以及修正端口编号后的第二版输入。它是本机运行准备目录，不应把整套第三方程序或示例上传为本项目源码。没有删除或清理这些文件。
 
-已出现窗口 `PLECS (Ubuntu-22.04)`，但应用操作审批超时。窗口启动参数曾指向第一版草稿；权限恢复后请明确打开下面的最终输入，不使用 `models_01` 草稿：
+第一次应用读取曾超时；用户恢复界面授权后，已实际完成 Demo 选择，并观察到以下原生限制：只能新建模型或打开官方签名示例；不能保存模型；导出操作禁用；不能使用 PLECS Spice 块。随后原生 Diagnostics 明确拒绝自建输入的签名。
+
+已保留的可见证据（仅窗口截图，不是仿真数据导出）：
+
+- `evidence/01_demo_restrictions.png`：PLECS Demo Mode 的实际限制。
+- `evidence/02_native_input_rejected.png`：自建模型被原生签名检查拒绝。
+
+**网页“可建模运行但禁保存”的简略说明不足以推断 Demo 能打开任意自建文件。此前这一推断现已更正。** 不修改签名，不使用脚本、内存、剪贴板或其他方式绕过加载/保存限制。
+
+官方包内已定位的签名示例为 Plexim 的 `dual_active_bridge_converter`（源文件格式版本 4.9，由 5.0.7 发行包提供）：
 
 ```text
-/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p4-dab/plecs/models/dab_sps_forward.plecs
-/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p4-dab/plecs/models/dab_sps_reverse.plecs
+/mnt/e/UserData/Documents/ChatGPT/硬件/.runs/plecs_5_0_7_demo_20261106_01/extracted/plecs/demos/dual_active_bridge_converter/dual_active_bridge_converter.plecs
 ```
+
+这是厂商原例，原参数为 95 V 输入、380 V 输出、250 kHz、1 kW 到 2 kW 负载阶跃，含磁性及热模型，不是本项目 24 V／12 V 电路。尚未打开或运行它，不把其预置说明当成本机结果。保留 Plexim 署名及原始文件。
 
 后续最少步骤：
 
-1. 恢复该应用的 computer-use 操作权限，或由用户自行选择 PLECS 的 `Run in demo mode`。
-2. 用 `File > Open` 打开上述正向模型，执行 `Simulation > Start`；如出现解析或电路错误，先保留可见错误和模型源，再修复。
-3. 运行完成后核对终止时间 0.006 s、三个示波器信号和四个 Display；再打开反向模型执行相同检查。仅可见结果应明确标注为人工/界面观察。
-4. 需要完整可复核波形和数据文件时，提供合法 PLECS Standalone 完整/试用许可，再使用官方导出功能。Demo 模式禁止保存模型和数据；不使用脚本、内存、剪贴板或 RPC 绕过该限制。
+1. 在允许恢复界面操作的轮次，通过现有 `Open File` 对话框打开上述官方签名 DAB；先核对是否成功加载和原厂参数。
+2. 合法运行官方示例，记录真实终止状态与可见波形。若通过界面调整为低压参数，必须单独记录修改项及实际结果；不能把原厂电压/功率直接当作低压实验结果。
+3. 如需与本仓库固定 SPS R-L 模型严格对照，可以在 Demo 界面内合法新建等效模型；从磁性/热闭环原例直接改成固定双母线、开环 ±30°并非只修改两个电压数值。
+4. 需要加载已备好的自建源文件或保存完整波形时，提供合法 PLECS Standalone 完整/试用许可，再使用官方功能。自建正反向源文件仍保留在本目录 `models/` 下。
+
+尚无官方 DAB 运行、低压正反向运行、PLECS 波形导出或数值对照通过的证据。
 
 ## 合法平台选择
 
-- **PLECS Standalone 5.0.7**：无需 MATLAB、账号或许可证即可按官方提示进入受限 Demo，支持建模和运行，禁止保存模型/数据。完整试用许可通常为 30 天，申请涉及本人信息，不代申请。[官方下载](https://www.plexim.com/download/standalone)、[官方 Demo 说明](https://docs.plexim.com/plecs/5.0/before-you-begin/)、[官方试用](https://www.plexim.com/trial)
+- **PLECS Standalone 5.0.7**：无需 MATLAB、账号或许可证即可按官方提示进入受限 Demo，支持界面新建模型、打开官方签名示例并运行；实际 5.0.7 提示禁止打开未签名自建文件、保存模型、导出和使用 PLECS Spice。完整试用许可通常为 30 天，申请涉及本人信息，不代申请。[官方下载](https://www.plexim.com/download/standalone)、[官方 Demo 说明](https://docs.plexim.com/plecs/5.0/before-you-begin/)、[官方试用](https://www.plexim.com/trial)
 - **MATLAB + Simulink**：现有 [`build_dab_sps.m`](../../../scripts/matlab/build_dab_sps.m) 仅需这两个组件，无需 Simscape、Simulink Coder 或硬件支持包。本机未找到 MATLAB；脚本没有已验证的最低版本，不能把 API 静态核对当作版本运行兼容证明。[既有工程说明](../../../docs/SIMULINK.md)
 - **MATLAB Online (basic)**：官方当前提供每月 20 小时免费额度，包含 MATLAB 和 Simulink，需 MathWorks 账号；因此不一定需要购买许可证。账号登录/关联由用户处理，Online 环境中的实际脚本兼容性仍需运行。[官方版本与额度](https://www.mathworks.com/products/matlab-online/matlab-online-versions.html)
 - **PSIM**：当前官方 Altair One 试用下载需要账号及试用获取流程，未找到可核实的免身份官方下载运行路径，不代注册或申请。[官方试用流程](https://help.altair.com/altairone/topics/marketplace/application_try_free.htm)

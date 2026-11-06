@@ -1,0 +1,8 @@
+Get-WinEvent : The 'Get-WinEvent' command was found in the module 'Microsoft.PowerShell.Diagnostics', but the module co
+uld not be loaded. For more information, run 'Import-Module Microsoft.PowerShell.Diagnostics'.
+At line:1 char:35
++ $since=(Get-Date).AddMinutes(-3); Get-WinEvent -FilterHashtable @{Log ...
++                                   ~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WinEvent:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CouldNotAutoloadMatchingModule
+ 

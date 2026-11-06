@@ -1,0 +1,19 @@
+{
+    "Id":  47036,
+    "ProcessName":  "LTspice",
+    "StartTime":  "\/Date(1793954911005)\/",
+    "SessionId":  1,
+    "CPU":  0.21875,
+    "WorkingSet64":  20144128,
+    "MainWindowHandle":  0,
+    "MainWindowTitle":  "",
+    "Responding":  true,
+    "Path":  "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe"
+}
+{
+    "ProcessId":  47036,
+    "ParentProcessId":  57176,
+    "Name":  "LTspice.exe",
+    "ExecutablePath":  "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "CommandLine":  "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe E:\\codex_ltspice_runs\\admin_ascii_20261106_164830_750328\\resistor.net -b -run -ascii -ini E:\\codex_ltspice_runs\\admin_ascii_20261106_164830_750328\\isolated.ini"
+}

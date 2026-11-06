@@ -1,0 +1,34 @@
+{
+    "Id":  47036,
+    "ProcessName":  "LTspice",
+    "StartTime":  "\/Date(1793954911005)\/",
+    "SessionId":  1,
+    "CPU":  0.21875,
+    "WorkingSet64":  20144128,
+    "MainWindowHandle":  0,
+    "MainWindowTitle":  "",
+    "Responding":  true,
+    "Path":  "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe"
+}
+[
+    {
+        "Id":  42128,
+        "ThreadState":  5,
+        "WaitReason":  6
+    },
+    {
+        "Id":  55316,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  57860,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  58364,
+        "ThreadState":  5,
+        "WaitReason":  8
+    }
+]
