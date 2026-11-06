@@ -1,0 +1,19 @@
+{
+  "status": "GUI stopped; no new PLECS model components or forward/reverse run",
+  "observed_window": "PLECS Demo Mode: untitled (Ubuntu-22.04)",
+  "window_id": 27596952,
+  "observations": [
+    "Fresh @oai/sky connection listed PLECS windows successfully.",
+    "Initial screenshot was stale maximized content; refreshed actual window was 271x195.",
+    "Clicked the actual blank canvas, then press_key v returned without visible mini browser.",
+    "Mouse clicking Edit and View opened the correct PLECS menus; Paste was disabled.",
+    "Helper already has an active request recurred. A JavaScript reset and new initialization were performed.",
+    "After reset, a target PLECS capture temporarily contained Codex content; no input was sent to that content. Activating the selected PLECS window restored its true canvas.",
+    "The next library observation attempt returned an explicit physical Escape user stop. No Escape key was sent by this agent."
+  ],
+  "stop_text": "Computer Use was stopped by the user with the physical Escape key. Stop your work, do not call further Computer Use tools in this turn, and send a final message noting that the user stopped Computer Use.",
+  "after_stop_gui_calls": 0,
+  "files_deleted": false,
+  "hardware_actions": false,
+  "demo_restrictions_bypassed": false
+}

@@ -1,0 +1,12 @@
+{
+  "files": 7069,
+  "bytes": 867090412,
+  "output_directory": "E:\\codex_plecs_runs\\windows_5_0_7_20261106_184319",
+  "main_executable": "E:\\codex_plecs_runs\\windows_5_0_7_20261106_184319\\AppData\\Plexim\\PLECS 5.0 (64 bit)\\PLECS.exe",
+  "elapsed_s": 201.13196660001995,
+  "method": "Read-only MSI Directory/Component/File table mappings; copied extracted CAB files into fresh directory without installer execution",
+  "installer_executed": false,
+  "application_launched": false,
+  "files_deleted": false,
+  "old_partial_extraction_retained": true
+}

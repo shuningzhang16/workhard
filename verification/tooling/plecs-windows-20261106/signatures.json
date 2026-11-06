@@ -1,0 +1,12 @@
+[
+  {
+    "path": "E:\\UserData\\Documents\\ChatGPT\\硬件\\.runs\\plecs_windows_20261106_184319_738599\\plecs-standalone-5-0-7_win64.exe",
+    "status": "Valid",
+    "signer": "CN=Plexim GmbH, O=Plexim GmbH, STREET=Technoparkstrasse 1, L=Zürich, S=Zürich, C=CH, OID.1.3.6.1.4.1.311.60.2.1.2=Zuerich, OID.1.3.6.1.4.1.311.60.2.1.3=CH, SERIALNUMBER=CHE-109.625.589, OID.2.5.4.15=Private Organization"
+  },
+  {
+    "path": "E:\\codex_plecs_runs\\windows_5_0_7_20261106_184319\\AppData\\Plexim\\PLECS 5.0 (64 bit)\\PLECS.exe",
+    "status": "Valid",
+    "signer": "CN=Plexim GmbH, O=Plexim GmbH, STREET=Technoparkstrasse 1, L=Zürich, S=Zürich, C=CH, OID.1.3.6.1.4.1.311.60.2.1.2=Zuerich, OID.1.3.6.1.4.1.311.60.2.1.3=CH, SERIALNUMBER=CHE-109.625.589, OID.2.5.4.15=Private Organization"
+  }
+]
