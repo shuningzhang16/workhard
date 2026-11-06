@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:/Users/Administrator/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe",
+    "-NoProfile",
+    "-NonInteractive",
+    "-File",
+    "E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\results\\toolchain_command_fix_20261106_103318_119885\\attempt2\\powershell_exit_probe.ps1"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Exception: E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\results\\toolchain_command_fix_20261106_103318_119885\\attempt2\\powershell_exit_probe.ps1:10\nLine |\n  10 |  … de -ne 0) { throw \"Vivado failed with exit code $vivadoExitCode; outp …\n     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n     | Vivado failed with exit code 7; output retained:\n     | E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\build\\toolchain_20261106_103528_590\n"
+}

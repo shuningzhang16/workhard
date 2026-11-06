@@ -1,0 +1,6 @@
+{
+  "failure": "Test harness decoded child default-encoded Chinese path as UTF-8; path existence assertion failed.",
+  "child_result": "exit 0; all four Tcl text checks passed; new log exists",
+  "retained_log": "results/tcl_text_check_20261106_103401_663280/tcl_text_check.log",
+  "fix_scope": "Only test child Python invocation adds -X utf8; production checker logic unchanged."
+}

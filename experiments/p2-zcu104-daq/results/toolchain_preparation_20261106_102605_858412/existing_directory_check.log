@@ -1,0 +1,5 @@
+Only plain Tcl path checks executed; no Vivado commands, synthesis or BSP compilation.
+create_project.tcl: existing output directory refused before vendor commands; PASS
+build_offline.tcl: existing output directory refused before vendor commands; PASS
+No installer/download/build/hardware operation was started.
+Full Vivado and matching A53 BSP remain unexecuted.

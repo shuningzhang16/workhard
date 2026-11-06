@@ -53,7 +53,7 @@
 
 ```powershell
 & 'E:\python.exe' .\scripts\run_daq_session.py --output results/daq_session_recheck
-& 'E:\python.exe' .\scripts\check_tcl_text.py --output results/daq_session_recheck/tcl_text_check.log
+& 'E:\python.exe' -B .\scripts\check_tcl_text.py  # 独立新目录；不覆盖历史文本检查
 ```
 
 Linux 可用已有 Python/gcc/Icarus 执行第一条的 `python scripts/run_daq_session.py ...`；脚本不会下载工具。文本检查另外需要 Python tkinter/Tcl，不属于 Vivado 验证。

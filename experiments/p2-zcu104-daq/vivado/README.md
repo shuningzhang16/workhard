@@ -1,5 +1,7 @@
 # ZCU104 工程入口与当前验证范围
 
+2026-11-06 新增 [2025.2 完整工具链续接记录](toolchain_2025_2.md) 和 [独立离线构建入口](build_offline.tcl)：已核实 Linux 用户安装/许可、实际磁盘和 AMD 下载账户阻碍；完整 Vivado 及匹配 A53 BSP 仍未执行。新入口拒绝已有输出目录。
+
 当前入口已接入 AXI4-Lite 控制 wrapper，增加真实 Vivado 地址导出脚本，并提供 PS 正常启停/重启的主机验证流程；见 [当前集成说明、依赖和数据流教学](../ps/daq_session.md)。完整 Vivado/BSP 仍不可用，工程连接是待工具执行的 Tcl。
 
 ## 已执行与未执行
@@ -60,18 +62,30 @@ DMA s2mm_prmry_reset_out_n → wrapper stream_resetn（仅采集状态、source 
 先在完整 Vivado 2025.2 配好 Zynq UltraScale+ 器件支持及上述官方 ZCU104 board files。`vivado` 必须指完整工具而非 `vivado_lab`。从实验根目录执行：
 
 ```powershell
-New-Item -ItemType Directory -Force .\results\vivado_build | Out-Null
-vivado -mode batch -source .\vivado\create_project.tcl -log .\results\vivado_build\vivado.log -journal .\results\vivado_build\vivado.jou
+$p2Root = (Get-Location).Path
+$runDir = Join-Path $p2Root ("build\toolchain_" + (Get-Date -Format "yyyyMMdd_HHmmss_fff"))
+if (Test-Path -LiteralPath $runDir) { throw "请选择全新输出目录：$runDir" }
+New-Item -ItemType Directory -Path $runDir -ErrorAction Stop | Out-Null
+Push-Location $runDir
+try {
+    vivado -mode batch -source (Join-Path $p2Root "vivado\build_offline.tcl") -log (Join-Path $runDir "vivado.log") -journal (Join-Path $runDir "vivado.jou") -tclargs (Join-Path $runDir "project") 2
+    $vivadoExitCode = $LASTEXITCODE
+    if ($vivadoExitCode -ne 0) { throw "Vivado failed with exit code $vivadoExitCode; output retained: $runDir" }
+} finally {
+    Pop-Location
+}
 ```
 
-计划产物在 `build/vivado_zcu104/`，包括 `.xpr`、`daq_bd.bd`、生成的 wrapper、`daq_bd_export.tcl`，以及从实际地址段导出的 `address_map.csv` 和 `daq_addresses.h`。本次没有这些实际产物。脚本不自动替换已有同名工程；重新构建时可调整 `build_dir` 另建目录。
+此命令改为使用完整离线入口，执行综合、实现、报告与不含 bitstream 的 XSA 导出；实际运行前须满足[工具及文件保留限制](toolchain_2025_2.md)。计划产物在新建 runDir 下的 project 目录，包括 `.xpr`、`daq_bd.bd`、生成的 wrapper、`daq_bd_export.tcl`，以及从实际地址段导出的 `address_map.csv` 和 `daq_addresses.h`。本次没有这些实际产物。两个工程入口都拒绝已有输出目录；重新构建应另建 runDir，保留旧日志和工程。
 
 现有环境可实际运行的命令：
 
 ```powershell
 & 'E:\python.exe' .\scripts\run_frame_validator.py --output results/top_integration_recheck
-& 'E:\python.exe' .\scripts\check_tcl_text.py
+& 'E:\python.exe' -B .\scripts\check_tcl_text.py
 ```
+
+文本检查默认在 `results/tcl_text_check_时间戳/` 创建新日志；也可用 `--output` 指定 P2 内尚不存在的日志文件，已有文件会被拒绝。此命令不执行 Vivado，旧文本检查证据保留。
 
 ## 具体待验证项
 

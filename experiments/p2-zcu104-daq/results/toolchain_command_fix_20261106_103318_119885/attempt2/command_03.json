@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "scripts/check_tcl_text.py",
+    "--output",
+    "results\\toolchain_command_fix_20261106_103318_119885\\attempt2\\existing_log.txt"
+  ],
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\scripts\\check_tcl_text.py\", line 27, in <module>\n    with output.open(\"x\", encoding=\"utf-8\") as stream:\n         ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\Lib\\pathlib\\__init__.py\", line 771, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: 'E:\\\\UserData\\\\Documents\\\\ChatGPT\\\\硬件\\\\experiments\\\\p2-zcu104-daq\\\\results\\\\toolchain_command_fix_20261106_103318_119885\\\\attempt2\\\\existing_log.txt'\n"
+}

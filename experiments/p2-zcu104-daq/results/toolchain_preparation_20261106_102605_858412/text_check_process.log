@@ -1,0 +1,9 @@
+Command: ['E:\\python.exe', '-X', 'utf8', 'E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\scripts\\check_tcl_text.py', '--output', 'E:\\UserData\\Documents\\ChatGPT\\硬件\\experiments\\p2-zcu104-daq\\results\\toolchain_preparation_20261106_102605_858412\\tcl_text_check.log']
+Return code: 0
+Tcl version: 8.6.15
+Method: Tcl info complete on file text (no evaluation).
+This checks balanced Tcl command text only, not Vivado commands, IP parameters, synthesis or connectivity.
+vivado/create_project.tcl: complete=True
+vivado/create_bd.tcl: complete=True
+vivado/export_addresses.tcl: complete=True
+vivado/build_offline.tcl: complete=True

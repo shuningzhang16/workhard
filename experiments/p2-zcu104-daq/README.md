@@ -64,7 +64,7 @@
 
 ```powershell
 & 'E:\python.exe' .\scripts\run_frame_validator.py --output results/top_integration_recheck
-& 'E:\python.exe' .\scripts\check_tcl_text.py
+& 'E:\python.exe' -B .\scripts\check_tcl_text.py  # 默认创建新日志，拒绝覆盖已有文件
 ```
 
 ## 第三小步：C 帧流校验与 RTL 数据联测

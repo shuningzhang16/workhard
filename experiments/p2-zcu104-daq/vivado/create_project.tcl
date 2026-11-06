@@ -3,7 +3,14 @@
 # implement, export a bitstream, connect to hardware, or program a board.
 set script_dir [file dirname [file normalize [info script]]]
 set project_root [file dirname $script_dir]
-set build_dir [file join $project_root build vivado_zcu104]
+# A caller may provide a new output path (build_offline.tcl does so).
+if {![info exists build_dir]} {
+    set build_dir [file join $project_root build vivado_zcu104]
+}
+set build_dir [file normalize $build_dir]
+if {[file exists $build_dir]} {
+    error "Output already exists: $build_dir. Choose a new directory; existing output is preserved."
+}
 
 # AMD XilinxBoardStore 2025.2: boards/Xilinx/zcu104/1.1/board.xml.
 create_project daq_zcu104 $build_dir -part xczu7ev-ffvc1156-2-e
