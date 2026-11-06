@@ -20,7 +20,7 @@
 
 P2 的主机 C 检查包括帧校验器 16 项、Simple S2MM 接收/显式恢复 13 项、正常启停会话 9 项，以及有界队列 13 项与 9 组主机测量。统一入口调用 `run_daq_queue.py`，它依次包含会话、AXI-Lite、帧校验和接收流程，避免重复运行这些检查。测量中的吞吐和延迟只属于主机回调工作负载，不能推断硬件性能。
 
-P1 同时安装 GCC，通过 `host_c/run_validation.py` 编译独立 C 控制模块，执行 ASan/UBSan、边界检查及四份 PWM 采样数据的逐拍对照；Python 自动发现测试目前为 13 项，包含延迟与量化。P1 的 `.runs/` 中保留 C 编译命令、输出和全部比较结果，一并上传 artifact。DAB 的 Python 测试自动发现已有 SPS/EPS、保护、功率 PI、死区等测试，具体数量以对应提交的日志为准。
+P1 同时安装 GCC，通过 `host_c/run_validation.py` 编译独立 C 控制模块，执行 ASan/UBSan、边界检查及四份 PWM 采样数据的逐拍对照；Python 自动发现测试目前为 16 项，包含延迟、量化和完整码箱清除判定。P1 的 `.runs/` 中保留 C 编译命令、输出和全部比较结果，一并上传 artifact。DAB 的 Python 测试自动发现已有 SPS/EPS、保护、功率 PI、死区等测试，具体数量以对应提交的日志为准。
 
 P2 还安装 Yosys，执行 `scripts/check_synthesis.py`：通用综合后，用原有激励分别运行 RTL 和网表，逐项比较 84 个接收记录。相关脚本变更同样触发工作流；综合、网表仿真日志和版本信息包含在 `.runs/` artifact 中。本机的成功记录及首次依赖失败见 [综合验证记录](../verification/yosys-stream/README.md)。
 
@@ -29,3 +29,7 @@ AXI4-Lite wrapper 通过会话入口运行 `run_axi_lite.py`，并在 Yosys 步�
 加入接收流程和综合步骤后的实际运行 [41806027084](https://github.com/shuningzhang16/workhard/actions/runs/41806027084) 全部成功；[API 记录](../verification/github-actions/41806027084.json) 包含各步骤状态及日志产物信息，对应提交 `39ee557`。
 
 这组任务验证 Python 模型、Icarus RTL、通用网表和主机 C。P1/P4 的实际 ngspice 对照及 P1 的真实 C2000 目标编译在各阶段单独保存，不在 CI 中重复安装相应工具。完整 Vivado、目标器件时序、PS BSP、MATLAB、DDR/cache 行为和实物测量仍不在当前工作流的验证范围。
+
+2026-11-06 清除测量修复后的 `0cec731` 在 [42151335589](https://github.com/shuningzhang16/workhard/actions/runs/42151335589) 全部成功；P2 构建入口更新后的 `eace2e4` 在 [42151531202](https://github.com/shuningzhang16/workhard/actions/runs/42151531202) 全部成功。P1 的新量化闭环在不可观测零码处继续锁存，不把旧标量模型的 80 ms 恢复作为新入口预期。本机定向与实际 SPICE 复跑证据见 [本轮记录](../verification/2026-11-06-clear-and-preserve/)。
+
+最新代码提交 `b86f135` 的运行 [42184455660](https://github.com/shuningzhang16/workhard/actions/runs/42184455660) 三项全部成功，覆盖 P1 量化清除修复及 P4 旧文件保留测试；[API、任务及产物记录](../verification/github-actions/42184455660.json) 已保存。PLECS 原生模型只提交输入，未由该 CI 调用或验证。随后总览及证据提交仅同步记录，不冒称另一轮厂商仿真。

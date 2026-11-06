@@ -1,0 +1,53 @@
+[
+  {
+    "name": "adc_bins",
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "python3",
+      "-B",
+      "/mnt/e/UserData/Documents/ChatGPT/硬件/verification/2026-11-06-clear-and-preserve/p1-peer-review/review_adc_bins.py"
+    ],
+    "cwd": "E:\\UserData\\Documents\\ChatGPT\\硬件",
+    "exit_code": 0,
+    "elapsed_s": 2.75484561920166,
+    "scope": "host-only; no target ISR, board, compilation, or file deletion"
+  },
+  {
+    "name": "native_adc_test",
+    "command": [
+      "wsl.exe",
+      "-d",
+      "Ubuntu-22.04",
+      "--",
+      "/mnt/e/UserData/Documents/ChatGPT/硬件/.runs/p1-clear-measurement-20261106-003154/results_clear_01/build/test_clear_measurements"
+    ],
+    "cwd": "E:\\UserData\\Documents\\ChatGPT\\硬件",
+    "exit_code": 0,
+    "elapsed_s": 0.7364523410797119,
+    "scope": "host-only; no target ISR, board, compilation, or file deletion"
+  },
+  {
+    "name": "python_tests",
+    "command": [
+      "E:\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "experiments/p1-c2000-buck/simulation",
+      "-p",
+      "test_clear_measurements.py",
+      "-v"
+    ],
+    "cwd": "E:\\UserData\\Documents\\ChatGPT\\硬件",
+    "exit_code": 0,
+    "elapsed_s": 0.553476095199585,
+    "scope": "host-only; no target ISR, board, compilation, or file deletion"
+  }
+]

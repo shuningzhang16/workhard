@@ -1,0 +1,14 @@
+Command: ["wsl.exe", "-d", "Ubuntu-22.04", "--", "python3", "-B", "/mnt/e/UserData/Documents/ChatGPT/硬件/verification/2026-11-06-clear-and-preserve/p1-peer-review/review_adc_bins.py"]
+Exit code: 0
+STDOUT:
+Scope: native Linux host C/Python; target ISR and hardware NOT executed
+Retained build source equals current: host_c/buck_control.c
+Retained build source equals current: host_c/buck_control.h
+Retained build source equals current: firmware/adc_scaling.h
+Retained build source equals current: host_c/test_clear_measurements.c
+PASS exhaustive independent rational-bound expectations: 8192 C/Python clear decisions
+voltage accepted codes 1 61 count 61
+current accepted codes 2036 2059 count 24
+PASS native adapter NULL/nonfinite/negative/understated evidence refuses clear
+
+STDERR:

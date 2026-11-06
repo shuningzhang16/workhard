@@ -1,0 +1,7 @@
+Command: ["wsl.exe", "-d", "Ubuntu-22.04", "--", "/mnt/e/UserData/Documents/ChatGPT/硬件/.runs/p1-clear-measurement-20261106-003154/results_clear_01/build/test_clear_measurements"]
+Exit code: 0
+STDOUT:
+quantized_current=0.096679687500000888 bound=0.10473632812499911
+PASS: endpoint/missing/invalid evidence, full-bin rejection, signed interior bounds, explicit clear; original thresholds unchanged
+
+STDERR:

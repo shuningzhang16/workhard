@@ -8,22 +8,25 @@
 flowchart LR
   R[软启动参考] --> E[参考减采样电压]
   E --> PI[离散 PI 与积分限幅]
-  PI --> D[占空比保持]
-  D --> LC[理想 Buck 平均功率级]
-  LC --> V[输出电压与电感电流]
-  V --> E
-  V --> F[过流与过压检测]
-  VIN[输入电压] --> F
+  PI --> D[量化 PWM 与一周期队列]
+  D --> LC[理想 Buck PWM 功率级]
+  LC --> V[模型输出电压与电感电流]
+  V --> ADC[ADC 量化与标度]
+  VIN[输入电压] --> ADC
+  ADC --> E
+  ADC --> F[采样故障检测]
   F --> L[锁存故障]
-  L --> D
-  CLEAR[显式清除且满足恢复条件] --> R
+  L -->|立即覆盖为零| D
+  ADC --> B[可观测标记与完整码箱上界]
+  CLEAR[显式清除请求] --> B
+  B -->|无活动故障且区间满足原清除界限| R
 ```
 
-平均模型把 PWM 周期内的桥电压平均为 `duty × Vin`，因此适合观察控制包络，不能用它计算开关纹波。电感储能决定电流变化速度；输出电容承担瞬态电流差。PI 增益决定跟踪速度与振荡的取舍，输出限幅不能替代过流保护。
+上图为当前量化闭环的模拟信号路径，码箱证据只来自 ADC 原码及声明标度。早期平均模型把 PWM 周期内的桥电压平均为 `duty × Vin`，适合观察控制包络，不能计算开关纹波。电感储能决定电流变化速度；输出电容承担瞬态电流差。PI 增益决定跟踪与振荡的取舍，输出限幅不能替代过流保护。
 
 另有独立的 50 kHz 开关模型，按高侧/低侧导通将节点电压在 Vin 与 0 V 间切换，在边沿处分段积分。9 V 输入、固定占空比的输出纹波约 0.752 mV、电感纹波约 0.141 A，已与小纹波公式和积分步长细化比较。该模型使用周期起点采样和立即更新，没有实际 MCU 计算延迟或死区。完整定义见 [PWM 模型](../experiments/p1-c2000-buck/simulation/SWITCHING.md)。
 
-采样保护现已接入同一个 PWM 功率级：正常负载阶跃与原模型逐项一致，三个故障都完成锁存、拒绝不满足条件的清除和显式恢复。过流、过压的检测分别落后模型阈值越过约 17 µs、14 µs。故障时低侧持续导通，储能仍可能使输出继续升高、产生负压和反向电流；这不代表实际硬件关断方式。数据与限制见 [PWM 保护](../experiments/p1-c2000-buck/simulation/PROTECTED_SWITCHING.md)。
+历史理想标量保护接入同一个 PWM 功率级：三个故障在 80 ms 接受显式清除并恢复。过流、过压的检测分别落后模型阈值越过约 17 µs、14 µs；这些不是当前量化入口的清除结果。故障时低侧持续导通，储能仍可能使输出继续升高、产生负压和反向电流，不代表实际硬件关断方式。[历史 PWM 保护](../experiments/p1-c2000-buck/simulation/PROTECTED_SWITCHING.md)
 
 固定占空比网表还经过实际 ngspice 36 对照，零初始状态、稳态均值和纹波均已核对。SPICE 的有限边沿与 Python 的瞬时边沿不同，对照中保留实际差值；这一步仍未验证器件或闭环 SPICE 控制。[独立对照](../experiments/p1-c2000-buck/simulation/SPICE_COMPARISON.md)
 
@@ -31,11 +34,13 @@ flowchart LR
 
 TI 原厂学习路径是 `buck_main.c` 的初始化与 `ISR1` → `BUCK_runIsr()` → 采样、控制与 PWM 更新。初始化还包含 ADC 触发、CMPSS 与 ePWM Trip 配置。具体执行分支取决于原厂实验编号及 CPU/CLA 设置；仓库独立 Python 模型没有连接这些外设。[原厂入口](https://www.ti.com/tool/TIDM-DC-DC-BUCK)
 
-新增独立 C11 控制核心把同样的 PI 和保护状态移到调用者拥有的结构体中，不含外设或动态分配。以四份 PWM 采样轨迹的 Vin/vO/iL 和清除命令为输入，26,004 拍输出及状态与 Python 一致。C 没有重新驱动功率级；本步不证明 C2000 编译结果或中断执行时间。[主机 C 对照](../experiments/p1-c2000-buck/host_c/README.md)
+早期独立 C11 控制核心把 PI 和保护状态移到调用者拥有的结构体中，不含外设或动态分配。固定 CSV 的理想精确测量回放共 26,004 拍，与 Python 一致；该回放阶段没有重新驱动功率级。原标量入口仅为此理想模型保留，本次修复后重跑仍零差。[历史主机 C 对照](../experiments/p1-c2000-buck/host_c/README.md)
 
-后续使用真实 TI C2000 编译器和官方 F28004x DriverLib 完成目标 RAM 工程编译链接。ADC 序列、ePWM 触发与 ISR 接口已接入，但输出引脚保持输入且 OST 一直生效，未接硬件、未运行目标代码。单独的延迟量化模型加入一控制周期命令等待与 ADC/PWM 量化；故障立即覆盖排队命令。它保留了周期内峰值略超 10% 以及单极性 ADC 对负压的清除盲区，没有通过改阈值掩盖问题。[目标工程](../experiments/p1-c2000-buck/firmware/README.md)、[延迟与量化](../experiments/p1-c2000-buck/simulation/IO_TIMING.md)
+后续使用真实 TI C2000 编译器和官方 F28004x DriverLib 完成目标 RAM 工程编译链接；新清除接口也已重新编译。ADC 序列、ePWM 触发与 ISR 接口已接入，但 GPIO 保持输入、OST 一直生效，目标代码未运行。延迟量化模型加入一周期命令等待，故障立即覆盖排队命令；周期内峰值略超 10% 的结果仍保留。[目标工程](../experiments/p1-c2000-buck/firmware/README.md)、[历史延迟量化发现](../experiments/p1-c2000-buck/simulation/IO_TIMING.md)
 
-随后将原 C 核心编译成共享库，每拍读取本条轨迹的量化测量、计算并排队实际 duty，再推进 PWM 功率级。C/Python 六个独立闭环共 36,006 拍一致；另禁用 Python 控制更新、仅扰动 C 积分状态，验证下一拍脉冲及 L/C 状态确实改变。ADC 解码仍为 Python，目标 ISR 未运行；单极性测量和边界量化的清除盲区继续保留。[真实 C 闭环](../experiments/p1-c2000-buck/host_c/CLOSED_LOOP.md)
+当前共享库每拍依据本轨迹的量化测量和 `BuckClearEvidence` 调用 `buck_controller_step_observed`，再经 PWM 队列推进功率级。修复后 C/Python 六场景共 36,006 次 C 调用零差，短接管试验证明 C 输出确实驱动物理积分。完整码箱超出原 0.1 V/0.1 A 时拒绝，端点码不可观测也保持锁存；三个故障的 80 ms 零码请求均被拒绝，有效内码仍能显式清除。判定不读取理想真值，也不因等待时间足够而放行。[当前清除修复与证据](../experiments/p1-c2000-buck/host_c/CLEAR_MEASUREMENTS.md)
+
+闭环中的 ADC 量化/解码仍由 Python 执行；新增主机 C 定向测试已真正执行 `p1_scale_adc` 和清除入口，目标 ADC 寄存器/ISR 则从未执行。零码仍不能区分负压与零电压，保守拒绝不能代替真实模拟前端、标度误差及硬件恢复验证。
 
 ## P2：流数据与背压
 

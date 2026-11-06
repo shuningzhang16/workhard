@@ -1,0 +1,7 @@
+Running p1/buck; log: E:\UserData\Documents\ChatGPT\硬件\.runs\20261106-103049-802933\p1_buck.log
+PASS p1/buck
+Running p1/host_c; log: E:\UserData\Documents\ChatGPT\硬件\.runs\20261106-103049-802933\p1_host_c.log
+PASS p1/host_c
+Running p1/closed_loop; log: E:\UserData\Documents\ChatGPT\硬件\.runs\20261106-103049-802933\p1_closed_loop.log
+PASS p1/closed_loop
+Results: E:\UserData\Documents\ChatGPT\硬件\.runs\20261106-103049-802933

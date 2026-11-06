@@ -1,0 +1,211 @@
+{
+  "started_at_utc": "2026-11-06T02:33:41.226559+00:00",
+  "runner_argv": [
+    "E:\\python.exe",
+    "-B",
+    "-X",
+    "utf8",
+    "verify_deadtime_spice.py",
+    "--output",
+    "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\.runs\\spice-preserve-actual-20261106-103340-655998"
+  ],
+  "ngspice_command": [
+    "wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--",
+    "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice"
+  ],
+  "diode_slope_resistance_ohm": 0.001,
+  "comparison_limits": {
+    "node_voltage_v": 0.01,
+    "inductor_current_a": 0.0001
+  },
+  "limit_reason": "1 mOhm diode regularization adds up to millivolts; compare against ideal hard clamps",
+  "hardware_operations": false,
+  "runs": [
+    {
+      "name": "matched_primary_clamp",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "matched_primary_clamp.cir"
+      ],
+      "duration_s": 5e-07,
+      "initial_current_a": -0.9999999999999998,
+      "before": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "switched": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "sps_favorable_primary",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "sps_favorable_primary.cir"
+      ],
+      "duration_s": 5e-07,
+      "initial_current_a": -0.8654625793861894,
+      "before": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "after": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "switched": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "sps_opposing_secondary",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "sps_opposing_secondary.cir"
+      ],
+      "duration_s": 1.5e-07,
+      "initial_current_a": -0.5960498941517469,
+      "before": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "switched": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "eps_weak_short",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "eps_weak_short.cir"
+      ],
+      "duration_s": 1.5e-07,
+      "initial_current_a": -0.24464285714259343,
+      "before": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "switched": [
+        0
+      ]
+    },
+    {
+      "name": "eps_weak_long",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "eps_weak_long.cir"
+      ],
+      "duration_s": 5e-07,
+      "initial_current_a": -0.24464285714259343,
+      "before": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "switched": [
+        0
+      ]
+    },
+    {
+      "name": "eps_reverse_incomplete",
+      "command": [
+        "wsl.exe",
+        "-d",
+        "Ubuntu-22.04",
+        "--",
+        "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+        "-n",
+        "-b",
+        "eps_reverse_incomplete.cir"
+      ],
+      "duration_s": 5e-07,
+      "initial_current_a": 0.24464285714259437,
+      "before": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "after": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "switched": [
+        1
+      ]
+    }
+  ]
+}

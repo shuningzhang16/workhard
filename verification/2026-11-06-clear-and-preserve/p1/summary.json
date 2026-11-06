@@ -1,0 +1,29 @@
+{
+  "kind": "offline Python, RTL simulation and host C checks",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "checks": [
+    {
+      "project": "p1",
+      "check": "buck",
+      "exit_code": 0,
+      "seconds": 31.026,
+      "log": ".runs/20261106-103049-802933/p1_buck.log"
+    },
+    {
+      "project": "p1",
+      "check": "host_c",
+      "exit_code": 0,
+      "seconds": 11.125,
+      "log": ".runs/20261106-103049-802933/p1_host_c.log",
+      "artifacts": "experiments/p1-c2000-buck/.runs/20261106-103049-802933/host_c"
+    },
+    {
+      "project": "p1",
+      "check": "closed_loop",
+      "exit_code": 0,
+      "seconds": 41.571,
+      "log": ".runs/20261106-103049-802933/p1_closed_loop.log",
+      "artifacts": "experiments/p1-c2000-buck/.runs/20261106-103049-802933/closed_loop"
+    }
+  ]
+}

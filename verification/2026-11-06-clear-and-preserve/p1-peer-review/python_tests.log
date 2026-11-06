@@ -1,0 +1,13 @@
+Command: ["E:\\python.exe", "-B", "-X", "utf8", "-m", "unittest", "discover", "-s", "experiments/p1-c2000-buck/simulation", "-p", "test_clear_measurements.py", "-v"]
+Exit code: 0
+STDOUT:
+
+STDERR:
+test_finite_interior_bins_permit_explicit_clear (test_clear_measurements.ClearMeasurementTests.test_finite_interior_bins_permit_explicit_clear) ... ok
+test_old_counterexamples_remain_latched (test_clear_measurements.ClearMeasurementTests.test_old_counterexamples_remain_latched) ... ok
+test_zero_code_does_not_gain_information_with_time (test_clear_measurements.ClearMeasurementTests.test_zero_code_does_not_gain_information_with_time) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
