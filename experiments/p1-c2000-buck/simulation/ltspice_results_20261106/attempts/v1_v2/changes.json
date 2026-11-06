@@ -1,0 +1,9 @@
+{
+  "source": "E:\\UserData\\Documents\\ChatGPT\\\u786c\u4ef6\\verification\\tooling\\ltspice-gui-and-v24-20261106\\run_buck_user_defaults.py",
+  "changes": [
+    "Use only -b -ascii, omit -run; minimal circuit now exits 0 with real data",
+    "Ignore blank lines in LTspice CRCRLF ASCII RAW formatting"
+  ],
+  "electrical_parameters_changed": false,
+  "thresholds_changed": false
+}

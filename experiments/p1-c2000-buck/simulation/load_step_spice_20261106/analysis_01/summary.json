@@ -1,0 +1,153 @@
+{
+  "case": "Open-loop fixed-duty ideal Buck load step, NOT a new closed-loop validation",
+  "input_directories": {
+    "ltspice": "E:\\codex_ltspice_runs\\lt_load_step_20261106_182524_495734",
+    "ngspice_and_python": "E:\\codex_ltspice_runs\\load_step_20261106_181654_8690784"
+  },
+  "statistics": {
+    "python": {
+      "pre": {
+        "start_s": 0.04962,
+        "end_s": 0.05,
+        "pwm_periods": 19.000000000000266,
+        "output_v_mean": 2.000003162832567,
+        "output_v_pp": 0.0007536147174429519,
+        "inductor_current_a_mean": 0.4999988457570339,
+        "inductor_current_a_pp": 0.1414274117534003
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "pwm_periods": 19.999999999999876,
+        "output_v_mean": 1.9999999999990032,
+        "output_v_pp": 0.000752158491573951,
+        "inductor_current_a_mean": 1.0000000000000604,
+        "inductor_current_a_pp": 0.1414220214362103
+      }
+    },
+    "ngspice": {
+      "pre": {
+        "start_s": 0.04962,
+        "end_s": 0.05,
+        "pwm_periods": 19.000000000000266,
+        "output_v_mean": 2.000003126772886,
+        "output_v_pp": 0.0007533055300963376,
+        "inductor_current_a_mean": 0.4999988457978868,
+        "inductor_current_a_pp": 0.14141969058947484
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "pwm_periods": 19.999999999999876,
+        "output_v_mean": 2.0000000002751808,
+        "output_v_pp": 0.0007517949828736992,
+        "inductor_current_a_mean": 1.0000000001330085,
+        "inductor_current_a_pp": 0.14141449259492378
+      }
+    },
+    "ltspice": {
+      "pre": {
+        "start_s": 0.04962,
+        "end_s": 0.05,
+        "pwm_periods": 19.000000000000266,
+        "output_v_mean": 2.0000033566159128,
+        "output_v_pp": 0.00075353116812793,
+        "inductor_current_a_mean": 0.49999924862825446,
+        "inductor_current_a_pp": 0.14141865604091486
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "pwm_periods": 19.999999999999876,
+        "output_v_mean": 2.0000004042902595,
+        "output_v_pp": 0.0007529071283958189,
+        "inductor_current_a_mean": 1.0000009695846175,
+        "inductor_current_a_pp": 0.14141416792350292
+      }
+    }
+  },
+  "response_observed_50_to_60ms": {
+    "python": {
+      "minimum_output_v": 1.7312655883348622,
+      "minimum_time_s": 0.05046197530864198,
+      "maximum_output_v": 2.155769837201162,
+      "maximum_time_s": 0.051472839506172846,
+      "max_abs_output_deviation_v": 0.2687344116651378,
+      "recovery_to_2_percent_s": 0.003769382716049381
+    },
+    "ngspice": {
+      "minimum_output_v": 1.7312673881938636,
+      "minimum_time_s": 0.05046207859999982,
+      "maximum_output_v": 2.155771263568311,
+      "maximum_time_s": 0.051473023044444274,
+      "max_abs_output_deviation_v": 0.2687326118061364,
+      "recovery_to_2_percent_s": 0.003769023044444264
+    },
+    "ltspice": {
+      "minimum_output_v": 1.731265667012457,
+      "minimum_time_s": 0.05046202779832226,
+      "maximum_output_v": 2.155769814119675,
+      "maximum_time_s": 0.05147288501044294,
+      "max_abs_output_deviation_v": 0.2687343329875429,
+      "recovery_to_2_percent_s": 0.0037692233545804574
+    }
+  },
+  "response_observation_end_s": 0.06,
+  "response_definition": "First saved point after the last point outside 2 V +/-2%, remaining inside through 60 ms with at least 2 ms margin. This comparison does not claim LTspice remains inside throughout 60-100 ms.",
+  "ltspice_runs": "step and post were independent zero-state integrations to 60 ms and 100 ms. The latter provides a separate terminal steady window.",
+  "pointwise_differences": {
+    "python": {
+      "step": {
+        "start_s": 0.04962,
+        "end_s": 0.06,
+        "ltspice_points_compared": 215825,
+        "max_abs_output_difference_v": 1.0736474003181229e-06,
+        "max_abs_current_difference_a": 1.6803341495896795e-05
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "ltspice_points_compared": 8322,
+        "max_abs_output_difference_v": 8.730839387016687e-07,
+        "max_abs_current_difference_a": 1.533056398650423e-05
+      }
+    },
+    "ngspice": {
+      "step": {
+        "start_s": 0.04962,
+        "end_s": 0.06,
+        "ltspice_points_compared": 215825,
+        "max_abs_output_difference_v": 0.00012152609222426669,
+        "max_abs_current_difference_a": 0.00013939644934335416
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "ltspice_points_compared": 8322,
+        "max_abs_output_difference_v": 7.94494514400057e-07,
+        "max_abs_current_difference_a": 1.2808015832366237e-06
+      }
+    }
+  },
+  "checks": {
+    "pre_dc_voltage_within_1e_5_v": true,
+    "pre_dc_current_within_1e_5_a": true,
+    "pre_voltage_ripple_within_2_percent": true,
+    "pre_current_ripple_within_2_percent": true,
+    "post_dc_voltage_within_1e_5_v": true,
+    "post_dc_current_within_1e_5_a": true,
+    "post_voltage_ripple_within_2_percent": true,
+    "post_current_ripple_within_2_percent": true,
+    "finite_data": true
+  },
+  "numerical_settings": "LTspice max step 50 ns, reltol 1e-7, abstol 1e-10, vntol 1e-9. Python and ngspice max step 250 ns. Existing DC 1e-5 and ripple 2% limits retained; transient differences are reported, not a new pass gate.",
+  "waveform_scope": "Compact CSVs contain actual saved state points in 49.8-50.6 ms and 99.98-100 ms only. Complete source CSV/raw remain local. CSV Offset has already been restored by the execution parser.",
+  "integration": "Shared pre window 49.62-50 ms (19 PWM periods); shared post 99.6-common100ms endpoint. Time-weighted trapezoid integration with endpoint interpolation only inside coverage; no extrapolation.",
+  "pwm_edges": "SPICE uses 1 ns area-compensated ramps; Python uses instantaneous edges.",
+  "source_saved_points": {
+    "python": 205024,
+    "ngspice": 277200,
+    "ltspice_step": 216244,
+    "ltspice_post": 8323
+  }
+}

@@ -1,6 +1,6 @@
 # P4 原生 PLECS 工程准备与真实平台状态
 
-**状态（2026-11-06）：官方 PLECS 5.0.7 Demo 中的签名 DAB 原例已实际运行至 0.8 s，取得完成窗口和全程波形截图。** 输出约 380 V，0.4 s 负载阶跃前后电流约 2.63 A→5.26 A、功率约 1 kW→2 kW，电压暂降后恢复。这些是可见波形的近似读数，没有导出原始数组或计算精确误差；见[全程波形](evidence/03_official_dab_secondary_completed.png)与[完成后的电路](evidence/04_official_dab_completed_schematic.png)。原例副边是电容与电阻负载，不能证明持续反向传能。固定双电源正反向对照仍在进行。
+**状态（2026-11-06）：官方 PLECS 5.0.7 Demo 中的签名 DAB 原例已实际运行至 0.8 s，取得完成窗口和全程波形截图。** 输出约 380 V，0.4 s 负载阶跃前后电流约 2.63 A→5.26 A、功率约 1 kW→2 kW，电压暂降后恢复。这些是可见波形的近似读数，没有导出原始数组或计算精确误差；见[全程波形](evidence/03_official_dab_secondary_completed.png)与[完成后的电路](evidence/04_official_dab_completed_schematic.png)。原例副边是电容与电阻负载，不能证明持续反向传能。固定双电源正反向对照尚未完成。
 
 Demo 只允许新建模型或打开官方签名示例；自建 `dab_sps_forward` 文件仍因 `Invalid signature` 无法加载。下方 24 V／12 V 数值是独立解析期望值，不是本次 95 V／380 V 官方原例的输出。
 
@@ -104,3 +104,5 @@ outputDir = build_dab_sps(true);
 ```
 
 `-batch` 为 MathWorks 官方非交互入口；代码输出会进入新的 `.runs/` 目录。以上命令尚未在 MATLAB 执行。MATLAB Runtime 或 Octave 不能代替这里所需的 Simulink 建模和 `sim` 执行。[官方批处理入口](https://www.mathworks.com/help/matlab/ref/matlabwindows.html)
+
+本轮继续在 Demo 界面新建低压等效模型时，画布输入一度落到覆盖它的 Secondary 示波器，已定位为焦点问题。库到模型的跨窗口拖拽被界面工具以目标超出窗口范围拒绝，未执行。校正焦点后，界面工具收到用户物理 Escape 停止信号，所有 GUI 随即停止；新模型仍为空白，没有正反向结果。官方原例的 0.8 s 结果保留，未删除文件、绕过签名或导出限制。

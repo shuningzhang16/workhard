@@ -22,7 +22,7 @@
 
 | 实验 | 完成所需证据 | 当前仍缺少的部分 |
 | --- | --- | --- |
-| P1 | 模型/C 闭环和测量接口回归；厂商电路平台实际运行及对照；目标 ADC/ISR、PWM/Trip 与电源实测 | LTspice 正常启动停在待用户处理的隐私提示，尚无电路结果；前端标度/误差及负压可观测性未验证，目标 ISR 未运行；未上板 |
+| P1 | 模型/C 闭环和测量接口回归；厂商电路平台实际运行及对照；目标 ADC/ISR、PWM/Trip 与电源实测 | LTspice 启动/稳态与独立模型对照已通过；负载阶跃已实际运行。前端标度/误差及负压可观测性未验证，目标 ISR 未运行；未上板 |
 | P2 | 真实 Vivado BD、综合、实现及器件时序；匹配 A53 BSP/PS 代码编译；DMA/DDR/cache 板端验证 | 完整 Vivado/Vitis 未到位，无真实 XSA/BSP；RTL/主机测试不能替代；未上板。见 [2025.2 工具链](experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md) |
 | P4 | PLECS/Simulink 原生模型实际解析、运行并与独立模型对照；相应实物波形与保护验证 | PLECS 官方签名 DAB 已实际跑完 0.8 s 负载阶跃；自建输入仍受签名限制，固定双电源正反向及数值对照未完成；MATLAB/Simulink 未运行；未上板。见 [原生平台状态](experiments/p4-dab/plecs/README.md) |
 

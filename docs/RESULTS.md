@@ -9,6 +9,7 @@
 | Buck 故障恢复 | 平均模型的过流、过压、欠压锁存和显式恢复；故障期间保留电感/电容状态 | [保护说明](../experiments/p1-c2000-buck/simulation/PROTECTION.md) |
 | Buck PWM 开关 | 50 kHz、固定占空比稳态约 2 V；细步长纹波 0.752145 mV、0.141422 A；控制负载阶跃恢复 5.10 ms | [开关说明与数据](../experiments/p1-c2000-buck/simulation/SWITCHING.md) |
 | Buck 独立 SPICE 对照 | ngspice 36 实际运行；8 项对照检查通过。整个稳态窗口的输出/电感纹波与 Python 分别相差约 −0.0412%/−0.00534% | [SPICE 报告](../experiments/p1-c2000-buck/simulation/SPICE_COMPARISON.md) |
+| Buck LTspice 实际运行 | 启动/稳态原 8 项检查通过；4→2 Ω 开环阶跃前后 9 项检查通过，恢复约 3.769 ms；物理参数与阈值未放宽 | [启动/稳态](../experiments/p1-c2000-buck/simulation/ltspice_results_20261106/README.md)、[阶跃三方比较](../experiments/p1-c2000-buck/simulation/load_step_spice_20261106/README.md) |
 | Buck PWM 保护（历史理想标量） | 过流/过压/欠压分别在 50.32/50.30/50.00 ms 锁存；旧判据在 80 ms 显式清除后 30.50 ms 恢复；不代表当前量化入口 | [历史保护报告](../experiments/p1-c2000-buck/simulation/PROTECTED_SWITCHING.md) |
 | Buck 主机 C 理想回放 | 原精确标量测量入口回放 26,004 点，与 Python 输出/状态一致；本次修复后 ASan/UBSan 重跑仍零差，不能替代 ADC 区间验证 | [C 实现与证据](../experiments/p1-c2000-buck/host_c/) |
 | C2000 目标构建 | TI cl2000 25.11.1.LTS 与官方 DriverLib 26.02 实际编译链接 F280049C RAM ELF；GPIO0/1 保持输入、PWM OST 持续强制关闭，未运行目标代码 | [目标工程与真实日志](../experiments/p1-c2000-buck/firmware/README.md) |
@@ -53,4 +54,4 @@ DAB 连续死区曾漏掉“先越轨、再因电流反向返回”的钳位事�
 
 尚无 C2000 固件烧录、目标 ISR 测时或真实电源测量；真实目标编译没有证明引脚映射、量程和硬件 Trip 行为。尚无完整 Vivado 构建、ZCU104 器件时序、A53 BSP 编译、DMA 到 DDR 板端收数、cache 一致性或板端吞吐。DAB 采用独立教学参数，没有完整复现 Toshiba RD264，局部死区结果不能证明整机效率或实物 ZVS。
 
-软件工具也有未完成项：LTspice 正常启动已定位到待用户亲自处理的隐私选择框，尚无电路结果；Simulink 脚本尚无 MATLAB 运行结果。PLECS 5.0.7 Demo 已实际完成官方签名 DAB 的 0.8 s 负载阶跃，已有截图，但自建固定双电源正反向数值对照未完成。P2 官方板卡文件已随仓接入，新入口仍没有产生真实 Vivado/BSP 结果。不能把剩余工作统称为“只差上板”。[集中工具与阻碍](../verification/tooling/README.md)、[P2 工具链](../experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md)、[P4 原生模型状态](../experiments/p4-dab/plecs/README.md)
+LTspice 已实际完成理想 Buck 启动、稳态和开环负载阶跃运行，启动/稳态原 8 项检查通过；见[本轮结果](../experiments/p1-c2000-buck/simulation/ltspice_results_20261106/README.md)。软件工具仍有未完成项：Simulink 脚本尚无 MATLAB 运行结果。PLECS 5.0.7 Demo 已实际完成官方签名 DAB 的 0.8 s 负载阶跃，已有截图，但自建固定双电源正反向数值对照未完成。P2 官方板卡文件已随仓接入，新入口仍没有产生真实 Vivado/BSP 结果。不能把剩余工作统称为“只差上板”。[集中工具与阻碍](../verification/tooling/README.md)、[P2 工具链](../experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md)、[P4 原生模型状态](../experiments/p4-dab/plecs/README.md)

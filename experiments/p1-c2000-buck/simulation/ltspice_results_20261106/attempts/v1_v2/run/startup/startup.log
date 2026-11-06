@@ -1,0 +1,17 @@
+LTspice 26.1.1 for Windows
+Circuit: E:\codex_ltspice_runs\buck_20261106_182050_017784\startup\startup.cir
+Start Time: Fri Nov  6 18:20:55 2026
+Options:plotwinsize=0 numdgt=15
+solver = Normal
+Maximum thread count: 16
+tnom = 27
+temp = 27
+method = trap
+AsciiRawFile = true
+Per .tran options, skipping operating point for transient analysis.
+Total elapsed time: 0.664 seconds.
+Total iterations: 8150
+
+Files loaded:
+E:\codex_ltspice_runs\buck_20261106_182050_017784\startup\startup.cir
+

@@ -1,0 +1,31 @@
+{
+  "case": "open-loop fixed-duty load step; no PI, protection, devices or hardware",
+  "vin_v": 9,
+  "duty": 0.2222222222222222,
+  "pwm_hz": 50000,
+  "L_h": 0.00022,
+  "C_f": 0.00047,
+  "load_before_ohm": 4,
+  "load_after_ohm": 2,
+  "event_s": 0.05,
+  "end_s": 0.1,
+  "initial_i_a": 0,
+  "initial_v_v": 0,
+  "python_max_step_s": 2.5e-07,
+  "spice_pwm_rise_fall_s": 1e-09,
+  "edge_note": "SPICE preserves existing 1 ns area-compensated PWM ramps; Python has instantaneous PWM edges. Both have a hard load step at 50 ms, a PWM period boundary. No L/C reset.",
+  "comparison_windows_s": [
+    [
+      0.0496,
+      0.06
+    ],
+    [
+      0.0996,
+      0.1
+    ]
+  ],
+  "full_output_scope_s": [
+    0.0496,
+    0.1
+  ]
+}

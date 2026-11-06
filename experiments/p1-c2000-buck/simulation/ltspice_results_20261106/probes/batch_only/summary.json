@@ -1,0 +1,38 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\batch_only_probe_20261106_182004_674548\\resistor.cir"
+  ],
+  "pid": 54692,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_s": 3.7422928999876603,
+  "files": [
+    {
+      "name": "command.json",
+      "bytes": 193
+    },
+    {
+      "name": "resistor.cir",
+      "bytes": 62
+    },
+    {
+      "name": "resistor.log",
+      "bytes": 451
+    },
+    {
+      "name": "resistor.raw",
+      "bytes": 446
+    },
+    {
+      "name": "stderr.txt",
+      "bytes": 0
+    },
+    {
+      "name": "stdout.txt",
+      "bytes": 0
+    }
+  ]
+}

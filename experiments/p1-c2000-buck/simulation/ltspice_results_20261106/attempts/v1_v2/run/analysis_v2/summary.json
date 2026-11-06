@@ -1,0 +1,141 @@
+{
+  "model": "Actual LTspice 26.1.1 ideal fixed-duty Buck, not devices, closed-loop, protection or hardware",
+  "source_run": "E:\\codex_ltspice_runs\\buck_20261106_182050_017784",
+  "analysis_fix": "Retain duplicate PWM edge timestamps in original Python reference; zero-width intervals contribute zero to trapezoidal integral. Descending times still rejected. No data was dropped or changed.",
+  "windows": {
+    "ltspice": {
+      "window_start_s": 0.0,
+      "window_end_s": 0.0003999999999999976,
+      "saved_points": 1781,
+      "output_v_time_mean": 2.0000073683162967,
+      "output_v_window_pp": 0.0007640314535559689,
+      "inductor_current_a_time_mean": 0.500015890966708,
+      "inductor_current_a_window_pp": 0.14143337377906628
+    },
+    "python": {
+      "window_start_s": 0.05960000000000001,
+      "window_end_s": 0.060000000000000005,
+      "saved_points": 1660,
+      "output_v_time_mean": 2.00000023041874,
+      "output_v_window_pp": 0.0007521978775553162,
+      "inductor_current_a_time_mean": 0.5000000757167664,
+      "inductor_current_a_window_pp": 0.14142243653774916
+    },
+    "ngspice": {
+      "window_start_s": 0.059600000099999995,
+      "window_end_s": 0.05999999999999999,
+      "saved_points": 2200,
+      "output_v_time_mean": 2.0000002304539453,
+      "output_v_window_pp": 0.0007518877377519217,
+      "inductor_current_a_time_mean": 0.5000000933796702,
+      "inductor_current_a_window_pp": 0.1414148884394441
+    }
+  },
+  "comparison": [
+    {
+      "metric": "output_v_time_mean",
+      "ltspice": 2.0000073683162967,
+      "python": 2.00000023041874,
+      "ngspice": 2.0000002304539453,
+      "ltspice_minus_python": 7.1378975565750125e-06,
+      "relative_to_python_percent": 0.0003568948367060898,
+      "ltspice_minus_ngspice": 7.137862351402902e-06,
+      "relative_to_ngspice_percent": 0.00035689307644748425
+    },
+    {
+      "metric": "inductor_current_a_time_mean",
+      "ltspice": 0.500015890966708,
+      "python": 0.5000000757167664,
+      "ngspice": 0.5000000933796702,
+      "ltspice_minus_python": 1.5815249941542042e-05,
+      "relative_to_python_percent": 0.0031630495093137867,
+      "ltspice_minus_ngspice": 1.5797587037735816e-05,
+      "relative_to_ngspice_percent": 0.00315951681748583
+    },
+    {
+      "metric": "output_v_window_pp",
+      "ltspice": 0.0007640314535559689,
+      "python": 0.0007521978775553162,
+      "ngspice": 0.0007518877377519217,
+      "ltspice_minus_python": 1.1833576000652712e-05,
+      "relative_to_python_percent": 1.5731998658534474,
+      "ltspice_minus_ngspice": 1.2143715804047162e-05,
+      "relative_to_ngspice_percent": 1.6150969345976929
+    },
+    {
+      "metric": "inductor_current_a_window_pp",
+      "ltspice": 0.14143337377906628,
+      "python": 0.14142243653774916,
+      "ngspice": 0.1414148884394441,
+      "ltspice_minus_python": 1.0937241317121593e-05,
+      "relative_to_python_percent": 0.00773373842573033,
+      "ltspice_minus_ngspice": 1.8485339622176244e-05,
+      "relative_to_ngspice_percent": 0.013071706823919449
+    }
+  ],
+  "startup_first_saved_point": {
+    "time_s": 0.0,
+    "switch_voltage_v": 0.0,
+    "output_v": 0.0,
+    "inductor_current_a": 0.0
+  },
+  "startup_saved_points": 4075,
+  "checks": {
+    "dc_voltage_within_1e_5_v": true,
+    "dc_current_within_1e_5_a": false,
+    "voltage_ripple_formula_within_2_percent": true,
+    "current_ripple_formula_within_2_percent": true,
+    "initial_saved_point_within_1ns": true,
+    "initial_output_near_zero": true,
+    "initial_current_near_zero": true,
+    "finite_data": true
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+        "-b",
+        "-ascii",
+        "E:\\codex_ltspice_runs\\buck_20261106_182050_017784\\steady\\steady.cir"
+      ],
+      "pid": 61228,
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 3.6347250000108033,
+      "outputs": {
+        ".raw": {
+          "exists": true,
+          "bytes": 221939
+        },
+        ".log": {
+          "exists": true,
+          "bytes": 706
+        }
+      }
+    },
+    {
+      "command": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+        "-b",
+        "-ascii",
+        "E:\\codex_ltspice_runs\\buck_20261106_182050_017784\\startup\\startup.cir"
+      ],
+      "pid": 46616,
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 3.0115633999812417,
+      "outputs": {
+        ".raw": {
+          "exists": true,
+          "bytes": 508691
+        },
+        ".log": {
+          "exists": true,
+          "bytes": 482
+        }
+      }
+    }
+  ],
+  "physical_parameters_changed": false,
+  "thresholds_changed": false
+}

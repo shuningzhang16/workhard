@@ -1,0 +1,20 @@
+
+No compatibility mode selected!
+
+
+Circuit: * ideal synchronous buck switching-node equivalent; verified with ngspice 36.
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using transient initial conditions
+
+No. of Data Rows : 277200
+
+  Measurements for Transient Analysis
+
+pre_vout_mean       =  2.000003e+00 from=  4.960000e-02 to=  5.000000e-02
+pre_il_mean         =  4.999990e-01 from=  4.960000e-02 to=  5.000000e-02
+post_vout_mean      =  2.000000e+00 from=  9.960000e-02 to=  1.000000e-01
+post_il_mean        =  1.000000e+00 from=  9.960000e-02 to=  1.000000e-01
+
+ngspice-36 done

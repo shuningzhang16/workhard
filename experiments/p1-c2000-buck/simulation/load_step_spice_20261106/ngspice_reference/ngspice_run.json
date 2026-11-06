@@ -1,0 +1,18 @@
+{
+  "command": [
+    "wsl.exe",
+    "-d",
+    "Ubuntu-22.04",
+    "--cd",
+    "/mnt/e/codex_ltspice_runs/load_step_20261106_181654_8690784",
+    "--",
+    "/usr/bin/env",
+    "PATH=/usr/bin:/bin",
+    "/mnt/e/UserData/Documents/ChatGPT/\u786c\u4ef6/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice",
+    "-n",
+    "-b",
+    "buck_load_step_ngspice.cir"
+  ],
+  "exit_code": 0,
+  "elapsed_s": 9.147853699978441
+}

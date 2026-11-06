@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\.runs\ltspice_batch_fix_20261106_182049_668333\run_buck_batch.py", line 134, in <module>
+    main()
+    ~~~~^^
+  File "E:\UserData\Documents\ChatGPT\硬件\.runs\ltspice_batch_fix_20261106_182049_668333\run_buck_batch.py", line 112, in main
+    windows[name] = metrics(rows)
+                    ~~~~~~~^^^^^^
+  File "E:\UserData\Documents\ChatGPT\硬件\.runs\ltspice_batch_fix_20261106_182049_668333\run_buck_batch.py", line 54, in metrics
+    raise ValueError('Expected strictly increasing finite-window time samples.')
+ValueError: Expected strictly increasing finite-window time samples.

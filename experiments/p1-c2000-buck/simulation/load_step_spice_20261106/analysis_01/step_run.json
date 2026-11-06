@@ -1,0 +1,12 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\lt_load_step_20261106_182524_495734\\step\\step.cir"
+  ],
+  "pid": 64668,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_s": 15.760283299954608
+}

@@ -1,0 +1,9 @@
+{
+  "copied_files": 71,
+  "copied_bytes": 3164483,
+  "copy_comparison": "all copied files byte-equal to the source read during archival",
+  "documentation_change": "Top-level summary.json and run_buck_batch_v4.py differ only in circuit_adaptation description; original versions retained.",
+  "script_check": "AST identical after reverting the one description string; no calculation changes",
+  "ltspice_executed_during_archival": false,
+  "gui_operations": false
+}

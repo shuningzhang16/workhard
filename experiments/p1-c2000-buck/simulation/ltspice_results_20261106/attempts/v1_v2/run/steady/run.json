@@ -1,0 +1,22 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\buck_20261106_182050_017784\\steady\\steady.cir"
+  ],
+  "pid": 61228,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 3.6347250000108033,
+  "outputs": {
+    ".raw": {
+      "exists": true,
+      "bytes": 221939
+    },
+    ".log": {
+      "exists": true,
+      "bytes": 706
+    }
+  }
+}

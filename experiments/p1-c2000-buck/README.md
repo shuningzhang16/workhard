@@ -69,7 +69,7 @@ Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'
 
 详见 [SPICE 对照说明](simulation/SPICE_COMPARISON.md)。WSL Ubuntu-22.04 中从 Ubuntu 官方源下载约 2.35 MB 的 ngspice 包，仅解压到本地忽略的 `.tools/`，未安装至系统。已实际运行原固定占空比网表及稳态/启动探针，使用 `IC=0` 和 `uic` 对齐 Python 的零初始电压、电流，没有用默认 DC 工作点代替启动。
 
-约 59.6–60 ms 窗口内，SPICE 与 Python 的输出均值均约为 2 V；输出峰峰纹波分别为 0.751888、0.752198 mV，相对差 -0.041231%；电感峰峰纹波相对差 -0.005337%。8 项对照检查通过，命令、版本、原始日志和有限波形位于 `simulation/spice_results/`。这些结果只覆盖理想固定占空比案例，LTspice 未运行。
+约 59.6–60 ms 窗口内，SPICE 与 Python 的输出均值均约为 2 V；输出峰峰纹波分别为 0.751888、0.752198 mV，相对差 -0.041231%；电感峰峰纹波相对差 -0.005337%。8 项对照检查通过，命令、版本、原始日志和有限波形位于 `simulation/spice_results/`。这些结果只覆盖当时的理想固定占空比 ngspice 案例。本轮 LTspice 启动/稳态已实际运行并通过原 8 项检查，另有开环负载阶跃结果，见[新记录](simulation/ltspice_results_20261106/README.md)。
 
 ```powershell
 Set-Location 'E:\UserData\Documents\ChatGPT\硬件\experiments\p1-c2000-buck'

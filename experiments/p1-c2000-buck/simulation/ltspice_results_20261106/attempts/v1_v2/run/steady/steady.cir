@@ -1,0 +1,20 @@
+* Ideal synchronous Buck switching-node equivalent; verified with ngspice 36.
+* WSL execution and raw evidence: spice_results/ ; LTspice has not been run.
+* Same teaching L/C/R, Vin, duty and 50 kHz PWM as Python fixed_duty case.
+* VSW is an ideal complementary half-bridge voltage, not a MOSFET/device model.
+* Signed inductor current is allowed. No dead time, losses or efficiency model.
+.param VIN=9 DUTY=0.2222222222222222 TSW=20u TR=1n
+VSW sw 0 PULSE(0 {VIN} 0 {TR} {TR} {DUTY*TSW-TR} {TSW})
+* Pulse width subtracts TR so the area of the two finite ramps preserves mean duty.
+L1 sw out 220u Rser=0 IC=0
+C1 out 0 470u IC=0
+RLOAD out 0 4
+* LTspice-only ideal-L clarification: explicit zero series resistance.
+.options plotwinsize=0 numdgt=15
+.save V(sw) V(out) I(L1)
+.tran 0.25u 60m 59.6m 0.25u uic
+.meas tran vout_mean AVG V(out) FROM=59.6m TO=60m
+.meas tran il_mean AVG I(L1) FROM=59.6m TO=60m
+.meas tran vout_pp PP V(out) FROM=59.6m TO=60m
+.meas tran il_pp PP I(L1) FROM=59.6m TO=60m
+.end

@@ -1,0 +1,16 @@
+Title: E:\codex_ltspice_runs\batch_only_probe_20261106_182004_674548\resistor.cir
+Date: Fri Nov  6 18:20:07 2026
+Plotname: Operating Point
+Flags: real
+No. Variables: 3
+No. Points:            1
+Offset:    0.0000000000000000e+00
+Command: Linear Technology Corporation LTspice
+Variables:
+	0	V(in)	voltage
+	1	I(R1)	device_current
+	2	I(V1)	device_current
+Values:
+0		1.000000000000000e+00
+	1.000000000000000e-03
+	-1.000000000000000e-03

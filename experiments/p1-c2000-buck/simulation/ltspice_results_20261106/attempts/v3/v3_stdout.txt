@@ -1,0 +1,136 @@
+EVIDENCE_DIR=E:\codex_ltspice_runs\buck_20261106_182218_259902
+{
+  "label": "steady",
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\buck_20261106_182218_259902\\steady\\steady.cir"
+  ],
+  "pid": 49300,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 4.2274299999699,
+  "outputs": {
+    ".raw": {
+      "exists": true,
+      "bytes": 248939
+    },
+    ".log": {
+      "exists": true,
+      "bytes": 788
+    }
+  }
+}
+{
+  "label": "startup",
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\buck_20261106_182218_259902\\startup\\startup.cir"
+  ],
+  "pid": 33384,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 3.1975486999726854,
+  "outputs": {
+    ".raw": {
+      "exists": true,
+      "bytes": 529816
+    },
+    ".log": {
+      "exists": true,
+      "bytes": 564
+    }
+  }
+}
+{
+  "windows": {
+    "ltspice": {
+      "window_start_s": 0.0596,
+      "window_end_s": 0.06,
+      "saved_points": 1997,
+      "output_v_time_mean": 2.0000073683582977,
+      "output_v_window_pp": 0.0007637123211050589,
+      "inductor_current_a_time_mean": 0.5000158909808934,
+      "inductor_current_a_window_pp": 0.1414333738361489
+    },
+    "python": {
+      "window_start_s": 0.05960000000000001,
+      "window_end_s": 0.060000000000000005,
+      "saved_points": 1660,
+      "output_v_time_mean": 2.00000023041874,
+      "output_v_window_pp": 0.0007521978775553162,
+      "inductor_current_a_time_mean": 0.5000000757167664,
+      "inductor_current_a_window_pp": 0.14142243653774916
+    },
+    "ngspice": {
+      "window_start_s": 0.059600000099999995,
+      "window_end_s": 0.05999999999999999,
+      "saved_points": 2200,
+      "output_v_time_mean": 2.0000002304539453,
+      "output_v_window_pp": 0.0007518877377519217,
+      "inductor_current_a_time_mean": 0.5000000933796702,
+      "inductor_current_a_window_pp": 0.1414148884394441
+    }
+  },
+  "comparison": [
+    {
+      "metric": "output_v_time_mean",
+      "ltspice": 2.0000073683582977,
+      "python": 2.00000023041874,
+      "ngspice": 2.0000002304539453,
+      "ltspice_minus_python": 7.137939557644302e-06,
+      "relative_to_python_percent": 0.00035689693675955425,
+      "ltspice_minus_ngspice": 7.137904352472191e-06,
+      "relative_to_ngspice_percent": 0.0003568951765009487
+    },
+    {
+      "metric": "inductor_current_a_time_mean",
+      "ltspice": 0.5000158909808934,
+      "python": 0.5000000757167664,
+      "ngspice": 0.5000000933796702,
+      "ltspice_minus_python": 1.581526412697265e-05,
+      "relative_to_python_percent": 0.0031630523463999083,
+      "ltspice_minus_ngspice": 1.5797601223166424e-05,
+      "relative_to_ngspice_percent": 0.0031595196545719517
+    },
+    {
+      "metric": "output_v_window_pp",
+      "ltspice": 0.0007637123211050589,
+      "python": 0.0007521978775553162,
+      "ngspice": 0.0007518877377519217,
+      "ltspice_minus_python": 1.1514443549742737e-05,
+      "relative_to_python_percent": 1.5307732038762678,
+      "ltspice_minus_ngspice": 1.1824583353137186e-05,
+      "relative_to_ngspice_percent": 1.5726527724061024
+    },
+    {
+      "metric": "inductor_current_a_window_pp",
+      "ltspice": 0.1414333738361489,
+      "python": 0.14142243653774916,
+      "ngspice": 0.1414148884394441,
+      "ltspice_minus_python": 1.0937298399738005e-05,
+      "relative_to_python_percent": 0.007733778788932,
+      "ltspice_minus_ngspice": 1.8485396704792656e-05,
+      "relative_to_ngspice_percent": 0.013071747189274951
+    }
+  ],
+  "first": {
+    "time_s": 0.0,
+    "switch_voltage_v": 0.0,
+    "output_v": 0.0,
+    "inductor_current_a": 0.0
+  },
+  "checks": {
+    "dc_voltage_within_1e_5_v": true,
+    "dc_current_within_1e_5_a": false,
+    "voltage_ripple_formula_within_2_percent": true,
+    "current_ripple_formula_within_2_percent": true,
+    "initial_saved_point_within_1ns": true,
+    "initial_output_near_zero": true,
+    "initial_current_near_zero": true,
+    "finite_data": true
+  }
+}

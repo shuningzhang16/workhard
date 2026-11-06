@@ -1,0 +1,34 @@
+{
+  "identity": "win-ohfcgc0i6ia\\administrator",
+  "pid": 59336,
+  "exit_code": 1,
+  "timed_out": true,
+  "elapsed_s": 30.20711860002484,
+  "ini_override": false,
+  "outputs": [
+    {
+      "name": "command.json",
+      "bytes": 203
+    },
+    {
+      "name": "resistor.cir",
+      "bytes": 76
+    },
+    {
+      "name": "resistor.log",
+      "bytes": 445
+    },
+    {
+      "name": "resistor.raw",
+      "bytes": 443
+    },
+    {
+      "name": "stderr.txt",
+      "bytes": 0
+    },
+    {
+      "name": "stdout.txt",
+      "bytes": 0
+    }
+  ]
+}

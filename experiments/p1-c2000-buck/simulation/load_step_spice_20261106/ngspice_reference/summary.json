@@ -1,0 +1,106 @@
+{
+  "case": "Fixed-duty open-loop Buck load step, not new closed-loop control",
+  "source_directory": "E:\\codex_ltspice_runs\\load_step_20261106_181654_8690784",
+  "model": "9 V, D=2/9, 50 kHz, L=220 uH, C=470 uF, i/v start at zero, 4 to 2 ohm at 50 ms",
+  "analysis_fix": "Previous analysis requested unavailable tstart. Shared pre window 49.62-50 ms has 19 whole PWM periods; post ends at common saved endpoint. No extrapolation, no simulator rerun, no threshold relaxation.",
+  "statistics": {
+    "python": {
+      "pre": {
+        "start_s": 0.04962,
+        "end_s": 0.05,
+        "pwm_periods": 19.000000000000266,
+        "output_v_mean": 2.000003162832567,
+        "output_v_pp": 0.0007536147174429519,
+        "inductor_current_a_mean": 0.4999988457570339,
+        "inductor_current_a_pp": 0.1414274117534003
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "pwm_periods": 19.999999999999876,
+        "output_v_mean": 1.9999999999990032,
+        "output_v_pp": 0.000752158491573951,
+        "inductor_current_a_mean": 1.0000000000000604,
+        "inductor_current_a_pp": 0.1414220214362103
+      }
+    },
+    "ngspice": {
+      "pre": {
+        "start_s": 0.04962,
+        "end_s": 0.05,
+        "pwm_periods": 19.000000000000266,
+        "output_v_mean": 2.000003126772886,
+        "output_v_pp": 0.0007533055300963376,
+        "inductor_current_a_mean": 0.4999988457978868,
+        "inductor_current_a_pp": 0.14141969058947484
+      },
+      "post": {
+        "start_s": 0.0996,
+        "end_s": 0.09999999999999999,
+        "pwm_periods": 19.999999999999876,
+        "output_v_mean": 2.0000000002751808,
+        "output_v_pp": 0.0007517949828736992,
+        "inductor_current_a_mean": 1.0000000001330085,
+        "inductor_current_a_pp": 0.14141449259492378
+      }
+    }
+  },
+  "response": {
+    "python": {
+      "minimum_output_v": 1.7312655883348622,
+      "minimum_time_s": 0.05046197530864198,
+      "maximum_output_v": 2.155769837201162,
+      "maximum_time_s": 0.051472839506172846,
+      "max_abs_output_deviation_v": 0.2687344116651378,
+      "recovery_to_2_percent_s": 0.003769382716049381
+    },
+    "ngspice": {
+      "minimum_output_v": 1.7312673881938636,
+      "minimum_time_s": 0.05046207859999982,
+      "maximum_output_v": 2.155771263568311,
+      "maximum_time_s": 0.051473023044444274,
+      "max_abs_output_deviation_v": 0.2687326118061364,
+      "recovery_to_2_percent_s": 0.003769023044444264
+    }
+  },
+  "recovery_definition": "First saved point after last sample outside 2 V +/-2%, stays inside through record end and has >=2 ms observation margin. Recovery time reported without a closed-loop pass threshold.",
+  "comparison_windows_s": [
+    [
+      0.04962,
+      0.06
+    ],
+    [
+      0.0996,
+      0.09999999999999999
+    ]
+  ],
+  "compared_ngspice_points": 59292,
+  "maximum_absolute_output_difference_v": 0.00012107134186267743,
+  "maximum_absolute_current_difference_a": 0.00014286031966692647,
+  "mean_method": "Time-weighted trapezoid integration with linearly interpolated endpoints inside saved coverage; extrema from saved points and those endpoints.",
+  "pwm_difference": "Existing SPICE uses area-compensated 1 ns ramps; Python PWM edges instantaneous.",
+  "saved_ranges": {
+    "python": {
+      "start_s": 0.049600000000000005,
+      "end_s": 0.10000000000000002,
+      "unique_state_points": 205024
+    },
+    "ngspice": {
+      "start_s": 0.0496000001,
+      "end_s": 0.09999999999999999,
+      "unique_state_points": 277200
+    }
+  },
+  "checks": {
+    "pre_dc_voltage_within_1e_5_v": true,
+    "pre_dc_current_within_1e_5_a": true,
+    "pre_voltage_ripple_within_2_percent": true,
+    "pre_current_ripple_within_2_percent": true,
+    "post_dc_voltage_within_1e_5_v": true,
+    "post_dc_current_within_1e_5_a": true,
+    "post_voltage_ripple_within_2_percent": true,
+    "post_current_ripple_within_2_percent": true,
+    "finite_data": true
+  },
+  "full_outputs": "python_full.csv and ngspice_full.dat remain unchanged in source_directory; compact CSVs include only declared step/post windows."
+}

@@ -1,0 +1,7 @@
+[
+  "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+  "E:\\codex_ltspice_runs\\default_probe_20261106_181614_560963\\resistor.cir",
+  "-b",
+  "-run",
+  "-ascii"
+]

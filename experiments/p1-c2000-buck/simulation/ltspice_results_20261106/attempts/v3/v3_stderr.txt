@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "E:\UserData\Documents\ChatGPT\硬件\.runs\ltspice_batch_fix_20261106_182049_668333\run_buck_batch_v3.py", line 136, in <module>
+    main()
+    ~~~~^^
+  File "E:\UserData\Documents\ChatGPT\硬件\.runs\ltspice_batch_fix_20261106_182049_668333\run_buck_batch_v3.py", line 133, in main
+    raise AssertionError('Original DC/ripple/initial checks failed; evidence retained and no tolerances relaxed.')
+AssertionError: Original DC/ripple/initial checks failed; evidence retained and no tolerances relaxed.
