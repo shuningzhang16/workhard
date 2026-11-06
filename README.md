@@ -4,7 +4,7 @@
 
 | 项目 | 目录 | 当前阶段 |
 | --- | --- | --- |
-| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | 测量区间清除修复后 36,006 拍 C/Python 闭环一致；零码不可观测时保持锁存；C ADC 主机测试及禁止输出的目标构建通过 |
+| P1：TI C2000 Buck 数字电源 | [experiments/p1-c2000-buck](experiments/p1-c2000-buck/) | 36,006 拍 C/Python 闭环一致；LTspice 启动/稳态 8 项与开环阶跃 9 项检查通过；目标构建保持输出禁止 |
 | P2：ZCU104 FPGA 数据采集 | [experiments/p2-zcu104-daq](experiments/p2-zcu104-daq/) | AXI-Lite、Simple S2MM、有界队列通过；新增进程 CPU 时间及独立 RTL 延迟/FIFO 峰值测量 |
 | P4：双向 DAB 建模与控制 | [experiments/p4-dab](experiments/p4-dab/) | 连续换流接入功率 PI/采样保护，55 项测试通过；保留同接收功率损耗比较、未匹配点及过流峰值 |
 
@@ -14,7 +14,7 @@
 
 学习顺序、关键代码路径、练习、面试问答和项目讲解稿见 [学习与讲解指南](docs/LEARNING.md)。
 
-上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。P1 修复提交 `0cec731` 的 [三项任务成功](https://github.com/shuningzhang16/workhard/actions/runs/42151335589)，后续 P2 提交 `eace2e4` 的 [本轮三项任务也成功](https://github.com/shuningzhang16/workhard/actions/runs/42151531202)。随后 P4 提交 `b86f135` 的 [三项任务全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42184455660)，[API、任务及产物记录](verification/github-actions/42184455660.json) 已保存。本轮板卡接入及 PLECS 运行证据提交 `3f6b200` 的 [三项离线检查也全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42199760429)，[任务结果记录](verification/github-actions/42199760429.json) 已保存；这不替代尚未执行的 Vivado 或 LTspice。触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
+上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。P1 修复提交 `0cec731` 的 [三项任务成功](https://github.com/shuningzhang16/workhard/actions/runs/42151335589)，后续 P2 提交 `eace2e4` 的 [本轮三项任务也成功](https://github.com/shuningzhang16/workhard/actions/runs/42151531202)。随后 P4 提交 `b86f135` 的 [三项任务全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42184455660)，[API、任务及产物记录](verification/github-actions/42184455660.json) 已保存。本轮板卡接入及 PLECS 运行证据提交 `3f6b200` 的 [三项离线检查也全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42199760429)，[任务结果记录](verification/github-actions/42199760429.json) 已保存；这不替代尚未执行的 Vivado 或 LTspice。最新 LTspice 提交 `5954dd8` 的 [P1/P2/P4 三项检查全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42203182237)，[记录](verification/github-actions/42203182237.json) 已保存。触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
 
 ## 完成标准与当前缺口
 
