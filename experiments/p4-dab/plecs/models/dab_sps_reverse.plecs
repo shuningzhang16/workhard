@@ -1,0 +1,614 @@
+Plecs {
+  Name "dab_sps_reverse"
+  Version "5.0"
+  CircuitModel "ContStateSpace"
+  StartTime "0"
+  TimeSpan "0.006"
+  Solver "dopri"
+  MaxStep "5e-7"
+  InitStep "-1"
+  FixedStep "5e-7"
+  Refine "1"
+  ZCStepSize "1e-10"
+  RelTol "1e-8"
+  AbsTol "1e-9"
+  InitialState "1"
+  InitializationCommands ""
+  Schematic {
+    Location [0, 50; 1250, 870]
+    ZoomFactor 1
+    SliderPosition [0, 0]
+    ShowBrowser off
+    Component {
+      Type DCVoltageSource
+      Name "Vdc1"
+      Show on
+      Position [60, 210]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "V" Value "24" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q1aH"
+      Show on
+      Position [160, 140]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q1aL"
+      Show on
+      Position [160, 280]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q1bH"
+      Show on
+      Position [300, 140]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q1bL"
+      Show on
+      Position [300, 280]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Connection { Type Wire SrcComponent "Vdc1" SrcTerminal 1
+      Branch { DstComponent "Q1aH" DstTerminal 1 }
+      Branch { DstComponent "Q1bH" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "Vdc1" SrcTerminal 2
+      Branch { DstComponent "Q1aL" DstTerminal 2 }
+      Branch { DstComponent "Q1bL" DstTerminal 2 }
+    }
+    Component {
+      Type PulseGenerator
+      Name "Gate1_plus"
+      Show on
+      Position [100, 390]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Hi" Value "1" Show off }
+      Parameter { Variable "Lo" Value "0" Show off }
+      Parameter { Variable "f" Value "20000" Show off }
+      Parameter { Variable "DutyCycle" Value "0.5" Show off }
+      Parameter { Variable "Delay" Value "0" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type PulseGenerator
+      Name "Gate1_minus"
+      Show on
+      Position [100, 445]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Hi" Value "0" Show off }
+      Parameter { Variable "Lo" Value "1" Show off }
+      Parameter { Variable "f" Value "20000" Show off }
+      Parameter { Variable "DutyCycle" Value "0.5" Show off }
+      Parameter { Variable "Delay" Value "0" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type DCVoltageSource
+      Name "Vdc2"
+      Show on
+      Position [720, 210]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "V" Value "12" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q2aH"
+      Show on
+      Position [820, 140]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q2aL"
+      Show on
+      Position [820, 280]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q2bH"
+      Show on
+      Position [960, 140]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Component {
+      Type MosfetWithDiode
+      Name "Q2bL"
+      Show on
+      Position [960, 280]
+      Direction up
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Ron" Value "0" Show off }
+      Parameter { Variable "s_init" Value "0" Show off }
+      Parameter { Variable "thermal" Value "" Show off }
+      Parameter { Variable "Rth" Value "0" Show off }
+      Parameter { Variable "Np" Value "1" Show off }
+      Parameter { Variable "T_init" Value "25" Show off }
+
+    }
+    Connection { Type Wire SrcComponent "Vdc2" SrcTerminal 1
+      Branch { DstComponent "Q2aH" DstTerminal 1 }
+      Branch { DstComponent "Q2bH" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "Vdc2" SrcTerminal 2
+      Branch { DstComponent "Q2aL" DstTerminal 2 }
+      Branch { DstComponent "Q2bL" DstTerminal 2 }
+    }
+    Component {
+      Type PulseGenerator
+      Name "Gate2_plus"
+      Show on
+      Position [760, 390]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Hi" Value "1" Show off }
+      Parameter { Variable "Lo" Value "0" Show off }
+      Parameter { Variable "f" Value "20000" Show off }
+      Parameter { Variable "DutyCycle" Value "0.5" Show off }
+      Parameter { Variable "Delay" Value "-4.166666666666666e-06" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type PulseGenerator
+      Name "Gate2_minus"
+      Show on
+      Position [760, 445]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Hi" Value "0" Show off }
+      Parameter { Variable "Lo" Value "1" Show off }
+      Parameter { Variable "f" Value "20000" Show off }
+      Parameter { Variable "DutyCycle" Value "0.5" Show off }
+      Parameter { Variable "Delay" Value "-4.166666666666666e-06" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type Inductor
+      Name "L_100uH"
+      Show on
+      Position [380, 180]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "L" Value "100e-6" Show off }
+      Parameter { Variable "i_init" Value "0" Show off }
+
+    }
+    Component {
+      Type Resistor
+      Name "R_0p5ohm"
+      Show on
+      Position [465, 180]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "R" Value "0.5" Show off }
+
+    }
+    Component {
+      Type Ammeter
+      Name "iL"
+      Show on
+      Position [545, 180]
+      Direction right
+      Flipped off
+      LabelPosition south
+
+
+    }
+    Component {
+      Type Transformer
+      Name "n_2_to_1"
+      Show on
+      Position [650, 230]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Windings" Value "[1 1]" Show off }
+      Parameter { Variable "n" Value "[2 1]" Show off }
+      Parameter { Variable "Polarity" Value "+" Show off }
+      Parameter { Variable "Lm" Value "inf" Show off }
+      Parameter { Variable "im0" Value "0" Show off }
+
+    }
+    Component {
+      Type Voltmeter
+      Name "v1"
+      Show on
+      Position [230, 210]
+      Direction up
+      Flipped off
+      LabelPosition south
+
+
+    }
+    Component {
+      Type Voltmeter
+      Name "v2"
+      Show on
+      Position [890, 210]
+      Direction up
+      Flipped off
+      LabelPosition south
+
+
+    }
+    Connection { Type Wire SrcComponent "Q1aH" SrcTerminal 2
+      Branch { DstComponent "Q1aL" DstTerminal 1 }
+      Branch { DstComponent "L_100uH" DstTerminal 1 }
+      Branch { DstComponent "v1" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "L_100uH" SrcTerminal 2
+      Branch { DstComponent "R_0p5ohm" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "R_0p5ohm" SrcTerminal 2
+      Branch { DstComponent "iL" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "iL" SrcTerminal 2
+      Branch { DstComponent "n_2_to_1" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "Q1bH" SrcTerminal 2
+      Branch { DstComponent "Q1bL" DstTerminal 1 }
+      Branch { DstComponent "n_2_to_1" DstTerminal 2 }
+      Branch { DstComponent "v1" DstTerminal 2 }
+    }
+    Connection { Type Wire SrcComponent "Q2aH" SrcTerminal 2
+      Branch { DstComponent "Q2aL" DstTerminal 1 }
+      Branch { DstComponent "n_2_to_1" DstTerminal 3 }
+      Branch { DstComponent "v2" DstTerminal 1 }
+    }
+    Connection { Type Wire SrcComponent "Q2bH" SrcTerminal 2
+      Branch { DstComponent "Q2bL" DstTerminal 1 }
+      Branch { DstComponent "n_2_to_1" DstTerminal 4 }
+      Branch { DstComponent "v2" DstTerminal 2 }
+    }
+    Component {
+      Type Gain
+      Name "n_times_v2"
+      Show on
+      Position [610, 410]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "K" Value "2" Show off }
+
+    }
+    Component {
+      Type Scope
+      Name "Bridge voltages and current"
+      Show on
+      Position [1100, 210]
+      Direction right
+      Flipped off
+      LabelPosition south
+
+      Location [100, 100; 1000, 700]
+      Axes "3"
+      TimeRange "0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open "0"
+      Ts "-1"
+      SampleLimit "0"
+      XAxisLabel "Time / s"
+      ShowLegend "1"
+      Axis { Name "v1 / V" AutoScale 1 MinValue -1 MaxValue 1 Signals {} SignalTypes [] AxisLabel "v1 / V" }
+      Axis { Name "n*v2 / V" AutoScale 1 MinValue -1 MaxValue 1 Signals {} SignalTypes [] AxisLabel "n*v2 / V" }
+      Axis { Name "iL / A" AutoScale 1 MinValue -1 MaxValue 1 Signals {} SignalTypes [] AxisLabel "iL / A" }
+
+    }
+    Component {
+      Type SignalMux
+      Name "Mux_P1"
+      Show on
+      Position [280, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Width" Value "2" Show off }
+
+    }
+    Component {
+      Type Product
+      Name "Instant_P1"
+      Show on
+      Position [340, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Inputs" Value "*" Show off }
+      Parameter { Variable "IconShape" Value "1" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type PeriodicAverage
+      Name "Average_P1"
+      Show on
+      Position [410, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "T_average" Value "1/20000" Show off }
+
+    }
+    Component {
+      Type Display
+      Name "P1_W"
+      Show on
+      Position [500, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Notation" Value "1" Show off }
+      Parameter { Variable "Precision" Value "7" Show off }
+      Frame [-50, -14; 50, 14]
+    }
+    Component {
+      Type SignalMux
+      Name "Mux_P2"
+      Show on
+      Position [580, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Width" Value "2" Show off }
+
+    }
+    Component {
+      Type Product
+      Name "Instant_P2"
+      Show on
+      Position [640, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Inputs" Value "*" Show off }
+      Parameter { Variable "IconShape" Value "1" Show off }
+      Parameter { Variable "DataType" Value "10" Show off }
+
+    }
+    Component {
+      Type PeriodicAverage
+      Name "Average_P2"
+      Show on
+      Position [710, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "T_average" Value "1/20000" Show off }
+
+    }
+    Component {
+      Type Display
+      Name "P2_W"
+      Show on
+      Position [800, 550]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Notation" Value "1" Show off }
+      Parameter { Variable "Precision" Value "7" Show off }
+      Frame [-50, -14; 50, 14]
+    }
+    Component {
+      Type Math
+      Name "i_squared"
+      Show on
+      Position [200, 650]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Operator" Value "1" Show off }
+
+    }
+    Component {
+      Type PeriodicAverage
+      Name "Average_i_squared"
+      Show on
+      Position [320, 650]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "T_average" Value "1/20000" Show off }
+
+    }
+    Component {
+      Type Math
+      Name "RMS"
+      Show on
+      Position [440, 650]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Operator" Value "2" Show off }
+
+    }
+    Component {
+      Type Display
+      Name "Irms_A"
+      Show on
+      Position [560, 650]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Notation" Value "1" Show off }
+      Parameter { Variable "Precision" Value "7" Show off }
+      Frame [-50, -14; 50, 14]
+    }
+    Component {
+      Type Gain
+      Name "R_times_mean_i2"
+      Show on
+      Position [440, 730]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "K" Value "0.5" Show off }
+
+    }
+    Component {
+      Type Display
+      Name "R_loss_W"
+      Show on
+      Position [560, 730]
+      Direction right
+      Flipped off
+      LabelPosition south
+      Parameter { Variable "Notation" Value "1" Show off }
+      Parameter { Variable "Precision" Value "7" Show off }
+      Frame [-50, -14; 50, 14]
+    }
+    Connection { Type Signal SrcComponent "Gate1_plus" SrcTerminal 1
+      Branch { DstComponent "Q1aH" DstTerminal 3 }
+      Branch { DstComponent "Q1bL" DstTerminal 3 }
+    }
+    Connection { Type Signal SrcComponent "Gate1_minus" SrcTerminal 1
+      Branch { DstComponent "Q1aL" DstTerminal 3 }
+      Branch { DstComponent "Q1bH" DstTerminal 3 }
+    }
+    Connection { Type Signal SrcComponent "Gate2_plus" SrcTerminal 1
+      Branch { DstComponent "Q2aH" DstTerminal 3 }
+      Branch { DstComponent "Q2bL" DstTerminal 3 }
+    }
+    Connection { Type Signal SrcComponent "Gate2_minus" SrcTerminal 1
+      Branch { DstComponent "Q2aL" DstTerminal 3 }
+      Branch { DstComponent "Q2bH" DstTerminal 3 }
+    }
+    Connection { Type Signal SrcComponent "v2" SrcTerminal 3
+      Branch { DstComponent "n_times_v2" DstTerminal 1 }
+    }
+    Connection { Type Signal SrcComponent "v1" SrcTerminal 3
+      Branch { DstComponent "Bridge voltages and current" DstTerminal 1 }
+      Branch { DstComponent "Mux_P1" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "n_times_v2" SrcTerminal 2
+      Branch { DstComponent "Bridge voltages and current" DstTerminal 2 }
+      Branch { DstComponent "Mux_P2" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "iL" SrcTerminal 3
+      Branch { DstComponent "Bridge voltages and current" DstTerminal 3 }
+      Branch { DstComponent "Mux_P1" DstTerminal 3 }
+      Branch { DstComponent "Mux_P2" DstTerminal 3 }
+      Branch { DstComponent "i_squared" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Mux_P1" SrcTerminal 1
+      Branch { DstComponent "Instant_P1" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Instant_P1" SrcTerminal 1
+      Branch { DstComponent "Average_P1" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Average_P1" SrcTerminal 1
+      Branch { DstComponent "P1_W" DstTerminal 1 }
+    }
+    Connection { Type Signal SrcComponent "Mux_P2" SrcTerminal 1
+      Branch { DstComponent "Instant_P2" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Instant_P2" SrcTerminal 1
+      Branch { DstComponent "Average_P2" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Average_P2" SrcTerminal 1
+      Branch { DstComponent "P2_W" DstTerminal 1 }
+    }
+    Connection { Type Signal SrcComponent "i_squared" SrcTerminal 1
+      Branch { DstComponent "Average_i_squared" DstTerminal 2 }
+    }
+    Connection { Type Signal SrcComponent "Average_i_squared" SrcTerminal 1
+      Branch { DstComponent "RMS" DstTerminal 2 }
+      Branch { DstComponent "R_times_mean_i2" DstTerminal 1 }
+    }
+    Connection { Type Signal SrcComponent "RMS" SrcTerminal 1
+      Branch { DstComponent "Irms_A" DstTerminal 1 }
+    }
+    Connection { Type Signal SrcComponent "R_times_mean_i2" SrcTerminal 2
+      Branch { DstComponent "R_loss_W" DstTerminal 1 }
+    }
+  }
+}

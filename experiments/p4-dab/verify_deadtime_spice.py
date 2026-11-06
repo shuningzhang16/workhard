@@ -73,12 +73,14 @@ def read_spice_data(path, duration):
 
 
 def execute_ngspice(invocation, output, name, duration):
-    # quit can return zero even when analysis/wrdata failed. Remove only this
-    # known export before execution, so a previous run cannot satisfy the read.
+    # quit can return zero even when analysis/wrdata failed. Keep old evidence
+    # and require unused paths so an earlier export cannot satisfy this run.
     data_path = output / f"{name}.dat"
-    data_path.unlink(missing_ok=True)
+    log_path = output / f"{name}.log"
+    if data_path.exists() or log_path.exists():
+        raise FileExistsError("SPICE output already exists; choose a fresh output directory")
     result = subprocess.run(invocation, cwd=output, capture_output=True, text=True, encoding="utf-8", timeout=60)
-    (output / f"{name}.log").write_text(result.stdout + result.stderr + f"\nExit code: {result.returncode}\n", encoding="utf-8")
+    log_path.write_text(result.stdout + result.stderr + f"\nExit code: {result.returncode}\n", encoding="utf-8")
     if result.returncode:
         raise RuntimeError(f"ngspice failed for {name}; netlist and log retained")
     if not data_path.is_file():
@@ -87,6 +89,8 @@ def execute_ngspice(invocation, output, name, duration):
 
 
 def run(source, output, command):
+    if output.exists() and any(output.iterdir()):
+        raise FileExistsError("SPICE output directory is not empty; choose a fresh directory")
     output.mkdir(parents=True, exist_ok=True)
     metadata = {"started_at_utc": datetime.now(timezone.utc).isoformat(), "runner_argv": sys.orig_argv,
         "ngspice_command": command, "diode_slope_resistance_ohm": 0.001,
@@ -139,7 +143,7 @@ def run(source, output, command):
         (output / "RESULTS.md").write_text(
             "# ngspice 独立换流验证\n\n六个局部网表均实际运行成功；包含完成、方向相反、死区不足与正反向 EPS。\n"
             "每个网表使用独立 MNA 求解 L、8 个线性 C、行为端口和二极管分段电导，未调用 Python 轨迹作为激励。\n"
-            "每次运行前仅删除该案例的确定导出文件；随后要求新文件存在、数值有限且时间覆盖完整，避免退出码为零时误读旧数据。\n"
+            "每次运行使用新的输出目录，保留全部旧文件；随后要求新文件存在、数值有限且时间覆盖完整，避免退出码为零时误读旧数据。\n"
             "与 Python 的硬钳位区别仅为二极管额外 1 mΩ 数值斜率，比较容差预设 10 mV / 0.1 mA。\n\n"
             f"最大节点差 {max(s['max_node_voltage_difference_v'] for s in summaries):.6g} V，"
             f"最大电流差 {max(s['max_current_difference_a'] for s in summaries):.6g} A。\n"
@@ -158,7 +162,7 @@ if __name__ == "__main__":
     root = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=root / "results_eps" / "comparisons.csv")
-    parser.add_argument("--output", type=Path, default=root / "results_deadtime_spice")
+    parser.add_argument("--output", type=Path, default=root / ".runs" / ("deadtime-spice-" + datetime.now().strftime("%Y%m%d-%H%M%S-%f")))
     parser.add_argument("--ngspice-command", nargs="+", default=["wsl.exe", "-d", "Ubuntu-22.04", "--",
         "/mnt/e/UserData/Documents/ChatGPT/硬件/experiments/p1-c2000-buck/.tools/ngspice/usr/bin/ngspice"])
     args = parser.parse_args()

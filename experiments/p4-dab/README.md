@@ -80,7 +80,7 @@ EPS 比较可执行 `E:\python.exe -B run_eps_comparison.py`，数据保存在�
 
 第六步执行 `E:\python.exe -B -X utf8 run_power_points.py`，独立输出在 `results_power_points/`。V2=9/12/15 V、R=0.5 Ω，以及 V2=12 V、R=0.25/1 Ω 五点中，最慢入带 5.000 ms，最大尾段平均误差绝对值 0.006607 W；未改 PI 增益或保护阈值。完整参数和逐段结果均保存为 CSV。
 
-第七步执行 `E:\python.exe -B -X utf8 run_deadtime.py` 和 `E:\python.exe -B -X utf8 verify_deadtime_spice.py`，输出分别在 `results_deadtime/` 与 `results_deadtime_spice/`。2.7 W 正向 EPS 的有利极性在 150 ns 时只完成 4/8 个沿，500 ns 时完成 8/8；反向 EPS 在 500 ns 时仍只有 6/8。ngspice 最大节点差约 1.19 mV；同功率仅指提供初态的理想周期解，不是含死区的完整稳态或效率结果。
+第七步执行 `E:\python.exe -B -X utf8 run_deadtime.py` 和 `E:\python.exe -B -X utf8 verify_deadtime_spice.py`，前者输出在 `results_deadtime/`；SPICE 复跑自动使用 `.runs/deadtime-spice-时间戳/` 新目录，历史成功证据仍在 `results_deadtime_spice/`。2.7 W 正向 EPS 的有利极性在 150 ns 时只完成 4/8 个沿，500 ns 时完成 8/8；反向 EPS 在 500 ns 时仍只有 6/8。ngspice 最大节点差约 1.19 mV；同功率仅指提供初态的理想周期解，不是含死区的完整稳态或效率结果。
 
 第八步执行 `E:\python.exe -B -X utf8 run_continuous.py`，输出在 `results_continuous/`。+2.7 W 原理想角度、500 ns 死区下，连续模型的 SPS/EPS 实际 P2 分别为 4.854947/2.146260 W；两者已不等功率。所有电流跨窗口保留，每周期约 12–22 条区间/开通记录，无整周期统一微步长；R、二极管、开通电荷能量只计一次。
 
