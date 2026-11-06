@@ -1,0 +1,53 @@
+{
+  "upstream": "Xilinx/XilinxBoardStore",
+  "ref": "2025.2",
+  "files": [
+    {
+      "path": "boards/Xilinx/zcu104/1.1/LICENSE",
+      "bytes": 751,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/LICENSE"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/board.xml",
+      "bytes": 37979,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/board.xml"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/changelog.txt",
+      "bytes": 211,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/changelog.txt"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/part0_pins.xml",
+      "bytes": 13989,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/part0_pins.xml"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/preset.xml",
+      "bytes": 25812,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/preset.xml"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/xitem.json",
+      "bytes": 841,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/xitem.json"
+    },
+    {
+      "path": "boards/Xilinx/zcu104/1.1/zcu104_board.jpeg",
+      "bytes": 184442,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/boards/Xilinx/zcu104/1.1/zcu104_board.jpeg"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 719,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/LICENSE"
+    },
+    {
+      "path": "LICENSE.md",
+      "bytes": 719,
+      "url": "https://raw.githubusercontent.com/Xilinx/XilinxBoardStore/2025.2/LICENSE.md"
+    }
+  ],
+  "original_files_unmodified": true,
+  "hardware_operations": false
+}
