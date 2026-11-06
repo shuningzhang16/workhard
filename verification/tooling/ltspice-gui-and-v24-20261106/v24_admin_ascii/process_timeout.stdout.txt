@@ -1,0 +1,19 @@
+{
+    "Id":  28956,
+    "ProcessName":  "LTspice",
+    "StartTime":  "\/Date(1793958583235)\/",
+    "SessionId":  1,
+    "CPU":  0.5625,
+    "WorkingSet64":  23552000,
+    "MainWindowHandle":  0,
+    "MainWindowTitle":  "",
+    "Responding":  true,
+    "Path":  "E:\\codex_ltspice_runs\\version24_20261106_174940_766648\\program\\LTspice.exe"
+}
+{
+    "ProcessId":  28956,
+    "ParentProcessId":  49224,
+    "Name":  "LTspice.exe",
+    "ExecutablePath":  "E:\\codex_ltspice_runs\\version24_20261106_174940_766648\\program\\LTspice.exe",
+    "CommandLine":  "E:\\codex_ltspice_runs\\version24_20261106_174940_766648\\program\\LTspice.exe E:\\codex_ltspice_runs\\v24_admin_ascii_20261106_174942_882591\\resistor.net -b -run -ascii -ini E:\\codex_ltspice_runs\\v24_admin_ascii_20261106_174942_882591\\isolated.ini"
+}

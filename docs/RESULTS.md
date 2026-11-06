@@ -53,4 +53,4 @@ DAB 连续死区曾漏掉“先越轨、再因电流反向返回”的钳位事�
 
 尚无 C2000 固件烧录、目标 ISR 测时或真实电源测量；真实目标编译没有证明引脚映射、量程和硬件 Trip 行为。尚无完整 Vivado 构建、ZCU104 器件时序、A53 BSP 编译、DMA 到 DDR 板端收数、cache 一致性或板端吞吐。DAB 采用独立教学参数，没有完整复现 Toshiba RD264，局部死区结果不能证明整机效率或实物 ZVS。
 
-软件工具也有未完成项：LTspice 尚无仿真结果，Simulink 脚本尚无 MATLAB 运行结果；PLECS 5.0.7 已启动但应用审批超时，未进入 Demo 或运行模型。P2 新入口也没有产生真实 Vivado/BSP 结果。不能把剩余工作统称为“只差上板”。[集中工具与阻碍](../verification/tooling/README.md)、[P2 工具链](../experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md)、[P4 原生模型状态](../experiments/p4-dab/plecs/README.md)
+软件工具也有未完成项：LTspice 正常启动已定位到待用户亲自处理的隐私选择框，尚无电路结果；Simulink 脚本尚无 MATLAB 运行结果。PLECS 5.0.7 Demo 已实际完成官方签名 DAB 的 0.8 s 负载阶跃，已有截图，但自建固定双电源正反向数值对照未完成。P2 官方板卡文件已随仓接入，新入口仍没有产生真实 Vivado/BSP 结果。不能把剩余工作统称为“只差上板”。[集中工具与阻碍](../verification/tooling/README.md)、[P2 工具链](../experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md)、[P4 原生模型状态](../experiments/p4-dab/plecs/README.md)

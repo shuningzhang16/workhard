@@ -1,0 +1,59 @@
+{
+    "Id":  28956,
+    "ProcessName":  "LTspice",
+    "StartTime":  "\/Date(1793958583235)\/",
+    "SessionId":  1,
+    "CPU":  0.5625,
+    "WorkingSet64":  23552000,
+    "MainWindowHandle":  0,
+    "MainWindowTitle":  "",
+    "Responding":  true,
+    "Path":  "E:\\codex_ltspice_runs\\version24_20261106_174940_766648\\program\\LTspice.exe"
+}
+[
+    {
+        "Id":  63312,
+        "ThreadState":  5,
+        "WaitReason":  6
+    },
+    {
+        "Id":  42764,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  13704,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  59592,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  58188,
+        "ThreadState":  5,
+        "WaitReason":  6
+    },
+    {
+        "Id":  14184,
+        "ThreadState":  5,
+        "WaitReason":  6
+    },
+    {
+        "Id":  10604,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  57708,
+        "ThreadState":  5,
+        "WaitReason":  8
+    },
+    {
+        "Id":  57724,
+        "ThreadState":  5,
+        "WaitReason":  8
+    }
+]

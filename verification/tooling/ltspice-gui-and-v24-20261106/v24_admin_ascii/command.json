@@ -1,0 +1,17 @@
+{
+  "identity": "win-ohfcgc0i6ia\\administrator",
+  "command": [
+    "E:\\codex_ltspice_runs\\version24_20261106_174940_766648\\program\\LTspice.exe",
+    "E:\\codex_ltspice_runs\\v24_admin_ascii_20261106_174942_882591\\resistor.net",
+    "-b",
+    "-run",
+    "-ascii",
+    "-ini",
+    "E:\\codex_ltspice_runs\\v24_admin_ascii_20261106_174942_882591\\isolated.ini"
+  ],
+  "cwd": "E:\\codex_ltspice_runs\\v24_admin_ascii_20261106_174942_882591",
+  "timeout_seconds": 30,
+  "started_local": "2026-11-06T17:49:42.885076",
+  "flags_source": "https://www.analog.com/en/technical-articles/ltspice-keyboard-shortcuts.html",
+  "prior_context": "Version 24 was previously tried only in the old sandbox context. This paired version test now uses the same administrator account and a new all-ASCII program/deck/output path. No privacy/security settings modified."
+}

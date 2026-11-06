@@ -1,0 +1,13 @@
+{
+  "observed_local": "Fri Nov 06 2026 17:54:29 GMT+0800 (中国标准时间)",
+  "window": {
+    "app": "process:C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "id": 32446670,
+    "title": "Anonymously Share LTspice Usage Data"
+  },
+  "accessibility": {
+    "focused_element": "0 对话框 Anonymously Share LTspice Usage Data Secondary Actions: Raise",
+    "tree": "Window: \"Anonymously Share LTspice Usage Data\", App: LTspice.exe.\n\t0 对话框 Anonymously Share LTspice Usage Data Secondary Actions: Raise\n\t\t1 按钮 OK ID: 1\n\t\t2 文本 Please help us improve our products and services by automatically sending anonymous diagnostics and usage data (e.g. features/parts being used). All data will be kept confidential and will not be shared with third parties. ID: 1831\n\t\t3 文本 This can be changed at any time in LTspice Settings→Internet ID: 1832\n\t\t4 单选按钮 (selectable) Yes, send my anonymous usage data to the LTspice team ID: 1830\n\t\t5 单选按钮 (selectable) No, do not send my usage data ID: 1829\n\t\t6 标题栏 (settable, string) Value: Anonymously Share LTspice Usage Data\n\t\t\t7 按钮 关闭\n\nThe focused UI element is 0 对话框 Anonymously Share LTspice Usage Data Secondary Actions: Raise."
+  },
+  "action_taken": "Read-only. No radio selection, OK, close or key input; prompt left unchanged."
+}
