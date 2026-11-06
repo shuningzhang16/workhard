@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | C2000 cl2000 25.11.1 | 测量区间清除接口已重新编译链接；C ADC 换算在主机定向测试中执行，见 [新证据](../../experiments/p1-c2000-buck/host_c/CLEAR_MEASUREMENTS.md) | 目标 ADC 寄存器/ISR 未执行，输出禁止不变；零码信息缺口未被硬件验证补足 |
 | Vivado/Vitis 2025.2 | 本机仍仅发现 Vivado Lab；已准备完整离线构建/报告/无 bitstream XSA 入口及匹配 A53 BSP 路径，见 [新版工具链记录](../../experiments/p2-zcu104-daq/vivado/toolchain_2025_2.md) | 仅完成 Tcl 文本与目录保留检查；无实际 BD、器件实现、时序、XSA 或 A53 BSP 编译结果 |
-| AMD 安装与下载 | Windows 安装入口要求管理员；Linux 官方 2025.2 安装入口已核实，但本次下载重定向到 F5 会话错误，Edge 应用审批超时，未取得认证通道 | 未绕过权限或会话检查；WSL 虚拟余量不等于 E 盘物理空间，真实组件占用尚待安装摘要；未完成完整安装 |
+| AMD 安装与下载 | 本轮独立后台浏览器已从官方 2025.2 Linux 安装包链接到达真实 AMD 登录表单；未输入或提交凭据，见[新观察](amd-browser-20261106/README.md) | 尚无已认证下载和完整安装；不代表现有 Edge 的登录状态。WSL 虚拟余量不等于 E 盘物理空间，真实组件占用待安装摘要 |
 | LTspice 26 | 已正常启动 GUI，实际停在匿名使用数据隐私选择框，需由用户亲自处理；见[新现场证据](ltspice-gui-and-v24-20261106/README.md) | 尚无电路结果；之前全新 INI 批处理超时与该提示是否同因仍待验证；后续使用用户默认配置，不传 `-ini` |
 | LTspice 24 | 官方 24.1.10 MSI 签名 Valid，独立解包 exit 0；EXE 24.1.10.4 | 独立 INI 版本查询与 Buck 均 45 秒超时；[命令和结果](ltspice24-startup.json) |
 | PLECS Standalone 5.0.7 | Demo 已实际完成官方签名 DAB 的 0.8 s 运行，取得 1→2 kW 负载阶跃波形及结束窗口，见[平台状态](../../experiments/p4-dab/plecs/README.md) | 原例不是固定双母线反向实验；自建文件仍被签名限制拒绝；低压正反向数值对照待完成，未导出原始数组 |

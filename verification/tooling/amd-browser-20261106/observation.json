@@ -1,0 +1,19 @@
+{
+  "observed_at_local": "2026-11-06T18:06:51",
+  "browser": "Codex in-app browser; separate session from existing Edge",
+  "source_page": "https://www.amd.com/en/support/downloads/adaptive-socs-and-fpgas/development-tools/2025-2.html",
+  "clicked_download": "https://account.amd.com/en/forms/downloads/xef.html?filename=FPGAs_AdaptiveSoCs_Unified_SDI_2025.2_1114_2157_Lin64.bin",
+  "result_host": "login.amd.com",
+  "result_title": "amd - 登录",
+  "visible_form": [
+    "电子邮件地址",
+    "密码",
+    "登录"
+  ],
+  "credential_fields_empty": true,
+  "credentials_entered": false,
+  "login_submitted": false,
+  "package_downloaded": false,
+  "scope": "Browser navigation reached the real AMD sign-in page. This does not establish the login state of existing Edge or other browser profiles.",
+  "retained_url_parameters": false
+}

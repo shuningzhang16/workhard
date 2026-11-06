@@ -14,7 +14,7 @@
 
 学习顺序、关键代码路径、练习、面试问答和项目讲解稿见 [学习与讲解指南](docs/LEARNING.md)。
 
-上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。P1 修复提交 `0cec731` 的 [三项任务成功](https://github.com/shuningzhang16/workhard/actions/runs/42151335589)，后续 P2 提交 `eace2e4` 的 [本轮三项任务也成功](https://github.com/shuningzhang16/workhard/actions/runs/42151531202)。随后 P4 提交 `b86f135` 的 [三项任务全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42184455660)，[API、任务及产物记录](verification/github-actions/42184455660.json) 已保存。触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
+上传后的代码还会运行 [GitHub 离线检查](https://github.com/shuningzhang16/workhard/actions/workflows/offline.yml)。P1 修复提交 `0cec731` 的 [三项任务成功](https://github.com/shuningzhang16/workhard/actions/runs/42151335589)，后续 P2 提交 `eace2e4` 的 [本轮三项任务也成功](https://github.com/shuningzhang16/workhard/actions/runs/42151531202)。随后 P4 提交 `b86f135` 的 [三项任务全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42184455660)，[API、任务及产物记录](verification/github-actions/42184455660.json) 已保存。本轮板卡接入及 PLECS 运行证据提交 `3f6b200` 的 [三项离线检查也全部成功](https://github.com/shuningzhang16/workhard/actions/runs/42199760429)，[任务结果记录](verification/github-actions/42199760429.json) 已保存；这不替代尚未执行的 Vivado 或 LTspice。触发规则、日志位置和验证范围见 [CI 说明](docs/CI.md)。
 
 ## 完成标准与当前缺口
 

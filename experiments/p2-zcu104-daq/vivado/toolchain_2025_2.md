@@ -34,6 +34,8 @@ AMD [2025.2 支持器件表](https://docs.amd.com/r/2025.2-English/ug973-vivado-
 
 两条实际下载链接在网页抓取中都重定向到 account.amd.com/my.logout.php3?errorcode=19，页面报告 F5 无法建立会话。随后尝试通过现有 Edge 新标签只读确认会话，Computer Use 返回 Computer Use app approval timed out，未取得浏览器登录状态。这不能证明用户没有 AMD 账户；它说明本次没有可用的已认证下载通道。
 
+本轮改用独立后台浏览器点击同一官方下载链接，已成功到达 login.amd.com 的真实登录表单，空的邮箱/密码字段可见。没有输入或提交凭据，也没有下载安装包；这不代表现有 Edge 的登录状态。见[本轮观察记录](../../../verification/tooling/amd-browser-20261106/README.md)。
+
 [官方安装流程](https://docs.amd.com/r/2025.2-English/ug973-vivado-release-notes-install-license/Run-the-Installation-File)要求 AMD 账户登录。批处理也须先[获取认证 token](https://docs.amd.com/r/2025.2-English/ug973-vivado-release-notes-install-license/Acquire-Authentication-Token)，有效期 7 天。不要把账户/密码/token 提交到仓库，也不要从浏览器或其他配置文件提取凭据。
 
 最小安装组件为 Vivado ML Standard、Zynq UltraScale+ MPSoC（XCZU7EV）及 Vitis Embedded 的 A53 Standalone 开发工具。ZCU104 官方 1.1 板卡目录已从 XilinxBoardStore 的 2025.2 分支保存到根目录 vendor/xilinx-boardstore-2025.2；工程入口固定按仓库相对路径加入 board.repoPaths，无需另行手工配置板卡 catalog。见[原始文件来源与许可证](../../../vendor/xilinx-boardstore-2025.2/SOURCE.md)及[本次 XML/文本检查](../results/board_vendor_20261106_175304_840/README.md)。该检查没有调用 Vivado，也不证明 preset 已被工具接受。精确下载/安装占用须由真实安装摘要给出，目前不估造数字。现有 Lab、非本板 XSA、2025.1 驱动源码都不替代这些组件。
