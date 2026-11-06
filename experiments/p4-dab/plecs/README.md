@@ -106,3 +106,5 @@ outputDir = build_dab_sps(true);
 `-batch` 为 MathWorks 官方非交互入口；代码输出会进入新的 `.runs/` 目录。以上命令尚未在 MATLAB 执行。MATLAB Runtime 或 Octave 不能代替这里所需的 Simulink 建模和 `sim` 执行。[官方批处理入口](https://www.mathworks.com/help/matlab/ref/matlabwindows.html)
 
 本轮继续在 Demo 界面新建低压等效模型时，画布输入一度落到覆盖它的 Secondary 示波器，已定位为焦点问题。库到模型的跨窗口拖拽被界面工具以目标超出窗口范围拒绝，未执行。校正焦点后，界面工具收到用户物理 Escape 停止信号，所有 GUI 随即停止；新模型仍为空白，没有正反向结果。官方原例的 0.8 s 结果保留，未删除文件、绕过签名或导出限制。
+
+独立平台对照已补充：同参数 ±30° 两源 R-L 电路已在 LTspice 从 0 A 实际积分 120 周期，两个方向均取得持续周期功率和完整末周期数据，见[实测数值与解析对照](../spice_rl/README.md)。这是独立仿真，不代表此处自建 PLECS 模型已加载或运行。

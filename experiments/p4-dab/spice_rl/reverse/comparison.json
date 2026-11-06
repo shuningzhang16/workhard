@@ -1,0 +1,30 @@
+{
+  "phase_deg": -30,
+  "ltspice": {
+    "window_start_s": 0.00595,
+    "window_end_s": 0.006,
+    "saved_points": 1066,
+    "p1_w": -19.7484823610635,
+    "p2_w": -20.192293527524754,
+    "r_loss_w": 0.4438191601902923,
+    "i_rms_a": 0.9421455940461562,
+    "i_peak_a": 1.05142860368659,
+    "i_start_a": -1.05142848638054,
+    "i_end_a": -1.05142848451141,
+    "energy_residual_j": -3.9948992627103064e-10
+  },
+  "analytic": {
+    "source": "independent analytic R-L calculation; NOT PLECS output",
+    "phase_deg": -30,
+    "periods": 120,
+    "p1_w": -19.748482327719096,
+    "p2_w": -20.192293601739895,
+    "r_loss_w": 0.443811274021257,
+    "i_rms_a": 0.9421372235733572,
+    "i_peak_a": 1.0514283393951587,
+    "i_start_a": -1.051428339395045,
+    "i_end_a": -1.051428339395045,
+    "energy_residual_j": -2.295459287059154e-17
+  },
+  "expected_power_sign_observed": true
+}

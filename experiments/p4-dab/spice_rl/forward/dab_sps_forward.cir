@@ -1,0 +1,15 @@
+* P4 two-bridge SPS equivalent referred to primary; NOT a PLECS model.
+* Matches reference_rl.py: +/-24 V, 20 kHz, L=100uH, R=0.5 ohm, i(0)=0.
+* 1 ps explicit transition is centered at each ideal analytic edge.
+* No MOSFETs, deadtime, transformer magnetizing branch, losses beyond R, or control.
+.param T=50u TR=1p
+VP p 0 PULSE(24 -24 {T/2-TR/2} {TR} {TR} {T/2-TR} {T})
+* +30 degrees: secondary lags; v2(0)=-24 V.
+VS s 0 PULSE(-24 24 {T/12-TR/2} {TR} {TR} {T/2-TR} {T})
+L1 p x 100u Rser=0 IC=0
+R1 x s 0.5
+.options plotwinsize=0 numdgt=15 reltol=1e-8 abstol=1e-11 vntol=1e-9
+.save V(p) V(s) I(L1)
+* Simulate 120 periods from zero current; retain the final period (119T to 120T).
+.tran 0.05u 6m 5.95m 0.05u uic
+.end

@@ -24,6 +24,7 @@
 | 采集启停会话 | 先提交 DMA 再 START，STOP 后有限排空，核对原定帧数；9 项主机测试通过，Tcl 已接入控制 wrapper 及地址导出入口 | [会话与目标工具限制](../experiments/p2-zcu104-daq/ps/daq_session.md) |
 | 有界接收队列 | 容量 1/3/8 包、借用及释放、满队列背压和错误后保留有效前缀；13 项测试及 9 组主机测量通过 | [队列与实际测量](../experiments/p2-zcu104-daq/ps/daq_queue.md) |
 | DAB SPS | 3 个电压比、39 个相移点；匹配电压 ±30° 时传输 ±20 W | [扫描与波形](../experiments/p4-dab/results/RESULTS.md) |
+| DAB 独立 LTspice 双向等效电路 | ±30° 两个 120 周期实际运行均退出 0；P1/P2 方向正确，Irms约0.942146 A；末周期完整 RAW/CSV 与解析差值保留 | [电路、结果和边界](../experiments/p4-dab/spice_rl/README.md) |
 | DAB EPS 比较 | 同功率比较保留未改善和无解工况；电压比 0.75、±2.7 W 时 RMS 电流降低 31.183% | [EPS 结果](../experiments/p4-dab/results_eps/RESULTS.md) |
 | DAB 瞬态与保护 | 四工况保留跨周期电流；换向、采样锁存、显式清除及能量收支通过 | [瞬态结果](../experiments/p4-dab/results_transient/RESULTS.md) |
 | DAB 换流极性 | 40 个周期波形、320 个桥臂事件；电压比 0.75、±2.7 W 的所选 EPS 满足全部必要极性，仍不能确认 ZVS | [逐沿分析](../experiments/p4-dab/COMMUTATION.md) |

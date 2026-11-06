@@ -1,0 +1,13 @@
+{
+  "phase_deg": -30,
+  "command": [
+    "C:\\Users\\Administrator\\AppData\\Local\\Programs\\ADI\\LTspice\\LTspice.exe",
+    "-b",
+    "-ascii",
+    "E:\\codex_ltspice_runs\\dab_rl_20261106_183829_308941\\reverse\\dab_sps_reverse.cir"
+  ],
+  "pid": 46020,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 2.9940754999988712
+}
